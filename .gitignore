@@ -1,0 +1,29 @@
+```
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.local
+*.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# Audio files with special characters need to be handled carefully
+# The audio file with octal escape sequences should be preserved as source
+# bilingual_audio_dictionary/audio/\322\273\321\213\321\203_ru.mp3
+```
