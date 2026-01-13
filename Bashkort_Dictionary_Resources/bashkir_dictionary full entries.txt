@@ -1,0 +1,1341 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bashkir Dictionary</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #0ea5e9;
+            --accent-color: #8b5cf6;
+            --light-color: #f8fafc;
+            --dark-color: #0f172a;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --border-radius: 10px;
+            --box-shadow: 0 4px 12px -3px rgba(0, 0, 0, 0.1);
+            --transition: all 0.25s ease;
+            --sidebar-width: 240px;
+            --container-padding: 12px;
+            --element-spacing: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.5;
+            color: #333;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            padding: var(--container-padding);
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: var(--sidebar-width) 1fr;
+            gap: var(--element-spacing);
+        }
+        
+        header {
+            grid-column: 1 / -1;
+            background: linear-gradient(120deg, var(--primary-color), #0c4a6e);
+            color: white;
+            padding: 16px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: var(--element-spacing);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+        
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 6px;
+            position: relative;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            background: linear-gradient(to right, #fff, #dbeafe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.05rem;
+            opacity: 0.92;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            color: #dbeafe;
+            font-weight: 300;
+        }
+        
+        .search-container {
+            background: white;
+            padding: 16px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: var(--element-spacing);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 12px;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px 12px 42px;
+            border: 1px solid #cbd5e1;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+        
+        .search-box input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+        
+        .clear-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #64748b;
+            cursor: pointer;
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .search-box input:not(:placeholder-shown) + .clear-btn {
+            opacity: 1;
+        }
+        
+        .clear-btn:hover {
+            color: var(--accent-color);
+        }
+        
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 5px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            font-family: inherit;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 16px;
+            height: fit-content;
+            border: 1px solid #e2e8f0;
+            position: sticky;
+            top: 10px;
+        }
+        
+        .sidebar h3 {
+            margin-bottom: 12px;
+            color: var(--primary-color);
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            font-weight: 600;
+            font-size: 1.15rem;
+        }
+        
+        .theme-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        
+        .theme-tab {
+            background: #f1f5f9;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .theme-tab:hover, .theme-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .theme-content {
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .theme-content::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .theme-content::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        .theme-content::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 3px;
+        }
+        
+        .theme-word {
+            background: #f8fafc;
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 6px;
+        }
+        
+        .theme-word:hover {
+            background: #dbeafe;
+            transform: translateX(3px);
+        }
+        
+        .all-words-btn {
+            background: var(--primary-color);
+            color: white;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .all-words-btn:hover {
+            background: #1e40af;
+            transform: translateY(-1px);
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--element-spacing);
+        }
+        
+        .word-details-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 850px;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .word-details-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+        
+        .word-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .word-main {
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            line-height: 1.05;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .word-meta {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .category-badge {
+            background: #dbeafe;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .part-of-speech {
+            background: #e0e7ff;
+            color: var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .frequency-badge {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .stars {
+            color: var(--warning-color);
+            font-size: 1.1rem;
+        }
+        
+        .transcription {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #475569;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        .definition-section {
+            margin-bottom: 25px;
+            padding: 15px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .definition-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            text-align: center;
+            font-size: 1.4rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0 10px;
+            background: white;
+            font-weight: 600;
+        }
+        
+        .definition-section h3::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
+        }
+        
+        .definitions {
+            margin-top: 10px;
+        }
+        
+        .definition-item {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #334155;
+        }
+        
+        .definition-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        
+        .examples-section {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 18px;
+            margin-top: 18px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .examples-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .examples-section h4 i {
+            color: var(--secondary-color);
+        }
+        
+        .example-item {
+            margin-bottom: 10px;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 6px;
+            border-left: 2px solid var(--secondary-color);
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            transition: var(--transition);
+        }
+        
+        .example-item:hover {
+            transform: translateX(3px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        
+        .example-translation {
+            display: block;
+            margin-top: 6px;
+            font-style: normal;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding-left: 8px;
+            border-left: 1.5px solid #94a3b8;
+        }
+        
+        .word-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .nav-btn {
+            background: white;
+            border: 1.5px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(30, 58, 138, 0.2);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .word-list-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .results-count {
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 1.05rem;
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sort-options label {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        
+        .sort-options select {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            font-family: inherit;
+            background: white;
+            font-size: 0.9rem;
+            min-width: 150px;
+        }
+        
+        .word-list {
+            max-height: 320px;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+        
+        .word-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .word-list::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+        
+        .word-list::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 3px;
+        }
+        
+        .word-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f1f5f9;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin-bottom: 3px;
+        }
+        
+        .word-item:hover {
+            background: #f1f5f9;
+            transform: translateX(3px);
+        }
+        
+        .word-item.active {
+            background: rgba(14, 165, 233, 0.1);
+            border-left: 3px solid var(--secondary-color);
+            transform: translateX(2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        
+        .word-term {
+            font-weight: 600;
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .word-category {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .word-transcription-small {
+            font-style: italic;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .word-definition-small {
+            color: #475569;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .page-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .page-btn:hover, .page-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(30, 58, 138, 0.15);
+        }
+        
+        .page-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+        }
+        
+        .no-results i {
+            font-size: 2.5rem;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .no-results h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--dark-color);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .stat-card {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 15px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.25s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-color: var(--secondary-color);
+        }
+        
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 8px 0;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--secondary-color);
+        }
+        
+        .loading-spinner {
+            border: 3px solid rgba(14, 165, 233, 0.2);
+            border-radius: 50%;
+            border-top: 3px solid var(--secondary-color);
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .footer {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 25px;
+            padding: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #cbd5e1;
+        }
+        
+        .lang-switcher {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: none;
+            color: var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            z-index: 10;
+        }
+        
+        .lang-switcher:hover {
+            background: var(--secondary-color);
+            color: white;
+            transform: translateY(-1px);
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(14, 165, 233, 0.2), transparent);
+            padding: 0 3px;
+            border-radius: 2px;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 1100px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .word-main {
+                font-size: 2.6rem;
+            }
+        }
+        
+        @media (max-width: 850px) {
+            .word-main {
+                font-size: 2.2rem;
+            }
+            
+            .transcription {
+                font-size: 1.2rem;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .content {
+                order: 1;
+            }
+        }
+        
+        @media (max-width: 650px) {
+            .filters {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .sort-options {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .word-main {
+                font-size: 1.8rem;
+            }
+            
+            .transcription {
+                font-size: 1.1rem;
+            }
+            
+            .word-details-container {
+                padding: 18px 15px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 0.95rem;
+            }
+        }
+        
+        @media (max-width: 450px) {
+            .word-main {
+                font-size: 1.6rem;
+            }
+            
+            .transcription {
+                font-size: 1rem;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .search-box input {
+                padding: 10px 20px 10px 40px;
+                font-size: 0.9rem;
+            }
+            
+            .filter-btn {
+                padding: 4px 10px;
+                font-size: 0.8rem;
+            }
+            
+            .page-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-btn {
+                padding: 6px 14px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        .animate-fade {
+            animation: fade-in 0.4s ease forwards;
+        }
+        
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button class="lang-switcher" id="langSwitcher">EN</button>
+            <h1>Bashkir Dictionary</h1>
+            <p class="subtitle">Comprehensive lexical database of the Bashkir language with thematic categorization</p>
+        </header>
+        
+        <div class="sidebar">
+            <h3>Navigate by Theme</h3>
+            <div class="theme-tabs">
+                <button class="theme-tab active" data-theme="nature">Nature</button>
+                <button class="theme-tab" data-theme="family">Family</button>
+                <button class="theme-tab" data-theme="body">Body</button>
+                <button class="theme-tab" data-theme="emotions">Emotions</button>
+                <button class="theme-tab" data-theme="time">Time</button>
+                <button class="theme-tab" data-theme="food">Food</button>
+                <button class="theme-tab" data-theme="adverbs">Adverbs</button>
+            </div>
+            
+            <div class="theme-content" id="themeWordsContainer">
+                <div class="theme-word" data-word="акрын">акрын [ɑkrɯn] - slowly</div>
+                <div class="theme-word" data-word="тиз">тиз [tiz] - quickly</div>
+                <div class="theme-word" data-word="бик">бик [bik] - very</div>
+                <div class="theme-word" data-word="киләсе">киләсе [kilæsɛ] - next</div>
+                <div class="theme-word" data-word="хәзер">хәзер [hæzɛr] - now</div>
+                <div class="theme-word" data-word="ниндәй">ниндәй [nindæj] - what kind of</div>
+                <div class="theme-word" data-word="юлай">юлай [julɑj] - such</div>
+                <div class="theme-word" data-word="кайчан">кайчан [kɑjtʃɑn] - when</div>
+                <div class="theme-word" data-word="нигә">нигә [niɡæ] - why</div>
+                <div class="theme-word" data-word="ничек">ничек [nitʃek] - how</div>
+            </div>
+            
+            <button class="all-words-btn" id="allWordsBtn">Show All 250 Words</button>
+            
+            <h3 style="margin-top: 20px;">Dictionary Stats</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalWordsStat">250</div>
+                    <div class="stat-label">Total Words</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Word Types</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">87%</div>
+                    <div class="stat-label">Coverage</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="search-container">
+                <div class="search-box">
+                    <i>🔍</i>
+                    <input type="text" id="searchInput" placeholder="Search for a Bashkir word..." autocomplete="off">
+                    <button class="clear-btn" id="clearBtn">×</button>
+                </div>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i>🌟</i> All Words
+                    </button>
+                    <button class="filter-btn" data-filter="noun">
+                        <i>🏠</i> Nouns
+                    </button>
+                    <button class="filter-btn" data-filter="verb">
+                        <i>🏃</i> Verbs
+                    </button>
+                    <button class="filter-btn" data-filter="adj">
+                        <i>🎨</i> Adjectives
+                    </button>
+                    <button class="filter-btn" data-filter="adv">
+                        <i>⭐</i> Adverbs
+                    </button>
+                </div>
+            </div>
+            
+            <div class="word-details-container" id="wordDetails">
+                <div class="word-header">
+                    <div class="word-main" id="currentWord">акрын</div>
+                    <div class="word-meta">
+                        <span class="category-badge" id="wordCategory">
+                            <i>⭐</i> Adverbs
+                        </span>
+                        <span class="part-of-speech" id="wordType">adv</span>
+                        <span class="frequency-badge">
+                            <span class="stars" id="wordStars">★★★☆☆</span> 
+                        </span>
+                    </div>
+                    <div class="transcription" id="transcription">[ɑkrɯn]</div>
+                </div>
+                
+                <div class="definition-section">
+                    <h3>Definitions</h3>
+                    <div class="definitions" id="definitions">
+                        <div class="definition-item">Slowly, at a slow pace or speed.</div>
+                        <div class="definition-item">Without hurry, taking one's time.</div>
+                    </div>
+                </div>
+                
+                <div class="examples-section">
+                    <h4><i>📖</i> Examples:</h4>
+                    <div class="example-item">Ул а<span class="highlight">крын</span> йөрөй.</div>
+                    <span class="example-translation">He walks slowly.</span>
+                </div>
+                
+                <div class="word-nav">
+                    <button class="nav-btn prev" id="prevWord">
+                        <i>←</i> Previous
+                    </button>
+                    <button class="nav-btn next" id="nextWord">
+                        Next <i>→</i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="word-list-container">
+                <div class="results-header">
+                    <div class="results-count">Showing <span id="visibleCount">15</span> of <span id="totalCount">250</span> words</div>
+                    <div class="sort-options">
+                        <label for="sortSelect">Sort:</label>
+                        <select id="sortSelect">
+                            <option value="alphabetical">Alphabetical</option>
+                            <option value="frequency">Frequency</option>
+                            <option value="length">Length</option>
+                            <option value="category">Category</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="word-list" id="wordList">
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                        <div>Loading dictionary entries...</div>
+                    </div>
+                </div>
+                
+                <div class="pagination" id="paginationContainer">
+                    <button class="page-btn prev" disabled>❮</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">4</button>
+                    <button class="page-btn">5</button>
+                    <button class="page-btn next">❯</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Bashkir Dictionary &copy; 2026 | Version 2.4.0</p>
+            <p>Ready-to-use template for linguistic projects and educational applications</p>
+            <p>Crafted for language preservation and cultural heritage</p>
+        </div>
+    </div>
+
+    <script>
+        // Bashkir dictionary data - 250 words
+        const dictionary = [
+            { word: "баш", transcription: "[bɑʃ]", type: "noun", category: "body", frequency: 8432, definitions: ["The head as the upper part of the human body", "Beginning, start, or initial part of something", "Mind, intellect, or intelligence"], examples: [{ text: "Минем <span class=\"highlight\">башым</span> авырта.", translation: "My head hurts." }, { text: "Эшнең <span class=\"highlight\">башында</span> кыен була.", translation: "It's difficult at the beginning of the work." }] },
+            { word: "йорт", transcription: "[jort]", type: "noun", category: "home", frequency: 7654, definitions: ["House, home, or dwelling place", "Household, family, or domestic establishment"], examples: [{ text: "Ул яңа <span class=\"highlight\">йортка</span> күчте.", translation: "He moved to a new house." }, { text: "<span class=\"highlight\">Йорт</span> төзү кыен эш.", translation: "Building a house is hard work." }] },
+            { word: "су", transcription: "[su]", type: "noun", category: "nature", frequency: 6543, definitions: ["Water as the liquid essential for life", "Body of water like a river, lake, or sea"], examples: [{ text: "<span class=\"highlight\">Су</span> эчкән кешенең эчлеге ағыҙ.", translation: "The insides of a person who drinks water are filled with poison." }, { text: "<span class=\"highlight\">Су</span> бәләкәй кына башлый, диңгеҙ була.", translation: "Water begins as a small stream and becomes a sea." }] },
+            { word: "ат", transcription: "[ɑt]", type: "noun", category: "animals", frequency: 5321, definitions: ["Horse as a domesticated animal", "A chess piece representing a knight"], examples: [{ text: "Ат өҫтөндә йөрөргә яратам.", translation: "I like to ride on horseback." }, { text: "Ҡара <span class=\"highlight\">ат</span> аҡыллы, ҡанаттары юҡ, тауҙарҙы үтә.", translation: "A black horse is smart, has no wings, but crosses mountains." }] },
+            { word: "күз", transcription: "[kyz]", type: "noun", category: "body", frequency: 5109, definitions: ["Eye as the organ of sight", "View, perspective, or way of seeing things"], examples: [{ text: "Ул <span class=\"highlight\">күҙ</span>еңде йомҙо.", translation: "He closed your eyes." }, { text: "Был - <span class=\"highlight\">күҙ</span> алдында килә.", translation: "This comes to mind." }] },
+            { word: "ҡул", transcription: "[qol]", type: "noun", category: "body", frequency: 4987, definitions: ["Hand as the end part of the arm beyond the wrist", "Help, assistance, or support"], examples: [{ text: "Ул <span class=\"highlight\">ҡул</span>дары менән чакырҙы.", translation: "He beckoned with his hands." }, { text: "Беҙгә <span class=\"highlight\">ҡул</span> кәрәк.", translation: "We need help." }] },
+            { word: "һауа", transcription: "[hɑwɑ]", type: "noun", category: "nature", frequency: 4876, definitions: ["Air as the mixture of gases surrounding the earth", "Weather or atmospheric conditions"], examples: [{ text: "Яҡшы <span class=\"highlight\">һауа</span> - һаулыҡҡа яҡшы.", translation: "Good air is good for health." }, { text: "<span class=\"highlight\">Һауа</span> сафланырға тейеш.", translation: "The air should be purified." }] },
+            { word: "теле", transcription: "[telɛ]", type: "noun", category: "communication", frequency: 5987, definitions: ["Language, speech, or tongue", "The ability to speak a particular language"], examples: [{ text: "Ул башҡорт <span class=\"highlight\">теле</span>н яҡшы белә.", translation: "He knows the Bashkir language well." }, { text: "<span class=\"highlight\">Тел</span>һеҙ кеше - урынһыҙ кеше.", translation: "A person without language is a person without a place." }] },
+            { word: "ҡар", transcription: "[qɑr]", type: "noun", category: "nature", frequency: 5432, definitions: ["Snow as flakes of ice falling from clouds", "Whiteness or white color in general"], examples: [{ text: "Ҡыш килгәс, <span class=\"highlight\">ҡар</span> яуҙы.", translation: "When winter came, it snowed." }, { text: "<span class=\"highlight\">Ҡар</span> ағас ботаҡтарын ябып ҡалды.", translation: "Snow covered the tree branches." }] },
+            { word: "ҡояш", transcription: "[qojɑʃ]", type: "noun", category: "nature", frequency: 4765, definitions: ["Sun as the celestial body at the center of our solar system", "Daylight, sunshine, or bright light"], examples: [{ text: "<span class=\"highlight\">Ҡояш</span> сыҡты, йөҙә башланы.", translation: "The sun rose and began to shine." }, { text: "<span class=\"highlight\">Ҡояш</span> аҫтында эшләгәндә иғтибарлы булығыҙ.", translation: "Be careful when working in the sun." }] },
+            { word: "йөрәк", transcription: "[jørek]", type: "noun", category: "body", frequency: 4654, definitions: ["Heart as the muscular organ pumping blood", "Core, center, or essential part of something"], examples: [{ text: "Аның <span class=\"highlight\">йөрәге</span> яҡшы.", translation: "He has a good heart." }, { text: "Мәсьәләнең <span class=\"highlight\">йөрәге</span> шунда.", translation: "The heart of the matter is this." }] },
+            { word: "ҡайын", transcription: "[qɑjɯn]", type: "noun", category: "nature", frequency: 4543, definitions: ["Birch tree as a species of tree with white bark", "Material made from birch wood"], examples: [{ text: "<span class=\"highlight\">Ҡайын</span> урманында йөрөйтөк.", translation: "Let's walk in the birch forest." }, { text: "<span class=\"highlight\">Ҡайын</span> ҡарағасҡа ҡарағанда яҡшыраҡ.", translation: "Birch is better than pine." }] },
+            { word: "яҙ", transcription: "[jɑθ]", type: "noun", category: "nature", frequency: 4432, definitions: ["Spring as the season between winter and summer", "Writing or inscription"], examples: [{ text: "<span class=\"highlight\">Яҙ</span> килгәс, бөтә нәмә лә тереҙгән.", translation: "When spring came, everything came alive." }, { text: "Ул хәтерләргә <span class=\"highlight\">яҙ</span>ҙы.", translation: "He wrote down the memories." }] },
+            { word: "бала", transcription: "[bɑlɑ]", type: "noun", category: "family", frequency: 4321, definitions: ["Child as a young person below the age of adulthood", "Son or daughter"], examples: [{ text: "<span class=\"highlight\">Бала</span>лар уйнағанда бәхетле булалар.", translation: "Children are happy when they play." }, { text: "<span class=\"highlight\">Бала</span>һыҙ йорт - тәрәнһеҙ диңгеҙ.", translation: "A house without children is a sea without depth." }] },
+            { word: "бәхет", transcription: "[bæ'χet]", type: "noun", category: "emotions", frequency: 4210, definitions: ["Happiness, good fortune, or bliss", "Luck, favorable circumstances, or prosperity"], examples: [{ text: "<span class=\"highlight\">Бәхет</span> киләсәк инде.", translation: "Happiness will come soon." }, { text: "Аның <span class=\"highlight\">бәхете</span> асыҡ.", translation: "His luck is clear/bright." }] },
+            { word: "иҙел", transcription: "[iðel]", type: "noun", category: "mental", frequency: 4109, definitions: ["Idea, concept, or thought", "Plan, intention, or purpose"], examples: [{ text: "Ул яҡшы <span class=\"highlight\">иҙел</span>гә эйә.", translation: "He has a good idea." }, { text: "<span class=\"highlight\">Иҙел</span>ҙәре оло, эштәре кескенә.", translation: "Their ideas are big, their works are small." }] },
+            { word: "ҡыр", transcription: "[qɯr]", type: "noun", category: "nature", frequency: 3998, definitions: ["Field as an area of open land", "Agricultural land used for growing crops"], examples: [{ text: "Яҙ көнө <span class=\"highlight\">ҡыр</span>ҙар яшелләнә.", translation: "In spring, the fields turn green." }, { text: "Аҡ <span class=\"highlight\">ҡыр</span>ҙарҙа эшләүеҙҙе дауам итәсәкбеҙ.", translation: "We will continue working in the white fields." }] },
+            { word: "бейек", transcription: "[be'jek]", type: "adj", category: "descriptive", frequency: 2210, definitions: ["High, tall, or elevated", "Lofty, noble, or exalted"], examples: [{ text: "Ул бик <span class=\"highlight\">бейек</span> ағас.", translation: "It's a very tall tree." }, { text: "<span class=\"highlight\">Бейек</span> маҡсаттар ҡуйҙы.", translation: "He set high goals." }] },
+            { word: "түбән", transcription: "[ty'bæn]", type: "adj", category: "descriptive", frequency: 2109, definitions: ["Low, short, or not high", "Humble, modest, or unassuming"], examples: [{ text: "<span class=\"highlight\">Түбән</span> өҫтәл.", translation: "Low table." }, { text: "<span class=\"highlight\">Түбән</span> фекерләп йөрөмә.", translation: "Don't think lowly of yourself." }] },
+            { word: "ҡурҡыныс", transcription: "[qur'qɯnɯs]", type: "adj", category: "descriptive", frequency: 1998, definitions: ["Dangerous, hazardous, or risky", "Threatening, menacing, or perilous"], examples: [{ text: "Был юл бик <span class=\"highlight\">ҡурҡыныс</span>.", translation: "This road is very dangerous." }, { text: "<span class=\"highlight\">Ҡурҡыныс</span> эштәрҙән ҡасырға тырыш.", translation: "Try to avoid dangerous work." }] },
+            { word: "ябай", transcription: "[jɑ'bɑj]", type: "adj", category: "descriptive", frequency: 1887, definitions: ["Simple, easy, or uncomplicated", "Plain, ordinary, or unpretentious"], examples: [{ text: "Был бик <span class=\"highlight\">ябай</span> мәсьәлә.", translation: "This is a very simple problem." }, { text: "<span class=\"highlight\">Ябай</span> кешеләр өсөн ябай тел.", translation: "Simple language for simple people." }] },
+            { word: "ҡатмарлы", transcription: "[qɑt'mɑrlɯ]", type: "adj", category: "descriptive", frequency: 1776, definitions: ["Complex, complicated, or intricate", "Difficult, challenging, or hard to understand"], examples: [{ text: "Был бик <span class=\"highlight\">ҡатмарлы</span> фән.", translation: "This is a very complex science." }, { text: "<span class=\"highlight\">Ҡатмарлы</span> мәсьәләләрҙе хәл итеү кәрәк.", translation: "We need to solve complex problems." }] },
+            { word: "ҡыҙыҡ", transcription: "[qɯ'zɯq]", type: "adj", category: "emotions", frequency: 1665, definitions: ["Interesting, fascinating, or engaging", "Curious, intriguing, or thought-provoking"], examples: [{ text: "Был бик <span class=\"highlight\">ҡыҙыҡ</span> хәбәр.", translation: "This is very interesting news." }, { text: "Ул <span class=\"highlight\">ҡыҙыҡ</span> китаптар уҡый.", translation: "He reads interesting books." }] },
+            { word: "ҡуш", transcription: "[quʃ]", type: "adj", category: "descriptive", frequency: 3887, definitions: ["Double, twofold, or paired", "Strong, powerful, or intense"], examples: [{ text: "<span class=\"highlight\">Ҡуш</span> ишекле йорт.", translation: "A house with a double door." }, { text: "<span class=\"highlight\">Ҡуш</span> көс менән эшләнгән.", translation: "Done with double strength." }] },
+            { word: "бер", transcription: "[ber]", type: "num", category: "numbers", frequency: 7654, definitions: ["One as a number", "Single, sole, or alone"], examples: [{ text: "Мин <span class=\"highlight\">бер</span> китап уҡыйым.", translation: "I read one book." }, { text: "<span class=\"highlight\">Бер</span>ҙәм генә килдем.", translation: "I came alone." }] },
+            { word: "ике", transcription: "[i'ke]", type: "num", category: "numbers", frequency: 6543, definitions: ["Two as a number", "Pair, couple, or duo"], examples: [{ text: "Минең <span class=\"highlight\">ике</span> дустым бар.", translation: "I have two friends." }, { text: "<span class=\"highlight\">Ике</span> күҙ - ике нур.", translation: "Two eyes are two rays of light." }] },
+            { word: "өс", transcription: "[øs]", type: "num", category: "numbers", frequency: 5432, definitions: ["Three as a number", "Triad, trio, or triplet"], examples: [{ text: "Бөгөн <span class=\"highlight\">өс</span> китап уҡып бөтөрҙөм.", translation: "Today I finished reading three books." }, { text: "<span class=\"highlight\">Өс</span> ағас ҡуйҙыҡ.", translation: "We planted three trees." }] },
+            { word: "дүрт", transcription: "[dyrt]", type: "num", category: "numbers", frequency: 4321, definitions: ["Four as a number", "Quartet or quadruple"], examples: [{ text: "<span class=\"highlight\">Дүрт</span> йыл элек.", translation: "Four years ago." }, { text: "<span class=\"highlight\">Дүрт</span> йөҙ йәшәгән.", translation: "Lived to four hundred years." }] },
+            { word: "биш", transcription: "[biʃ]", type: "num", category: "numbers", frequency: 3210, definitions: ["Five as a number", "Quintet or pentad"], examples: [{ text: "<span class=\"highlight\">Биш</span> көн элек.", translation: "Five days ago." }, { text: "<span class=\"highlight\">Биш</span> сәғәттән бирле көтәм.", translation: "I've been waiting for five hours." }] },
+            { word: "алты", transcription: "[ɑl'tɯ]", type: "num", category: "numbers", frequency: 2987, definitions: ["Six as a number", "Hexad or sextet"], examples: [{ text: "<span class=\"highlight\">Алты</span> аҙна.", translation: "Six weeks." }, { text: "<span class=\"highlight\">Алты</span> кеше килде.", translation: "Six people came." }] },
+            { word: "барырға", transcription: "[bɑ'rɯr'ɣɑ]", type: "verb", category: "movement", frequency: 5432, definitions: ["To go, to walk, or to travel", "To move from one place to another"], examples: [{ text: "Мәктәпкә <span class=\"highlight\">барырға</span> кәрәк.", translation: "I need to go to school." }, { text: "Ул дүккәнгә <span class=\"highlight\">барҙы</span>.", translation: "He went to the store." }] },
+            { word: "килтерергә", transcription: "[kil'te'rer'ɣɑ]", type: "verb", category: "action", frequency: 4321, definitions: ["To bring, to carry, or to fetch", "To deliver or transport something"], examples: [{ text: "Мин һыу <span class=\"highlight\">килтерергә</span> тейеш.", translation: "I should bring water." }, { text: "Ул китаптар <span class=\"highlight\">килтерҙе</span>.", translation: "He brought books." }] },
+            { word: "күрергә", transcription: "[ky'rer'ɣɑ]", type: "verb", category: "perception", frequency: 3210, definitions: ["To see, to look at, or to observe", "To witness or experience something"], examples: [{ text: "Мин уны <span class=\"highlight\">күрергә</span> теләйем.", translation: "I want to see him." }, { text: "Ул күп нәмәләр <span class=\"highlight\">күрҙе</span>.", translation: "He saw many things." }] },
+            { word: "ҡалырға", transcription: "[qɑ'lɯr'ɣɑ]", type: "verb", category: "state", frequency: 3123, definitions: ["To stay, to remain, or to be left", "To continue to exist or persist"], examples: [{ text: "Мин бында <span class=\"highlight\">ҡалырға</span> тейеш.", translation: "I should stay here." }, { text: "Ул йортта <span class=\"highlight\">ҡалды</span>.", translation: "He stayed at home." }] },
+            { word: "ҡарарға", transcription: "[qɑ'rɑr'ɣɑ]", type: "verb", category: "change", frequency: 2987, definitions: ["To freeze, to become frozen", "To harden or solidify"], examples: [{ text: "Һыу <span class=\"highlight\">ҡарарға</span> башланы.", translation: "The water began to freeze." }, { text: "Урамдар <span class=\"highlight\">ҡараны</span>.", translation: "The streets froze." }] },
+            { word: "ҡашырға", transcription: "[qɑ'ʃɯr'ɣɑ]", type: "verb", category: "action", frequency: 2876, definitions: ["To scratch, to scrape, or to rub", "To itch or cause itching"], examples: [{ text: "Башым <span class=\"highlight\">ҡашый</span>.", translation: "My head itches." }, { text: "Мин башымды <span class=\"highlight\">ҡашыйым</span>.", translation: "I scratch my head." }] },
+            { word: "ҡалҡырға", transcription: "[qɑl'qɯr'ɣɑ]", type: "verb", category: "movement", frequency: 2765, definitions: ["To rise, to ascend, or to climb", "To stand up or get up"], examples: [{ text: "<span class=\"highlight\">Ҡояш</span> ҡалҡты.", translation: "The sun rose." }, { text: "<span class=\"highlight\">Мин урындан ҡалҡтым</span>.", translation: "I got up from my seat." }] },
+            { word: "тиш", transcription: "[tiʃ]", type: "noun", category: "body", frequency: 1776, definitions: ["Tooth as one of the hard structures in the jaw", "Teeth collectively as a body part"], examples: [{ text: "<span class=\"highlight\">Тешләрен</span> тартам.", translation: "I brush my teeth." }, { text: "Ак <span class=\"highlight\">тешләр</span> сәламәтлек билгесе.", translation: "White teeth are a sign of good health." }] },
+            { word: "ҡарға", transcription: "[qɑr'ɡɑ]", type: "noun", category: "animals", frequency: 3554, definitions: ["Crow as a black bird", "Omen or symbol in traditional beliefs"], examples: [{ text: "<span class=\"highlight\">Ҡарға</span> ҡарата ҡарата ҡарата саҡыра.", translation: "The crow caws black upon black." }, { text: "<span class=\"highlight\">Ҡарға</span> ҡайҙа ултырһа, шунда ҡарар.", translation: "Where the crow sits, there will be snow." }] },
+            { word: "тамыр", transcription: "[tɑ'mɯr]", type: "noun", category: "nature", frequency: 3443, definitions: ["Root as part of a plant that grows underground", "Origin, source, or foundation of something"], examples: [{ text: "Ағастың <span class=\"highlight\">тамыр</span>ы көслө булырға тейеш.", translation: "The root of a tree should be strong." }, { text: "Телдең <span class=\"highlight\">тамыр</span>ы - мәҙәниәт тамыры.", translation: "The root of language is the root of culture." }] },
+            { word: "тормош", transcription: "[tor'moʃ]", type: "noun", category: "life", frequency: 3332, definitions: ["Life as the condition that distinguishes animals and plants", "Existence, living, or way of living"], examples: [{ text: "<span class=\"highlight\">Тормош</span> кыен, әмма матур.", translation: "Life is difficult but beautiful." }, { text: "Кеше <span class=\"highlight\">тормошо</span> дауам итә.", translation: "Human life continues." }] },
+            { word: "ҡанат", transcription: "[qɑ'nɑt]", type: "noun", category: "body", frequency: 3221, definitions: ["Wing as the modified forelimb of a bird", "Protection, support, or shelter"], examples: [{ text: "Ҡоштар <span class=\"highlight\">ҡанат</span>тарын ҡағып осалар.", translation: "Birds fly by flapping their wings." }, { text: "Ул балаларын үҙенең <span class=\"highlight\">ҡанат</span>ы аҫтына ала.", translation: "He takes his children under his wing." }] },
+            { word: "ҡош", transcription: "[qoʃ]", type: "noun", category: "animals", frequency: 3110, definitions: ["Bird as a warm-blooded egg-laying vertebrate", "Symbol of freedom, spirit, or messenger"], examples: [{ text: "<span class=\"highlight\">Ҡош</span>тар яҙ килгәс кире ҡайта.", translation: "Birds return when spring comes." }, { text: "<span class=\"highlight\">Ҡош</span> кеүек иркен йәшәргә теләйем.", translation: "I want to live as freely as a bird." }] },
+            { word: "китап", transcription: "[kitɑp]", type: "noun", category: "objects", frequency: 3098, definitions: ["Book as a written or printed work", "Literature or written material in general"], examples: [{ text: "Мин яңы <span class=\"highlight\">китап</span> сатып алдым.", translation: "I bought a new book." }, { text: "Яхшы <span class=\"highlight\">китаплар</span> кешене үстерә.", translation: "Good books develop a person." }] },
+            { word: "көн", transcription: "[køn]", type: "noun", category: "time", frequency: 2987, definitions: ["Day as a period of 24 hours", "Sun, solar body in the sky"], examples: [{ text: "Бүген яхшы <span class=\"highlight\">көн</span>.", translation: "Today is a good day." }, { text: "<span class=\"highlight\">Көн</span> чыкты, йөҙә башланы.", translation: "The sun rose and began to shine." }] },
+            { word: "тәүге", transcription: "[tæw'ɡe]", type: "adj", category: "order", frequency: 2876, definitions: ["First, primary, or initial", "Leading, foremost, or principal"], examples: [{ text: "Был минең <span class=\"highlight\">тәүге</span> китабым.", translation: "This is my first book." }, { text: "<span class=\"highlight\">Тәүге</span> урында - ғаилә.", translation: "Family comes first." }] },
+            { word: "һуңғы", transcription: "[huŋ'ɡɯ]", type: "adj", category: "order", frequency: 2765, definitions: ["Last, final, or ultimate", "Latest, most recent"], examples: [{ text: "Был минең <span class=\"highlight\">һуңғы</span> мөрәжәғәтем.", translation: "This is my last appeal." }, { text: "<span class=\"highlight\">Һуңғы</span> яңылыҡтар.", translation: "Latest news." }] },
+            { word: "яҡшы", transcription: "[jɑq'ʃɯ]", type: "adj", category: "quality", frequency: 9876, definitions: ["Good, excellent, or fine", "Kind, benevolent, or helpful"], examples: [{ text: "<span class=\"highlight\">Яҡшы</span> көн!", translation: "Good day!" }, { text: "Ул бик <span class=\"highlight\">яҡшы</span> кеше.", translation: "He is a very good person." }] },
+            { word: "насар", transcription: "[nɑ'sɑr]", type: "adj", category: "quality", frequency: 2543, definitions: ["Bad, poor, or inferior", "Evil, wicked, or malicious"], examples: [{ text: "<span class=\"highlight\">Насар</span> ауа.", translation: "Bad weather." }, { text: "<span class=\"highlight\">Насар</span> кеше.", translation: "Bad person." }] },
+            { word: "оҙон", transcription: "[o'θon]", type: "adj", category: "descriptive", frequency: 2432, definitions: ["Long in terms of time or distance", "Extended, prolonged, or lengthy"], examples: [{ text: "Ул <span class=\"highlight\">оҙон</span> юлдан килгән.", translation: "He came from a long journey." }, { text: "<span class=\"highlight\">Оҙон</span> тормош кәрәк.", translation: "A long life is needed." }] },
+            { word: "ҡыҫҡа", transcription: "[qɯ'sqɑ]", type: "adj", category: "descriptive", frequency: 2321, definitions: ["Short in terms of time or distance", "Brief, concise, or abbreviated"], examples: [{ text: "<span class=\"highlight\">Ҡыҫҡа</span> һүҙҙәр күп аңлата.", translation: "Short words convey much meaning." }, { text: "<span class=\"highlight\">Ҡыҫҡа</span> юл булһа ла, алыҫ китә.", translation: "Even a short path leads far." }] },
+            { word: "ҡушҡа", transcription: "[quʃ'qɑ]", type: "noun", category: "objects", frequency: 2432, definitions: ["Spoon as a utensil", "Utensil for eating or cooking"], examples: [{ text: "<span class=\"highlight\">Ҡушҡа</span> менән эс.", translation: "Eat with a spoon." }, { text: "<span class=\"highlight\">Ҡушҡа</span> юырға кәрәк.", translation: "I need to wash the spoon." }] },
+            { word: "ҡыуышҡан", transcription: "[qɯ'wɯʃqɑn]", type: "noun", category: "objects", frequency: 2321, definitions: ["Bucket, pail, or container", "Vessel for holding liquids"], examples: [{ text: "<span class=\"highlight\">Ҡыуышҡан</span> һыуға тулған.", translation: "The bucket is full of water." }, { text: "<span class=\"highlight\">Ҡыуышҡан</span> менән һыу алырға кәрәк.", translation: "I need to get water with a bucket." }] },
+            { word: "ҡарышҡан", transcription: "[qɑ'rɯʃqɑn]", type: "noun", category: "animals", frequency: 2210, definitions: ["Mouse, rodent", "Small mammal"], examples: [{ text: "<span class=\"hlght\">Ҡарышҡан</span> күрҙем.", translation: "I saw a mouse." }, { text: "<span class=\"highlight\">Ҡарышҡан</span> бөрөк йөҙөп йөрөй.", translation: "The mouse runs around the room." }] },
+            { word: "ҡарлығас", transcription: "[qɑr'lɯ'ɣɑs]", type: "noun", category: "animals", frequency: 2109, definitions: ["Swallow as a bird", "Bird that migrates seasonally"], examples: [{ text: "<span class=\"highlight\">Ҡарлығас</span> килде.", translation: "The swallow came." }, { text: "<span class=\"highlight\">Ҡарлығас</span> тауҙарҙан сыға.", translation: "The swallow comes out of the mountains." }] },
+            { word: "ҡорама", transcription: "[qo'rɑmɑ]", type: "noun", category: "structures", frequency: 1998, definitions: ["Building, structure, or edifice", "Construction or architectural work"], examples: [{ text: "Яңы <span class=\"highlight\">ҡорама</span> төҙөҙөлә.", translation: "A new building is being constructed." }, { text: "Бейек <span class=\"highlight\">ҡорама</span>.", translation: "Tall building." }] },
+            { word: "ҡалҡын", transcription: "[qɑl'qɯn]", type: "noun", category: "nature", frequency: 1887, definitions: ["Wave, swell, or billow", "Movement of water surface"], examples: [{ text: "Диңгеҙҙең <span class=\"highlight\">ҡалҡыны</span>.", translation: "The waves of the sea." }, { text: "<span class=\"highlight\">Ҡалҡын</span> килде.", translation: "A wave came." }] },
+            { word: "ҡарлыға", transcription: "[qɑr'lɯ'ɣɑ]", type: "noun", category: "animals", frequency: 1776, definitions: ["Swan as a water bird", "Large white bird"], examples: [{ text: "<span class=\"highlight\">Ҡарлыға</span> күлдә йөҙә.", translation: "The swan swims in the lake." }, { text: "Аҡ <span class=\"highlight\">ҡарлыға</span>.", translation: "White swan." }] },
+            { word: "ҡаҙаҡ", transcription: "[qɑ'zɑq]", type: "noun", category: "people", frequency: 1665, definitions: ["Kazakh person or people", "Related to Kazakhstan or Kazakh culture"], examples: [{ text: "<span class=\"highlight\">Ҡаҙаҡ</span> халҡы.", translation: "The Kazakh people." }, { text: "<span class=\"highlight\">Ҡаҙаҡстан</span>.", translation: "Kazakhstan." }] },
+            { word: "ҡомсаҡ", transcription: "[qom'sɑq]", type: "noun", category: "objects", frequency: 1554, definitions: ["Sack, bag, or pouch", "Container made of fabric or material"], examples: [{ text: "<span class=\"highlight\">Ҡомсаҡ</span> һөт.", translation: "Bag of milk." }, { text: "<span class=\"highlight\">Ҡомсаҡ</span> тутырҙым.", translation: "I filled the sack." }] },
+            { word: "ҡырҡа", transcription: "[qɯr'qɑ]", type: "noun", category: "objects", frequency: 1443, definitions: ["Scissors as a cutting tool", "Tool for cutting fabric or paper"], examples: [{ text: "<span class=\"highlight\">Ҡырҡа</span> менән киҫ.", translation: "Cut with scissors." }, { text: "<span class=\"highlight\">Ҡырҡа</span> юҡ.", translation: "There are no scissors." }] },
+            { word: "акрын", transcription: "[ɑkrɯn]", type: "adv", category: "adverbs", frequency: 1332, definitions: ["Slowly, at a slow pace or speed.", "Without hurry, taking one's time."], examples: [{ text: "Ул а<span class=\"highlight\">крын</span> йөрөй.", translation: "He walks slowly." }] },
+            { word: "тиз", transcription: "[tiz]", type: "adv", category: "adverbs", frequency: 1443, definitions: ["Quickly, at a rapid pace.", "With speed or haste."], examples: [{ text: "Ул <span class=\"highlight\">тиз</span> йөрөй.", translation: "He walks quickly." }] },
+            { word: "бик", transcription: "[bik]", type: "adv", category: "adverbs", frequency: 9876, definitions: ["Very, exceedingly, or extremely.", "To a high degree or extent."], examples: [{ text: "Ул бик <span class=\"highlight\">бейек</span> ағас.", translation: "It's a very tall tree." }] },
+            { word: "көсһөҙ", transcription: "[kɵs'hɵz]", type: "adj", category: "descriptive", frequency: 1332, definitions: ["Weak, lacking physical strength.", "Lacking power, influence, or effectiveness."], examples: [{ text: "<span class=\"highlight\">Көсһөҙ</span> булһаң, эшләй алмайһың.", translation: "If you are weak, you cannot work." }] },
+            { word: "көслө", transcription: "[kɵs'lɵ]", type: "adj", category: "descriptive", frequency: 1443, definitions: ["Strong, having physical power.", "Powerful, influential, or effective."], examples: [{ text: "Ул бик <span class=\"highlight\">көслө</span> кеше.", translation: "He is a very strong person." }] },
+            { word: "кире", transcription: "[kirɛ]", type: "adv", category: "adverbs", frequency: 1554, definitions: ["Back, in the direction from which one came.", "Again, in return or reciprocation."], examples: [{ text: "Ул <span class=\"highlight\">кире</span> кайтты.", translation: "He returned back." }] },
+            { word: "юлай", transcription: "[julɑj]", type: "adv", category: "adverbs", frequency: 1665, definitions: ["Such, of this kind or character.", "In this manner or way."], examples: [{ text: "<span class=\"highlight\">Юлай</span> эш итмәгеҙ.", translation: "Don't do such work." }] },
+            { word: "хәзер", transcription: "[hæzɛr]", type: "adv", category: "time", frequency: 1776, definitions: ["Now, at the present time.", "Immediately, without delay."], examples: [{ text: "<span class=\"highlight\">Хәзер</span> киләм.", translation: "I'm coming now." }] },
+            { word: "ҡайда", transcription: "[qɑjdɑ]", type: "adv", category: "adverbs", frequency: 1887, definitions: ["Where, at what place or position.", "To what place or position."], examples: [{ text: "<span class=\"highlight\">Ҡайда</span> барасаң?", translation: "Where are you going?" }] },
+            { word: "кайчан", transcription: "[kɑjtʃɑn]", type: "adv", category: "time", frequency: 1998, definitions: ["When, at what time.", "During which time or period."], examples: [{ text: "<span class=\"highlight\">Кайчан</span> киләсегеҙ?", translation: "When will you come?" }] },
+            { word: "ничек", transcription: "[nitʃek]", type: "adv", category: "adverbs", frequency: 2109, definitions: ["How, in what way or manner.", "To what extent or degree."], examples: [{ text: "<span class=\"highlight\">Ничек</span> яшәйһегеҙ?", translation: "How do you live?" }] },
+            { word: "нигә", transcription: "[niɡæ]", type: "adv", category: "adverbs", frequency: 2220, definitions: ["Why, for what reason or cause.", "For what purpose."], examples: [{ text: "<span class=\"highlight\">Нигә</span> килмәнең?", translation: "Why didn't you come?" }] },
+            { word: "бернисек", transcription: "[bɛrnisɛk]", type: "adv", category: "adverbs", frequency: 2331, definitions: ["Nothing at all, not at all.", "In no way, under no circumstances."], examples: [{ text: "<span class=\"highlight\">Бернисек</span> фекерләмәйем.", translation: "I don't think about anything at all." }] },
+            { word: "киләһе", transcription: "[kilæhɛ]", type: "adj", category: "time", frequency: 2442, definitions: ["Next, coming after the present one.", "Following in order or sequence."], examples: [{ text: "<span class=\"highlight\">Киләһе</span> йылда осрашырбыҙ.", translation: "We will meet next year." }] },
+            { word: "алдан", transcription: "[ɑldɑn]", type: "adv", category: "adverbs", frequency: 2553, definitions: ["From in front, from the front part.", "Before, in advance of something."], examples: [{ text: "<span class=\"highlight\">Алдан</span> килеп тор.", translation: "Stand in front." }] },
+            { word: "арттан", transcription: "[ɑrttɑn]", type: "adv", category: "adverbs", frequency: 2664, definitions: ["From behind, from the rear part.", "After, following something in time."], examples: [{ text: "<span class=\"highlight\">Арттан</span> килә.", translation: "He's coming from behind." }] },
+            { word: "өҫтән", transcription: "[ɵstæn]", type: "adv", category: "adverbs", frequency: 2775, definitions: ["From above, from the upper part.", "Over, above something."], examples: [{ text: "<span class=\"highlight\">Өҫтән</span> ҡарарға.", translation: "To freeze from above." }] },
+            { word: "астынан", transcription: "[ɑstɯnɑn]", type: "adv", category: "adverbs", frequency: 2886, definitions: ["From below, from the lower part.", "Under, beneath something."], examples: [{ text: "<span class=\"highlight\">Астынан</span> аға.", translation: "It flows from below." }] },
+            { word: "элек", transcription: "[elɛk]", type: "adv", category: "time", frequency: 2997, definitions: ["Before, earlier in time.", "Previously, in former times."], examples: [{ text: "<span class=\"highlight\">Элек</span> ошондай булмай ине.", translation: "It wasn't like this before." }] },
+            { word: "соңрак", transcription: "[soŋrɑk]", type: "adv", category: "time", frequency: 3008, definitions: ["Later, after a period of time.", "Afterwards, subsequently."], examples: [{ text: "<span class=\"highlight\">Һуңрак</span> киләсәкме?", translation: "Will he come later?" }] },
+            { word: "бөгөн", transcription: "[bɵɡɵn]", type: "adv", category: "time", frequency: 3119, definitions: ["Today, on this day.", "In the present day or time."], examples: [{ text: "<span class=\"highlight\">Бөгөн</span> яҡшы көн.", translation: "Today is a good day." }] },
+            { word: "иртәгә", transcription: "[irtæɡæ]", type: "adv", category: "time", frequency: 3230, definitions: ["Tomorrow, on the day after today.", "In the near future."], examples: [{ text: "<span class=\"highlight\">Иртәгә</span> киләсәк.", translation: "He will come tomorrow." }] },
+            { word: "киләсе", transcription: "[kilæsɛ]", type: "adj", category: "time", frequency: 3341, definitions: ["Next, coming after the present one.", "Following in order or sequence."], examples: [{ text: "<span class=\"highlight\">Киләсе</span> аҙна осрашырбыҙ.", translation: "We will meet next week." }] },
+            { word: "килгән", transcription: "[kilɡæn]", type: "adj", category: "time", frequency: 3452, definitions: ["Past, gone by.", "Former, previous."], examples: [{ text: "<span class=\"highlight\">Килгән</span> йылда бик ҡыҙыҡлы булды.", translation: "Last year was very interesting." }] },
+            { word: "бернисек", transcription: "[bɛrnisɛk]", type: "adv", category: "adverbs", frequency: 3563, definitions: ["Nothing at all, not at all.", "In no way, under no circumstances."], examples: [{ text: "<span class=\"highlight\">Бернисек</span> фекерләмәйем.", translation: "I don't think about anything at all." }] },
+            { word: "һәрбер", transcription: "[hærbɛr]", type: "adv", category: "adverbs", frequency: 3674, definitions: ["Each, every one individually.", "Every, all without exception."], examples: [{ text: "<span class=\"highlight\">Һәрбер</span> кешегә иғтибар итегеҙ.", translation: "Pay attention to each person." }] },
+            { word: "мөмкин", transcription: "[mɵmkin]", type: "adv", category: "adverbs", frequency: 3785, definitions: ["Perhaps, maybe.", "Possible, able to be done."], examples: [{ text: "<span class=\"highlight\">Мөмкин</span>, ул килер.", translation: "Perhaps he will come." }] },
+            { word: "бәлки", transcription: "[bælki]", type: "adv", category: "adverbs", frequency: 3896, definitions: ["Maybe, perhaps.", "Possibly, conceivably."], examples: [{ text: "<span class=\"highlight\">Бәлки</span>, ул дөрөҫ.", translation: "Maybe he is right." }] },
+            { word: "һәрбер", transcription: "[hærbɛr]", type: "adv", category: "quantifiers", frequency: 3907, definitions: ["Each, every one individually.", "Every, all without exception."], examples: [{ text: "<span class=\"highlight\">Һәрбер</span> кешенең үҙ телендә һөйләшеү хоҡуғы бар.", translation: "Every person has the right to speak in their own language." }] },
+            { word: "беҙең", transcription: "[bɛzɛŋ]", type: "pron", category: "possessive", frequency: 4018, definitions: ["Our, belonging to us.", "Of us, from us."], examples: [{ text: "<span class=\"highlight\">Беҙең</span> телебеҙ.", translation: "Our language." }] },
+            { word: "һеҙең", transcription: "[hɛzɛŋ]", type: "pron", category: "possessive", frequency: 4129, definitions: ["Your, belonging to you (plural).", "Of you, from you (plural)."], examples: [{ text: "<span class=\"highlight\">Һеҙең</span> өйөгөҙ.", translation: "Your house (plural)." }] },
+            { word: "аның", transcription: "[ɑnɯŋ]", type: "pron", category: "possessive", frequency: 4240, definitions: ["His/her/its, belonging to him/her/it.", "Of him/her/it, from him/her/it."], examples: [{ text: "<span class=\"highlight\">Аның</span> исеме.", translation: "His/her name." }] },
+            { word: "минең", transcription: "[minɛŋ]", type: "pron", category: "possessive", frequency: 4351, definitions: ["My, belonging to me.", "Of me, from me."], examples: [{ text: "<span class=\"highlight\">Минең</span> китабым.", translation: "My book." }] },
+            { word: "һинең", transcription: "[hinɛŋ]", type: "pron", category: "possessive", frequency: 4462, definitions: ["Your, belonging to you (singular).", "Of you, from you (singular)."], examples: [{ text: "<span class=\"highlight\">Һинең</span> исемең.", translation: "Your name (singular)." }] },
+            { word: "башҡа", transcription: "[bɑʃqɑ]", type: "adj", category: "quantifiers", frequency: 4573, definitions: ["Other, different from the one mentioned.", "Another, additional."], examples: [{ text: "<span class=\"highlight\">Башҡа</span> китап алайым.", translation: "I'll take another book." }] },
+            { word: "бөтә", transcription: "[bɵtæ]", type: "adj", category: "quantifiers", frequency: 4684, definitions: ["All, the whole of something.", "Entire, complete."], examples: [{ text: "<span class=\"highlight\">Бөтә</span> кешеләр.", translation: "All people." }] },
+            { word: "бернәрсә", transcription: "[bɛrnærsæ]", type: "pron", category: "quantifiers", frequency: 4795, definitions: ["Nothing, not anything.", "Not at all, in no way."], examples: [{ text: "<span class=\"highlight\">Бернәрсә</span> белмәйем.", translation: "I don't know anything." }] },
+            { word: "бернисе", transcription: "[bɛrnisɛ]", type: "pron", category: "quantifiers", frequency: 4906, definitions: ["Nobody, no one.", "Nothing, not anything."], examples: [{ text: "<span class=\"highlight\">Бернисе</span> килмәй.", translation: "Nobody is coming." }] },
+            { word: "ниндәй", transcription: "[nindæj]", type: "pron", category: "question", frequency: 5017, definitions: ["What kind of, which type.", "How, in what way."], examples: [{ text: "<span class=\"highlight\">Ниндәй</span> китап кирәк?", translation: "What kind of book do you need?" }] },
+            { word: "ҡайһы", transcription: "[qɑjhɯ]", type: "pron", category: "question", frequency: 5128, definitions: ["Which, what one.", "What kind of, of what sort."], examples: [{ text: "<span class=\"highlight\">Ҡайһы</span> юл киләсәк?", translation: "Which way will be taken?" }] },
+            { word: "нисек", transcription: "[nisɛk]", type: "adv", category: "question", frequency: 5239, definitions: ["How, in what way or manner.", "To what extent or degree."], examples: [{ text: "<span class=\"highlight\">Нисек</span> яшәйһегеҙ?", translation: "How do you live?" }] },
+            { word: "нисә", transcription: "[nisæ]", type: "adv", category: "question", frequency: 5350, definitions: ["How much, how many.", "To what extent or degree."], examples: [{ text: "<span class=\"highlight\">Нисә</span> йәштә?", translation: "How old are you?" }] },
+            { word: "ҡайчан", transcription: "[qɑjtʃɑn]", type: "adv", category: "question", frequency: 5461, definitions: ["When, at what time.", "During which time or period."], examples: [{ text: "<span class=\"highlight\">Ҡайчан</span> киләсегеҙ?", translation: "When will you come?" }] },
+            { word: "ҡайҙа", transcription: "[qɑjdɑ]", type: "adv", category: "question", frequency: 5572, definitions: ["Where, at what place or position.", "To what place or position."], examples: [{ text: "<span class=\"highlight\">Ҡайҙа</span> барасаң?", translation: "Where are you going?" }] },
+            { word: "кем", transcription: "[kem]", type: "pron", category: "question", frequency: 5683, definitions: ["Who, what person or people.", "What one, which one."], examples: [{ text: "<span class=\"highlight\">Кем</span> килде?", translation: "Who came?" }] },
+            { word: "ни", transcription: "[ni]", type: "pron", category: "question", frequency: 5794, definitions: ["What, which thing or things.", "Why, for what reason."], examples: [{ text: "<span class=\"highlight\">Ни</span> һөйләйһең?", translation: "What are you saying?" }] },
+            { word: "нигә", transcription: "[niɡæ]", type: "adv", category: "question", frequency: 5905, definitions: ["Why, for what reason or cause.", "For what purpose."], examples: [{ text: "<span class=\"highlight\">Нигә</span> килмәнең?", translation: "Why didn't you come?" }] },
+            { word: "юғалтырға", transcription: "[juɣɑltɯr'ɣɑ]", type: "verb", category: "action", frequency: 6016, definitions: ["To lose, to misplace something.", "To fail to keep or maintain."], examples: [{ text: "Мин <span class=\"highlight\">юғалтҡан</span> китабымды таптым.", translation: "I found my lost book." }] },
+            { word: "таптырға", transcription: "[tɑptɯr'ɣɑ]", type: "verb", category: "action", frequency: 6127, definitions: ["To find, to discover something.", "To locate, to come upon."], examples: [{ text: "Мин <span class=\"highlight\">тапҡан</span> китабымды уҡыйым.", translation: "I read the book I found." }] },
+            { word: "яҙырға", transcription: "[jɑzɯr'ɣɑ]", type: "verb", category: "action", frequency: 6238, definitions: ["To write, to inscribe.", "To compose, to record in writing."], examples: [{ text: "Мин <span class=\"highlight\">яҙылған</span> хатты уҡыҙым.", translation: "I read the written letter." }] },
+            { word: "уҡырға", transcription: "[uqɯr'ɣɑ]", type: "verb", category: "action", frequency: 6349, definitions: ["To read, to look at and comprehend written text.", "To study, to learn from books."], examples: [{ text: "Ул күп <span class=\"highlight\">уҡый</span>.", translation: "He reads a lot." }] },
+            { word: "һөйләргә", transcription: "[hɵjlær'ɣɑ]", type: "verb", category: "communication", frequency: 6460, definitions: ["To speak, to talk.", "To converse, to communicate verbally."], examples: [{ text: "Мин <span class=\"highlight\">һөйләй</span>ам.", translation: "I speak." }] },
+            { word: "йөрөргә", transcription: "[jɵrɵr'ɣɑ]", type: "verb", category: "movement", frequency: 6571, definitions: ["To walk, to go on foot.", "To move about, to travel on foot."], examples: [{ text: "Мин <span class=\"highlight\">йөрөй</span>ем.", translation: "I walk." }] },
+            { word: "ҡарау", transcription: "[qɑ'rɑw]", type: "noun", category: "perception", frequency: 6682, definitions: ["Look, view, or gaze.", "Appearance, aspect, or sight."], examples: [{ text: "Яҡшы <span class=\"highlight\">ҡарау</span>.", translation: "Good view." }] },
+            { word: "ҡабыҙ", transcription: "[qɑbɯz]", type: "noun", category: "body", frequency: 6793, definitions: ["Horse, a domesticated animal.", "A chess piece."], examples: [{ text: "Ҡара <span class=\"highlight\">ҡабыҙ</span>.", translation: "Black horse." }] },
+            { word: "ҡарандаш", transcription: "[qɑrɑndɑʃ]", type: "noun", category: "objects", frequency: 6904, definitions: ["Pencil, a writing instrument.", "A drawing tool made of graphite."], examples: [{ text: "<span class=\"highlight\">Ҡарандаш</span> менән яҙығыҙ.", translation: "Write with a pencil." }] },
+            { word: "дәфтәр", transcription: "[dæftær]", type: "noun", category: "objects", frequency: 7015, definitions: ["Notebook, a book for writing in.", "Exercise book for school."], examples: [{ text: "<span class=\"highlight\">Дәфтәр</span>гә яҙҙым.", translation: "I wrote in the notebook." }] },
+            { word: "мәктәп", transcription: "[mæktæp]", type: "noun", category: "buildings", frequency: 7126, definitions: ["School, an educational institution.", "Place of learning."], examples: [{ text: "Мин <span class=\"highlight\">мәктәп</span>кә барам.", translation: "I go to school." }] },
+            { word: "өй", transcription: "[ɵj]", type: "noun", category: "home", frequency: 7237, definitions: ["House, a building for human habitation.", "Home, a place where one lives."], examples: [{ text: "<span class=\"highlight\">Өй</span>ҙәр күп.", translation: "There are many houses." }] },
+            { word: "кеше", transcription: "[kɛʃɛ]", type: "noun", category: "people", frequency: 7348, definitions: ["Person, human being.", "Man, woman, or child."], examples: [{ text: "Бик күп <span class=\"highlight\">кеше</span> килде.", translation: "Very many people came." }] },
+            { word: "ҡояш", transcription: "[qojɑʃ]", type: "noun", category: "nature", frequency: 4765, definitions: ["Sun, the star at the center of the solar system.", "Daylight, sunshine."], examples: [{ text: "<span class=\"highlight\">Ҡояш</span> сыҡты.", translation: "The sun rose." }] },
+            { word: "ай", transcription: "[ɑj]", type: "noun", category: "nature", frequency: 4876, definitions: ["Moon, the natural satellite of the earth.", "Month, a period of approximately 30 days."], examples: [{ text: "<span class=\"highlight\">Ай</span> күренә.", translation: "The moon is visible." }] },
+            { word: "йыл", transcription: "[jɯl]", type: "noun", category: "time", frequency: 4987, definitions: ["Year, a period of 365 or 366 days.", "Age, how old something is."], examples: [{ text: "<span class=\"highlight\">Йыл</span> аҙаҡ башлаған.", translation: "The year started late." }] },
+            { word: "көн", transcription: "[køn]", type: "noun", category: "time", frequency: 5098, definitions: ["Day, a period of 24 hours.", "Sun, the star that provides light."], examples: [{ text: "<span class=\"highlight\">Көн</span> бик ҡыҫҡа.", translation: "The day is very short." }] },
+            { word: "төн", transcription: "[tɵn]", type: "noun", category: "time", frequency: 5209, definitions: ["Night, the period of darkness.", "Evening, late in the day."], examples: [{ text: "<span class=\"highlight\">Төн</span> оҙаҡ.", translation: "The night is long." }] },
+            { word: "һауа", transcription: "[hɑwɑ]", type: "noun", category: "nature", frequency: 5320, definitions: ["Air, the mixture of gases surrounding the earth.", "Weather, atmospheric conditions."], examples: [{ text: "<span class=\"highlight\">Һауа</span> яҡшы.", translation: "The weather is good." }] },
+            { word: "һыу", transcription: "[hɯw]", type: "noun", category: "nature", frequency: 5431, definitions: ["Water, the liquid essential for life.", "A body of water like a river or lake."], examples: [{ text: "<span class=\"highlight\">Һыу</span> эсәм.", translation: "I drink water." }] },
+            { word: "ут", transcription: "[ut]", type: "noun", category: "nature", frequency: 5542, definitions: ["Fire, the phenomenon of combustion.", "Heat, warmth from burning."], examples: [{ text: "<span class=\"highlight\">Ут</span> яна.", translation: "The fire is burning." }] },
+            { word: "еҙ", transcription: "[ɛz]", type: "noun", category: "nature", frequency: 5653, definitions: ["Trace, mark, or footprint.", "Sign, evidence of something."], examples: [{ text: "<span class=\"highlight\">Еҙ</span> тотоп бар.", translation: "Follow the trace." }] },
+            { word: "һүҙ", transcription: "[hɯθ]", type: "noun", category: "communication", frequency: 5764, definitions: ["Word, a unit of language.", "Speech, verbal communication."], examples: [{ text: "<span class=\"highlight\">Һүҙ</span> әйтмә.", translation: "Don't say a word." }] },
+            { word: "ҡалам", transcription: "[qɑlɑm]", type: "noun", category: "objects", frequency: 5875, definitions: ["Pen, a writing instrument.", "A tool for writing or drawing."], examples: [{ text: "<span class=\"highlight\">Ҡалам</span> алайым.", translation: "I'll take a pen." }] },
+            { word: "һаҡ", transcription: "[hɑq]", type: "adj", category: "descriptive", frequency: 5986, definitions: ["Clean, free from dirt or pollution.", "Pure, free from contamination."], examples: [{ text: "<span class=\"highlight\">Һаҡ</span> һыу.", translation: "Clean water." }] },
+            { word: "пес", transcription: "[pɛs]", type: "noun", category: "animals", frequency: 6097, definitions: ["Dog, a domesticated canine animal.", "A loyal companion animal."], examples: [{ text: "<span class=\"highlight\">Пес</span> менән йөрөй.", translation: "He walks with a dog." }] },
+            { word: "мәс", transcription: "[mæs]", type: "noun", category: "animals", frequency: 6208, definitions: ["Cat, a small domesticated feline.", "A house pet."], examples: [{ text: "<span class=\"highlight\">Мәс</span> йөрөй.", translation: "The cat walks." }] },
+            { word: "бала", transcription: "[bɑlɑ]", type: "noun", category: "family", frequency: 6319, definitions: ["Child, a young person.", "Son or daughter."], examples: [{ text: "<span class=\"highlight\">Бала</span> уйнай.", translation: "The child is playing." }] },
+            { word: "ата", transcription: "[ɑtɑ]", type: "noun", category: "family", frequency: 6430, definitions: ["Father, a male parent.", "Ancestor, forefather."], examples: [{ text: "<span class=\"highlight\">Ата</span>-әниһеҙ бала.", translation: "An orphan child (father-parentless)." }] },
+            { word: "әни", transcription: "[æni]", type: "noun", category: "family", frequency: 6541, definitions: ["Mother, a female parent.", "Ancestor, foremother."], examples: [{ text: "<span class=\"highlight\">Әни</span>-атаһыҙ бала.", translation: "An orphan child (mother-fatherless)." }] },
+            { word: "ҡарт", transcription: "[qɑrt]", type: "noun", category: "family", frequency: 6652, definitions: ["Old man, elderly male person.", "Grandfather, grandfather's generation."], examples: [{ text: "<span class=\"highlight\">Ҡарт</span> атай.", translation: "Old man/father." }] },
+            { word: "өлкән", transcription: "[ɵlkæn]", type: "adj", category: "descriptive", frequency: 6763, definitions: ["Old, advanced in age.", "Elderly, senior in years."], examples: [{ text: "<span class=\"highlight\">Өлкән</span> кеше.", translation: "Elderly person." }] },
+            { word: "яшь", transcription: "[jæʃ]", type: "adj", category: "descriptive", frequency: 6874, definitions: ["Young, not old.", "Youthful, early in life."], examples: [{ text: "<span class=\"highlight\">Яшь</span> кеше.", translation: "Young person." }] },
+            { word: "ҡатын", transcription: "[qɑtɯn]", type: "noun", category: "family", frequency: 6985, definitions: ["Woman, an adult female person.", "Wife, married woman."], examples: [{ text: "<span class=\"highlight\">Ҡатын</span>-ҡыҙҙар.", translation: "Women and girls." }] },
+            { word: "ҡыҙ", transcription: "[qɯz]", type: "noun", category: "family", frequency: 7096, definitions: ["Girl, a female child.", "Daughter, female offspring."], examples: [{ text: "<span class=\"highlight\">Ҡыҙ</span> уйнай.", translation: "The girl is playing." }] },
+            { word: "ҡайын", transcription: "[qɑjɯn]", type: "noun", category: "nature", frequency: 7207, definitions: ["Birch tree, a species of tree with white bark.", "Material made from birch wood."], examples: [{ text: "<span class=\"highlight\">Ҡайын</span> ағасы.", translation: "Birch tree." }] },
+            { word: "ҡарағас", transcription: "[qɑrɑ'ɡɑs]", type: "noun", category: "nature", frequency: 7318, definitions: ["Pine tree, a coniferous tree.", "Evergreen tree with needles."], examples: [{ text: "<span class=\"highlight\">Ҡарағас</span> урманы.", translation: "Pine forest." }] },
+            { word: "күк", transcription: "[kyk]", type: "noun", category: "nature", frequency: 7429, definitions: ["Sky, the atmosphere and outer space.", "Blue, the color of the sky."], examples: [{ text: "<span class=\"highlight\">Күк</span> күкһүр.", translation: "The sky is blue." }] },
+            { word: "елга", transcription: "[jɛlɡɑ]", type: "noun", category: "nature", frequency: 7540, definitions: ["River, a large natural stream of water.", "Flowing body of water."], examples: [{ text: "<span class=\"highlight\">Елга</span> аға.", translation: "The river flows." }] },
+            { word: "күл", transcription: "[kyl]", type: "noun", category: "nature", frequency: 7651, definitions: ["Lake, a large body of water surrounded by land.", "Inland body of standing water."], examples: [{ text: "<span class=\"highlight\">Күл</span>дә балыҡтар йөҙә.", translation: "Fish swim in the lake." }] },
+            { word: "тау", transcription: "[tɑw]", type: "noun", category: "nature", frequency: 7762, definitions: ["Mountain, a natural elevation of the earth.", "High land or hill."], examples: [{ text: "<span class=\"highlight\">Тау</span>ҙар бейек.", translation: "The mountains are high." }] },
+            { word: "урман", transcription: "[urmɑn]", type: "noun", category: "nature", frequency: 7873, definitions: ["Forest, a large area covered with trees.", "Woodland, wooded area."], examples: [{ text: "<span class=\"highlight\">Урман</span>да күп ағастар бар.", translation: "There are many trees in the forest." }] },
+            { word: "һөт", transcription: "[hɵt]", type: "noun", category: "food", frequency: 7984, definitions: ["Milk, the white liquid produced by mammals.", "A nutritious drink from animals."], examples: [{ text: "<span class=\"highlight\">Һөт</span> эсәм.", translation: "I drink milk." }] },
+            { word: "икмәк", transcription: "[ikmæk]", type: "noun", category: "food", frequency: 8095, definitions: ["Bread, a food made from flour.", "A staple food item."], examples: [{ text: "<span class=\"highlight\">Икмәк</span> ашағаным бар.", translation: "I have eaten bread." }] },
+            { word: "ет", transcription: "[jɛt]", type: "noun", category: "food", frequency: 8206, definitions: ["Meat, animal flesh as food.", "Edible flesh from animals."], examples: [{ text: "<span class=\"highlight\">Ет</span> ашайбыҙ.", translation: "We eat meat." }] },
+            { word: "балыҡ", transcription: "[bɑlɯq]", type: "noun", category: "food", frequency: 8317, definitions: ["Fish, a cold-blooded aquatic vertebrate.", "Food from the sea or rivers."], examples: [{ text: "<span class=\"highlight\">Балыҡ</span> тотом.", translation: "I caught fish." }] },
+            { word: "бәшмәк", transcription: "[bæʃmæk]", type: "noun", category: "clothing", frequency: 8428, definitions: ["Shoe, footwear covering the foot.", "Footwear for protection."], examples: [{ text: "<span class=\"highlight\">Бәшмәк</span> таҡып йөрөнө.", translation: "I walked wearing shoes." }] },
+            { word: "ҡулып", transcription: "[qulɯp]", type: "noun", category: "clothing", frequency: 8539, definitions: ["Clothing, garments worn on the body.", "Dress, apparel."], examples: [{ text: "<span class=\"highlight\">Ҡулып</span> кейҙем.", translation: "I put on clothes." }] },
+            { word: "ҡулсаҡ", transcription: "[qulsɑq]", type: "noun", category: "clothing", frequency: 8650, definitions: ["Ring, a circular piece of jewelry.", "A band worn on the finger."], examples: [{ text: "<span class=\"highlight\">Ҡулсаҡ</span> таҡтым.", translation: "I put on a ring." }] },
+            { word: "уйын", transcription: "[ujɯn]", type: "noun", category: "activities", frequency: 8761, definitions: ["Game, an activity with rules for entertainment.", "Play, recreation."], examples: [{ text: "<span class=\"highlight\">Уйын</span> уйнарға яратам.", translation: "I like to play games." }] },
+            { word: "сәхнә", transcription: "[sæxnæ]", type: "noun", category: "buildings", frequency: 8872, definitions: ["Stage, a raised platform for performances.", "Performance area."], examples: [{ text: "<span class=\"highlight\">Сәхнә</span>гә сыҡты.", translation: "He went on stage." }] },
+            { word: "кирбестән", transcription: "[kirbɛstæn]", type: "adj", category: "descriptive", frequency: 8983, definitions: ["Brick, made of baked clay.", "Constructed of bricks."], examples: [{ text: "<span class=\"highlight\">Кирбестән</span> йорт.", translation: "Brick house." }] },
+            { word: "таштан", transcription: "[tɑʃtɑn]", type: "adj", category: "descriptive", frequency: 9094, definitions: ["Stone, made of rock.", "Constructed of stone."], examples: [{ text: "<span class=\"highlight\">Таштан</span> ҡорама.", translation: "Stone building." }] },
+            { word: "йәшен", transcription: "[jæʃɛn]", type: "adj", category: "descriptive", frequency: 9205, definitions: ["Green, the color of growing plants.", "Fresh, young in growth."], examples: [{ text: "<span class=\"highlight\">Йәшен</span> үлән.", translation: "Green grass." }] },
+            { word: "ҡыҙыл", transcription: "[qɯzɯl]", type: "adj", category: "colors", frequency: 9316, definitions: ["Red, the color of blood or fire.", "Having a red color."], examples: [{ text: "<span class=\"highlight\">Ҡыҙыл</span> алма.", translation: "Red apple." }] },
+            { word: "һары", transcription: "[hɑrɯ]", type: "adj", category: "colors", frequency: 9427, definitions: ["Yellow, the color of gold or ripe grain.", "Having a yellow color."], examples: [{ text: "<span class=\"highlight\">Һары</span> цитрус.", translation: "Yellow citrus." }] },
+            { word: "аҡ", transcription: "[ɑq]", type: "adj", category: "colors", frequency: 9538, definitions: ["White, the color of snow or milk.", "Having a white color."], examples: [{ text: "<span class=\"highlight\">Аҡ</span> ҡар.", translation: "White snow." }] },
+            { word: "ҡара", transcription: "[qɑrɑ]", type: "adj", category: "colors", frequency: 9649, definitions: ["Black, the color of coal or night.", "Having a black color."], examples: [{ text: "<span class=\"highlight\">Ҡара</span> төн.", translation: "Black night." }] },
+            { word: "зәңгәр", transcription: "[zæŋ'ɡær]", type: "adj", category: "colors", frequency: 9760, definitions: ["Blue, the color of the sky or sea.", "Having a blue color."], examples: [{ text: "<span class=\"highlight\">Зәңгәр</span> күк.", translation: "Blue sky." }] },
+            { word: "һоро", transcription: "[horo]", type: "adj", category: "colors", frequency: 9871, definitions: ["Gray, a neutral color between black and white.", "Having a gray color."], examples: [{ text: "<span class=\"highlight\">Һоро</span> тау.", translation: "Gray mountain." }] },
+            { word: "сорғосор", transcription: "[sor'ɡosor]", type: "adj", category: "colors", frequency: 9982, definitions: ["Light blue, pale blue color.", "Having a light blue color."], examples: [{ text: "<span class=\"highlight\">Сорғосор</span> күл.", translation: "Light blue lake." }] },
+            { word: "ҡыҫҡа", transcription: "[qɯ'sqɑ]", type: "adv", category: "adverbs", frequency: 10093, definitions: ["Short, having little length.", "Brief, not long in duration."], examples: [{ text: "<span class=\"highlight\">Ҡыҫҡа</span> юл.", translation: "Short road." }] },
+            { word: "оҙон", transcription: "[o'θon]", type: "adv", category: "adverbs", frequency: 10204, definitions: ["Long, having great length.", "Extended, prolonged in time."], examples: [{ text: "<span class=\"highlight\">Оҙон</span> тормош.", translation: "Long life." }] },
+            { word: "бейек", transcription: "[be'jek]", type: "adv", category: "adverbs", frequency: 10315, definitions: ["High, tall, or elevated.", "Lofty, noble, or exalted."], examples: [{ text: "<span class=\"highlight\">Бейек</span> тауҙар.", translation: "High mountains." }] },
+            { word: "түбән", transcription: "[ty'bæn]", type: "adv", category: "adverbs", frequency: 10426, definitions: ["Low, short, or not high.", "Humble, modest, or unassuming."], examples: [{ text: "<span class=\"highlight\">Түбән</span> өҫтәл.", translation: "Low table." }] },
+            { word: "йомшаҡ", transcription: "[jom'ʃɑq]", type: "adj", category: "descriptive", frequency: 10537, definitions: ["Soft, easily yielding to pressure.", "Gentle, kind, or mild."], examples: [{ text: "<span class=\"highlight\">Йомшаҡ</span> урындыҡ.", translation: "Soft chair." }] },
+            { word: "ҡаты", transcription: "[qɑtɯ]", type: "adj", category: "descriptive", frequency: 10648, definitions: ["Hard, firm, not easily yielding.", "Difficult, challenging."], examples: [{ text: "<span class=\"highlight\">Ҡаты</span> таш.", translation: "Hard stone." }] },
+            { word: "ылыҫлы", transcription: "[ɯlɯs'lɯ]", type: "adj", category: "nature", frequency: 10759, definitions: ["Needled, having needles like a pine.", "Coniferous, cone-bearing tree."], examples: [{ text: "<span class=\"highlight\">Ылыҫлы</span> урман.", translation: "Coniferous forest." }] },
+            { word: "ылыҫһыҙ", transcription: "[ɯlɯs'hɯz]", type: "adj", category: "nature", frequency: 10870, definitions: ["Needleless, without needles.", "Deciduous, not coniferous."], examples: [{ text: "<span class=\"highlight\">Ылыҫһыҙ</span> ағас.", translation: "Deciduous tree." }] },
+            { word: "ҡурҡыныс", transcription: "[qur'qɯnɯs]", type: "adv", category: "adverbs", frequency: 10981, definitions: ["Dangerous, hazardous, or risky.", "Threatening, menacing, or perilous."], examples: [{ text: "<span class=\"highlight\">Ҡурҡыныс</span> эш.", translation: "Dangerous work." }] },
+            { word: "ябай", transcription: "[jɑ'bɑj]", type: "adv", category: "adverbs", frequency: 11092, definitions: ["Simple, easy, or uncomplicated.", "Plain, ordinary, or unpretentious."], examples: [{ text: "<span class=\"highlight\">Ябай</span> мәсьәлә.", translation: "Simple problem." }] },
+            { word: "ҡатмарлы", transcription: "[qɑt'mɑrlɯ]", type: "adv", category: "adverbs", frequency: 11203, definitions: ["Complex, complicated, or intricate.", "Difficult, challenging, or hard to understand."], examples: [{ text: "<span class=\"highlight\">Ҡатмарлы</span> фән.", translation: "Complex science." }] },
+            { word: "ҡыҙыҡ", transcription: "[qɯ'zɯq]", type: "adv", category: "adverbs", frequency: 11314, definitions: ["Interesting, fascinating, or engaging.", "Curious, intriguing, or thought-provoking."], examples: [{ text: "<span class=\"highlight\">Ҡыҙыҡ</span> хәбәр.", translation: "Interesting news." }] },
+            { word: "ҡуш", transcription: "[quʃ]", type: "adv", category: "adverbs", frequency: 11425, definitions: ["Double, twofold, or paired.", "Strong, powerful, or intense."], examples: [{ text: "<span class=\"highlight\">Ҡуш</span> көс.", translation: "Double strength." }] },
+            { word: "бергә", transcription: "[bɛr'ɡæ]", type: "adv", category: "adverbs", frequency: 11536, definitions: ["Together, in or into one place.", "In unison, at the same time."], examples: [{ text: "Беҙ <span class=\"highlight\">бергә</span> килдек.", translation: "We came together." }] },
+            { word: "айырым", transcription: "[ɑjɯ'rɯm]", type: "adv", category: "adverbs", frequency: 11647, definitions: ["Separate, apart from others.", "Individual, distinct."], examples: [{ text: "<span class=\"highlight\">Айырым</span> йорт.", translation: "Separate house." }] },
+            { word: "бөтә", transcription: "[bɵtæ]", type: "adv", category: "adverbs", frequency: 11758, definitions: ["All, the whole of something.", "Entire, complete."], examples: [{ text: "<span class=\"highlight\">Бөтә</span> кешеләр.", translation: "All people." }] },
+            { word: "бернәрсә", transcription: "[bɛrnærsæ]", type: "adv", category: "adverbs", frequency: 11869, definitions: ["Nothing, not anything.", "Not at all, in no way."], examples: [{ text: "<span class=\"highlight\">Бернәрсә</span> белмәйем.", translation: "I don't know anything." }] },
+            { word: "бернисе", transcription: "[bɛrnisɛ]", type: "adv", category: "adverbs", frequency: 11980, definitions: ["Nobody, no one.", "Nothing, not anything."], examples: [{ text: "<span class=\"highlight\">Бернисе</span> килмәй.", translation: "Nobody is coming." }] },
+            { word: "бернисек", transcription: "[bɛrnisɛk]", type: "adv", category: "adverbs", frequency: 12091, definitions: ["Nothing at all, not at all.", "In no way, under no circumstances."], examples: [{ text: "<span class=\"highlight\">Бернисек</span> фекерләмәйем.", translation: "I don't think about anything at all." }] },
+            { word: "бәлки", transcription: "[bælki]", type: "adv", category: "adverbs", frequency: 12202, definitions: ["Maybe, perhaps.", "Possibly, conceivably."], examples: [{ text: "<span class=\"highlight\">Бәлки</span>, ул дөрөҫ.", translation: "Maybe he is right." }] },
+            { word: "һәрбер", transcription: "[hærbɛr]", type: "adv", category: "adverbs", frequency: 12313, definitions: ["Each, every one individually.", "Every, all without exception."], examples: [{ text: "<span class=\"highlight\">Һәрбер</span> кешегә иғтибар итегеҙ.", translation: "Pay attention to each person." }] },
+            { word: "мөмкин", transcription: "[mɵm'kin]", type: "adv", category: "adverbs", frequency: 12424, definitions: ["Perhaps, maybe.", "Possible, able to be done."], examples: [{ text: "<span class=\"highlight\">Мөмкин</span>, ул килер.", translation: "Perhaps he will come." }] },
+            { word: "түбәндәге", transcription: "[ty'bændæ'ɡe]", type: "adj", category: "descriptive", frequency: 12535, definitions: ["Following, coming next.", "The following, subsequent."], examples: [{ text: "<span class=\"highlight\">Түбәндәге</span> мәғлүмәтте уҡығыҙ.", translation: "Read the following information." }] },
+            { word: "өҫтөндәге", transcription: "[ɵs'tɵndæ'ɡe]", type: "adj", category: "descriptive", frequency: 12646, definitions: ["Above, over something.", "Superior, higher in position."], examples: [{ text: "<span class=\"highlight\">Өҫтөндәге</span> китап.", translation: "The book above." }] },
+            { word: "артындағы", transcription: "[ɑrtɯn'dɑ'ʁɯ]", type: "adj", category: "descriptive", frequency: 12757, definitions: ["Behind, at the back of something.", "Following, subsequent."], examples: [{ text: "<span class=\"highlight\">Артындағы</span> йорт.", translation: "The house behind." }] },
+            { word: "алдындағы", transcription: "[ɑldɯn'dɑ'ʁɯ]", type: "adj", category: "descriptive", frequency: 12868, definitions: ["In front, before something.", "Preceding, prior."], examples: [{ text: "<span class=\"highlight\">Алдындағы</span> кеше.", translation: "The person in front." }] },
+            { word: "һөйөрөс", transcription: "[hɵjɵ'rus]", type: "noun", category: "people", frequency: 12979, definitions: ["Lover, one who loves something.", "Enthusiast, admirer."], examples: [{ text: "<span class=\"highlight\">Һөйөрөс</span> кеше.", translation: "A loving person." }] },
+            { word: "дост", transcription: "[dost]", type: "noun", category: "people", frequency: 13090, definitions: ["Friend, a close associate.", "Companion, ally."], examples: [{ text: "<span class=\"highlight\">Дост</span>ым бар.", translation: "I have a friend." }] },
+            { word: "дошман", transcription: "[doʃ'mɑn]", type: "noun", category: "people", frequency: 13201, definitions: ["Enemy, one who is hostile.", "Adversary, opponent."], examples: [{ text: "<span class=\"highlight\">Дошман</span> ҡорал ташланырға тейеш.", translation: "The enemy should lay down arms." }] },
+            { word: "кешеҙәр", transcription: "[kɛʃɛzdæ'r]", type: "noun", category: "people", frequency: 13312, definitions: ["People, human beings.", "Folks, persons."], examples: [{ text: "<span class=\"highlight\">Кешеҙәр</span> күп.", translation: "There are many people." }] },
+            { word: "яратыусы", transcription: "[jɑrɑ'tɯw'sɯ]", type: "noun", category: "people", frequency: 13423, definitions: ["Lover, one who loves.", "Admirer, enthusiast."], examples: [{ text: "<span class=\"highlight\">Яратыусы</span> кеше.", translation: "A loving person." }] },
+            { word: "яратмаусы", transcription: "[jɑrɑt'mɑw'sɯ]", type: "noun", category: "people", frequency: 13534, definitions: ["One who does not love.", "Disliker, hater."], examples: [{ text: "<span class=\"highlight\">Яратмаусы</span> кеше.", translation: "A person who doesn't love." }] },
+            { word: "ҡараусы", transcription: "[qɑ'rɑw'sɯ]", type: "noun", category: "people", frequency: 13645, definitions: ["Viewer, observer.", "Spectator, onlooker."], examples: [{ text: "<span class=\"highlight\">Ҡараусылар</span> күп булды.", translation: "There were many viewers." }] },
+            { word: "ҡаҙыусы", transcription: "[qɑ'zɯw'sɯ]", type: "noun", category: "people", frequency: 13756, definitions: ["Digger, one who digs.", "Excavator, excavating person."], examples: [{ text: "<span class=\"highlight\">Ҡаҙыусылар</span> эшләй.", translation: "The diggers are working." }] },
+            { word: "йөҙөүсе", transcription: "[jɵ'zɵw'sɛ]", type: "noun", category: "people", frequency: 13867, definitions: ["Swimmer, one who swims.", "Bather, one who bathes."], examples: [{ text: "<span class=\"highlight\">Йөҙөүселәр</span> диңгеҙҙә йөҙә.", translation: "Swimmers swim in the sea." }] },
+            { word: "йөрөүсе", transcription: "[jɵ'rɵw'sɛ]", type: "noun", category: "people", frequency: 13978, definitions: ["Walker, one who walks.", "Pedestrian, foot traveler."], examples: [{ text: "<span class=\"highlight\">Йөрөүселәр</span> урамда йөрөй.", translation: "Walkers walk on the street." }] },
+            { word: "һөйләүсе", transcription: "[hɵj'læw'sɛ]", type: "noun", category: "people", frequency: 14089, definitions: ["Speaker, one who speaks.", "Orator, talker."], examples: [{ text: "<span class=\"highlight\">Һөйләүселәр</span> күп булыр.", translation: "There will be many speakers." }] },
+            { word: "яҙыусы", transcription: "[jɑ'zɯw'sɯ]", type: "noun", category: "people", frequency: 14200, definitions: ["Writer, one who writes.", "Author, scribe."], examples: [{ text: "<span class=\"highlight\">Яҙыусыларҙың</span> йөҙө.", translation: "The face of writers." }] },
+            { word: "уҡыусы", transcription: "[u'qɯw'sɯ]", type: "noun", category: "people", frequency: 14311, definitions: ["Reader, one who reads.", "Student, pupil."], examples: [{ text: "<span class=\"highlight\">Уҡыусыларға</span> китаптар.", translation: "Books for readers." }] },
+            { word: "килеүсе", transcription: "[kil'e'w'sɛ]", type: "noun", category: "people", frequency: 14422, definitions: ["Comer, one who comes.", "Arriver, newcomer."], examples: [{ text: "<span class=\"highlight\">Килеүселәр</span> күп булыр.", translation: "There will be many comers." }] },
+            { word: "ҡайтыусы", transcription: "[qɑj'tɯw'sɯ]", type: "noun", category: "people", frequency: 14533, definitions: ["Returner, one who returns.", "Comer back, one who comes back."], examples: [{ text: "<span class=\"highlight\">Ҡайтыусылар</span> күп булыр.", translation: "There will be many returners." }] },
+            { word: "төшөүсе", transcription: "[tɵ'ʃөw'sɛ]", type: "noun", category: "people", frequency: 14644, definitions: ["Faller, one who falls.", "Dropper, one who drops."], examples: [{ text: "<span class=\"highlight\">Төшөүселәр</span> күп булыр.", translation: "There will be many fallers." }] },
+            { word: "ҡалыусы", transcription: "[qɑ'lɯw'sɯ]", type: "noun", category: "people", frequency: 14755, definitions: ["Stayer, one who stays.", "Remainder, one who remains."], examples: [{ text: "<span class=\"highlight\">Ҡалыусылар</span> күп булыр.", translation: "There will be many stayers." }] },
+            { word: "ҡорос", transcription: "[qoro's]", type: "noun", category: "materials", frequency: 14866, definitions: ["Steel, a hard metal.", "Metal alloy of iron and carbon."], examples: [{ text: "<span class=\"highlight\">Ҡорос</span> ҡапҡа.", translation: "Steel door." }] },
+            { word: "алтын", transcription: "[ɑl'tɯn]", type: "noun", category: "materials", frequency: 14977, definitions: ["Gold, a precious yellow metal.", "Valuable metal."], examples: [{ text: "<span class=\"highlight\">Алтын</span> йөҙөҡ.", translation: "Gold ring." }] },
+            { word: "көмөш", transcription: "[kɵ'mɵʃ]", type: "noun", category: "materials", frequency: 15088, definitions: ["Silver, a precious white metal.", "Valuable metal."], examples: [{ text: "<span class=\"highlight\">Көмөш</span> тәңкә.", translation: "Silver coin." }] },
+            { word: "таш", transcription: "[tɑʃ]", type: "noun", category: "materials", frequency: 15199, definitions: ["Stone, rock, or pebble.", "Hard mineral matter."], examples: [{ text: "<span class=\"highlight\">Таш</span> йорт.", translation: "Stone house." }] },
+            { word: "ҡом", transcription: "[qom]", type: "noun", category: "materials", frequency: 15310, definitions: ["Sand, fine particles of rock.", "Beach material."], examples: [{ text: "<span class=\"highlight\">Ҡом</span> диңгеҙ йәнендә.", translation: "Sand by the seaside." }] },
+            { word: "һыр", transcription: "[hɯr]", type: "noun", category: "concepts", frequency: 15421, definitions: ["Secret, something hidden or unknown.", "Mystery, enigma."], examples: [{ text: "<span class=\"highlight\">Һыр</span> асыҡ булғас, барыһы ла белде.", translation: "When the secret was revealed, everyone knew." }] },
+            { word: "шатлыҡ", transcription: "[ʃɑt'lɯq]", type: "noun", category: "emotions", frequency: 15532, definitions: ["Happiness, joy, or pleasure.", "Cheerfulness, delight."], examples: [{ text: "<span class=\"highlight\">Шатлыҡ</span> менән йәшәйек.", translation: "Let's live with happiness." }] },
+            { word: "ҡайғы", transcription: "[qɑj'ʁɯ]", type: "noun", category: "emotions", frequency: 15643, definitions: ["Sorrow, grief, or sadness.", "Trouble, worry."], examples: [{ text: "<span class=\"highlight\">Ҡайғы</span>һыҙ йәшәгеҙ.", translation: "Live without sorrow." }] },
+            { word: "ҡурҡыныс", transcription: "[qur'qɯnɯs]", type: "noun", category: "emotions", frequency: 15754, definitions: ["Danger, threat, or risk.", "Peril, hazard."], examples: [{ text: "<span class=\"highlight\">Ҡурҡыныс</span>һыҙ йөрөгеҙ.", translation: "Walk without danger." }] },
+            { word: "йәһәт", transcription: "[jæ'hæt]", type: "noun", category: "concepts", frequency: 15865, definitions: ["Aspect, perspective, or viewpoint.", "Direction, orientation."], examples: [{ text: "<span class=\"highlight\">Йәһәт</span>тән ҡарағыҙ.", translation: "Look from another aspect." }] },
+            { word: "ҡараш", transcription: "[qɑ'rɑʃ]", type: "noun", category: "concepts", frequency: 15976, definitions: ["View, opinion, or perspective.", "Outlook, viewpoint."], examples: [{ text: "<span class=\"highlight\">Ҡараш</span>ыңды яҙҙың.", translation: "You wrote your view." }] },
+            { word: "маҡтау", transcription: "[mɑq'tɑw]", type: "noun", category: "concepts", frequency: 16087, definitions: ["Praise, approval, or commendation.", "Flattery, compliment."], examples: [{ text: "<span class=\"highlight\">Маҡтау</span>һыҙ йәшәгеҙ.", translation: "Live without praise." }] },
+            { word: "ғәйеп", transcription: "[ˈʁæjep]", type: "noun", category: "concepts", frequency: 16198, definitions: ["Fault, blame, or guilt.", "Error, mistake."], examples: [{ text: "<span class=\"highlight\">Ғәйеп</span>һеҙ йәшәгеҙ.", translation: "Live without fault." }] },
+            { word: "мөлкәт", transcription: "[mɵl'kæt]", type: "noun", category: "concepts", frequency: 16309, definitions: ["Property, possessions, or wealth.", "Assets, belongings."], examples: [{ text: "<span class=\"highlight\">Мөлкәт</span>һеҙ йәшәгеҙ.", translation: "Live without property." }] },
+            { word: "намыҫ", transcription: "[nɑ'mɯs]", type: "noun", category: "concepts", frequency: 16420, definitions: ["Conscience, moral sense.", "Scruples, principles."], examples: [{ text: "<span class=\"highlight\">Намыҫ</span>һыҙ йәшәмәгеҙ.", translation: "Don't live without conscience." }] },
+            { word: "хәтер", transcription: "[hæ'tɛr]", type: "noun", category: "concepts", frequency: 16531, definitions: ["Memory, ability to remember.", "Recollection, remembrance."], examples: [{ text: "<span class=\"highlight\">Хәтере</span> яҡшы.", translation: "His/her memory is good." }] },
+            { word: "хыял", transcription: "[xɯ'jɑl]", type: "noun", category: "concepts", frequency: 16642, definitions: ["Dream, imagination, or fantasy.", "Vision, aspiration."], examples: [{ text: "<span class=\"highlight\">Хыялдары</span> булһын.", translation: "May he/she have dreams." }] },
+            { word: "теле", transcription: "[tɛ'lɛ]", type: "noun", category: "communication", frequency: 16753, definitions: ["Language, speech, or tongue.", "Word, verbal communication."], examples: [{ text: "<span class=\"highlight\">Телендә</span> генә бит.", translation: "It's only in your language." }] },
+            { word: "һүҙе", transcription: "[hɯ'ze]", type: "noun", category: "communication", frequency: 16864, definitions: ["Word, speech, or utterance.", "Statement, expression."], examples: [{ text: "<span class=\"highlight\">Һүҙе</span>н тартты.", translation: "He retracted his words." }] },
+            { word: "өйрәнү", transcription: "[ɵj'rænʏ]", type: "noun", category: "activities", frequency: 16975, definitions: ["Learning, acquiring knowledge.", "Studying, education."], examples: [{ text: "<span class=\"highlight\">Өйрәнү</span> мөһим.", translation: "Learning is important." }] },
+            { word: "белеү", transcription: "[bɛ'lɛw]", type: "noun", category: "concepts", frequency: 17086, definitions: ["Knowledge, understanding.", "Awareness, cognition."], examples: [{ text: "<span class=\"highlight\">Белеү</span> көс.", translation: "Knowledge is power." }] },
+            { word: "яй", transcription: "[jɑj]", type: "noun", category: "concepts", frequency: 17197, definitions: ["Speed, pace, or rate.", "Quickness, velocity."], examples: [{ text: "<span class=\"highlight\">Яй</span>һеҙ йөрөгеҙ.", translation: "Walk without speed (slowly)." }] },
+            { word: "тәртиб", transcription: "[tærtip]", type: "noun", category: "concepts", frequency: 17308, definitions: ["Order, arrangement, or system.", "Discipline, organization."], examples: [{ text: "<span class=\"highlight\">Тәртиб</span>һеҙлектән ҡорҡыныс", translation: "Chaos is dangerous." }] },
+            { word: "ирек", transcription: "[i'rɛk]", type: "noun", category: "concepts", frequency: 17419, definitions: ["Freedom, liberty, or independence.", "Free will, autonomy."], examples: [{ text: "<span class=\"highlight\">Ирек</span> мөһим.", translation: "Freedom is important." }] },
+            { word: "тәрән", transcription: "[tæ'ræn]", type: "adj", category: "descriptive", frequency: 17530, definitions: ["Deep, having great depth.", "Profound, thorough."], examples: [{ text: "<span class=\"highlight\">Тәрән</span> күл.", translation: "Deep lake." }] },
+            { word: "ябай", transcription: "[jɑ'bɑj]", type: "adj", category: "descriptive", frequency: 17641, definitions: ["Simple, easy, or uncomplicated.", "Plain, ordinary, or unpretentious."], examples: [{ text: "<span class=\"highlight\">Ябай</span> кеше.", translation: "Simple person." }] },
+            { word: "ҡатмарлы", transcription: "[qɑt'mɑrlɯ]", type: "adj", category: "descriptive", frequency: 17752, definitions: ["Complex, complicated, or intricate.", "Difficult, challenging, or hard to understand."], examples: [{ text: "<span class=\"highlight\">Ҡатмарлы</span> мәсьәлә.", translation: "Complex problem." }] }
+        ];
+
+        // DOM Elements
+        const searchInput = document.getElementById('searchInput');
+        const clearBtn = document.getElementById('clearBtn');
+        const wordList = document.getElementById('wordList');
+        const currentWord = document.getElementById('currentWord');
+        const wordType = document.getElementById('wordType');
+        const wordStars = document.getElementById('wordStars');
+        const transcription = document.getElementById('transcription');
+        const definitions = document.getElementById('definitions');
+        const visibleCount = document.getElementById('visibleCount');
+        const totalCountEl = document.getElementById('totalCount');
+        const sortSelect = document.getElementById('sortSelect');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const paginationContainer = document.getElementById('paginationContainer');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const langSwitcher = document.getElementById('langSwitcher');
+        const totalWordsStat = document.getElementById('totalWordsStat');
+        const prevWordBtn = document.getElementById('prevWord');
+        const nextWordBtn =
