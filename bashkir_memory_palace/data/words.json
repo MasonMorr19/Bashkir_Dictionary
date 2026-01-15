@@ -2429,5 +2429,1186 @@
         "ablative": "дуҫтан"
       }
     }
+  },
+  {
+    "id": "word_046",
+    "bashkir": "ер",
+    "ipa": "[jɛr]",
+    "pos": "noun",
+    "english": "earth/land/ground",
+    "russian": "земля",
+    "frequency_rank": 45,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YAIR!' The Crow lands on the ЕР! Earth beneath your feet — the same ground the ancient painters walked 14,000 years ago. Feel it pulse with memory!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "планета (planet)",
+          "табиғәт (nature)"
+        ],
+        "ANT": [
+          "күк (sky)"
+        ],
+        "HAS_PART": [
+          "таш (stone)",
+          "туфраҡ (soil)",
+          "һыу (water)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Ана-ер",
+            "gloss": "Mother Earth",
+            "relation": "sacred_concept"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*jer",
+        "proto_language": "Proto-Turkic"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "131",
+        "773"
+      ],
+      "significance": "Earth as sacred mother; land rights central to Bashkir identity",
+      "sources": [
+        "Turkic cosmology"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ер",
+        "genitive": "ерҙең",
+        "dative": "ергә",
+        "accusative": "ерҙе",
+        "locative": "ерҙә",
+        "ablative": "ерҙән"
+      }
+    }
+  },
+  {
+    "id": "word_047",
+    "bashkir": "көн",
+    "ipa": "[køn]",
+    "pos": "noun",
+    "english": "day/daytime",
+    "russian": "день",
+    "frequency_rank": 28,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KUHN!' The Crow greets the КӨН! Day breaks over the cave mouth — light floods in, the paintings emerge from shadow. Each day is a gift!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ваҡыт (time)"
+        ],
+        "ANT": [
+          "төн (night)"
+        ],
+        "HAS_PART": [
+          "иртә (morning)",
+          "көндөҙ (midday)",
+          "кис (evening)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡояш",
+            "relation": "source_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805"
+      ],
+      "significance": "Day as basic unit of time; solar rhythms in traditional life",
+      "sources": [
+        "Folk calendar traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "көн",
+        "genitive": "көндөң",
+        "dative": "көнгә",
+        "accusative": "көндө",
+        "locative": "көндә",
+        "ablative": "көндән"
+      }
+    }
+  },
+  {
+    "id": "word_048",
+    "bashkir": "төн",
+    "ipa": "[tøn]",
+    "pos": "noun",
+    "english": "night",
+    "russian": "ночь",
+    "frequency_rank": 112,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'TUHN!' The Crow's black feathers blend into the ТӨН! Night wraps the cave in darkness — but inside, torches reveal secrets that daylight hides!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ваҡыт (time)"
+        ],
+        "ANT": [
+          "көн (day)"
+        ],
+        "HAS_PART": [
+          "кис (evening)",
+          "төн уртаһы (midnight)",
+          "таң (dawn)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ай",
+            "relation": "illuminated_by"
+          },
+          {
+            "target": "йондоҙ",
+            "relation": "reveals"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805",
+        "821"
+      ],
+      "significance": "Night as time of spirits and stories; star navigation",
+      "sources": [
+        "Folk traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "төн",
+        "genitive": "төндөң",
+        "dative": "төнгә",
+        "accusative": "төндө",
+        "locative": "төндә",
+        "ablative": "төндән"
+      }
+    }
+  },
+  {
+    "id": "word_049",
+    "bashkir": "яҙ",
+    "ipa": "[jɑð]",
+    "pos": "noun",
+    "english": "spring (season)",
+    "russian": "весна",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YAZ!' The Crow sings as ЯҘ arrives! Spring melts the snow around the cave — water rushes, flowers burst from earth, the world awakens!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "ҡыш (winter)"
+        ],
+        "PRECEDES": [
+          "йәй (summer)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡарға буткаһы",
+            "gloss": "Crow's Porridge festival",
+            "relation": "celebrated_in"
+          },
+          {
+            "target": "яңырыу",
+            "gloss": "renewal",
+            "relation": "symbol_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221",
+        "527"
+      ],
+      "significance": "Spring festivals mark agricultural calendar; rebirth symbolism",
+      "sources": [
+        "Bashkir seasonal traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "яҙ",
+        "genitive": "яҙҙың",
+        "dative": "яҙға",
+        "accusative": "яҙҙы",
+        "locative": "яҙҙа",
+        "ablative": "яҙҙан"
+      }
+    }
+  },
+  {
+    "id": "word_050",
+    "bashkir": "йәй",
+    "ipa": "[jæj]",
+    "pos": "noun",
+    "english": "summer",
+    "russian": "лето",
+    "frequency_rank": 178,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YAY!' The Crow celebrates ЙӘЙ! Summer fills the land with warmth — the cave stays cool while outside, bees gather honey and horses run free!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "яҙ (spring)"
+        ],
+        "PRECEDES": [
+          "көҙ (autumn)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "сабантуй",
+            "relation": "celebrated_in"
+          },
+          {
+            "target": "йәйләү",
+            "gloss": "summer pasture",
+            "relation": "activity_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221",
+        "527"
+      ],
+      "significance": "Summer is festival time; traditional nomadic movement to summer pastures",
+      "sources": [
+        "Seasonal traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йәй",
+        "genitive": "йәйҙең",
+        "dative": "йәйгә",
+        "accusative": "йәйҙе",
+        "locative": "йәйҙә",
+        "ablative": "йәйҙән"
+      }
+    }
+  },
+  {
+    "id": "word_051",
+    "bashkir": "көҙ",
+    "ipa": "[køð]",
+    "pos": "noun",
+    "english": "autumn/fall",
+    "russian": "осень",
+    "frequency_rank": 198,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KUHZ!' The Crow watches КӨҘ arrive! Autumn paints the forest gold and red — leaves fall like memories, the land prepares for sleep!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "йәй (summer)"
+        ],
+        "PRECEDES": [
+          "ҡыш (winter)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "уңыш",
+            "gloss": "harvest",
+            "relation": "time_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221"
+      ],
+      "significance": "Harvest season; preparation for winter",
+      "sources": [
+        "Agricultural calendar"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "көҙ",
+        "genitive": "көҙҙөң",
+        "dative": "көҙгә",
+        "accusative": "көҙҙө",
+        "locative": "көҙҙә",
+        "ablative": "көҙҙән"
+      }
+    }
+  },
+  {
+    "id": "word_052",
+    "bashkir": "ҡыш",
+    "ipa": "[qɯʃ]",
+    "pos": "noun",
+    "english": "winter",
+    "russian": "зима",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KYSH!' The Crow shivers as ҠЫШ grips the land! Winter blankets everything in white — but inside the cave, ancient warmth endures!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "көҙ (autumn)"
+        ],
+        "PRECEDES": [
+          "яҙ (spring)"
+        ],
+        "HAS_PART": [
+          "ҡар (snow)",
+          "боҙ (ice)",
+          "һыуыҡ (cold)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡышлау",
+            "gloss": "wintering",
+            "relation": "activity_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221"
+      ],
+      "significance": "Winter survival traditions; storytelling season",
+      "sources": [
+        "Seasonal traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡыш",
+        "genitive": "ҡыштың",
+        "dative": "ҡышҡа",
+        "accusative": "ҡышты",
+        "locative": "ҡышта",
+        "ablative": "ҡыштан"
+      }
+    }
+  },
+  {
+    "id": "word_053",
+    "bashkir": "ваҡыт",
+    "ipa": "[wɑqɯt]",
+    "pos": "noun",
+    "english": "time",
+    "russian": "время",
+    "frequency_rank": 56,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Va-KYT!' The Crow knows all ВАҠЫТ! Time flows through the cave like the underground river — 14,000 years pass like a single breath!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "абстракт төшөнсә (abstract concept)"
+        ],
+        "HAS_TYPE": [
+          "миҙгел (season)",
+          "көн (day)",
+          "йыл (year)"
+        ],
+        "MEASURED_BY": [
+          "ай (moon/month)",
+          "ҡояш (sun)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Шүлгәнташ",
+            "relation": "collapses_at",
+            "note": "Time seems to stop in the ancient cave"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805"
+      ],
+      "significance": "Cyclical time in traditional worldview vs. linear modern time",
+      "sources": [
+        "Philosophical traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ваҡыт",
+        "genitive": "ваҡыттың",
+        "dative": "ваҡытҡа",
+        "accusative": "ваҡытты",
+        "locative": "ваҡытта",
+        "ablative": "ваҡыттан"
+      }
+    }
+  },
+  {
+    "id": "word_054",
+    "bashkir": "йыл",
+    "ipa": "[jɯl]",
+    "pos": "noun",
+    "english": "year",
+    "russian": "год",
+    "frequency_rank": 67,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YIL!' The Crow has seen 14,000 ЙЫЛ pass! Each year a ring in the tree, a layer in the stone — the cave remembers every single one!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ваҡыт (time)"
+        ],
+        "HAS_PART": [
+          "яҙ (spring)",
+          "йәй (summer)",
+          "көҙ (autumn)",
+          "ҡыш (winter)"
+        ],
+        "MEASURED_BY": [
+          "ай (month)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805"
+      ],
+      "significance": "12-year animal cycle in traditional Bashkir calendar",
+      "sources": [
+        "Calendar traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йыл",
+        "genitive": "йылдың",
+        "dative": "йылға",
+        "accusative": "йылды",
+        "locative": "йылда",
+        "ablative": "йылдан"
+      }
+    }
+  },
+  {
+    "id": "word_055",
+    "bashkir": "ҡар",
+    "ipa": "[qɑr]",
+    "pos": "noun",
+    "english": "snow",
+    "russian": "снег",
+    "frequency_rank": 145,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KAR!' The Crow's black wings against white ҠАР! Snow covers the cave entrance — a white curtain hiding ancient secrets, each flake a frozen memory!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "яуын-һыу (precipitation)"
+        ],
+        "PART_OF": [
+          "ҡыш (winter)"
+        ],
+        "MADE_FROM": [
+          "һыу (water)"
+        ],
+        "ANT": [
+          "ямғыр (rain)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "арыулыҡ",
+            "gloss": "purity",
+            "relation": "symbol_of"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*kar",
+        "proto_language": "Proto-Turkic"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "132"
+      ],
+      "significance": "Snow essential for winter survival; meltwater feeds rivers",
+      "sources": [
+        "Climate traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡар",
+        "genitive": "ҡарҙың",
+        "dative": "ҡарға",
+        "accusative": "ҡарҙы",
+        "locative": "ҡарҙа",
+        "ablative": "ҡарҙан"
+      }
+    }
+  },
+  {
+    "id": "word_056",
+    "bashkir": "ямғыр",
+    "ipa": "[jɑmʁɯr]",
+    "pos": "noun",
+    "english": "rain",
+    "russian": "дождь",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Yam-GHYR!' The Crow dances in ЯМҒЫР! Rain drums on the cave mouth — each drop a blessing from sky to earth, filling rivers, growing forests!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "яуын-һыу (precipitation)"
+        ],
+        "COMES_FROM": [
+          "болот (cloud)",
+          "күк (sky)"
+        ],
+        "BECOMES": [
+          "һыу (water)",
+          "йылға (river)"
+        ],
+        "ANT": [
+          "ҡар (snow)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ямғыр теләне",
+            "gloss": "rain ritual",
+            "relation": "invoked_by"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "132"
+      ],
+      "significance": "Rain rituals in traditional agriculture; blessing from Tengri",
+      "sources": [
+        "Agricultural traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ямғыр",
+        "genitive": "ямғырҙың",
+        "dative": "ямғырға",
+        "accusative": "ямғырҙы",
+        "locative": "ямғырҙа",
+        "ablative": "ямғырҙан"
+      }
+    }
+  },
+  {
+    "id": "word_057",
+    "bashkir": "болот",
+    "ipa": "[bolot]",
+    "pos": "noun",
+    "english": "cloud",
+    "russian": "облако",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Bo-LOT!' The Crow flies through БОЛОТ! Clouds drift over the sacred cave — shadows and light play across the ancient paintings like living spirits!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "һауа күренеше (weather phenomenon)"
+        ],
+        "PART_OF": [
+          "күк (sky)"
+        ],
+        "MADE_FROM": [
+          "һыу (water)"
+        ],
+        "PRODUCES": [
+          "ямғыр (rain)",
+          "ҡар (snow)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "132"
+      ],
+      "significance": "Clouds as messengers between earth and sky",
+      "sources": [
+        "Weather traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "болот",
+        "genitive": "болоттоң",
+        "dative": "болотҡа",
+        "accusative": "болотто",
+        "locative": "болотта",
+        "ablative": "болоттан"
+      }
+    }
+  },
+  {
+    "id": "word_058",
+    "bashkir": "нур",
+    "ipa": "[nur]",
+    "pos": "noun",
+    "english": "light/ray",
+    "russian": "свет/луч",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'NOOR!' НУР pierces the cave darkness! A single ray of light illuminates the ancient paintings — knowledge emerging from shadow into understanding!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "физик күренеш (physical phenomenon)"
+        ],
+        "COMES_FROM": [
+          "ҡояш (sun)",
+          "ай (moon)",
+          "йондоҙ (star)"
+        ],
+        "ANT": [
+          "ҡараңғылыҡ (darkness)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "белем",
+            "gloss": "knowledge",
+            "relation": "metaphor_for"
+          },
+          {
+            "target": "Тәңре",
+            "gloss": "Tengri",
+            "relation": "attribute_of"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "nūr",
+        "proto_language": "Arabic",
+        "note": "Borrowed from Arabic, also used in Ibn Arabi's mysticism"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "778"
+      ],
+      "significance": "Light as divine attribute in both Tengriism and Islamic mysticism",
+      "sources": [
+        "Religious symbolism"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "нур",
+        "genitive": "нурҙың",
+        "dative": "нурға",
+        "accusative": "нурҙы",
+        "locative": "нурҙа",
+        "ablative": "нурҙан"
+      }
+    }
+  },
+  {
+    "id": "word_059",
+    "bashkir": "ҡараңғылыҡ",
+    "ipa": "[qɑrɑŋʁɯlɯq]",
+    "pos": "noun",
+    "english": "darkness",
+    "russian": "темнота",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Karan-GHY-lyk!' The Crow thrives in ҠАРАҢҒЫЛЫҠ! Deep in the cave, darkness holds secrets — not emptiness, but pregnant potential, where visions emerge!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "хәл (state)"
+        ],
+        "ANT": [
+          "нур (light)",
+          "яҡтылыҡ (brightness)"
+        ],
+        "FOUND_IN": [
+          "төн (night)",
+          "мәғарә (cave)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Шүлгәнташ",
+            "relation": "characteristic_of"
+          },
+          {
+            "target": "серле",
+            "gloss": "mysterious",
+            "relation": "associated_with"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773"
+      ],
+      "significance": "Darkness in caves as liminal space for spiritual transformation",
+      "sources": [
+        "Cave symbolism"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡараңғылыҡ",
+        "genitive": "ҡараңғылыҡтың",
+        "dative": "ҡараңғылыҡҡа",
+        "accusative": "ҡараңғылыҡты",
+        "locative": "ҡараңғылыҡта",
+        "ablative": "ҡараңғылыҡтан"
+      }
+    }
+  },
+  {
+    "id": "word_060",
+    "bashkir": "Шүлгән",
+    "ipa": "[ʃylɡæn]",
+    "pos": "noun",
+    "english": "Shulgan (mythological figure)",
+    "russian": "Шульган",
+    "frequency_rank": 567,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'SHUL-gan!' The Crow tells of ШҮЛГӘН! Brother of Ural-Batyr who chose the underworld — his stone cave still bears his name, guardian of dark waters!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "эпик персонаж (epic character)",
+          "мифологик затлыҡ (mythological being)"
+        ],
+        "SIBLING_OF": [
+          "Урал-батыр"
+        ],
+        "RULES_OVER": [
+          "ер аҫты (underworld)",
+          "Шүлгәнташ"
+        ],
+        "ANT": [
+          "Урал-батыр"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Үлем",
+            "gloss": "Death",
+            "relation": "sided_with"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "778"
+      ],
+      "significance": "Antagonist in Ural-Batyr epic; represents choice of selfishness over service",
+      "sources": [
+        "Epic of Ural-Batyr"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Шүлгән",
+        "genitive": "Шүлгәндең",
+        "dative": "Шүлгәнгә",
+        "accusative": "Шүлгәнде",
+        "locative": "Шүлгәндә",
+        "ablative": "Шүлгәндән"
+      }
+    }
+  },
+  {
+    "id": "word_061",
+    "bashkir": "Хомай",
+    "ipa": "[xomɑj]",
+    "pos": "noun",
+    "english": "Humai (goddess of happiness)",
+    "russian": "Хумай",
+    "frequency_rank": 567,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Ho-MY!' The Crow speaks of ХОМАЙ! Swan-goddess of happiness, daughter of the sun — her feathers bring blessing, her shadow brings fortune!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "алиһә (goddess)",
+          "мифологик затлыҡ (mythological being)"
+        ],
+        "APPEARS_AS": [
+          "аҡҡош (swan)",
+          "матур ҡыҙ (beautiful girl)"
+        ],
+        "BRINGS": [
+          "бәхет (happiness)",
+          "уңыш (success)"
+        ],
+        "DAUGHTER_OF": [
+          "Ҡояш (Sun)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Урал-батыр",
+            "relation": "assists"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "778"
+      ],
+      "significance": "Benevolent goddess in Bashkir mythology; associated with fate and fortune",
+      "sources": [
+        "Epic of Ural-Batyr",
+        "Bashkir mythology"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Хомай",
+        "genitive": "Хомайҙың",
+        "dative": "Хомайға",
+        "accusative": "Хомайҙы",
+        "locative": "Хомайҙа",
+        "ablative": "Хомайҙан"
+      }
+    }
+  },
+  {
+    "id": "word_062",
+    "bashkir": "баба",
+    "ipa": "[bɑbɑ]",
+    "pos": "noun",
+    "english": "ancestor/forefather",
+    "russian": "предок/дед",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'BA-ba!' The Crow honors the БАБА! Ancestors painted these walls — their spirits linger here, watching over their children's children!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ата-баба (ancestors)",
+          "кеше (person)"
+        ],
+        "ANT": [
+          "оноҡ (grandchild)"
+        ],
+        "PART_OF": [
+          "нәҫел (lineage)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "рух",
+            "gloss": "spirit",
+            "relation": "becomes"
+          },
+          {
+            "target": "ҡәбер",
+            "gloss": "grave",
+            "relation": "honored_at"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "769",
+        "593"
+      ],
+      "significance": "Ancestor veneration central to Bashkir spiritual life",
+      "sources": [
+        "Kinship traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "баба",
+        "genitive": "бабаның",
+        "dative": "бабаға",
+        "accusative": "бабаны",
+        "locative": "бабала",
+        "ablative": "бабалан"
+      }
+    }
+  },
+  {
+    "id": "word_063",
+    "bashkir": "нәҫел",
+    "ipa": "[næsæl]",
+    "pos": "noun",
+    "english": "lineage/ancestry/generation",
+    "russian": "род/поколение",
+    "frequency_rank": 289,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Na-SAL!' The Crow guards НӘҪЕЛ! Lineage stretches back through time — each generation a link in an unbroken chain from ancient painters to you!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йәмғиәт берлеге (social unit)"
+        ],
+        "HAS_PART": [
+          "баба (ancestor)",
+          "ата (father)",
+          "бала (child)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "шәжәрә",
+            "gloss": "genealogy",
+            "relation": "recorded_in"
+          },
+          {
+            "target": "ырыу",
+            "gloss": "clan",
+            "relation": "component_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "593",
+        "612"
+      ],
+      "significance": "Seven-generation genealogies traditionally memorized; clan identity",
+      "sources": [
+        "Kinship studies"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "нәҫел",
+        "genitive": "нәҫелдең",
+        "dative": "нәҫелгә",
+        "accusative": "нәҫелде",
+        "locative": "нәҫелдә",
+        "ablative": "нәҫелдән"
+      }
+    }
+  },
+  {
+    "id": "word_064",
+    "bashkir": "рух",
+    "ipa": "[rux]",
+    "pos": "noun",
+    "english": "spirit/soul",
+    "russian": "дух/душа",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'ROOKH!' The Crow carries the РУХ of ancestors! Spirits dwell in the cave — you feel their presence in the painted eyes that watch from stone walls!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "абстракт төшөнсә (abstract concept)",
+          "мифологик төшөнсә (mythological concept)"
+        ],
+        "INHABITS": [
+          "кеше (person)",
+          "табиғәт (nature)"
+        ],
+        "SURVIVES": [
+          "үлем (death)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "баба",
+            "relation": "of_ancestors"
+          },
+          {
+            "target": "ҡурай",
+            "relation": "expressed_through"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "rūḥ",
+        "proto_language": "Arabic",
+        "note": "Borrowed from Arabic; also used in Sufi mysticism"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "774"
+      ],
+      "significance": "Animistic beliefs; spirits in nature and ancestors",
+      "sources": [
+        "Religious traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "рух",
+        "genitive": "рухтың",
+        "dative": "рухҡа",
+        "accusative": "рухты",
+        "locative": "рухта",
+        "ablative": "рухтан"
+      }
+    }
+  },
+  {
+    "id": "word_065",
+    "bashkir": "тереклек",
+    "ipa": "[tɛrɛklɛk]",
+    "pos": "noun",
+    "english": "life",
+    "russian": "жизнь",
+    "frequency_rank": 123,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Te-REK-lek!' The Crow celebrates ТЕРЕКЛЕК! Life pulses through the cave — in the river's flow, in the paintings' vitality, in your beating heart!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "абстракт төшөнсә (abstract concept)"
+        ],
+        "ANT": [
+          "үлем (death)"
+        ],
+        "HAS_PART": [
+          "тыуыу (birth)",
+          "үҫеү (growth)",
+          "үлеү (dying)"
+        ],
+        "REQUIRES": [
+          "һыу (water)",
+          "ҡояш (sun)",
+          "һауа (air)"
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "тереклек һыуы",
+            "gloss": "water of life",
+            "relation": "sought_by_heroes"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "761"
+      ],
+      "significance": "Life-giving water (тереклек һыуы) central to Ural-Batyr epic",
+      "sources": [
+        "Epic of Ural-Batyr"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "тереклек",
+        "genitive": "тереклектең",
+        "dative": "тереклеккә",
+        "accusative": "тереклекте",
+        "locative": "тереклектә",
+        "ablative": "тереклектән"
+      }
+    }
   }
 ]
