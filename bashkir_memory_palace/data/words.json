@@ -3610,5 +3610,1174 @@
         "ablative": "тереклектән"
       }
     }
+  },
+  {
+    "id": "word_066",
+    "bashkir": "ил",
+    "ipa": "[il]",
+    "pos": "noun",
+    "english": "country/land/homeland",
+    "russian": "страна/край",
+    "frequency_rank": 34,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'EEL!' The Eagle soars over the ИЛ! Country stretches beneath its wings — from mountain to steppe, this land belongs to its people!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "территория (territory)"
+        ],
+        "HAS_TYPE": [
+          "Башҡортостан",
+          "Рәсәй (Russia)"
+        ],
+        "SYN": [
+          "ватан (homeland)",
+          "йорт (home territory)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "халыҡ",
+            "relation": "inhabited_by"
+          },
+          {
+            "target": "дәүләт",
+            "relation": "governed_as"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*el",
+        "proto_language": "Proto-Turkic",
+        "note": "Ancient Turkic concept of tribal territory"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "631"
+      ],
+      "significance": "Ancient Turkic concept of homeland; basis of territorial identity",
+      "sources": [
+        "Turkic political traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ил",
+        "genitive": "илдең",
+        "dative": "илгә",
+        "accusative": "илде",
+        "locative": "илдә",
+        "ablative": "илдән"
+      }
+    }
+  },
+  {
+    "id": "word_067",
+    "bashkir": "дәүләт",
+    "ipa": "[dæwlæt]",
+    "pos": "noun",
+    "english": "state/government",
+    "russian": "государство",
+    "frequency_rank": 123,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Daw-LAT!' The Eagle perches on the ДӘҮЛӘТ building! The state rises in marble and law — power organized to serve the people!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "оешма (organization)",
+          "институт (institution)"
+        ],
+        "HAS_PART": [
+          "хөкүмәт (government)",
+          "парламент (parliament)",
+          "суд (court)"
+        ],
+        "GOVERNS": [
+          "ил (country)",
+          "халыҡ (people)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "конституция",
+            "relation": "founded_on"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "dawla",
+        "proto_language": "Arabic",
+        "note": "Borrowed via Persian; means 'dynasty, state'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "642"
+      ],
+      "significance": "Modern state concept; Bashkortostan as subject of Russian Federation",
+      "sources": [
+        "Constitutional law"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "дәүләт",
+        "genitive": "дәүләттең",
+        "dative": "дәүләткә",
+        "accusative": "дәүләтте",
+        "locative": "дәүләттә",
+        "ablative": "дәүләттән"
+      }
+    }
+  },
+  {
+    "id": "word_068",
+    "bashkir": "хоҡуҡ",
+    "ipa": "[xoquq]",
+    "pos": "noun",
+    "english": "right/law",
+    "russian": "право",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ho-KOOK!' The Eagle guards ХОҠУҠ! Rights carved in stone — the people's freedoms protected by law, sacred and unbreakable!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "норма (norm)",
+          "принцип (principle)"
+        ],
+        "HAS_TYPE": [
+          "кеше хоҡуҡтары (human rights)",
+          "тел хоҡуҡы (language rights)",
+          "сайлау хоҡуҡы (voting rights)"
+        ],
+        "GUARANTEED_BY": [
+          "конституция",
+          "закон"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "иркенлек",
+            "relation": "enables"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "ḥaqq",
+        "proto_language": "Arabic",
+        "note": "Means 'truth, right, justice'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "669",
+        "648"
+      ],
+      "significance": "Language rights central to Bashkir sovereignty movement",
+      "sensitivity": {
+        "has_sensitive_context": true,
+        "note": "Language rights activism ongoing"
+      },
+      "sources": [
+        "Constitutional rights discourse"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "хоҡуҡ",
+        "genitive": "хоҡуҡтың",
+        "dative": "хоҡуҡҡа",
+        "accusative": "хоҡуҡты",
+        "locative": "хоҡуҡта",
+        "ablative": "хоҡуҡтан"
+      }
+    }
+  },
+  {
+    "id": "word_069",
+    "bashkir": "закон",
+    "ipa": "[zɑkon]",
+    "pos": "noun",
+    "english": "law",
+    "russian": "закон",
+    "frequency_rank": 145,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Za-KON!' The Eagle enforces ЗАКОН! Law binds society together — rules written so all may know what is just!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "норма (norm)",
+          "ҡағиҙә (rule)"
+        ],
+        "HAS_TYPE": [
+          "конституция",
+          "кодекс (code)"
+        ],
+        "CREATED_BY": [
+          "парламент",
+          "дәүләт"
+        ],
+        "ENFORCED_BY": [
+          "суд (court)",
+          "полиция (police)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "671",
+        "648"
+      ],
+      "significance": "Rule of law; legal framework for rights protection",
+      "sources": [
+        "Legal system"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "закон",
+        "genitive": "закондың",
+        "dative": "законға",
+        "accusative": "законды",
+        "locative": "законда",
+        "ablative": "закондан"
+      }
+    }
+  },
+  {
+    "id": "word_070",
+    "bashkir": "хөкүмәт",
+    "ipa": "[høkymæt]",
+    "pos": "noun",
+    "english": "government/cabinet",
+    "russian": "правительство",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Hö-kü-MÄT!' The Eagle watches over ХӨКҮМӘТ! Government ministers gather — decisions made that shape the nation's future!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "оешма (organization)"
+        ],
+        "PART_OF": [
+          "дәүләт (state)"
+        ],
+        "HAS_PART": [
+          "министр (minister)",
+          "премьер-министр"
+        ],
+        "LOCATED_AT": [
+          "Өфө (Ufa)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "ḥukūma",
+        "proto_language": "Arabic",
+        "note": "From root ḥ-k-m 'to judge, govern'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "642",
+        "643"
+      ],
+      "significance": "Executive branch of Bashkortostan government",
+      "sources": [
+        "Government structure"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "хөкүмәт",
+        "genitive": "хөкүмәттең",
+        "dative": "хөкүмәткә",
+        "accusative": "хөкүмәтте",
+        "locative": "хөкүмәттә",
+        "ablative": "хөкүмәттән"
+      }
+    }
+  },
+  {
+    "id": "word_071",
+    "bashkir": "парламент",
+    "ipa": "[pɑrlɑmɛnt]",
+    "pos": "noun",
+    "english": "parliament",
+    "russian": "парламент",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Par-la-MENT!' The Eagle circles above ПАРЛАМЕНТ! Representatives gather to speak for the people — democracy in action!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "оешма (organization)",
+          "вәкиллек органы (representative body)"
+        ],
+        "PART_OF": [
+          "дәүләт (state)"
+        ],
+        "HAS_PART": [
+          "депутат (deputy)"
+        ],
+        "CREATES": [
+          "закон (law)"
+        ],
+        "ALSO_KNOWN_AS": [
+          "Ҡорылтай (Kurultai)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "642"
+      ],
+      "significance": "State Assembly (Курултай) - legislative body of Bashkortostan",
+      "sources": [
+        "Constitutional structure"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "парламент",
+        "genitive": "парламенттың",
+        "dative": "парламенткә",
+        "accusative": "парламентты",
+        "locative": "парламентта",
+        "ablative": "парламенттан"
+      }
+    }
+  },
+  {
+    "id": "word_072",
+    "bashkir": "президент",
+    "ipa": "[prɛzidɛnt]",
+    "pos": "noun",
+    "english": "president/head",
+    "russian": "президент/глава",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Pre-zi-DENT!' The Eagle accompanies the ПРЕЗИДЕНТ! The leader stands for the nation — one voice speaking for millions!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "етәксе (leader)",
+          "вазифа (position)"
+        ],
+        "HEADS": [
+          "дәүләт (state)",
+          "республика (republic)"
+        ],
+        "ELECTED_BY": [
+          "халыҡ (people)"
+        ],
+        "ALSO_KNOWN_AS": [
+          "Башлыҡ (Head)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "643"
+      ],
+      "significance": "Head of the Republic of Bashkortostan",
+      "sources": [
+        "Constitutional structure"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "президент",
+        "genitive": "президенттың",
+        "dative": "президенткә",
+        "accusative": "президентты",
+        "locative": "президентта",
+        "ablative": "президенттан"
+      }
+    }
+  },
+  {
+    "id": "word_073",
+    "bashkir": "сайлау",
+    "ipa": "[sɑjlɑw]",
+    "pos": "noun",
+    "english": "election/choice",
+    "russian": "выборы/выбор",
+    "frequency_rank": 289,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Sai-LAU!' The Eagle witnesses САЙЛАУ! Election day — the people's voice rises, each vote a wing beat of democracy!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "процесс (process)",
+          "демократия элементы (element of democracy)"
+        ],
+        "CHOOSES": [
+          "президент",
+          "депутат (deputy)"
+        ],
+        "DONE_BY": [
+          "халыҡ (people)",
+          "граждан (citizen)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "хоҡуҡ",
+            "relation": "exercises"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "646"
+      ],
+      "significance": "Democratic participation; electoral rights",
+      "sources": [
+        "Electoral system"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "сайлау",
+        "genitive": "сайлауҙың",
+        "dative": "сайлауға",
+        "accusative": "сайлауҙы",
+        "locative": "сайлауҙа",
+        "ablative": "сайлауҙан"
+      }
+    }
+  },
+  {
+    "id": "word_074",
+    "bashkir": "граждан",
+    "ipa": "[ɡrɑʒdɑn]",
+    "pos": "noun",
+    "english": "citizen",
+    "russian": "гражданин",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Grazh-DAN!' The Eagle recognizes every ГРАЖДАН! Citizens walk the streets of Ufa — each one a sovereign piece of the nation!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "кеше (person)",
+          "хоҡуҡи статус (legal status)"
+        ],
+        "MEMBER_OF": [
+          "дәүләт (state)",
+          "йәмғиәт (society)"
+        ],
+        "HAS": [
+          "хоҡуҡ (rights)",
+          "бурыс (duties)"
+        ],
+        "PARTICIPATES_IN": [
+          "сайлау (election)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "641"
+      ],
+      "significance": "Citizenship and civic participation",
+      "sources": [
+        "Citizenship law"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "граждан",
+        "genitive": "граждандың",
+        "dative": "гражданға",
+        "accusative": "гражданды",
+        "locative": "гражданда",
+        "ablative": "граждандан"
+      }
+    }
+  },
+  {
+    "id": "word_075",
+    "bashkir": "ватан",
+    "ipa": "[wɑtɑn]",
+    "pos": "noun",
+    "english": "homeland/fatherland",
+    "russian": "родина/отечество",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Va-TAN!' The Eagle's heart belongs to ВАТАН! Homeland calls — the land of ancestors, the soil that made you who you are!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төшөнсә (concept)"
+        ],
+        "SYN": [
+          "ил (country)",
+          "туған ил (native land)"
+        ],
+        "EVOKES": [
+          "мөхәббәт (love)",
+          "тоҡҡанлыҡ (longing)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Башҡортостан",
+            "relation": "exemplified_by"
+          },
+          {
+            "target": "патриотизм",
+            "relation": "inspires"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "waṭan",
+        "proto_language": "Arabic",
+        "note": "Means 'homeland, place of residence'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "186"
+      ],
+      "significance": "Emotional attachment to homeland; patriotic concept",
+      "sources": [
+        "National identity discourse"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ватан",
+        "genitive": "ватандың",
+        "dative": "ватанға",
+        "accusative": "ватанды",
+        "locative": "ватанда",
+        "ablative": "ватандан"
+      }
+    }
+  },
+  {
+    "id": "word_076",
+    "bashkir": "милләт",
+    "ipa": "[millæt]",
+    "pos": "noun",
+    "english": "nation/nationality",
+    "russian": "нация/национальность",
+    "frequency_rank": 178,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Mil-LÄT!' The Eagle unites the МИЛЛӘТ! Nation rises as one — language, culture, history woven into shared identity!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йәмғиәт (society)",
+          "төшөнсә (concept)"
+        ],
+        "SYN": [
+          "халыҡ (people)"
+        ],
+        "HAS_ATTRIBUTE": [
+          "тел (language)",
+          "мәҙәниәт (culture)",
+          "тарих (history)"
+        ],
+        "HAS_TYPE": [
+          "башҡорт милләте (Bashkir nation)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "milla",
+        "proto_language": "Arabic",
+        "note": "Originally 'religious community', now 'nation'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "563"
+      ],
+      "significance": "National identity; ethnic consciousness",
+      "sources": [
+        "National identity studies"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "милләт",
+        "genitive": "милләттең",
+        "dative": "милләткә",
+        "accusative": "милләтте",
+        "locative": "милләттә",
+        "ablative": "милләттән"
+      }
+    }
+  },
+  {
+    "id": "word_077",
+    "bashkir": "тарих",
+    "ipa": "[tɑrix]",
+    "pos": "noun",
+    "english": "history",
+    "russian": "история",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ta-RIKH!' The Eagle remembers all ТАРИХ! History stretches back — from ancient nomads to modern republic, every story preserved!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "фән (science)",
+          "белем (knowledge)"
+        ],
+        "RECORDS": [
+          "халыҡ (people)",
+          "милләт (nation)",
+          "дәүләт (state)"
+        ],
+        "HAS_PART": [
+          "ваҡиға (event)",
+          "дәүер (era)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "баба (ancestor)",
+            "relation": "preserves_memory_of"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "tārīkh",
+        "proto_language": "Arabic",
+        "note": "Means 'date, chronicle, history'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "174"
+      ],
+      "significance": "Historical consciousness; preserving national memory",
+      "sources": [
+        "Historical scholarship"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "тарих",
+        "genitive": "тарихтың",
+        "dative": "тарихҡа",
+        "accusative": "тарихты",
+        "locative": "тарихта",
+        "ablative": "тарихтан"
+      }
+    }
+  },
+  {
+    "id": "word_078",
+    "bashkir": "герб",
+    "ipa": "[ɡɛrb]",
+    "pos": "noun",
+    "english": "coat of arms/emblem",
+    "russian": "герб",
+    "frequency_rank": 456,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'GERB!' The Eagle adorns the ГЕРБ! Coat of arms shows Salawat Yulaev riding — symbol of courage on the nation's shield!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "символ (symbol)",
+          "дәүләт билдәһе (state symbol)"
+        ],
+        "DEPICTS": [
+          "Салауат Юлаев",
+          "ҡурай (kuray)"
+        ],
+        "REPRESENTS": [
+          "Башҡортостан",
+          "дәүләт (state)"
+        ],
+        "RELATED_TO": [
+          "флаг (flag)",
+          "гимн (anthem)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "184"
+      ],
+      "significance": "National symbol featuring Salawat Yulaev on horseback with kuray flower",
+      "sources": [
+        "State symbols"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "герб",
+        "genitive": "гербтың",
+        "dative": "гербкә",
+        "accusative": "гербты",
+        "locative": "гербта",
+        "ablative": "гербтан"
+      }
+    }
+  },
+  {
+    "id": "word_079",
+    "bashkir": "флаг",
+    "ipa": "[flɑɡ]",
+    "pos": "noun",
+    "english": "flag",
+    "russian": "флаг",
+    "frequency_rank": 456,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'FLAG!' The Eagle flies beside the ФЛАГ! Blue, white, green stripes with kuray flower — colors of sky, purity, and land waving proud!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "символ (symbol)",
+          "дәүләт билдәһе (state symbol)"
+        ],
+        "HAS_COLORS": [
+          "күк (blue)",
+          "аҡ (white)",
+          "йәшел (green)"
+        ],
+        "DEPICTS": [
+          "ҡурай сәскәһе (kuray flower)"
+        ],
+        "REPRESENTS": [
+          "Башҡортостан"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "184"
+      ],
+      "significance": "Blue (sky/Tengri), white (purity), green (Islam/nature) with golden kuray flower",
+      "sources": [
+        "State symbols"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "флаг",
+        "genitive": "флагтың",
+        "dative": "флагҡа",
+        "accusative": "флагты",
+        "locative": "флагта",
+        "ablative": "флагтан"
+      }
+    }
+  },
+  {
+    "id": "word_080",
+    "bashkir": "гимн",
+    "ipa": "[ɡimn]",
+    "pos": "noun",
+    "english": "anthem",
+    "russian": "гимн",
+    "frequency_rank": 567,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'GIMN!' The Eagle sings the ГИМН! Anthem rises from a thousand throats — music that makes hearts swell with belonging!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "символ (symbol)",
+          "дәүләт билдәһе (state symbol)",
+          "йыр (song)"
+        ],
+        "CELEBRATES": [
+          "Башҡортостан",
+          "халыҡ (people)"
+        ],
+        "PERFORMED_AT": [
+          "рәсми саралар (official events)"
+        ],
+        "RELATED_TO": [
+          "флаг (flag)",
+          "герб (coat of arms)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "533"
+      ],
+      "significance": "State anthem of Bashkortostan",
+      "sources": [
+        "State symbols"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "гимн",
+        "genitive": "гимндың",
+        "dative": "гимнгә",
+        "accusative": "гимнды",
+        "locative": "гимнда",
+        "ablative": "гимндан"
+      }
+    }
+  },
+  {
+    "id": "word_081",
+    "bashkir": "Салауат Юлаев",
+    "ipa": "[sɑlɑwɑt julɑjɛf]",
+    "pos": "noun",
+    "english": "Salawat Yulaev (national hero)",
+    "russian": "Салават Юлаев",
+    "frequency_rank": 400,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Sa-la-WAT Yu-LA-yev!' The Eagle soars with САЛАУАТ ЮЛАЕВ! Warrior-poet on horseback — he fought for freedom, sang of homeland, became eternal!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "батыр (hero)",
+          "тарихи шәхес (historical figure)",
+          "шағир (poet)"
+        ],
+        "FOUGHT_FOR": [
+          "иркенлек (freedom)",
+          "халыҡ (people)"
+        ],
+        "PARTICIPATED_IN": [
+          "Пугачев восстаниеһы (Pugachev Rebellion)"
+        ],
+        "DEPICTED_ON": [
+          "герб (coat of arms)"
+        ],
+        "WROTE": [
+          "шиғыр (poetry)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Башҡортостан",
+            "relation": "symbol_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "659"
+      ],
+      "significance": "18th century warrior-poet; led Bashkir forces in Pugachev Rebellion; national symbol",
+      "sources": [
+        "Historical records",
+        "Poetry collections"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Салауат Юлаев",
+        "genitive": "Салауат Юлаевтың",
+        "dative": "Салауат Юлаевҡа",
+        "accusative": "Салауат Юлаевты",
+        "locative": "Салауат Юлаевта",
+        "ablative": "Салауат Юлаевтан"
+      }
+    }
+  },
+  {
+    "id": "word_082",
+    "bashkir": "батыр",
+    "ipa": "[bɑtɯr]",
+    "pos": "noun",
+    "english": "hero/warrior",
+    "russian": "герой/богатырь",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ba-TYR!' The Eagle honors every БАТЫР! Heroes rise in every generation — those who fight for what is right, who sacrifice for others!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "кеше (person)"
+        ],
+        "HAS_TYPE": [
+          "Урал-батыр",
+          "Салауат Юлаев"
+        ],
+        "CHARACTERIZED_BY": [
+          "ҡыйыулыҡ (bravery)",
+          "көс (strength)",
+          "намыҫ (honor)"
+        ],
+        "ANT": [
+          "ҡурҡаҡ (coward)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "*bagatur",
+        "proto_language": "Proto-Mongolic/Turkic",
+        "note": "Ancient title for warriors; source of Russian 'bogatyr'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "578"
+      ],
+      "significance": "Heroic ideal; central to epic traditions and national identity",
+      "sources": [
+        "Epic traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "батыр",
+        "genitive": "батырҙың",
+        "dative": "батырға",
+        "accusative": "батырҙы",
+        "locative": "батырҙа",
+        "ablative": "батырҙан"
+      }
+    }
+  },
+  {
+    "id": "word_083",
+    "bashkir": "бәйсезлек",
+    "ipa": "[bæjsɛzlɛk]",
+    "pos": "noun",
+    "english": "independence/sovereignty",
+    "russian": "независимость/суверенитет",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Bäy-sez-LEK!' The Eagle embodies БӘЙСЕЗЛЕК! Independence means standing on your own wings — self-determination, dignity, autonomy!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төшөнсә (concept)",
+          "хәл (state)"
+        ],
+        "SYN": [
+          "иркенлек (freedom)",
+          "эрекле булыу (self-governance)"
+        ],
+        "ANT": [
+          "бәйләнеш (dependence)",
+          "буйһоноу (submission)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Башҡортостан",
+            "relation": "aspiration_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "669"
+      ],
+      "significance": "Self-determination; autonomy within federation",
+      "sensitivity": {
+        "has_sensitive_context": true,
+        "note": "Connected to sovereignty discussions"
+      },
+      "sources": [
+        "Political discourse"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "бәйсезлек",
+        "genitive": "бәйсезлектең",
+        "dative": "бәйсезлеккә",
+        "accusative": "бәйсезлекте",
+        "locative": "бәйсезлектә",
+        "ablative": "бәйсезлектән"
+      }
+    }
+  },
+  {
+    "id": "word_084",
+    "bashkir": "йәмғиәт",
+    "ipa": "[jæmʁiæt]",
+    "pos": "noun",
+    "english": "society/community",
+    "russian": "общество",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Yäm-ghi-ÄT!' The Eagle sees all ЙӘМҒИӘТ from above! Society weaves together — families, clans, villages, cities forming one living fabric!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төшөнсә (concept)"
+        ],
+        "HAS_PART": [
+          "халыҡ (people)",
+          "ғаилә (family)",
+          "ырыу (clan)"
+        ],
+        "GOVERNED_BY": [
+          "дәүләт (state)",
+          "закон (law)"
+        ],
+        "CHARACTERIZED_BY": [
+          "мәҙәниәт (culture)",
+          "йола (tradition)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "jamāʿa",
+        "proto_language": "Arabic",
+        "note": "Means 'group, community, assembly'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "571"
+      ],
+      "significance": "Social organization; collective life",
+      "sources": [
+        "Sociology"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йәмғиәт",
+        "genitive": "йәмғиәттең",
+        "dative": "йәмғиәткә",
+        "accusative": "йәмғиәтте",
+        "locative": "йәмғиәттә",
+        "ablative": "йәмғиәттән"
+      }
+    }
+  },
+  {
+    "id": "word_085",
+    "bashkir": "Өфө",
+    "ipa": "[øfø]",
+    "pos": "noun",
+    "english": "Ufa (capital city)",
+    "russian": "Уфа",
+    "frequency_rank": 89,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ö-FÖ!' The Eagle descends on ӨФӨ! Capital city where three rivers meet — heart of Bashkortostan, where decisions shape the nation!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ҡала (city)",
+          "башҡала (capital)"
+        ],
+        "CAPITAL_OF": [
+          "Башҡортостан"
+        ],
+        "LOCATED_AT": [
+          "Ағиҙел йылғаһы (Agidel River)",
+          "Ҡариҙел (Karidel)",
+          "Өфө йылғаһы (Ufa River)"
+        ],
+        "CONTAINS": [
+          "хөкүмәт (government)",
+          "парламент"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "631"
+      ],
+      "significance": "Capital city; political, cultural, economic center since 1574",
+      "sources": [
+        "Geography"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Өфө",
+        "genitive": "Өфөнөң",
+        "dative": "Өфөгә",
+        "accusative": "Өфөнө",
+        "locative": "Өфөлә",
+        "ablative": "Өфөлән"
+      }
+    }
   }
 ]
