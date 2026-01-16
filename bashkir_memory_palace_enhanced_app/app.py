@@ -1,10 +1,8 @@
-#!/usr/bin/env python3
 """
-🏰 Bashkir Memory Palace: Enhanced Edition
-==========================================
+🏰 Bashkir Memory Palace: Secrets of Voyaging
+==============================================
 A language learning app integrating Ibn Arabi's mystical framework,
-memory palace techniques, and anthropological pedagogy with advanced
-audio dictionary features.
+memory palace techniques, and anthropological pedagogy.
 
 The Four Birds guide your journey:
 🦅 Eagle (First Intellect) - Civic knowledge at Ufa
@@ -12,15 +10,7 @@ The Four Birds guide your journey:
 🔥🕊️ Anqa (Prime Matter) - Transformation at Yamantau
 🕊️ Ringdove (Universal Soul) - Daily life at Beloretsk & Bizhbulyak
 
-Enhanced with:
-- Advanced audio dictionary features
-- SM-2 Spaced Repetition
-- Semantic Networks (BashkortNet)
-- Mnemonic Generation
-- Sentence Building
-- Translation services
-- Speech recognition (Whisper)
-- Audio analysis
+Enhanced with retry logic, audio export, and OCM cultural classifications.
 """
 
 import streamlit as st
@@ -30,14 +20,13 @@ import sys
 import time
 from pathlib import Path
 from datetime import datetime
-import logging
 
 # Add parent directory to path to import shared utilities
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from utils.retry import RetryConfig
 
-# --- Module Imports ---
+# --- Audio Setup with Retry Logic ---
 try:
     from gtts import gTTS
     import hashlib
@@ -59,44 +48,12 @@ try:
 except ImportError:
     WHISPER_AVAILABLE = False
 
-# --- Additional Libraries for Enhanced Features ---
-try:
-    from pydub import AudioSegment
-    PYDUB_AVAILABLE = True
-except ImportError:
-    PYDUB_AVAILABLE = False
-
-try:
-    import librosa
-    LIBROSA_AVAILABLE = True
-except ImportError:
-    LIBROSA_AVAILABLE = False
-
-try:
-    import soundfile as sf
-    SOUNDFILE_AVAILABLE = True
-except ImportError:
-    SOUNDFILE_AVAILABLE = False
-
-try:
-    from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM
-    TRANSFORMERS_AVAILABLE = True
-except ImportError:
-    TRANSFORMERS_AVAILABLE = False
-
-# --- Enhanced Modules ---
-from modules.audio_service import AudioService, get_audio_service
-from modules.spaced_repetition import SpacedRepetitionSystem, ReviewSession
-from modules.sentence_builder import SentenceBuilder, BashkirGrammar
-from modules.mnemonic_generator import MnemonicGenerator, StoryChainGenerator
-from modules.bashkortnet import BashkortNet
-
 # Create audio cache directory
 AUDIO_CACHE_DIR = Path(__file__).parent / "audio_cache"
 AUDIO_CACHE_DIR.mkdir(exist_ok=True)
 
-# --- Enhanced Audio Generation with Retry Logic ---
-def generate_audio_with_retry(text: str, language: str = 'ru', slow: bool = True) -> bytes:
+
+def generate_audio_with_retry(text: str, slow: bool = True, language: str = 'ru') -> bytes:
     """
     Generate audio for Bashkir text with retry logic and caching.
 
@@ -140,13 +97,13 @@ def generate_audio_with_retry(text: str, language: str = 'ru', slow: bool = True
     return None
 
 
-def play_audio(text: str, language: str = 'ru', slow: bool = True):
+def play_audio(text: str, slow: bool = True, language: str = 'ru'):
     """Generate and play audio for Bashkir text with caching and retry logic."""
     if not AUDIO_AVAILABLE:
         st.warning("🔇 Audio unavailable. Install with: `pip install gTTS`")
         return
 
-    audio_bytes = generate_audio_with_retry(text, language, slow)
+    audio_bytes = generate_audio_with_retry(text, slow, language)
 
     if audio_bytes:
         st.audio(audio_bytes, format='audio/mp3')
@@ -223,55 +180,9 @@ def transcribe_audio(audio_path: str) -> str:
     except Exception as e:
         return ""
 
-
-def analyze_audio_properties(audio_path: str) -> dict:
-    """Analyze audio file properties using librosa."""
-    if not LIBROSA_AVAILABLE:
-        return {}
-
-    try:
-        # Load audio file
-        y, sr = librosa.load(audio_path)
-
-        # Calculate various audio properties
-        duration = librosa.get_duration(y=y, sr=sr)
-        tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
-
-        # Extract MFCC features
-        mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
-
-        analysis = {
-            "duration": duration,
-            "sample_rate": sr,
-            "tempo": float(tempo),
-            "mfcc_mean": mfccs.mean(axis=1).tolist(),
-            "total_frames": len(y)
-        }
-
-        return analysis
-    except Exception as e:
-        return {}
-
-
-def tokenize_text(text: str) -> list:
-    """Tokenize text using transformer tokenizer."""
-    if not TRANSFORMERS_AVAILABLE:
-        # Simple fallback tokenization
-        return text.split()
-
-    try:
-        # Use a general-purpose tokenizer
-        tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
-        tokens = tokenizer.tokenize(text)
-        return tokens
-    except Exception as e:
-        # Simple fallback tokenization
-        return text.split()
-
-
 # Page configuration
 st.set_page_config(
-    page_title="Bashkir Memory Palace - Enhanced",
+    page_title="Bashkir Memory Palace",
     page_icon="🏰",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -299,6 +210,16 @@ def load_patterns():
     with open(data_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+@st.cache_data
+def load_ocm_mapping():
+    """Load OCM mapping data."""
+    data_path = Path(__file__).parent / "data" / "ocm_mapping.json"
+    try:
+        with open(data_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
 # --- Initialize Session State ---
 def init_session_state():
     """Initialize session state variables."""
@@ -318,21 +239,8 @@ def init_session_state():
         st.session_state.truth_unveiled = False
     if 'srs_data' not in st.session_state:
         st.session_state.srs_data = {}
-    if 'sentence_builder' not in st.session_state:
-        # Initialize the sentence builder
-        words_data = load_words()
-        patterns_data = load_patterns()
-        st.session_state.sentence_builder = SentenceBuilder(words_data, patterns_data)
-    if 'bashkortnet' not in st.session_state:
-        # Initialize the semantic network
-        words_data = load_words()
-        st.session_state.bashkortnet = BashkortNet(words_data)
-    if 'srs_system' not in st.session_state:
-        # Initialize the spaced repetition system
-        st.session_state.srs_system = SpacedRepetitionSystem()
-    if 'audio_service' not in st.session_state:
-        # Initialize the audio service
-        st.session_state.audio_service = get_audio_service()
+    if 'builder_sentence' not in st.session_state:
+        st.session_state.builder_sentence = []
 
 init_session_state()
 
@@ -346,7 +254,7 @@ st.markdown("""
         background-color: #cce5ff !important;
         background: linear-gradient(180deg, #cce5ff 0%, #d9ecff 50%, #e6f2ff 100%) !important;
     }
-    
+
     /* ===== SIDEBAR STYLING ===== */
     section[data-testid="stSidebar"] {
         background: linear-gradient(180deg, #0066B3 0%, #004080 100%) !important;
@@ -359,7 +267,7 @@ st.markdown("""
     section[data-testid="stSidebar"] .stMarkdown h3 {
         color: white !important;
     }
-    
+
     /* ===== ALL HEADERS - Green & Readable ===== */
     h1 {
         color: #00AF66 !important;
@@ -385,7 +293,7 @@ st.markdown("""
     .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4 {
         color: #00AF66 !important;
     }
-    
+
     /* ===== EXPANDERS - Always Visible ===== */
     .streamlit-expanderHeader {
         background-color: #e6f2ff !important;
@@ -410,7 +318,7 @@ st.markdown("""
         color: #0066B3 !important;
         opacity: 1 !important;
     }
-    
+
     /* Alternative expander styling for newer Streamlit */
     [data-testid="stExpander"] {
         border: 2px solid #0066B3 !important;
@@ -435,7 +343,7 @@ st.markdown("""
         opacity: 1 !important;
         visibility: visible !important;
     }
-    
+
     /* ===== POPOVER BUTTONS - Always Visible ===== */
     [data-testid="stPopover"] > button,
     .stPopover > button {
@@ -450,7 +358,7 @@ st.markdown("""
         background-color: #d9ecff !important;
         border-color: #00AF66 !important;
     }
-    
+
     /* ===== BIRD CARDS ===== */
     .bird-card {
         padding: 20px;
@@ -463,7 +371,7 @@ st.markdown("""
     .crow-card { background: linear-gradient(135deg, #f0f0f0 0%, #e8e8e8 100%); border-color: #333333; }
     .anqa-card { background: linear-gradient(135deg, #ffe6e6 0%, #fff0f0 100%); border-color: #cc3333; }
     .ringdove-card { background: linear-gradient(135deg, #e6ffe6 0%, #f0fff0 100%); border-color: #00AF66; }
-    
+
     /* ===== WORD CARDS ===== */
     .word-card {
         background: #ffffff;
@@ -473,7 +381,7 @@ st.markdown("""
         margin: 10px 0;
         border: 2px solid #0066B3;
     }
-    
+
     /* Bashkir text - GREEN from flag */
     .bashkir-text {
         font-size: 1.8em;
@@ -482,14 +390,14 @@ st.markdown("""
         display: block;
         margin-bottom: 8px;
     }
-    
+
     /* IPA text - blue */
     .ipa-text {
         color: #0066B3;
         font-size: 1em;
         font-style: italic;
     }
-    
+
     /* English translation - dark green */
     .english-text {
         color: #004d00;
@@ -497,13 +405,13 @@ st.markdown("""
         font-weight: bold;
         margin: 8px 0;
     }
-    
+
     /* Russian - muted */
     .russian-text {
         color: #666666;
         font-size: 0.95em;
     }
-    
+
     /* ===== MEDITATION BOXES ===== */
     .meditation-box {
         background: linear-gradient(135deg, #e6fff0 0%, #ccffe6 100%);
@@ -514,7 +422,7 @@ st.markdown("""
         margin: 15px 0;
         color: #004d00;
     }
-    
+
     /* ===== STATS BOXES ===== */
     .stat-box {
         background: linear-gradient(135deg, #e6f2ff 0%, #cce5ff 100%);
@@ -524,7 +432,7 @@ st.markdown("""
         border: 2px solid #0066B3;
         color: #004d00;
     }
-    
+
     /* ===== MNEMONIC BOXES ===== */
     .mnemonic-text {
         background: linear-gradient(135deg, #fffff5 0%, #ffffd0 100%);
@@ -534,7 +442,7 @@ st.markdown("""
         color: #004d00;
         line-height: 1.6;
     }
-    
+
     /* ===== BUTTONS ===== */
     .stButton > button {
         background-color: #00AF66 !important;
@@ -547,17 +455,17 @@ st.markdown("""
         background-color: #008f55 !important;
         color: white !important;
     }
-    
+
     /* ===== PROGRESS BAR ===== */
     .stProgress > div > div {
         background-color: #00AF66 !important;
     }
-    
+
     /* ===== GENERAL TEXT ===== */
     .stMarkdown, .stMarkdown p, .stText {
         color: #004d00;
     }
-    
+
     /* ===== SELECTBOX & DROPDOWNS - Dark Text ===== */
     .stSelectbox > div > div {
         background-color: white !important;
@@ -601,7 +509,7 @@ st.markdown("""
     .stRadio label span {
         color: #1a1a1a !important;
     }
-    
+
     /* ===== TABS ===== */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
@@ -616,7 +524,7 @@ st.markdown("""
         background-color: #00AF66 !important;
         color: white !important;
     }
-    
+
     /* ===== METRICS ===== */
     [data-testid="stMetricValue"] {
         color: #00AF66 !important;
@@ -625,12 +533,12 @@ st.markdown("""
     [data-testid="stMetricLabel"] {
         color: #004d00 !important;
     }
-    
+
     /* ===== CAPTIONS ===== */
     .stCaption, small {
         color: #0066B3 !important;
     }
-    
+
     /* ===== MOBILE RESPONSIVENESS ===== */
     @media (max-width: 768px) {
         h1 { font-size: 1.8rem !important; }
@@ -649,889 +557,978 @@ st.sidebar.title("🏰 Memory Palace")
 st.sidebar.caption("📱 *Tap ✕ to collapse sidebar*")
 st.sidebar.markdown("---")
 
-# Navigation - Individual radio buttons for all tabs (Audio Dictionary under Sentence Builder)
+# Navigation - Radio buttons for individual tabs (Audio Dictionary under Sentence Builder)
 pages = [
     "🗺️ Palace",
     "📚 Four Birds",
     "✍️ Sentence Builder",
-    "🔊 Audio Dictionary",  # Moved under Sentence Builder
+    "🔊 Audio Dictionary",
     "🔄 Review",
     "🕸️ BashkortNet Explorer",
     "📖 Cultural Context",
     "⚙️ Settings"
 ]
 
-# Use radio buttons instead of dropdown for visible individual tabs
-st.sidebar.markdown("### Navigate")
-selected_page = st.sidebar.radio(
-    "Select a section:",
-    pages,
-    index=pages.index(st.session_state.current_page) if st.session_state.current_page in pages else 0,
-    key="nav_radio",
-    label_visibility="collapsed"
-)
+selected_page = st.sidebar.radio("Navigate", pages, label_visibility="collapsed")
 
-# Update session state when selection changes
-if selected_page != st.session_state.current_page:
-    st.session_state.current_page = selected_page
-    st.rerun()
+# Progress indicator
+words_data = load_words()
+learned_count = len(st.session_state.learned_words)
+total_count = len(words_data)
+progress = learned_count / total_count if total_count > 0 else 0
 
-# --- Main Content Area ---
-def render_palace_view():
-    """Render the main palace navigation view."""
-    st.title("🏰 Bashkir Memory Palace")
-    st.subheader("Secrets of Voyaging")
-    
-    # Introduction
-    st.markdown("""
-    <div class="meditation-box">
-    The Four Birds guide your journey through the Bashkir language:
-    <br><br>
-    <strong>🦅 Eagle (First Intellect)</strong> - Civic knowledge at Ufa<br>
-    <strong>🐦⬛ Crow (Universal Body)</strong> - Ancestral memory at Shulgan-Tash<br>
-    <strong>🔥🕊️ Anqa (Prime Matter)</strong> - Transformation at Yamantau<br>
-    <strong>🕊️ Ringdove (Universal Soul)</strong> - Daily life at Beloretsk & Bizhbulyak
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Loci selection
-    loci = load_loci()
-    
-    # Create columns for loci
-    cols = st.columns(len(loci))
-    
-    for i, (locus_id, locus_info) in enumerate(loci.items()):
-        with cols[i]:
-            # Bird emoji based on the bird
-            bird_emoji = {
-                'Eagle': '🦅',
-                'Crow': '🐦⬛',
-                'Anqa': '🔥🕊️',
-                'Ringdove': '🕊️'
-            }.get(locus_info.get('bird', 'Ringdove'), '🕊️')
-            
-            # Create card for each locus - handle nested description structure
-            description = locus_info.get('description', {})
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 📊 Progress")
+st.sidebar.progress(progress)
+st.sidebar.markdown(f"**{learned_count}** / {total_count} words learned")
+
+# Quick stats
+st.sidebar.markdown("---")
+st.sidebar.markdown("### 🎯 Today")
+st.sidebar.metric("Words to Review", len(st.session_state.review_queue))
+st.sidebar.metric("Sentences Created", len(st.session_state.saved_sentences))
+
+# === PAGE: PALACE ===
+if "Palace" in selected_page:
+    st.title("🏰 The Memory Palace of Bashkortostan")
+    st.markdown("*Walk through the stations. Let the Four Birds guide your learning.*")
+
+    loci_data = load_loci()
+
+    # Locus selection
+    col1, col2 = st.columns([2, 1])
+
+    with col1:
+        st.markdown("### Choose Your Destination")
+
+        locus_options = list(loci_data.keys())
+        locus_display = {
+            "Ufa": "🦅 Өфө – Eagle's Perch (Civic)",
+            "Shulgan-Tash": "🐦⬛ Шүлгәнташ – Crow's Archive (Ancestry)",
+            "Yamantau": "🔥🕊️ Ямантау – Anqa's Ascent (Mystery)",
+            "Beloretsk": "🕊️ Белорет – Ringdove's Forge (Labor)",
+            "Bizhbulyak": "🕊️ Бижбуляк – Ringdove's Hearth (Home)"
+        }
+
+        selected_locus = st.selectbox(
+            "Select Location",
+            locus_options,
+            format_func=lambda x: locus_display.get(x, x)
+        )
+
+    with col2:
+        if selected_locus:
+            locus = loci_data[selected_locus]
+            bird_symbol = locus.get('symbol', '🐦')
+            bird_name = locus.get('bird', 'Bird')
+            # Handle nested description structure
+            description = locus.get('description', {})
             if isinstance(description, dict):
                 short_desc = description.get('short', '')
-                ibn_arabi = description.get('ibn_arabi_connection', '')
             else:
                 short_desc = str(description)
-                ibn_arabi = ''
+            st.markdown(f"### {bird_symbol} {bird_name}")
+            st.markdown(f"*{short_desc}*")
 
-            display_name = locus_info.get('display_name', locus_info.get('name', locus_id))
+    st.markdown("---")
 
-            st.markdown(f"""
-            <div class="word-card bird-card {locus_info.get('bird', 'Ringdove').lower()}-card">
-                <h4>{bird_emoji} {display_name}</h4>
-                <p><strong>{locus_info.get('name', locus_id)}</strong></p>
-                <p>{short_desc}</p>
-                <p><em>{ibn_arabi}</em></p>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Button to select this locus
-            if st.button(f"Enter {locus_info['name']}", key=f"enter_{locus_id}"):
-                st.session_state.current_locus = locus_id
-                st.session_state.current_station = 0
-                st.rerun()
+    # Display selected locus
+    if selected_locus:
+        locus = loci_data[selected_locus]
 
-def render_four_birds_view():
-    """Render the Four Birds explanation view."""
-    st.title("📚 The Four Birds Framework")
-    
-    birds_info = {
-        'Eagle': {
-            'name': 'Eagle (First Intellect)',
-            'location': 'Ufa',
-            'theme': 'Civic Knowledge',
-            'description': 'The Eagle represents the First Intellect, the source of all laws and civic order. At Ufa, you learn formal language, legal terms, and governmental vocabulary.',
-            'color': '#0066B3',
-            'emoji': '🦅'
+        # Handle nested description structure for Ibn Arabi connection
+        description = locus.get('description', {})
+        if isinstance(description, dict):
+            ibn_arabi_connection = description.get('ibn_arabi_connection', '')
+        else:
+            ibn_arabi_connection = ''
+
+        # Ibn Arabi connection
+        if ibn_arabi_connection:
+            with st.expander("🌟 Ibn Arabi's Teaching", expanded=False):
+                st.markdown(f"""
+                <div class="meditation-box">
+                {ibn_arabi_connection}
+                </div>
+                """, unsafe_allow_html=True)
+
+        # Station walkthrough
+        st.markdown("### 🚶 Station Walkthrough")
+
+        for station in locus.get('stations', []):
+            station_name = station.get('display_name', station.get('name', 'Station'))
+            station_words = station.get('words', [])
+
+            with st.expander(f"📍 Station {station.get('number', '?')}: {station_name}", expanded=True):
+                # Opening meditation
+                opening_med = station.get('opening_meditation', '')
+                if opening_med:
+                    st.markdown(f"""
+                    <div class="meditation-box">
+                    <strong>🕯️ Opening Meditation:</strong><br>
+                    {opening_med}
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                # Words in this station
+                st.markdown("#### Words at this Station:")
+
+                # Create word cards - FIXED: properly filter words by station
+                words_at_station = [w for w in words_data if w['bashkir'] in station_words]
+
+                if words_at_station:
+                    cols = st.columns(min(3, len(words_at_station)))
+                    for idx, word in enumerate(words_at_station):
+                        with cols[idx % 3]:
+                            is_learned = word['bashkir'] in st.session_state.learned_words
+
+                            # Using proper HTML structure with CSS classes
+                            card_html = f'''
+                            <div class="word-card">
+                                <span class="bashkir-text">{word['bashkir']} {"✅" if is_learned else ""}</span>
+                                <span class="ipa-text">{word.get('ipa', '')}</span>
+                                <div class="english-text">{word['english']}</div>
+                                <span class="russian-text">🇷🇺 {word.get('russian', '')}</span>
+                            </div>
+                            '''
+                            st.markdown(card_html, unsafe_allow_html=True)
+
+                            # Audio and Mnemonic buttons in a row
+                            btn_col1, btn_col2 = st.columns(2)
+                            with btn_col1:
+                                if st.button("🔊 Hear", key=f"audio_{station_name}_{word['bashkir']}_{idx}"):
+                                    play_audio(word['bashkir'])
+
+                            with btn_col2:
+                                # Mnemonic
+                                mnemonic = word.get('memory_palace', {}).get('mnemonic', '')
+                                if mnemonic:
+                                    with st.popover("💡 Hint"):
+                                        st.markdown(f"""
+                                        <div class="mnemonic-text">
+                                        {mnemonic}
+                                        </div>
+                                        """, unsafe_allow_html=True)
+
+                            # Learn button
+                            if not is_learned:
+                                if st.button(f"Learn '{word['bashkir']}'", key=f"learn_{station_name}_{word['bashkir']}_{idx}"):
+                                    st.session_state.learned_words.add(word['bashkir'])
+                                    st.session_state.review_queue.append(word['bashkir'])
+                                    st.rerun()
+                else:
+                    st.info("No vocabulary words assigned to this station yet.")
+
+                # Closing meditation
+                closing_med = station.get('closing_meditation', '')
+                if closing_med:
+                    st.markdown(f"""
+                    <div class="meditation-box">
+                    <strong>🕯️ Closing Meditation:</strong><br>
+                    {closing_med}
+                    </div>
+                    """, unsafe_allow_html=True)
+
+# === PAGE: FOUR BIRDS ===
+elif "Four Birds" in selected_page:
+    st.title("📚 The Four Birds of Ibn Arabi")
+    st.markdown("*Understanding the cosmological framework of your learning journey.*")
+
+    birds = [
+        {
+            "name": "Eagle",
+            "arabic": "العقل الأول",
+            "english": "First Intellect",
+            "symbol": "🦅",
+            "color": "eagle",
+            "locus": "Ufa",
+            "domain": "Civic & Legal Knowledge",
+            "description": """The Eagle represents the First Intellect (al-'Aql al-Awwal) —
+            the primordial light of knowledge from which all understanding flows.
+            At Ufa, we encounter constitutional knowledge, legal rights, and civic identity.
+            The Eagle sees the whole landscape from above; it knows the law that governs.""",
+            "vocabulary": ["Башҡортостан", "халыҡ", "иркенлек", "тел", "конституция"]
         },
-        'Crow': {
-            'name': 'Crow (Universal Body)',
-            'location': 'Shulgan-Tash',
-            'theme': 'Ancestral Memory',
-            'description': 'The Crow embodies Universal Body, representing ancestral memory and cultural heritage. At Shulgan-Tash, you explore traditional vocabulary, historical terms, and cultural expressions.',
-            'color': '#333333',
-            'emoji': '🐦⬛'
+        {
+            "name": "Crow",
+            "arabic": "الجسم الكلي",
+            "english": "Universal Body",
+            "symbol": "🐦⬛",
+            "color": "crow",
+            "locus": "Shulgan-Tash",
+            "domain": "Ancestral Memory & Nature",
+            "description": """The Crow represents Universal Body (al-Jism al-Kulli) —
+            matter infused with spirit, darkness containing light. In the cave's depths,
+            we find manifestation: the physical traces of spiritual vision painted on stone.
+            The Crow guards what was; it remembers what others forget.""",
+            "vocabulary": ["ҡояш", "ай", "таш", "һыу", "йылға", "Ағиҙел"]
         },
-        'Anqa': {
-            'name': 'Anqa (Prime Matter)',
-            'location': 'Yamantau',
-            'theme': 'Transformation',
-            'description': 'The Anqa symbolizes Prime Matter, the transformative potential. At Yamantau, you encounter vocabulary related to change, growth, and personal transformation.',
-            'color': '#cc3333',
-            'emoji': '🔥鸽️'
+        {
+            "name": "Anqa",
+            "arabic": "الهيولى",
+            "english": "Prime Matter",
+            "symbol": "🔥🕊️",
+            "color": "anqa",
+            "locus": "Yamantau",
+            "domain": "Potential & Transformation",
+            "description": """The Anqa represents Prime Matter (al-Hayūlā) —
+            pure potentiality, the 'name without a body.' Like the mythical phoenix,
+            it exists in the realm of possibility. At Yamantau ('Bad Mountain'),
+            danger and transformation intertwine. From difficulty comes growth.""",
+            "vocabulary": ["тау", "ел", "урман", "ҡурҡыныс", "күл", "яман", "ҙур"]
         },
-        'Ringdove': {
-            'name': 'Ringdove (Universal Soul)',
-            'location': 'Beloretsk & Bizhbulyak',
-            'theme': 'Daily Life',
-            'description': 'The Ringdove represents Universal Soul, the nurturing force of daily life. At Beloretsk and Bizhbulyak, you learn everyday vocabulary, family terms, and social expressions.',
-            'color': '#00AF66',
-            'emoji': '鸽️'
+        {
+            "name": "Ringdove",
+            "arabic": "النفس الكلية",
+            "english": "Universal Soul",
+            "symbol": "🕊️",
+            "color": "ringdove",
+            "locus": "Beloretsk & Bizhbulyak",
+            "domain": "Daily Life & Community",
+            "description": """The Ringdove represents Universal Soul (al-Nafs al-Kulliyya) —
+            the receptive, nurturing principle that brings potential into form.
+            At Beloretsk, raw ore becomes steel through patient work.
+            At Bizhbulyak, family, food, and music create the texture of daily life.""",
+            "vocabulary": ["эш", "болат", "оҫта", "бал", "ата", "әсә", "өй", "ҡурай", "ат"]
         }
-    }
-    
-    for bird_id, bird_info in birds_info.items():
+    ]
+
+    for bird in birds:
         st.markdown(f"""
-        <div class="word-card bird-card {bird_id.lower()}-card">
-            <h3>{bird_info['emoji']} {bird_info['name']}</h3>
-            <p><strong>Location:</strong> {bird_info['location']}</p>
-            <p><strong>Theme:</strong> {bird_info['theme']}</p>
-            <p>{bird_info['description']}</p>
+        <div class="bird-card {bird['color']}-card">
+            <h3>{bird['symbol']} {bird['name']} — {bird['english']}</h3>
+            <p><em>Arabic: {bird['arabic']}</em></p>
+            <p><strong>Domain:</strong> {bird['domain']}</p>
+            <p><strong>Location:</strong> {bird['locus']}</p>
+            <p>{bird['description']}</p>
+            <p><strong>Key Vocabulary:</strong> {', '.join(bird['vocabulary'])}</p>
         </div>
         """, unsafe_allow_html=True)
 
-def render_sentence_builder_view():
-    """Render the sentence builder view with audio export functionality."""
-    st.title("✍️ Bashkir Sentence Builder")
-    st.markdown("*Build sentences and export audio for poems, stories, or learning!*")
+    # Quiz section
+    st.markdown("---")
+    st.markdown("### 🎯 Test Your Understanding")
 
-    # Initialize sentence builder if not exists
-    if 'sentence_builder' not in st.session_state:
-        words_data = load_words()
-        patterns_data = load_patterns()
-        st.session_state.sentence_builder = SentenceBuilder(words_data, patterns_data)
+    quiz_questions = [
+        {
+            "question": "Which bird represents civic knowledge and legal rights?",
+            "options": ["Crow", "Eagle", "Anqa", "Ringdove"],
+            "correct": "Eagle"
+        },
+        {
+            "question": "At which location would you find the Crow?",
+            "options": ["Ufa", "Shulgan-Tash", "Yamantau", "Beloretsk"],
+            "correct": "Shulgan-Tash"
+        },
+        {
+            "question": "Which bird represents transformation and potential?",
+            "options": ["Eagle", "Crow", "Anqa", "Ringdove"],
+            "correct": "Anqa"
+        }
+    ]
 
-    sb = st.session_state.sentence_builder
+    for i, q in enumerate(quiz_questions):
+        answer = st.radio(q["question"], q["options"], key=f"quiz_{i}")
+        if st.button("Check", key=f"check_{i}"):
+            if answer == q["correct"]:
+                st.success("✅ Correct!")
+            else:
+                st.error(f"❌ The correct answer is: {q['correct']}")
 
-    # Show current sentence
-    st.subheader("Current Sentence")
-    current_sentence = sb.get_sentence_text()
-    if current_sentence:
-        st.markdown(f"<div class='word-card'><span class='bashkir-text'>{current_sentence}</span></div>", unsafe_allow_html=True)
+# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
+elif "Sentence Builder" in selected_page:
+    st.title("✍️ Sentence Builder")
+    st.markdown("*Create your own Bashkir sentences, hear them spoken, and export audio for poems or stories!*")
 
-        # Show gloss
-        gloss = sb.get_sentence_gloss()
-        if gloss:
-            st.markdown(f"<div class='word-card'><span class='english-text'>Gloss: {gloss}</span></div>", unsafe_allow_html=True)
+    patterns = load_patterns()
 
-        # Audio controls for current sentence
-        st.subheader("🔊 Audio Controls")
-        audio_col1, audio_col2, audio_col3 = st.columns(3)
+    # Pattern templates
+    st.markdown("### 📝 Sentence Patterns")
 
-        with audio_col1:
-            if st.button("▶️ Play Sentence", key="play_sentence"):
-                play_audio(current_sentence, language='ru', slow=True)
+    pattern_list = patterns.get('patterns', [])[:5]
 
-        with audio_col2:
-            if st.button("▶️ Play Slow", key="play_slow"):
-                play_audio(current_sentence, language='ru', slow=True)
+    if pattern_list:
+        cols = st.columns(len(pattern_list))
+        for idx, pattern in enumerate(pattern_list):
+            with cols[idx]:
+                st.markdown(f"""
+                **{pattern['name']}**
+                `{pattern['template']}`
+                *{pattern['english_pattern']}*
+                """)
+                example = pattern.get('examples', [{}])[0]
+                if example:
+                    st.caption(f"Ex: {example.get('bashkir', '')}")
 
-        with audio_col3:
-            # Export audio as downloadable file
-            if st.button("💾 Generate Audio File", key="export_audio"):
-                audio_bytes = generate_audio_with_retry(current_sentence, language='ru', slow=True)
-                if audio_bytes:
-                    st.download_button(
-                        label="⬇️ Download Audio (MP3)",
-                        data=audio_bytes,
-                        file_name=f"bashkir_sentence_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp3",
-                        mime="audio/mp3",
-                        key="download_sentence_audio"
-                    )
-                    st.success("Audio generated! Click to download.")
-                else:
-                    st.error("Failed to generate audio. Please try again.")
-    else:
-        st.info("Build a sentence by adding words below...")
+    st.markdown("---")
 
     # Word bank
-    st.subheader("Word Bank")
-    col1, col2 = st.columns(2)
+    st.markdown("### 🏦 Word Bank")
+    st.markdown("Click words to add them to your sentence:")
 
-    with col1:
-        # Show available parts of speech
-        pos_options = ['noun', 'verb', 'adjective', 'pronoun', 'other']
-        selected_pos = st.selectbox("Filter by Part of Speech", pos_options)
+    word_categories = patterns.get('word_bank_categories', {})
 
-    with col2:
-        # Show available cases
-        case_options = ['nominative', 'genitive', 'dative', 'accusative', 'locative', 'ablative']
-        selected_case = st.selectbox("Case Ending", case_options)
+    if word_categories:
+        tabs = st.tabs(list(word_categories.keys()))
 
-    # Get words based on filter
-    all_words = sb.get_word_bank()
-    filtered_words = [w for w in all_words if w.get('pos', 'other') == selected_pos] if selected_pos != 'other' else all_words
+        for tab, (category, word_list) in zip(tabs, word_categories.items()):
+            with tab:
+                cols = st.columns(6)
+                for idx, word in enumerate(word_list):
+                    with cols[idx % 6]:
+                        word_data = next((w for w in words_data if w['bashkir'] == word), None)
+                        english = word_data.get('english', '?') if word_data else '?'
 
-    # Display word selection
-    word_options = [f"{w['bashkir']} ({w['english']})" for w in filtered_words]
-    if word_options:
-        selected_word_option = st.selectbox("Select Word", word_options)
+                        if st.button(f"{word}\n({english})", key=f"word_{category}_{word}"):
+                            st.session_state.builder_sentence.append({
+                                'word': word,
+                                'english': english
+                            })
+                            st.rerun()
 
-        if selected_word_option:
-            selected_word = selected_word_option.split(' (')[0]  # Extract bashkir word
+    st.markdown("---")
 
-            # Preview word audio
-            word_col1, word_col2 = st.columns(2)
-            with word_col1:
-                if st.button(f"Add '{selected_word}' to Sentence"):
-                    sb.add_word(selected_word, selected_case)
-                    st.rerun()
-            with word_col2:
-                if st.button(f"🔊 Preview '{selected_word}'", key="preview_word"):
-                    play_audio(selected_word, language='ru', slow=True)
+    # Current sentence display
+    st.markdown("### 📜 Your Sentence")
 
-    # Sentence actions
-    st.subheader("Actions")
-    col1, col2, col3 = st.columns(3)
+    if st.session_state.builder_sentence:
+        sentence_text = ' '.join([w['word'] for w in st.session_state.builder_sentence])
+        gloss_text = ' | '.join([w['english'] for w in st.session_state.builder_sentence])
 
-    with col1:
-        if st.button("🗑️ Clear Sentence"):
-            sb.clear_sentence()
-            st.rerun()
+        st.markdown(f"""
+        <div class="word-card">
+            <span class="bashkir-text">{sentence_text}</span>
+            <br><br>
+            <small style="color: #666;">Gloss: {gloss_text}</small>
+        </div>
+        """, unsafe_allow_html=True)
 
-    with col2:
-        if current_sentence and st.button("📊 Analyze Sentence"):
-            analysis = sb.get_sentence_analysis()
-            st.json(analysis)
+        # Audio controls
+        st.markdown("### 🔊 Audio Controls")
+        col1, col2, col3, col4 = st.columns(4)
 
-    with col3:
-        if current_sentence:
-            english_input = st.text_input("English Translation:", key="english_trans")
-            if st.button("💾 Save Sentence") and english_input:
-                saved = sb.save_sentence(english_input)
-                st.success(f"Saved: {saved['bashkir']} - {english_input}")
-                st.session_state.saved_sentences.append(saved)
+        with col1:
+            if st.button("🔊 Hear Sentence"):
+                play_audio(sentence_text, slow=False)
 
-    # Show saved sentences with audio export
+        with col2:
+            if st.button("🔊 Hear Slow"):
+                play_audio(sentence_text, slow=True)
+
+        with col3:
+            if st.button("💾 Save Sentence"):
+                st.session_state.saved_sentences.append({
+                    'bashkir': sentence_text,
+                    'gloss': gloss_text,
+                    'created': datetime.now().isoformat()
+                })
+                st.success("Sentence saved to your phrasebook!")
+
+        with col4:
+            if st.button("🗑️ Clear"):
+                st.session_state.builder_sentence = []
+                st.rerun()
+
+        # Audio export
+        st.markdown("### 💾 Export Audio")
+        audio_bytes = generate_audio_with_retry(sentence_text, slow=True)
+        if audio_bytes:
+            st.download_button(
+                label="⬇️ Download Audio (MP3)",
+                data=audio_bytes,
+                file_name=f"bashkir_sentence_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp3",
+                mime="audio/mp3"
+            )
+
+        # Grammar notes
+        st.markdown("### 📖 Grammar Helper")
+        st.info("""
+        **Bashkir Word Order: Subject - Object - Verb (SOV)**
+
+        Unlike English (I *see* the mountain), Bashkir puts the verb at the END:
+        - Мин тауҙы **күрәм** (I mountain **see**)
+
+        **Case Suffixes:**
+        - Nominative (subject): no suffix
+        - Dative (to/for): -ға/-гә
+        - Accusative (object): -ны/-не
+        - Ablative (from): -дан/-дән
+        """)
+    else:
+        st.markdown("*Click words from the Word Bank to build your sentence.*")
+
+    # Saved sentences with audio export
     if st.session_state.saved_sentences:
-        st.subheader("📝 Saved Sentences")
-        st.markdown("*Your sentences with audio export options*")
+        st.markdown("---")
+        st.markdown("### 📒 Your Phrasebook")
 
-        for i, sent in enumerate(st.session_state.saved_sentences):
+        for idx, sentence in enumerate(st.session_state.saved_sentences[-5:]):
             with st.container():
                 st.markdown(f"""
-                <div class='word-card'>
-                    <span class='bashkir-text'>{sent['bashkir']}</span><br>
-                    <span class='english-text'>{sent.get('english', '')}</span>
+                <div class="word-card">
+                    <strong>{sentence['bashkir']}</strong><br>
+                    <small>{sentence.get('gloss', '')}</small>
                 </div>
                 """, unsafe_allow_html=True)
 
                 sent_col1, sent_col2, sent_col3 = st.columns(3)
                 with sent_col1:
-                    if st.button(f"▶️ Play", key=f"play_saved_{i}"):
-                        play_audio(sent['bashkir'], language='ru', slow=True)
+                    if st.button(f"▶️ Play", key=f"play_saved_{idx}"):
+                        play_audio(sentence['bashkir'], slow=True)
                 with sent_col2:
-                    audio_bytes = generate_audio_with_retry(sent['bashkir'], language='ru', slow=True)
-                    if audio_bytes:
+                    audio_data = generate_audio_with_retry(sentence['bashkir'], slow=True)
+                    if audio_data:
                         st.download_button(
                             label="⬇️ Download",
-                            data=audio_bytes,
-                            file_name=f"bashkir_sentence_{i+1}.mp3",
+                            data=audio_data,
+                            file_name=f"sentence_{idx+1}.mp3",
                             mime="audio/mp3",
-                            key=f"download_saved_{i}"
+                            key=f"download_saved_{idx}"
                         )
                 with sent_col3:
-                    if st.button(f"🗑️ Remove", key=f"remove_saved_{i}"):
-                        st.session_state.saved_sentences.pop(i)
+                    if st.button(f"🗑️ Remove", key=f"remove_saved_{idx}"):
+                        st.session_state.saved_sentences.pop(idx)
                         st.rerun()
 
-        # Batch export all sentences
-        st.markdown("---")
-        st.subheader("📦 Batch Export")
-        if st.button("🎵 Generate All Audio Files"):
-            st.write("Generating audio for all saved sentences...")
-            progress_bar = st.progress(0)
+# === PAGE: AUDIO DICTIONARY ===
+elif "Audio Dictionary" in selected_page:
+    st.title("🔊 Audio Dictionary")
+    st.markdown("*Listen to Bashkir words with pronunciation guides.*")
 
-            all_audio_data = []
-            for idx, sent in enumerate(st.session_state.saved_sentences):
-                audio_bytes = generate_audio_with_retry(sent['bashkir'], language='ru', slow=True)
-                if audio_bytes:
-                    all_audio_data.append({
-                        'filename': f"sentence_{idx+1}_{sent['bashkir'][:20]}.mp3",
-                        'data': audio_bytes,
-                        'text': sent['bashkir'],
-                        'english': sent.get('english', '')
-                    })
-                progress_bar.progress((idx + 1) / len(st.session_state.saved_sentences))
+    # Search
+    search_term = st.text_input("Search words (Bashkir or English):", key="audio_search")
 
-            st.success(f"Generated {len(all_audio_data)} audio files!")
+    # Filter words
+    if search_term:
+        filtered_words = [w for w in words_data if search_term.lower() in w['bashkir'].lower() or search_term.lower() in w['english'].lower()]
+    else:
+        filtered_words = words_data[:20]  # Show first 20 by default
 
-            # Display download links for each
-            for audio_item in all_audio_data:
-                st.download_button(
-                    label=f"⬇️ {audio_item['text'][:30]}...",
-                    data=audio_item['data'],
-                    file_name=audio_item['filename'],
-                    mime="audio/mp3",
-                    key=f"batch_download_{audio_item['filename']}"
-                )
+    st.write(f"Showing {len(filtered_words)} words")
 
-def render_review_view():
-    """Render the review system view."""
-    st.title("🔄 Spaced Repetition Review")
-    
-    # Initialize SRS if not exists
-    if 'srs_system' not in st.session_state:
-        st.session_state.srs_system = SpacedRepetitionSystem()
-    
-    srs = st.session_state.srs_system
-    
-    # Show statistics
-    stats = srs.get_statistics()
-    col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Total Words", stats['total_words'])
-    col2.metric("Learning", stats['learning'])
-    col3.metric("Mastered", stats['mastered'])
-    col4.metric("Due Today", stats['due_today'])
-    
-    # Start review session
-    if st.button("Start Review Session"):
-        words_data = load_words()
-        session = ReviewSession(srs, words_data)
-        if session.start_session(new_words=5, review_words=10):
-            st.session_state.review_session = session
-            st.rerun()
-    
-    # Show review session if active
-    if 'review_session' in st.session_state and st.session_state.review_session:
-        session = st.session_state.review_session
-        
-        item_data = session.get_current_item()
-        if item_data:
-            item, word_data = item_data
-            
-            st.subheader(f"Review: {word_data['bashkir']}")
-            st.markdown(f"<div class='word-card'><span class='bashkir-text'>{word_data['bashkir']}</span><br><span class='english-text'>{word_data['english']}</span></div>", unsafe_allow_html=True)
-            
-            # Play audio
-            if st.button("Play Audio"):
-                play_audio(word_data['bashkir'])
-            
-            # Quality rating
-            st.write("How well did you know this word?")
-            col1, col2, col3, col4, col5, col6 = st.columns(6)
-            
+    for word in filtered_words:
+        with st.expander(f"🔊 {word['bashkir']} ({word['english']})"):
+            col1, col2 = st.columns([2, 1])
+
             with col1:
-                if st.button("0 - Forgot"):
-                    result = session.submit_answer(0)
-                    st.rerun()
+                st.markdown(f"""
+                <div class="word-card">
+                    <span class="bashkir-text">{word['bashkir']}</span>
+                    <span class="ipa-text">{word.get('ipa', '')}</span>
+                    <div class="english-text">{word['english']}</div>
+                    <span class="russian-text">🇷🇺 {word.get('russian', '')}</span>
+                </div>
+                """, unsafe_allow_html=True)
+
             with col2:
-                if st.button("1 - Hard"):
-                    result = session.submit_answer(1)
-                    st.rerun()
-            with col3:
-                if st.button("2 - Medium"):
-                    result = session.submit_answer(2)
-                    st.rerun()
-            with col4:
-                if st.button("3 - Good"):
-                    result = session.submit_answer(3)
-                    st.rerun()
-            with col5:
-                if st.button("4 - Easy"):
-                    result = session.submit_answer(4)
-                    st.rerun()
-            with col6:
-                if st.button("5 - Perfect"):
-                    result = session.submit_answer(5)
-                    st.rerun()
-            
-            # Show session summary
-            summary = session.get_session_summary()
-            total_items = summary['completed'] + summary['remaining']
-            progress_value = summary['completed'] / total_items if total_items > 0 else 0.0
-            st.progress(min(progress_value, 1.0))
-            st.write(f"Progress: {summary['completed']}/{total_items} | Accuracy: {summary['accuracy']}%")
-        else:
-            st.success("Session completed!")
-            del st.session_state.review_session
+                st.markdown("**Audio Controls:**")
+                if st.button("▶️ Normal", key=f"audio_normal_{word['bashkir']}"):
+                    play_audio(word['bashkir'], slow=False)
+                if st.button("🐢 Slow", key=f"audio_slow_{word['bashkir']}"):
+                    play_audio(word['bashkir'], slow=True)
 
-@st.cache_data
-def load_ocm_mapping():
-    """Load OCM mapping data."""
-    data_path = Path(__file__).parent / "data" / "ocm_mapping.json"
-    try:
-        with open(data_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        return {}
+                # Download option
+                audio_bytes = generate_audio_with_retry(word['bashkir'], slow=True)
+                if audio_bytes:
+                    st.download_button(
+                        label="⬇️ Download",
+                        data=audio_bytes,
+                        file_name=f"{word['bashkir']}.mp3",
+                        mime="audio/mp3",
+                        key=f"download_{word['bashkir']}"
+                    )
 
-def render_bashkortnet_view():
-    """Render the BashkortNet Explorer (Semantic Network) view with OCM features."""
-    st.title("🕸️ BashkortNet Explorer (Semantic Network)")
-    st.markdown("*Explore semantic relationships between Bashkir words with cultural and anthropological context*")
+# === PAGE: REVIEW (Fixed ZeroDivisionError) ===
+elif "Review" in selected_page:
+    st.title("🔄 Spaced Repetition Review")
+    st.markdown("*Review learned words using the SM-2 algorithm for optimal retention.*")
 
-    # Initialize BashkortNet if not exists
-    if 'bashkortnet' not in st.session_state:
-        words_data = load_words()
-        st.session_state.bashkortnet = BashkortNet(words_data)
+    # Stats
+    col1, col2, col3, col4 = st.columns(4)
 
-    net = st.session_state.bashkortnet
+    with col1:
+        st.markdown("""
+        <div class="stat-box">
+            <h3>📚</h3>
+            <h2>{}</h2>
+            <p>Total Learned</p>
+        </div>
+        """.format(len(st.session_state.learned_words)), unsafe_allow_html=True)
 
-    # Load OCM mapping
-    ocm_data = load_ocm_mapping()
-    ocm_labels = ocm_data.get('ocm_labels', {})
-    bashkir_to_ocm = ocm_data.get('bashkir_to_ocm', {})
+    with col2:
+        st.markdown("""
+        <div class="stat-box">
+            <h3>📋</h3>
+            <h2>{}</h2>
+            <p>Due Today</p>
+        </div>
+        """.format(len(st.session_state.review_queue)), unsafe_allow_html=True)
 
-    # Word search with both Bashkir and English display
-    words_data = load_words()
-    word_list = [f"{w['bashkir']} ({w['english']})" for w in words_data]
-    selected_word_option = st.selectbox("Select a word to explore (Bashkir / English):", word_list)
+    with col3:
+        mastered = len([w for w in st.session_state.learned_words
+                       if st.session_state.srs_data.get(w, {}).get('interval', 0) >= 21])
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>🏆</h3>
+            <h2>{mastered}</h2>
+            <p>Mastered</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-    if selected_word_option:
-        # Extract Bashkir word from selection
-        selected_word = selected_word_option.split(' (')[0]
+    with col4:
+        accuracy = 85  # Placeholder
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>🎯</h3>
+            <h2>{accuracy}%</h2>
+            <p>Accuracy</p>
+        </div>
+        """, unsafe_allow_html=True)
 
-        # Show word information
-        word_info = next((w for w in words_data if w['bashkir'] == selected_word), None)
-        if word_info:
-            # Main word card with Bashkir and English
-            st.markdown(f"""
-            <div class='word-card'>
-                <span class='bashkir-text'>{word_info['bashkir']} (Башҡорт теле)</span>
-                <span class='english-text'>{word_info['english']} (English)</span>
-                {f"<span class='ipa-text'>{word_info.get('ipa', '')}</span>" if word_info.get('ipa') else ''}
-                {f"<span class='russian-text'>Russian: {word_info.get('russian', '')}</span>" if word_info.get('russian') else ''}
-            </div>
-            """, unsafe_allow_html=True)
+    st.markdown("---")
 
-            # Audio playback
-            if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
-                play_audio(word_info['bashkir'], language='ru', slow=True)
+    # Review session
+    if st.session_state.review_queue:
+        st.markdown("### 📝 Review Session")
 
-            # Create tabs for different aspects
-            tab1, tab2, tab3 = st.tabs(["🕸️ Semantic Network", "📚 OCM Cultural Codes", "🔗 Etymology & Context"])
+        # Get current word
+        if 'review_index' not in st.session_state:
+            st.session_state.review_index = 0
 
-            with tab1:
-                st.subheader("Semantic Network (Семантик сеть)")
-                # Show relations with Bashkir and English labels
-                relations = net.get_relations(selected_word)
-                if relations:
-                    for rel_type, targets in relations.items():
-                        rel_label = net.RELATION_TYPES.get(rel_type, rel_type)
-                        st.markdown(f"**{rel_label}**")
-                        for target in targets:
-                            if isinstance(target, dict):
-                                target_word = target.get('target', '')
-                                gloss = target.get('gloss', '')
-                                relation = target.get('relation', '')
-                                if gloss:
-                                    st.write(f"  • {target_word} ({gloss})")
-                                else:
-                                    st.write(f"  • {target_word}")
-                                if relation:
-                                    st.caption(f"    ↳ {relation}")
-                            else:
-                                st.write(f"  • {target}")
+        if st.session_state.review_index < len(st.session_state.review_queue):
+            current_word = st.session_state.review_queue[st.session_state.review_index]
+            word_data = next((w for w in words_data if w['bashkir'] == current_word), None)
+
+            if word_data:
+                # Flashcard
+                if 'show_answer' not in st.session_state:
+                    st.session_state.show_answer = False
+
+                st.markdown(f"""
+                <div class="word-card" style="text-align: center; padding: 40px;">
+                    <span class="bashkir-text" style="font-size: 2.5em;">{word_data['bashkir']}</span>
+                    <br><br>
+                    <small>{word_data.get('ipa', '')}</small>
+                </div>
+                """, unsafe_allow_html=True)
+
+                if not st.session_state.show_answer:
+                    if st.button("👁️ Show Answer", use_container_width=True):
+                        st.session_state.show_answer = True
+                        st.rerun()
                 else:
-                    st.info("No semantic relations found for this word.")
+                    st.markdown(f"""
+                    <div class="word-card" style="text-align: center; background: #e8f5e9;">
+                        <h2>{word_data['english']}</h2>
+                        <p><em>{word_data.get('russian', '')}</em></p>
+                    </div>
+                    """, unsafe_allow_html=True)
 
-                # Show word family
-                family = net.get_word_family(selected_word)
-                if family:
-                    st.subheader("Word Family (Һүҙ ғаиләһе)")
-                    for category, words in family.items():
-                        if words:
-                            st.write(f"**{category.replace('_', ' ').title()}:** {', '.join(words)}")
-
-            with tab2:
-                st.subheader("OCM Cultural Classification (eHRAF 2021 Standards)")
-                st.markdown("*Outline of Cultural Materials codes for anthropological analysis*")
-
-                # Get OCM codes for this word
-                word_ocm_codes = bashkir_to_ocm.get(word_info['bashkir'], [])
-
-                # Also check cultural_context in word data
-                cultural_context = word_info.get('cultural_context', {})
-                embedded_ocm_codes = cultural_context.get('ocm_codes', [])
-
-                # Combine all OCM codes
-                all_ocm_codes = list(set(word_ocm_codes + embedded_ocm_codes))
-
-                if all_ocm_codes:
-                    st.markdown("**Associated OCM Categories:**")
-                    for code in all_ocm_codes:
-                        label = ocm_labels.get(str(code), f"Code {code}")
+                    # Show mnemonic
+                    mnemonic = word_data.get('memory_palace', {}).get('mnemonic', '')
+                    if mnemonic:
                         st.markdown(f"""
-                        <div class='stat-box' style='margin: 5px 0; text-align: left;'>
-                            <strong>OCM {code}</strong>: {label}
+                        <div class="mnemonic-text">
+                        {mnemonic}
                         </div>
                         """, unsafe_allow_html=True)
 
-                    # Show thematic groups
-                    thematic_groups = ocm_data.get('thematic_groups', {})
-                    related_themes = []
-                    for theme_name, theme_data in thematic_groups.items():
-                        if word_info['bashkir'] in theme_data.get('words', []):
-                            related_themes.append(theme_name)
+                    # Rating buttons
+                    st.markdown("**How well did you remember?**")
 
-                    if related_themes:
-                        st.markdown("**Thematic Groups:**")
-                        for theme in related_themes:
-                            st.write(f"  • {theme.replace('_', ' ').title()}")
+                    col1, col2, col3, col4 = st.columns(4)
+
+                    ratings = [
+                        ("😞 Forgot", 1, col1),
+                        ("😕 Hard", 3, col2),
+                        ("🙂 Good", 4, col3),
+                        ("😄 Easy", 5, col4)
+                    ]
+
+                    for label, rating, col in ratings:
+                        with col:
+                            if st.button(label, key=f"rate_{rating}", use_container_width=True):
+                                # Update SRS data
+                                if current_word not in st.session_state.srs_data:
+                                    st.session_state.srs_data[current_word] = {
+                                        'ease': 2.5, 'interval': 0, 'reps': 0
+                                    }
+
+                                srs = st.session_state.srs_data[current_word]
+
+                                if rating >= 3:
+                                    if srs['reps'] == 0:
+                                        srs['interval'] = 1
+                                    elif srs['reps'] == 1:
+                                        srs['interval'] = 6
+                                    else:
+                                        srs['interval'] = int(srs['interval'] * srs['ease'])
+                                    srs['reps'] += 1
+                                else:
+                                    srs['interval'] = 1
+                                    srs['reps'] = 0
+
+                                srs['ease'] = max(1.3, srs['ease'] + (0.1 - (5 - rating) * 0.08))
+
+                                # Move to next word
+                                st.session_state.review_index += 1
+                                st.session_state.show_answer = False
+                                st.rerun()
+
+                # Progress - FIXED: proper parentheses to avoid ZeroDivisionError
+                total_reviews = len(st.session_state.review_queue)
+                if total_reviews > 0:
+                    progress = (st.session_state.review_index + 1) / total_reviews
                 else:
-                    st.info("No OCM codes assigned to this word yet.")
+                    progress = 0.0
+                st.progress(min(progress, 1.0))
+                st.caption(f"Card {st.session_state.review_index + 1} of {total_reviews}")
+        else:
+            st.success("🎉 Review session complete!")
+            if st.button("Start New Session"):
+                st.session_state.review_index = 0
+                st.session_state.show_answer = False
+                st.rerun()
+    else:
+        st.info("No words to review! Visit the Palace to learn new words.")
+        if st.button("Go to Palace"):
+            st.rerun()
 
-                # Show cultural significance
-                if cultural_context.get('significance'):
-                    st.markdown("**Cultural Significance:**")
-                    st.markdown(f"_{cultural_context['significance']}_")
+# === PAGE: BASHKORTNET EXPLORER (Enhanced with OCM) ===
+elif "BashkortNet" in selected_page:
+    st.title("🕸️ BashkortNet Explorer (Semantic Network)")
+    st.markdown("*Explore the semantic network connecting Bashkir words with OCM cultural classifications.*")
 
-                if cultural_context.get('sources'):
-                    st.markdown("**Sources:**")
-                    for source in cultural_context['sources']:
-                        st.write(f"  • {source}")
-
-            with tab3:
-                st.subheader("Etymology & Additional Context")
-
-                # Show etymology from bashkortnet data
-                bashkortnet_data = word_info.get('bashkortnet', {})
-                etymology = bashkortnet_data.get('etymology', {})
-
-                if etymology:
-                    st.markdown("**Etymology (Этимология):**")
-                    if etymology.get('proto_form'):
-                        st.write(f"  Proto-form: {etymology['proto_form']}")
-                    if etymology.get('note'):
-                        st.write(f"  Note: {etymology['note']}")
-
-                # Memory palace info
-                memory_palace = word_info.get('memory_palace', {})
-                if memory_palace:
-                    st.markdown("**Memory Palace Location:**")
-                    bird = memory_palace.get('bird', '')
-                    locus = memory_palace.get('locus', '')
-                    st.write(f"  🐦 Bird: {bird}")
-                    st.write(f"  📍 Locus: {locus}")
-                    if memory_palace.get('mnemonic'):
-                        st.markdown("**Mnemonic:**")
-                        st.markdown(f"_{memory_palace['mnemonic']}_")
-
-                # Grammar information
-                grammar = word_info.get('grammar', {})
-                if grammar and grammar.get('case_forms'):
-                    st.markdown("**Case Forms (Килеш формалары):**")
-                    case_forms = grammar['case_forms']
-                    case_names = {
-                        'nominative': 'Nominative (Баш килеш)',
-                        'genitive': 'Genitive (Эйәлек килеш)',
-                        'dative': 'Dative (Төбәү килеш)',
-                        'accusative': 'Accusative (Төшөм килеш)',
-                        'locative': 'Locative (Урын-ваҡыт килеш)',
-                        'ablative': 'Ablative (Сығанаҡ килеш)'
-                    }
-                    for case_key, case_value in case_forms.items():
-                        case_label = case_names.get(case_key, case_key)
-                        st.write(f"  • {case_label}: **{case_value}**")
-
-def render_cultural_context_view():
-    """Render the cultural context view with full OCM integration."""
-    st.title("📖 Cultural Context")
-    st.markdown("*Anthropological depth and eHRAF 2021 OCM classifications*")
-
-    st.markdown("""
-    <div class="meditation-box">
-    Bashkir culture is deeply rooted in the traditions of the Ural Mountains region.
-    The language reflects centuries of nomadic heritage, Islamic influence, and close connection to nature.
-    <br><br>
-    This section uses the <strong>Outline of Cultural Materials (OCM)</strong> classification system
-    from the <strong>eHRAF World Cultures</strong> database (2021 standards) for anthropological analysis.
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Load data
-    words_data = load_words()
+    # Load OCM data
     ocm_data = load_ocm_mapping()
     ocm_labels = ocm_data.get('ocm_labels', {})
-    ocm_categories = ocm_data.get('ocm_categories', {})
     bashkir_to_ocm = ocm_data.get('bashkir_to_ocm', {})
-    thematic_groups = ocm_data.get('thematic_groups', {})
 
-    # Create tabs for different views
-    tab1, tab2, tab3 = st.tabs(["🔍 Browse by Word", "📊 Browse by OCM Category", "🎨 Thematic Groups"])
+    # Word search with Bashkir and English
+    search_word = st.selectbox(
+        "Select a word to explore (Bashkir / English):",
+        [w['bashkir'] for w in words_data],
+        format_func=lambda x: f"{x} ({next((w['english'] for w in words_data if w['bashkir'] == x), '?')})"
+    )
 
-    with tab1:
-        st.subheader("Browse Cultural Context by Word")
+    if search_word:
+        word_data = next((w for w in words_data if w['bashkir'] == search_word), None)
 
-        # Search/filter
-        search_term = st.text_input("Search words (Bashkir or English):", key="cultural_search")
+        if word_data:
+            col1, col2 = st.columns([1, 2])
 
-        # Filter words
-        if search_term:
-            filtered_words = [w for w in words_data if search_term.lower() in w['bashkir'].lower() or search_term.lower() in w['english'].lower()]
-        else:
-            filtered_words = words_data[:20]  # Show first 20 by default
+            with col1:
+                st.markdown(f"""
+                <div class="word-card">
+                    <span class="bashkir-text">{word_data['bashkir']} (Башҡорт теле)</span>
+                    <br>
+                    <small>{word_data.get('ipa', '')}</small>
+                    <br><br>
+                    <strong>{word_data['english']} (English)</strong>
+                    <br>
+                    <em>{word_data.get('russian', '')}</em>
+                    <br><br>
+                    <small>POS: {word_data.get('pos', 'noun')}</small>
+                </div>
+                """, unsafe_allow_html=True)
 
-        st.write(f"Showing {len(filtered_words)} words")
+                # Audio button
+                if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
+                    play_audio(word_data['bashkir'], slow=True)
 
-        for word in filtered_words:
-            cultural = word.get('cultural_context', {})
+            with col2:
+                # Create tabs for different aspects
+                tab1, tab2, tab3 = st.tabs(["🕸️ Semantic Network", "📚 OCM Codes", "🔗 Etymology"])
 
-            with st.expander(f"📖 {word['bashkir']} ({word['english']})"):
-                col1, col2 = st.columns([2, 1])
+                with tab1:
+                    st.markdown("### Semantic Relations")
 
-                with col1:
-                    # Basic info
-                    st.markdown(f"**Bashkir:** {word['bashkir']}")
-                    st.markdown(f"**English:** {word['english']}")
-                    if word.get('ipa'):
-                        st.markdown(f"**IPA:** {word['ipa']}")
-                    if word.get('russian'):
-                        st.markdown(f"**Russian:** {word['russian']}")
+                    bashkortnet = word_data.get('bashkortnet', {})
+                    relations = bashkortnet.get('relations', {})
 
-                    # Cultural significance
-                    if cultural.get('significance'):
-                        st.markdown("---")
-                        st.markdown("**Cultural Significance:**")
-                        st.markdown(f"_{cultural['significance']}_")
+                    if relations:
+                        for rel_type, targets in relations.items():
+                            if targets:
+                                rel_labels = {
+                                    'SYN': '🔄 Synonyms',
+                                    'ANT': '↔️ Antonyms',
+                                    'ISA': '⬆️ Is a type of',
+                                    'HAS_TYPE': '⬇️ Types',
+                                    'PART_OF': '🧩 Part of',
+                                    'HAS_PART': '🔧 Has parts',
+                                    'CULT_ASSOC': '🏛️ Cultural',
+                                    'MYTH_LINK': '📜 Mythological'
+                                }
 
-                    if cultural.get('usage_context'):
-                        st.markdown("**Usage Context:**")
-                        st.markdown(f"_{cultural['usage_context']}_")
+                                st.markdown(f"**{rel_labels.get(rel_type, rel_type)}:**")
 
-                    if cultural.get('sources'):
-                        st.markdown("**Sources:**")
-                        for source in cultural['sources']:
-                            st.write(f"  • {source}")
+                                for target in targets:
+                                    if isinstance(target, dict):
+                                        target_word = target.get('target', target.get('gloss', str(target)))
+                                        gloss = target.get('gloss', '')
+                                        note = target.get('note', '')
+                                        display = f"- {target_word}"
+                                        if gloss:
+                                            display += f" ({gloss})"
+                                        if note:
+                                            display += f" *({note})*"
+                                        st.markdown(display)
+                                    else:
+                                        st.markdown(f"- {target}")
+                    else:
+                        st.info("No relations defined for this word yet.")
 
-                with col2:
-                    # OCM codes
-                    st.markdown("**OCM Classifications:**")
+                with tab2:
+                    st.markdown("### OCM Cultural Classification (eHRAF 2021)")
 
                     # Get OCM codes from multiple sources
-                    word_ocm_codes = bashkir_to_ocm.get(word['bashkir'], [])
-                    embedded_ocm_codes = cultural.get('ocm_codes', [])
+                    word_ocm_codes = bashkir_to_ocm.get(word_data['bashkir'], [])
+                    cultural_context = word_data.get('cultural_context', {})
+                    embedded_ocm_codes = cultural_context.get('ocm_codes', [])
+
                     all_codes = list(set([str(c) for c in word_ocm_codes + embedded_ocm_codes]))
 
                     if all_codes:
                         for code in all_codes:
-                            label = ocm_labels.get(str(code), f"Code {code}")
-                            st.markdown(f"• **{code}**: {label}")
+                            label = ocm_labels.get(str(code), f"Category {code}")
+                            st.markdown(f"- **OCM {code}**: {label}")
                     else:
-                        st.info("No OCM codes assigned")
+                        st.info("No OCM codes assigned to this word yet.")
+
+                    # Cultural significance
+                    if cultural_context.get('significance'):
+                        st.markdown("### Cultural Significance")
+                        st.markdown(f"_{cultural_context['significance']}_")
+
+                with tab3:
+                    st.markdown("### Etymology")
+
+                    bashkortnet = word_data.get('bashkortnet', {})
+                    etymology = bashkortnet.get('etymology', {})
+
+                    if etymology:
+                        proto = etymology.get('proto_form', '')
+                        note = etymology.get('note', '')
+                        if proto:
+                            st.markdown(f"**Proto-form:** {proto}")
+                        if note:
+                            st.markdown(f"**Note:** {note}")
+                    else:
+                        st.info("No etymology information available.")
 
                     # Memory palace info
-                    mp = word.get('memory_palace', {})
-                    if mp:
-                        st.markdown("---")
-                        st.markdown("**Memory Palace:**")
-                        st.write(f"🐦 {mp.get('bird', 'N/A')}")
-                        st.write(f"📍 {mp.get('locus', 'N/A')}")
+                    memory_palace = word_data.get('memory_palace', {})
+                    if memory_palace:
+                        st.markdown("### Memory Palace")
+                        st.write(f"🐦 Bird: {memory_palace.get('bird', 'N/A')}")
+                        st.write(f"📍 Locus: {memory_palace.get('locus', 'N/A')}")
 
-                # Audio button
-                if st.button(f"🔊 Listen", key=f"cultural_audio_{word['bashkir']}"):
-                    play_audio(word['bashkir'], language='ru', slow=True)
+# === PAGE: CULTURAL CONTEXT (Enhanced with OCM) ===
+elif "Cultural Context" in selected_page:
+    st.title("📖 Cultural Context")
+    st.markdown("*Understand the anthropological depth behind each word with eHRAF 2021 OCM classifications.*")
+
+    # Load OCM data
+    ocm_data = load_ocm_mapping()
+    ocm_labels = ocm_data.get('ocm_labels', {})
+    bashkir_to_ocm = ocm_data.get('bashkir_to_ocm', {})
+    thematic_groups = ocm_data.get('thematic_groups', {})
+
+    # Truth Unveiled toggle
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🔓 Truth Unveiled")
+    st.session_state.truth_unveiled = st.sidebar.toggle(
+        "Show sensitive sources",
+        value=st.session_state.truth_unveiled,
+        help="Enable to see academic sources that may be politically sensitive"
+    )
+
+    # Create tabs for different views
+    tab1, tab2, tab3 = st.tabs(["🔍 Browse by Word", "📊 Browse by OCM", "🎨 Thematic Groups"])
+
+    with tab1:
+        # Word selection
+        search_word = st.selectbox(
+            "Select a word:",
+            [w['bashkir'] for w in words_data],
+            format_func=lambda x: f"{x} ({next((w['english'] for w in words_data if w['bashkir'] == x), '?')})"
+        )
+
+        if search_word:
+            word_data = next((w for w in words_data if w['bashkir'] == search_word), None)
+
+            if word_data:
+                st.markdown(f"## {word_data['bashkir']} — {word_data['english']}")
+
+                cultural = word_data.get('cultural_context', {})
+
+                # OCM codes
+                word_ocm_codes = bashkir_to_ocm.get(word_data['bashkir'], [])
+                embedded_ocm_codes = cultural.get('ocm_codes', [])
+                all_codes = list(set([str(c) for c in word_ocm_codes + embedded_ocm_codes]))
+
+                if all_codes:
+                    st.markdown("### 🏷️ OCM Categories (eHRAF 2021)")
+                    for code in all_codes:
+                        label = ocm_labels.get(str(code), f"Category {code}")
+                        st.markdown(f"- **{code}**: {label}")
+
+                # Significance
+                significance = cultural.get('significance', '')
+                if significance:
+                    st.markdown("### 📜 Cultural Significance")
+                    st.markdown(f"""
+                    <div class="meditation-box">
+                    {significance}
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                # Sources
+                sources = cultural.get('sources', [])
+                if sources:
+                    st.markdown("### 📚 Sources")
+                    for source in sources:
+                        if isinstance(source, dict):
+                            st.markdown(f"- {source.get('author', '')} ({source.get('year', '')}). *{source.get('title', '')}*")
+                        else:
+                            st.markdown(f"- {source}")
+
+                # Sensitivity warning
+                sensitivity = cultural.get('sensitivity', {})
+                if sensitivity.get('has_sensitive_context') and st.session_state.truth_unveiled:
+                    st.markdown("### ⚠️ Sensitivity Context")
+                    st.warning(sensitivity.get('note', 'This topic has sensitive political context.'))
 
     with tab2:
-        st.subheader("Browse by OCM Category")
+        st.markdown("### Browse by OCM Category")
         st.markdown("*Explore words organized by anthropological classification*")
 
-        # Create a list of main categories
-        category_options = [(code, f"{code}: {data['name']}") for code, data in ocm_categories.items()]
-        selected_category = st.selectbox("Select OCM Category:", [opt[1] for opt in category_options])
+        # Get unique OCM codes from all words
+        all_ocm_codes_list = []
+        for word in words_data:
+            cultural = word.get('cultural_context', {})
+            codes = cultural.get('ocm_codes', [])
+            all_ocm_codes_list.extend([str(c) for c in codes])
 
-        if selected_category:
-            # Extract category code
-            cat_code = selected_category.split(':')[0].strip()
-            cat_data = ocm_categories.get(cat_code, {})
+        unique_codes = sorted(set(all_ocm_codes_list))
 
-            st.markdown(f"### {cat_data.get('name', cat_code)}")
+        if unique_codes:
+            selected_code = st.selectbox(
+                "Select OCM Category:",
+                unique_codes,
+                format_func=lambda x: f"{x}: {ocm_labels.get(x, 'Unknown')}"
+            )
 
-            # Show subcategories
-            subcategories = cat_data.get('subcategories', {})
-            if subcategories:
-                for sub_code, sub_data in subcategories.items():
-                    sub_name = sub_data.get('name', sub_code)
-                    bashkir_words = sub_data.get('bashkir_words', [])
+            if selected_code:
+                st.markdown(f"### {ocm_labels.get(selected_code, f'Category {selected_code}')}")
 
-                    if bashkir_words:
-                        st.markdown(f"**{sub_code}: {sub_name}**")
-                        word_displays = []
-                        for bword in bashkir_words:
-                            # Find English translation
-                            word_info = next((w for w in words_data if w['bashkir'] == bword), None)
-                            if word_info:
-                                word_displays.append(f"{bword} ({word_info['english']})")
-                            else:
-                                word_displays.append(bword)
-                        st.write("  • " + ", ".join(word_displays))
+                # Find words with this OCM code
+                matching_words = [
+                    w for w in words_data
+                    if selected_code in [str(c) for c in w.get('cultural_context', {}).get('ocm_codes', [])]
+                ]
+
+                if matching_words:
+                    for word in matching_words:
+                        st.markdown(f"- **{word['bashkir']}** ({word['english']})")
+                else:
+                    st.info("No words found with this OCM code.")
+        else:
+            st.info("No OCM codes found in vocabulary data.")
 
     with tab3:
-        st.subheader("Thematic Groups")
+        st.markdown("### Thematic Groups")
         st.markdown("*Words organized by cultural and linguistic themes*")
 
-        for theme_name, theme_data in thematic_groups.items():
-            display_name = theme_name.replace('_', ' ').title()
-            ocm_codes = theme_data.get('ocm_codes', [])
-            theme_words = theme_data.get('words', [])
+        if thematic_groups:
+            for theme_name, theme_data in thematic_groups.items():
+                display_name = theme_name.replace('_', ' ').title()
+                theme_ocm_codes = theme_data.get('ocm_codes', [])
+                theme_words = theme_data.get('words', [])
 
-            with st.expander(f"🎨 {display_name}"):
-                st.markdown("**OCM Codes:**")
-                code_labels = [f"{c}: {ocm_labels.get(c, 'Unknown')}" for c in ocm_codes]
-                st.write(", ".join(code_labels))
+                with st.expander(f"🎨 {display_name}"):
+                    if theme_ocm_codes:
+                        st.markdown("**OCM Codes:**")
+                        code_labels = [f"{c}: {ocm_labels.get(c, 'Unknown')}" for c in theme_ocm_codes]
+                        st.write(", ".join(code_labels))
 
-                st.markdown("**Words:**")
-                word_displays = []
-                for bword in theme_words:
-                    word_info = next((w for w in words_data if w['bashkir'] == bword), None)
-                    if word_info:
-                        word_displays.append(f"**{bword}** ({word_info['english']})")
-                    else:
-                        word_displays.append(f"**{bword}**")
+                    if theme_words:
+                        st.markdown("**Words:**")
+                        word_displays = []
+                        for bword in theme_words:
+                            word_info = next((w for w in words_data if w['bashkir'] == bword), None)
+                            if word_info:
+                                word_displays.append(f"**{bword}** ({word_info['english']})")
+                            else:
+                                word_displays.append(f"**{bword}**")
+                        st.markdown(" | ".join(word_displays))
+        else:
+            st.info("No thematic groups defined yet.")
 
-                st.markdown(" | ".join(word_displays))
-
-def render_settings_view():
-    """Render the settings view."""
+# === PAGE: SETTINGS ===
+elif "Settings" in selected_page:
     st.title("⚙️ Settings")
-    
-    st.subheader("Audio Settings")
-    audio_slow = st.checkbox("Slow Audio Playback", value=True)
-    audio_language = st.selectbox("Audio Language", ["ru", "en"], format_func=lambda x: {"ru": "Russian (Bashkir Approximation)", "en": "English"}[x])
-    
-    st.subheader("Display Settings")
-    show_ipa = st.checkbox("Show IPA Transcriptions", value=True)
-    show_russian = st.checkbox("Show Russian Translations", value=True)
-    
-    st.subheader("Learning Settings")
-    srs_enabled = st.checkbox("Enable Spaced Repetition", value=True)
-    show_mnemonics = st.checkbox("Show Mnemonics", value=True)
 
-def render_audio_dictionary_view():
-    """Render the audio dictionary view with enhanced features."""
-    st.title("🔊 Enhanced Audio Dictionary")
-    
-    # Initialize audio service if not exists
-    if 'audio_service' not in st.session_state:
-        st.session_state.audio_service = get_audio_service()
-    
-    audio_service = st.session_state.audio_service
-    
-    # Word lookup
-    words_data = load_words()
-    word_list = [w['bashkir'] for w in words_data]
-    
-    # Search functionality
-    search_term = st.text_input("Search for a word:", "")
-    
-    # Filter words based on search
-    if search_term:
-        filtered_words = [w for w in words_data if search_term.lower() in w['bashkir'].lower() or search_term.lower() in w['english'].lower()]
-    else:
-        filtered_words = words_data
-    
-    # Display results
-    if filtered_words:
-        selected_word = st.selectbox("Select a word:", [w['bashkir'] for w in filtered_words])
-        
-        # Find the selected word data
-        word_info = next((w for w in words_data if w['bashkir'] == selected_word), None)
-        
-        if word_info:
-            st.markdown(f"""
-            <div class="word-card">
-                <span class="bashkir-text">{word_info['bashkir']}</span>
-                <span class="english-text">{word_info['english']}</span>
-                {f'<span class="ipa-text">{word_info.get("ipa", "")}</span>' if word_info.get('ipa') else ''}
-                {f'<span class="russian-text">{word_info.get("russian", "")}</span>' if word_info.get('russian') else ''}
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Audio generation and playback
-            col1, col2, col3 = st.columns(3)
-            
-            with col1:
-                if st.button("🔊 Play Word Audio"):
-                    play_audio(word_info['bashkir'], language='ru', slow=True)
-            
-            with col2:
-                if st.button("🔊 Play Slow Audio"):
-                    play_audio(word_info['bashkir'], language='ru', slow=True)
-            
-            with col3:
-                if st.button("🔊 Regenerate Audio"):
-                    audio_service.generate_word_audio(word_info['bashkir'], slow=True)
-                    play_audio(word_info['bashkir'], language='ru', slow=True)
-            
-            # Show additional info
-            if 'definitions' in word_info:
-                st.subheader("Definitions")
-                for i, definition in enumerate(word_info['definitions']):
-                    st.write(f"{i+1}. {definition.get('en', definition.get('english', ''))}")
-            
-            if 'examples' in word_info:
-                st.subheader("Examples")
-                for example in word_info['examples']:
-                    st.write(f"**EN:** {example.get('en', '')}")
-                    st.write(f"**BA:** {example.get('ba', example.get('bashkir', ''))}")
-                    st.write("")
-            
-            # Translation functionality
-            st.subheader("Translation")
-            source_text = st.text_area("Enter text to translate:", value=word_info['bashkir'])
-            
-            if st.button("Translate"):
-                translated = translate_text(source_text, source='auto', target='en')
-                st.write(f"**Translated:** {translated}")
-            
-            # Advanced features
-            st.subheader("Advanced Features")
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                if st.button("Tokenize Text"):
-                    tokens = tokenize_text(source_text)
-                    st.write(f"**Tokens:** {tokens}")
-            
-            with col2:
-                if st.button("Show Audio Cache Stats"):
-                    stats = audio_service.get_cache_stats()
-                    st.json(stats)
-    
-    # Add new word functionality
-    st.subheader("Add New Word")
-    with st.form("add_word_form"):
-        new_bashkir = st.text_input("Bashkir Word")
-        new_english = st.text_input("English Translation")
-        new_russian = st.text_input("Russian Translation (optional)")
-        new_ipa = st.text_input("IPA Transcription (optional)")
-        
-        submitted = st.form_submit_button("Add Word")
-        if submitted and new_bashkir and new_english:
-            # Create new word entry
-            new_word_entry = {
-                'bashkir': new_bashkir,
-                'english': new_english,
-                'russian': new_russian if new_russian else '',
-                'ipa': new_ipa if new_ipa else '',
-                'id': f"custom_{len(words_data)+1}",
-                'pos': 'noun',  # Default part of speech
-                'memory_palace': {
-                    'bird': 'Ringdove',
-                    'locus': 'Bizhbulyak'
-                },
-                'definitions': [{'en': new_english}],
-                'examples': []
+    st.markdown("### 🎨 Display Settings")
+
+    st.markdown("### 🔊 Audio Settings")
+    st.checkbox("Enable audio playback", value=True)
+    st.slider("Audio speed", 0.5, 1.5, 1.0)
+
+    st.markdown("### 📊 Learning Settings")
+    st.number_input("New words per session", 1, 20, 5)
+    st.number_input("Review words per session", 5, 50, 20)
+
+    st.markdown("### 🔄 Data Management")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if st.button("Export Progress"):
+            progress_data = {
+                'learned_words': list(st.session_state.learned_words),
+                'saved_sentences': st.session_state.saved_sentences,
+                'srs_data': st.session_state.srs_data
             }
-            
-            # Add to words data (in memory for this session)
-            words_data.append(new_word_entry)
-            st.success(f"Added new word: {new_bashkir}")
+            st.download_button(
+                "Download JSON",
+                json.dumps(progress_data, ensure_ascii=False, indent=2),
+                "bashkir_progress.json",
+                "application/json"
+            )
 
-# --- Page Routing ---
-if st.session_state.current_page == "🗺️ Palace":
-    render_palace_view()
-elif st.session_state.current_page == "📚 Four Birds":
-    render_four_birds_view()
-elif st.session_state.current_page == "✍️ Sentence Builder":
-    render_sentence_builder_view()
-elif st.session_state.current_page == "🔊 Audio Dictionary":
-    render_audio_dictionary_view()
-elif st.session_state.current_page == "🔄 Review":
-    render_review_view()
-elif st.session_state.current_page == "🕸️ BashkortNet Explorer":
-    render_bashkortnet_view()
-elif st.session_state.current_page == "📖 Cultural Context":
-    render_cultural_context_view()
-elif st.session_state.current_page == "⚙️ Settings":
-    render_settings_view()
+    with col2:
+        if st.button("Reset All Progress"):
+            st.session_state.learned_words = set()
+            st.session_state.review_queue = []
+            st.session_state.saved_sentences = []
+            st.session_state.srs_data = {}
+            st.success("Progress reset!")
+            st.rerun()
+
+    st.markdown("---")
+    st.markdown("### 📖 About")
+    st.markdown("""
+    **Bashkir Memory Palace** v2.0 Enhanced
+
+    A language learning application integrating:
+    - Ibn Arabi's mystical framework (Four Birds)
+    - Memory Palace technique (Method of Loci)
+    - Anthropological pedagogy (OCM/eHRAF 2021 methodology)
+    - Spaced Repetition (SM-2 algorithm)
+    - BashkortNet semantic network
+    - Audio export for sentences and poems
+
+    *"The journey made within yourself leads to yourself."*
+    — Ibn Arabi, Secrets of Voyaging
+    """)
 
 # --- Footer ---
 st.markdown("---")
-st.markdown("<p style='text-align: center; color: #0066B3;'>🏰 Bashkir Memory Palace - Enhanced Edition 🏰</p>", unsafe_allow_html=True)
+st.markdown("""
+<div style="text-align: center; color: #666; font-size: 0.9em;">
+    <p>🏰 Bashkir Memory Palace — <em>Secrets of Voyaging</em></p>
+    <p>🦅 Eagle · 🐦⬛ Crow · 🔥🕊️ Anqa · 🕊️ Ringdove</p>
+    <p><em>"Voyaging has no end, for therein is the joy of the Real."</em></p>
+</div>
+""", unsafe_allow_html=True)
