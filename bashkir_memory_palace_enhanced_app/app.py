@@ -561,6 +561,35 @@ st.markdown("""
         color: #0066B3 !important;
     }
 
+    /* ===== INPUT FIELDS - Lighter background, better contrast ===== */
+    .stTextInput input {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        font-size: 1.2em !important;
+        padding: 12px 15px !important;
+        border: 2px solid #0066B3 !important;
+        border-radius: 8px !important;
+    }
+    .stTextInput input::placeholder {
+        color: #666666 !important;
+        font-size: 1.1em !important;
+    }
+    .stTextInput input:focus {
+        border-color: #00AF66 !important;
+        box-shadow: 0 0 5px rgba(0, 175, 102, 0.3) !important;
+    }
+    .stTextInput > label {
+        color: #004d00 !important;
+        font-size: 1.1em !important;
+        font-weight: 600 !important;
+    }
+    /* SelectBox styling */
+    .stSelectbox > div > div {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        font-size: 1.1em !important;
+    }
+
     /* ===== MOBILE RESPONSIVENESS ===== */
     @media (max-width: 768px) {
         h1 { font-size: 1.8rem !important; }
@@ -1497,7 +1526,7 @@ elif "Alphabet" in selected_page:
     | **Һ** | /h/ | 'h' in "house" | һыу (water) |
     """)
 
-# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
+# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export and Working Word Bank) ===
 elif "Sentence Builder" in selected_page:
     st.title("✍️ Sentence Builder")
     st.markdown("*Create your own Bashkir sentences, hear them spoken, and export audio for poems or stories!*")
@@ -1524,107 +1553,77 @@ elif "Sentence Builder" in selected_page:
 
     st.markdown("---")
 
-    # Word bank
+    # Word bank - enhanced with words from dictionary
     st.markdown("### 🏦 Word Bank")
-    st.markdown("Click words to add them to your sentence:")
+    st.markdown("*Click words to add them to your sentence. Words are organized by type.*")
 
+    # Get word categories from patterns or create from words_data
     word_categories = patterns.get('word_bank_categories', {})
 
-    if word_categories:
-        tabs = st.tabs(list(word_categories.keys()))
-
-        for tab, (category, word_list) in zip(tabs, word_categories.items()):
-            with tab:
-                cols = st.columns(6)
-                for idx, word in enumerate(word_list):
-                    with cols[idx % 6]:
-                        word_data = next((w for w in words_data if w['bashkir'] == word), None)
-                        english = word_data.get('english', '?') if word_data else '?'
-
-                        if st.button(f"{word}\n({english})", key=f"word_{category}_{word}"):
-                            st.session_state.builder_sentence.append({
-                                'word': word,
-                                'english': english
-                            })
-                            st.rerun()
-
-
-    quiz_questions = [
-        {
-            "question": "Which bird represents civic knowledge and legal rights?",
-            "options": ["Crow", "Eagle", "Anqa", "Ringdove"],
-            "correct": "Eagle"
-        },
-        {
-            "question": "At which location would you find the Crow?",
-            "options": ["Ufa", "Shulgan-Tash", "Yamantau", "Beloretsk"],
-            "correct": "Shulgan-Tash"
-        },
-        {
-            "question": "Which bird represents transformation and potential?",
-            "options": ["Eagle", "Crow", "Anqa", "Ringdove"],
-            "correct": "Anqa"
+    # If no categories in patterns, create from words_data by part of speech
+    if not word_categories or len(word_categories) == 0:
+        # Organize words by part of speech
+        word_categories = {
+            "📛 Nouns": [],
+            "🎬 Verbs": [],
+            "📝 Adjectives": [],
+            "🔢 Numbers": [],
+            "👥 Pronouns": [],
+            "📍 Other": []
         }
-    ]
 
-    for i, q in enumerate(quiz_questions):
-        answer = st.radio(q["question"], q["options"], key=f"quiz_{i}")
-        if st.button("Check", key=f"check_{i}"):
-            if answer == q["correct"]:
-                st.success("✅ Correct!")
+        for word in words_data:
+            pos = word.get('pos', 'noun').lower()
+            bashkir = word['bashkir']
+
+            if pos == 'noun':
+                word_categories["📛 Nouns"].append(bashkir)
+            elif pos == 'verb':
+                word_categories["🎬 Verbs"].append(bashkir)
+            elif pos in ['adjective', 'adj']:
+                word_categories["📝 Adjectives"].append(bashkir)
+            elif pos in ['number', 'numeral']:
+                word_categories["🔢 Numbers"].append(bashkir)
+            elif pos == 'pronoun':
+                word_categories["👥 Pronouns"].append(bashkir)
             else:
-                st.error(f"❌ The correct answer is: {q['correct']}")
+                word_categories["📍 Other"].append(bashkir)
 
-# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
-elif "Sentence Builder" in selected_page:
-    st.title("✍️ Sentence Builder")
-    st.markdown("*Create your own Bashkir sentences, hear them spoken, and export audio for poems or stories!*")
-
-    patterns = load_patterns()
-
-    # Pattern templates
-    st.markdown("### 📝 Sentence Patterns")
-
-    pattern_list = patterns.get('patterns', [])[:5]
-
-    if pattern_list:
-        cols = st.columns(len(pattern_list))
-        for idx, pattern in enumerate(pattern_list):
-            with cols[idx]:
-                st.markdown(f"""
-                **{pattern['name']}**
-                `{pattern['template']}`
-                *{pattern['english_pattern']}*
-                """)
-                example = pattern.get('examples', [{}])[0]
-                if example:
-                    st.caption(f"Ex: {example.get('bashkir', '')}")
-
-    st.markdown("---")
-
-    # Word bank
-    st.markdown("### 🏦 Word Bank")
-    st.markdown("Click words to add them to your sentence:")
-
-    word_categories = patterns.get('word_bank_categories', {})
+        # Remove empty categories
+        word_categories = {k: v for k, v in word_categories.items() if v}
 
     if word_categories:
         tabs = st.tabs(list(word_categories.keys()))
 
         for tab, (category, word_list) in zip(tabs, word_categories.items()):
             with tab:
-                cols = st.columns(6)
-                for idx, word in enumerate(word_list):
-                    with cols[idx % 6]:
-                        word_data = next((w for w in words_data if w['bashkir'] == word), None)
-                        english = word_data.get('english', '?') if word_data else '?'
+                st.markdown(f"**{len(word_list)} words available:**")
 
-                        if st.button(f"{word}\n({english})", key=f"word_{category}_{word}"):
-                            st.session_state.builder_sentence.append({
-                                'word': word,
-                                'english': english
-                            })
-                            st.rerun()
+                # Display words in a grid - 5 columns
+                cols_per_row = 5
+                for row_start in range(0, min(len(word_list), 25), cols_per_row):  # Limit to 25 words per category for performance
+                    cols = st.columns(cols_per_row)
+                    for idx, col in enumerate(cols):
+                        word_idx = row_start + idx
+                        if word_idx < len(word_list):
+                            word = word_list[word_idx]
+                            word_data = next((w for w in words_data if w['bashkir'] == word), None)
+                            english = word_data.get('english', '?') if word_data else '?'
+
+                            with col:
+                                # Create a unique key for each word button
+                                btn_key = f"wb_{category[:3]}_{word_idx}_{word[:5]}"
+                                if st.button(f"**{word}**\n_{english}_", key=btn_key, use_container_width=True):
+                                    st.session_state.builder_sentence.append({
+                                        'word': word,
+                                        'english': english
+                                    })
+                                    st.rerun()
+
+                if len(word_list) > 25:
+                    st.caption(f"*Showing 25 of {len(word_list)} words. Use search in Audio Dictionary for more.*")
+    else:
+        st.warning("No words available. Check if words.json is properly loaded.")
 
     st.markdown("---")
 
@@ -1730,53 +1729,147 @@ elif "Sentence Builder" in selected_page:
                         st.session_state.saved_sentences.pop(idx)
                         st.rerun()
 
-# === PAGE: AUDIO DICTIONARY ===
+# === PAGE: AUDIO DICTIONARY (Enhanced with OCM Categories) ===
 elif "Audio Dictionary" in selected_page:
     st.title("🔊 Audio Dictionary")
-    st.markdown("*Listen to Bashkir words with pronunciation guides.*")
+    st.markdown("*Listen to all Bashkir words organized by cultural categories (OCM eHRAF 2021)*")
 
-    # Search
-    search_term = st.text_input("Search words (Bashkir or English):", key="audio_search")
+    # Load OCM mapping
+    ocm_data = load_ocm_mapping()
+    thematic_groups = ocm_data.get('thematic_groups', {})
+    ocm_labels = ocm_data.get('ocm_labels', {})
 
-    # Filter words
+    # Search bar with improved styling
+    st.markdown("### 🔍 Search")
+    search_term = st.text_input("Search words (Bashkir, English, or Russian):",
+                                 key="audio_search",
+                                 placeholder="Type to search all words...")
+
+    # Filter words based on search
     if search_term:
-        filtered_words = [w for w in words_data if search_term.lower() in w['bashkir'].lower() or search_term.lower() in w['english'].lower()]
+        filtered_words = [w for w in words_data if
+                         search_term.lower() in w['bashkir'].lower() or
+                         search_term.lower() in w.get('english', '').lower() or
+                         search_term.lower() in w.get('russian', '').lower()]
+        st.markdown(f"**Found {len(filtered_words)} matching words**")
+
+        # Show search results
+        for word in filtered_words:
+            with st.expander(f"🔊 {word['bashkir']} — {word.get('english', '')}"):
+                col1, col2 = st.columns([2, 1])
+
+                with col1:
+                    ocm_codes = word.get('cultural_context', {}).get('ocm_codes', [])
+                    ocm_names = [ocm_labels.get(code, code) for code in ocm_codes[:3]]
+
+                    st.markdown(f"""
+                    <div class="word-card">
+                        <span class="bashkir-text" style="font-size: 2em;">{word['bashkir']}</span>
+                        <span class="ipa-text" style="font-size: 1.2em;">{word.get('ipa', '')}</span>
+                        <div class="english-text" style="font-size: 1.3em; margin: 10px 0;">{word.get('english', '')}</div>
+                        <span class="russian-text" style="font-size: 1.1em;">🇷🇺 {word.get('russian', '')}</span>
+                        <br><br>
+                        <span style="color: #0066B3; font-size: 0.9em;">📚 OCM: {', '.join(ocm_names) if ocm_names else 'General'}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                with col2:
+                    st.markdown("**🔊 Audio:**")
+                    if st.button("▶️ Normal", key=f"audio_normal_{word['id']}"):
+                        play_audio(word['bashkir'], slow=False)
+                    if st.button("🐢 Slow", key=f"audio_slow_{word['id']}"):
+                        play_audio(word['bashkir'], slow=True)
+
+                    audio_bytes = generate_audio_with_retry(word['bashkir'], slow=True)
+                    if audio_bytes:
+                        st.download_button(
+                            label="⬇️ Download",
+                            data=audio_bytes,
+                            file_name=f"{word['bashkir']}.mp3",
+                            mime="audio/mp3",
+                            key=f"download_{word['id']}"
+                        )
     else:
-        filtered_words = words_data[:20]  # Show first 20 by default
+        # Show all words organized by OCM thematic groups
+        st.markdown("---")
+        st.markdown("### 📚 Browse by Cultural Category (OCM eHRAF 2021)")
+        st.markdown("*Words organized into 2-5 word groups by anthropological classification*")
 
-    st.write(f"Showing {len(filtered_words)} words")
+        # Create tabs for thematic groups
+        group_names = list(thematic_groups.keys())
+        display_names = [thematic_groups[g].get('display_name', g) for g in group_names]
 
-    for word in filtered_words:
-        with st.expander(f"🔊 {word['bashkir']} ({word['english']})"):
-            col1, col2 = st.columns([2, 1])
+        if display_names:
+            tabs = st.tabs(display_names)
 
-            with col1:
-                st.markdown(f"""
-                <div class="word-card">
-                    <span class="bashkir-text">{word['bashkir']}</span>
-                    <span class="ipa-text">{word.get('ipa', '')}</span>
-                    <div class="english-text">{word['english']}</div>
-                    <span class="russian-text">🇷🇺 {word.get('russian', '')}</span>
-                </div>
-                """, unsafe_allow_html=True)
+            for tab, group_key in zip(tabs, group_names):
+                with tab:
+                    group_info = thematic_groups[group_key]
+                    group_words_list = group_info.get('words', [])
+                    ocm_codes = group_info.get('ocm_codes', [])
 
-            with col2:
-                st.markdown("**Audio Controls:**")
-                if st.button("▶️ Normal", key=f"audio_normal_{word['bashkir']}"):
-                    play_audio(word['bashkir'], slow=False)
-                if st.button("🐢 Slow", key=f"audio_slow_{word['bashkir']}"):
-                    play_audio(word['bashkir'], slow=True)
+                    # Get OCM labels for this group
+                    ocm_names = [f"{code}: {ocm_labels.get(code, 'Unknown')}" for code in ocm_codes[:5]]
 
-                # Download option
-                audio_bytes = generate_audio_with_retry(word['bashkir'], slow=True)
-                if audio_bytes:
-                    st.download_button(
-                        label="⬇️ Download",
-                        data=audio_bytes,
-                        file_name=f"{word['bashkir']}.mp3",
-                        mime="audio/mp3",
-                        key=f"download_{word['bashkir']}"
-                    )
+                    st.markdown(f"**OCM Categories:** {', '.join(ocm_names[:3])}...")
+
+                    # Find matching words from words_data
+                    matching_words = []
+                    for word in words_data:
+                        word_ocm = word.get('cultural_context', {}).get('ocm_codes', [])
+                        if any(code in word_ocm for code in ocm_codes):
+                            matching_words.append(word)
+                        elif word['bashkir'] in group_words_list:
+                            matching_words.append(word)
+
+                    # Remove duplicates
+                    seen = set()
+                    unique_words = []
+                    for w in matching_words:
+                        if w['bashkir'] not in seen:
+                            seen.add(w['bashkir'])
+                            unique_words.append(w)
+
+                    if unique_words:
+                        st.markdown(f"**{len(unique_words)} words in this category:**")
+
+                        # Display in groups of 3-4 per row
+                        for i in range(0, len(unique_words), 3):
+                            cols = st.columns(3)
+                            for j, col in enumerate(cols):
+                                if i + j < len(unique_words):
+                                    word = unique_words[i + j]
+                                    with col:
+                                        st.markdown(f"""
+                                        <div class="word-card" style="text-align: center; min-height: 120px;">
+                                            <span class="bashkir-text" style="font-size: 1.6em;">{word['bashkir']}</span>
+                                            <span class="ipa-text">{word.get('ipa', '')}</span>
+                                            <div style="color: #004d00; font-size: 1.1em; margin: 8px 0;">{word.get('english', '')}</div>
+                                            <small style="color: #666;">🇷🇺 {word.get('russian', '')}</small>
+                                        </div>
+                                        """, unsafe_allow_html=True)
+
+                                        bcol1, bcol2 = st.columns(2)
+                                        with bcol1:
+                                            if st.button("🔊", key=f"cat_audio_{group_key}_{word['id']}",
+                                                        help=f"Play {word['bashkir']}"):
+                                                play_audio(word['bashkir'], slow=True)
+                                        with bcol2:
+                                            audio_data = generate_audio_with_retry(word['bashkir'], slow=True)
+                                            if audio_data:
+                                                st.download_button(
+                                                    "⬇️",
+                                                    data=audio_data,
+                                                    file_name=f"{word['bashkir']}.mp3",
+                                                    mime="audio/mp3",
+                                                    key=f"cat_dl_{group_key}_{word['id']}"
+                                                )
+                    else:
+                        st.info("No words found in this category yet.")
+
+        # Show total word count
+        st.markdown("---")
+        st.markdown(f"**📊 Total: {len(words_data)} words in dictionary**")
 
 # === PAGE: REVIEW (Fixed ZeroDivisionError) ===
 elif "Review" in selected_page:
@@ -1976,48 +2069,51 @@ elif "BashkortNet" in selected_page:
                 if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
                     play_audio(word_data['bashkir'], slow=True)
 
-            with col2:
-                # Create tabs for different aspects
-                tab1, tab2, tab3 = st.tabs(["🕸️ Semantic Network", "📚 OCM Codes", "🔗 Etymology"])
+    # Neo4j integration info
+    st.markdown("---")
+    st.markdown("### 🗄️ Neo4j Graph Database Integration")
+    st.info("""
+    **Future Development:** BashkortNet is designed to integrate with Neo4j graph database for advanced semantic queries.
 
-                with tab1:
-                    st.markdown("### Semantic Relations")
+    **Planned Features:**
+    - Cypher query support for complex relationship traversal
+    - Visual graph exploration of word connections
+    - Export semantic network to Neo4j format
+    - Real-time knowledge graph updates
 
-                    bashkortnet = word_data.get('bashkortnet', {})
-                    relations = bashkortnet.get('relations', {})
+    **Current Data Format:** The BashkortNet relationships in this app use JSON-LD compatible structures
+    that can be directly imported into Neo4j using APOC procedures.
+    """)
 
-                    if relations:
-                        for rel_type, targets in relations.items():
-                            if targets:
-                                rel_labels = {
-                                    'SYN': '🔄 Synonyms',
-                                    'ANT': '↔️ Antonyms',
-                                    'ISA': '⬆️ Is a type of',
-                                    'HAS_TYPE': '⬇️ Types',
-                                    'PART_OF': '🧩 Part of',
-                                    'HAS_PART': '🔧 Has parts',
-                                    'CULT_ASSOC': '🏛️ Cultural',
-                                    'MYTH_LINK': '📜 Mythological'
-                                }
+    # Export to Neo4j format button
+    if st.button("📤 Export to Neo4j Format (Cypher)"):
+        # Generate Cypher statements
+        cypher_statements = []
+        cypher_statements.append("// Neo4j Cypher statements for BashkortNet")
+        cypher_statements.append("// Run these in Neo4j Browser or neo4j-admin")
+        cypher_statements.append("")
 
-                                st.markdown(f"**{rel_labels.get(rel_type, rel_type)}:**")
+        for word in words_data[:20]:  # Limit for display
+            bashkir = word['bashkir'].replace("'", "\\'")
+            english = word.get('english', '').replace("'", "\\'")
+            cypher_statements.append(f"CREATE (w:Word {{bashkir: '{bashkir}', english: '{english}', pos: '{word.get('pos', 'noun')}'}})")
 
-                                for target in targets:
-                                    if isinstance(target, dict):
-                                        target_word = target.get('target', target.get('gloss', str(target)))
-                                        gloss = target.get('gloss', '')
-                                        note = target.get('note', '')
-                                        display = f"- {target_word}"
-                                        if gloss:
-                                            display += f" ({gloss})"
-                                        if note:
-                                            display += f" *({note})*"
-                                        st.markdown(display)
-                                    else:
-                                        st.markdown(f"- {target}")
+            # Add relations
+            bashkortnet_data = word.get('bashkortnet', {})
+            relations = bashkortnet_data.get('relations', {})
+            for rel_type, targets in relations.items():
+                for target in targets:
+                    if isinstance(target, dict):
+                        target_word = target.get('target', '').replace("'", "\\'")
                     else:
-                        st.info("No relations defined for this word yet.")
+                        target_word = str(target).replace("'", "\\'")
+                    if target_word:
+                        cypher_statements.append(f"// {bashkir} -{rel_type}-> {target_word}")
 
+        st.code("\n".join(cypher_statements[:30]), language="cypher")
+        st.caption("*Showing first 30 statements. Full export available for download.*")
+
+    st.markdown("---")
 
     # Word search with Bashkir and English
     search_word = st.selectbox(
