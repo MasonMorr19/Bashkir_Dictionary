@@ -3,13 +3,21 @@ Audio Service: Text-to-Speech for Bashkir
 ==========================================
 Provides audio generation for Bashkir vocabulary and sentences.
 Uses gTTS with Russian voice as approximation (until native Bashkir TTS available).
+Includes retry logic with exponential backoff for network resilience.
 """
 
 import hashlib
 import os
+import sys
+import time
 from pathlib import Path
-from typing import Optional, Dict
+from typing import Optional, Dict, List, Callable
 import logging
+
+# Add parent directory to path to import shared utilities
+sys.path.insert(0, str(Path(__file__).parent.parent.parent))
+
+from utils.retry import retry_with_backoff, RetryConfig, retry_gtts
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -51,41 +59,67 @@ class AudioService:
         key = self._get_cache_key(text)
         return self.cache_dir / audio_type / f"{key}.mp3"
     
-    def generate_audio(self, text: str, audio_type: str = "words", 
+    def generate_audio(self, text: str, audio_type: str = "words",
                        slow: bool = False, force: bool = False) -> Optional[str]:
         """
-        Generate audio for text.
-        
+        Generate audio for text with retry logic.
+
         Args:
             text: The text to convert to speech
             audio_type: Type of audio (words, sentences, phrases)
             slow: Whether to generate slow speech
             force: Force regeneration even if cached
-        
+
         Returns:
             Path to the audio file, or None if generation failed
         """
         if not GTTS_AVAILABLE:
             logger.warning("gTTS not available")
             return None
-        
+
         cache_path = self._get_cache_path(text, audio_type)
-        
+
         # Return cached version if available
         if cache_path.exists() and not force:
             return str(cache_path)
-        
-        try:
-            # Use Russian as approximation for Bashkir
-            # Bashkir shares many phonological features with Russian
-            tts = gTTS(text=text, lang='ru', slow=slow)
-            tts.save(str(cache_path))
-            logger.info(f"Generated audio for: {text[:30]}...")
-            return str(cache_path)
-        
-        except Exception as e:
-            logger.error(f"Failed to generate audio: {e}")
-            return None
+
+        # Use retry logic for network call
+        return self._generate_with_retry(text, cache_path, slow)
+
+    def _generate_with_retry(self, text: str, cache_path: Path, slow: bool) -> Optional[str]:
+        """
+        Internal method to generate audio with retry logic.
+
+        Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
+        """
+        config = RetryConfig(
+            max_retries=4,
+            base_delay=2.0,
+            exponential_base=2.0,
+        )
+
+        for attempt in range(config.max_retries + 1):
+            try:
+                # Use Russian as approximation for Bashkir
+                # Bashkir shares many phonological features with Russian
+                tts = gTTS(text=text, lang='ru', slow=slow)
+                tts.save(str(cache_path))
+                logger.info(f"Generated audio for: {text[:30]}...")
+                return str(cache_path)
+
+            except Exception as e:
+                if attempt >= config.max_retries:
+                    logger.error(f"Failed to generate audio after {config.max_retries + 1} attempts: {e}")
+                    return None
+
+                delay = config.base_delay * (config.exponential_base ** attempt)
+                logger.warning(
+                    f"Audio generation attempt {attempt + 1}/{config.max_retries + 1} failed for "
+                    f"'{text[:20]}...': {e}. Retrying in {delay:.1f}s..."
+                )
+                time.sleep(delay)
+
+        return None
     
     def generate_word_audio(self, word: str, slow: bool = True) -> Optional[str]:
         """Generate audio for a single word (slower for learning)."""
@@ -102,11 +136,11 @@ class AudioService:
     def batch_generate(self, texts: list, audio_type: str = "words") -> Dict[str, Optional[str]]:
         """
         Generate audio for multiple texts.
-        
+
         Args:
             texts: List of texts to convert
             audio_type: Type of audio
-        
+
         Returns:
             Dict mapping text to audio file path
         """
@@ -114,6 +148,80 @@ class AudioService:
         for text in texts:
             results[text] = self.generate_audio(text, audio_type)
         return results
+
+    def precache_vocabulary(
+        self,
+        words: List[Dict],
+        audio_type: str = "words",
+        slow: bool = True,
+        progress_callback: Optional[Callable[[int, int], None]] = None,
+        priority_limit: Optional[int] = None,
+    ) -> Dict[str, Optional[str]]:
+        """
+        Precache audio for a vocabulary list.
+
+        Args:
+            words: List of word dictionaries with 'bashkir' key
+            audio_type: Type of audio to generate
+            slow: Whether to use slow speech
+            progress_callback: Optional callback(completed, total) for progress
+            priority_limit: Optional limit to cache only top N words by frequency
+
+        Returns:
+            Dict mapping text to audio file path
+        """
+        # Sort by frequency rank if available
+        sorted_words = sorted(words, key=lambda w: w.get('frequency_rank', 999))
+
+        if priority_limit:
+            sorted_words = sorted_words[:priority_limit]
+
+        results = {}
+        total = len(sorted_words)
+
+        logger.info(f"Starting precache of {total} vocabulary items...")
+
+        for i, word_data in enumerate(sorted_words):
+            text = word_data.get('bashkir', '')
+            if not text:
+                continue
+
+            # Check if already cached
+            cache_path = self._get_cache_path(text, audio_type)
+            if cache_path.exists():
+                results[text] = str(cache_path)
+            else:
+                result = self.generate_audio(text, audio_type, slow=slow)
+                if result:
+                    results[text] = result
+
+            if progress_callback:
+                progress_callback(i + 1, total)
+
+        cached_count = len([r for r in results.values() if r])
+        logger.info(f"Precached {cached_count}/{total} vocabulary items")
+
+        return results
+
+    def get_uncached_words(self, words: List[Dict], audio_type: str = "words") -> List[Dict]:
+        """
+        Get list of words that don't have cached audio.
+
+        Args:
+            words: List of word dictionaries with 'bashkir' key
+            audio_type: Type of audio to check
+
+        Returns:
+            List of words that need audio generation
+        """
+        uncached = []
+        for word_data in words:
+            text = word_data.get('bashkir', '')
+            if text:
+                cache_path = self._get_cache_path(text, audio_type)
+                if not cache_path.exists():
+                    uncached.append(word_data)
+        return uncached
     
     def get_audio_path(self, text: str, audio_type: str = "words") -> Optional[str]:
         """Get the audio file path if it exists."""
