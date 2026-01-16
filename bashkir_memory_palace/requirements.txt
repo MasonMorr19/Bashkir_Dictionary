@@ -1,0 +1,28 @@
+# Bashkir Memory Palace - Requirements
+# =====================================
+
+# Core Framework
+streamlit>=1.28.0
+
+# Text-to-Speech
+gTTS>=2.4.0
+
+# Data Processing
+pandas>=2.0.0
+
+# Audio Processing (optional, for advanced features)
+# pydub>=0.25.1
+
+# NLP (optional, for tokenization features)
+# transformers>=4.30.0
+# torch>=2.0.0
+
+# Database (optional, for production deployment)
+# sqlalchemy>=2.0.0
+# psycopg2-binary>=2.9.0
+
+# Graph Database (optional, for advanced BashkortNet)
+# neo4j>=5.0.0
+
+# Testing
+pytest>=7.0.0

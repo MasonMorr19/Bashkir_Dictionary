@@ -1,0 +1,4783 @@
+[
+  {
+    "id": "word_001",
+    "bashkir": "Башҡортостан",
+    "ipa": "[bɑʃqortostɑn]",
+    "pos": "noun",
+    "english": "Bashkortostan",
+    "russian": "Башкортостан",
+    "frequency_rank": 1,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 BASH your way through the golden gates! The Eagle screams 'BASH-KOR-TOS-TAN!' as the constitution unfurls like wings over the capital!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ил (country)",
+          "республика (republic)"
+        ],
+        "HAS_PART": [
+          "Өфө (Ufa)",
+          "Ямантау",
+          "Ағиҙел"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "иркенлек",
+            "gloss": "freedom",
+            "relation": "symbolic_value"
+          },
+          {
+            "target": "Урал-батыр",
+            "gloss": "epic hero",
+            "relation": "founding_myth"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "Bashkort + stan",
+        "note": "Land of the Bashkirs"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "784"
+      ],
+      "significance": "The republic's name embodies national identity and sovereignty",
+      "sources": [
+        "Constitution of Bashkortostan, Article 1"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Башҡортостан",
+        "genitive": "Башҡортостандың",
+        "dative": "Башҡортостанға",
+        "accusative": "Башҡортостанды",
+        "locative": "Башҡортостанда",
+        "ablative": "Башҡортостандан"
+      }
+    }
+  },
+  {
+    "id": "word_002",
+    "bashkir": "халыҡ",
+    "ipa": "[xɑlɯq]",
+    "pos": "noun",
+    "english": "people/nation",
+    "russian": "народ",
+    "frequency_rank": 15,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ha-LUK!' The people raise their fists at the parliament! Luke Skywalker appears — 'Hello, ХАЛЫҠ!' The crowd roars as one voice!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йәмғиәт (society)"
+        ],
+        "HAS_TYPE": [
+          "башҡорт халҡы (Bashkir people)",
+          "рус халҡы (Russian people)"
+        ],
+        "SYN": [
+          "милләт (nation)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "конституция",
+            "relation": "sovereign_power",
+            "note": "Article 3: People are source of power"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "784"
+      ],
+      "significance": "Constitutional concept - the people as source of sovereignty",
+      "sources": [
+        "Constitution Article 3"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "халыҡ",
+        "genitive": "халыҡтың",
+        "dative": "халыҡҡа",
+        "accusative": "халыҡты",
+        "locative": "халыҡта",
+        "ablative": "халыҡтан"
+      }
+    }
+  },
+  {
+    "id": "word_003",
+    "bashkir": "иркенлек",
+    "ipa": "[irkɛnlɛk]",
+    "pos": "noun",
+    "english": "freedom",
+    "russian": "свобода",
+    "frequency_rank": 89,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ear-KEN-lek!' Ken puts his ear to the constitution and HEARS freedom singing! The Eagle's wings break chains — ИРКЕНЛЕК echoes through the halls!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "хоҡуҡ (right)",
+          "ҡиммәт (value)"
+        ],
+        "ANT": [
+          "яһирлек (captivity)",
+          "буйһоноу (submission)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Салауат Юлаев",
+            "relation": "fought_for"
+          },
+          {
+            "target": "Башҡортостан",
+            "relation": "core_value"
+          }
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "Урал-батыр",
+            "relation": "embodies",
+            "note": "Hero who brought freedom to humanity"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "784",
+        "669"
+      ],
+      "significance": "Central value in Bashkir identity, connected to historical resistance",
+      "sources": [
+        "Gabbasov, R. (2021). Constitutional Rights Analysis"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "иркенлек",
+        "genitive": "иркенлектең",
+        "dative": "иркенлеккә",
+        "accusative": "иркенлекте",
+        "locative": "иркенлектә",
+        "ablative": "иркенлектән"
+      }
+    }
+  },
+  {
+    "id": "word_004",
+    "bashkir": "тел",
+    "ipa": "[tɛl]",
+    "pos": "noun",
+    "english": "language/tongue",
+    "russian": "язык",
+    "frequency_rank": 42,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'TEL-l it!' Your tongue becomes a telephone — every word you speak travels through time! The Eagle inscribes ТЕЛ on the constitution in golden ink!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "аралашыу сараһы (means of communication)"
+        ],
+        "HAS_TYPE": [
+          "башҡорт теле",
+          "рус теле",
+          "инглиз теле"
+        ],
+        "PART_OF": [
+          "мәҙәниәт (culture)",
+          "милли үҙенсәлек (national identity)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "киләсәк",
+            "gloss": "future",
+            "relation": "essence_of",
+            "note": "Language is the essence of the future"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "670",
+        "784"
+      ],
+      "significance": "Language rights are central to Bashkir sovereignty movement",
+      "sources": [
+        "Constitution Article 1"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "тел",
+        "genitive": "телдең",
+        "dative": "телгә",
+        "accusative": "телде",
+        "locative": "телдә",
+        "ablative": "телдән"
+      }
+    }
+  },
+  {
+    "id": "word_005",
+    "bashkir": "конституция",
+    "ipa": "[konstitutsiɐ]",
+    "pos": "noun",
+    "english": "constitution",
+    "russian": "конституция",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Con-STI-TU-tion!' Stand Tall In Unity! The Eagle holds the sacred scroll — every article glows with golden light! КОНСТИТУЦИЯ — the people's covenant!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "документ (document)",
+          "закон (law)"
+        ],
+        "HAS_PART": [
+          "статья (article)",
+          "хоҡуҡ (right)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "халыҡ",
+            "relation": "grants_power_to"
+          },
+          {
+            "target": "иркенлек",
+            "relation": "guarantees"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "669",
+        "648"
+      ],
+      "significance": "Foundation of legal sovereignty for Bashkortostan",
+      "sources": [
+        "Constitution of the Republic of Bashkortostan"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "конституция",
+        "genitive": "конституциянең",
+        "dative": "конституциягә",
+        "accusative": "конституцияны",
+        "locative": "конституцияла",
+        "ablative": "конституциялан"
+      }
+    }
+  },
+  {
+    "id": "word_006",
+    "bashkir": "ҡояш",
+    "ipa": "[qojɑʃ]",
+    "pos": "noun",
+    "english": "sun",
+    "russian": "солнце",
+    "frequency_rank": 178,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Ko-YASH!' The Crow caws as dawn breaks over the cave! The sun says 'YES!' — ancient paintings glow orange! ҠОЯШ warms the sacred stones!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йондоҙ (star)",
+          "яҡтылыҡ сығанағы (light source)"
+        ],
+        "ANT": [
+          "ай (moon)",
+          "төн (night)"
+        ],
+        "HAS_PART": [
+          "нур (ray)",
+          "эҫе (heat)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Шүлгәнташ",
+            "relation": "depicted_in",
+            "note": "Sun symbols in cave paintings"
+          }
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "Урал-батыр",
+            "relation": "cosmic_symbol"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "821",
+        "773"
+      ],
+      "significance": "Solar symbols appear in ancient Shulgan-Tash cave paintings",
+      "sources": [
+        "Rudenko, S.I. (1955). Bashkiry"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡояш",
+        "genitive": "ҡояштың",
+        "dative": "ҡояшҡа",
+        "accusative": "ҡояшты",
+        "locative": "ҡояшта",
+        "ablative": "ҡояштан"
+      }
+    }
+  },
+  {
+    "id": "word_007",
+    "bashkir": "ай",
+    "ipa": "[ɑj]",
+    "pos": "noun",
+    "english": "moon/month",
+    "russian": "луна/месяц",
+    "frequency_rank": 67,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'EYE in the sky!' The Crow's eye becomes the moon! АЙ watches over the cave at night — silver light reveals hidden paintings on ancient walls!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "күк йәшмеге (celestial body)"
+        ],
+        "ANT": [
+          "ҡояш (sun)",
+          "көн (day)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ваҡыт (time)",
+            "relation": "measures"
+          },
+          {
+            "target": "тсын (calendar)",
+            "relation": "basis_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805",
+        "821"
+      ],
+      "significance": "Lunar calendar traditionally used; moon in folklore",
+      "sources": [
+        "Bashkir folk traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ай",
+        "genitive": "айҙың",
+        "dative": "айға",
+        "accusative": "айҙы",
+        "locative": "айҙа",
+        "ablative": "айҙан"
+      }
+    }
+  },
+  {
+    "id": "word_008",
+    "bashkir": "таш",
+    "ipa": "[tɑʃ]",
+    "pos": "noun",
+    "english": "stone/rock",
+    "russian": "камень",
+    "frequency_rank": 156,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'TASH!' Hit the stone and ancient art appears! The Crow lands on ТАШ — each rock holds 14,000 years of memory! Touch it and feel time!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "материал (material)",
+          "табиғәт (nature)"
+        ],
+        "HAS_TYPE": [
+          "мәрмәр (marble)",
+          "гранит (granite)"
+        ],
+        "PART_OF": [
+          "тау (mountain)",
+          "һай (cliff)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Шүлгәнташ",
+            "relation": "name_component",
+            "note": "Shulgan-TASH means Shulgan's Stone"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "131",
+        "821"
+      ],
+      "significance": "Sacred stones, cave paintings, geological significance",
+      "sources": [
+        "Archaeological surveys of Kapova Cave"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "таш",
+        "genitive": "таштың",
+        "dative": "ташҡа",
+        "accusative": "ташты",
+        "locative": "ташта",
+        "ablative": "таштан"
+      }
+    }
+  },
+  {
+    "id": "word_009",
+    "bashkir": "һыу",
+    "ipa": "[hɯw]",
+    "pos": "noun",
+    "english": "water",
+    "russian": "вода",
+    "frequency_rank": 34,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'HOO!' Water echoes in the cave! The Crow drinks from an underground river — ҺЫУ flows through Shulgan-Tash carrying ancient secrets!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "матдә (substance)",
+          "сығанаҡ (resource)"
+        ],
+        "HAS_TYPE": [
+          "йылға һыуы (river water)",
+          "күл һыуы (lake water)",
+          "ямғыр һыуы (rain water)"
+        ],
+        "PART_OF": [
+          "тереклек (life)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Ағиҙел",
+            "relation": "major_river"
+          },
+          {
+            "target": "арыулыҡ (purity)",
+            "relation": "symbolic_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "133",
+        "312"
+      ],
+      "significance": "Water sources sacred; rivers central to identity",
+      "sources": [
+        "Ecological surveys of Bashkortostan"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "һыу",
+        "genitive": "һыуҙың",
+        "dative": "һыуға",
+        "accusative": "һыуҙы",
+        "locative": "һыуҙа",
+        "ablative": "һыуҙан"
+      }
+    }
+  },
+  {
+    "id": "word_010",
+    "bashkir": "йылға",
+    "ipa": "[jɯlɣɑ]",
+    "pos": "noun",
+    "english": "river",
+    "russian": "река",
+    "frequency_rank": 123,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YIL-ga!' The year flows like a river! The Crow flies along the ЙЫЛҒА — Agidel's white waters carry you through time and memory!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "һыу органы (water body)"
+        ],
+        "HAS_TYPE": [
+          "Ағиҙел",
+          "Ҡарағиҙел",
+          "Дим",
+          "Өфө"
+        ],
+        "HAS_PART": [
+          "тамсы (drop)",
+          "шаршыу (waterfall)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Ағиҙел",
+            "relation": "sacred_example",
+            "note": "White River - most sacred"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "133",
+        "784"
+      ],
+      "significance": "Rivers are central to Bashkir identity and ecology movements",
+      "sources": [
+        "Baklykov (2023). Agidel River Documentary"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йылға",
+        "genitive": "йылғаның",
+        "dative": "йылғаға",
+        "accusative": "йылғаны",
+        "locative": "йылғала",
+        "ablative": "йылғалан"
+      }
+    }
+  },
+  {
+    "id": "word_011",
+    "bashkir": "тау",
+    "ipa": "[tɑw]",
+    "pos": "noun",
+    "english": "mountain",
+    "russian": "гора",
+    "frequency_rank": 127,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'TOW-er of strength!' The Anqa rises from Yamantau's peak! ТАУ stands eternal — from the mountain's heart, fire and mystery emerge!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ер формаһы (landform)",
+          "табиғәт (nature)"
+        ],
+        "HAS_TYPE": [
+          "Ямантау",
+          "Иремәл",
+          "Ҡоштау"
+        ],
+        "HAS_PART": [
+          "таш (rock)",
+          "урман (forest)",
+          "шишмә (spring)"
+        ],
+        "ANT": [
+          "үҙән (valley)",
+          "яҙыҡлыҡ (plain)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡурҡыныс (danger)",
+            "relation": "associated_with"
+          },
+          {
+            "target": "ҡеүәт (strength)",
+            "relation": "symbolic_of"
+          }
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "Урал-батыр",
+            "relation": "burial_place",
+            "note": "Ural mountains named after the hero"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*taɣ",
+        "proto_language": "Proto-Turkic"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "131",
+        "778"
+      ],
+      "significance": "Mountains sacred in Bashkir cosmology; Urals as spiritual backbone",
+      "sources": [
+        "Rudenko (1955)",
+        "Kuzeev (1974)"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "тау",
+        "genitive": "тауҙың",
+        "dative": "тауға",
+        "accusative": "тауҙы",
+        "locative": "тауҙа",
+        "ablative": "тауҙан"
+      }
+    }
+  },
+  {
+    "id": "word_012",
+    "bashkir": "ел",
+    "ipa": "[jɛl]",
+    "pos": "noun",
+    "english": "wind",
+    "russian": "ветер",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'YELL!' The Anqa screams into the wind! ЕЛ howls around Yamantau's peak — feel it push against you, carrying whispers of ancient spirits!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "һауа хәрәкәте (air movement)",
+          "табиғәт көсө (natural force)"
+        ],
+        "HAS_TYPE": [
+          "дауыл (storm wind)",
+          "йылы ел (warm wind)",
+          "һалҡын ел (cold wind)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "тау",
+            "relation": "found_at"
+          },
+          {
+            "target": "ҡурай",
+            "relation": "played_by",
+            "note": "Wind plays through the kuray"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "132",
+        "533"
+      ],
+      "significance": "Wind as voice of the mountains; connected to kuray music",
+      "sources": [
+        "Bashkir folk traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ел",
+        "genitive": "елдең",
+        "dative": "елгә",
+        "accusative": "елде",
+        "locative": "елдә",
+        "ablative": "елдән"
+      }
+    }
+  },
+  {
+    "id": "word_013",
+    "bashkir": "урман",
+    "ipa": "[urmɑn]",
+    "pos": "noun",
+    "english": "forest",
+    "russian": "лес",
+    "frequency_rank": 145,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'OOR-man!' The Anqa descends into the forest! УРМАН surrounds Yamantau — every tree holds a secret, every shadow hides potential!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "табиғәт (nature)",
+          "экосистема (ecosystem)"
+        ],
+        "HAS_PART": [
+          "ағас (tree)",
+          "үлән (grass)",
+          "кейек (wild animal)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "бал (honey)",
+            "relation": "source_of"
+          },
+          {
+            "target": "борт (bee tree)",
+            "relation": "contains"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "137",
+        "231"
+      ],
+      "significance": "Forests central to beekeeping and traditional life",
+      "sources": [
+        "UNESCO Burzyan Beekeeping Recognition"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "урман",
+        "genitive": "урмандың",
+        "dative": "урманға",
+        "accusative": "урманды",
+        "locative": "урманда",
+        "ablative": "урманан"
+      }
+    }
+  },
+  {
+    "id": "word_014",
+    "bashkir": "ҡурҡыныс",
+    "ipa": "[qurqɯnɯs]",
+    "pos": "noun",
+    "english": "danger",
+    "russian": "опасность",
+    "frequency_rank": 456,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'KURK-y-nis!' Your knees shake with fear! The Anqa guards ҠУРҠЫНЫС — Yamantau means 'Bad Mountain' — danger and transformation await!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "хәл (state)",
+          "һиҙем (feeling)"
+        ],
+        "ANT": [
+          "иминлек (safety)",
+          "тынысылыҡ (peace)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Ямантау",
+            "relation": "name_meaning",
+            "note": "Yaman = bad/dangerous"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "824",
+        "778"
+      ],
+      "significance": "Yamantau's name reflects respect for mountain's power",
+      "sources": [
+        "Local geographic traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡурҡыныс",
+        "genitive": "ҡурҡыныстың",
+        "dative": "ҡурҡынысҡа",
+        "accusative": "ҡурҡынысты",
+        "locative": "ҡурҡыныста",
+        "ablative": "ҡурҡыныстан"
+      }
+    }
+  },
+  {
+    "id": "word_015",
+    "bashkir": "күл",
+    "ipa": "[kyl]",
+    "pos": "noun",
+    "english": "lake",
+    "russian": "озеро",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'COOL reflection!' The Anqa sees itself in the КҮЛ — 2700 lakes mirror the sky in Bashkortostan, each holding a piece of heaven!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "һыу органы (water body)"
+        ],
+        "HAS_TYPE": [
+          "Асылыкүл",
+          "Яугүл",
+          "Кандрыкүл"
+        ],
+        "PART_OF": [
+          "табиғәт (nature)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "133"
+      ],
+      "significance": "Bashkortostan has 2700 lakes; ecological importance",
+      "sources": [
+        "Geographic surveys"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "күл",
+        "genitive": "күлдең",
+        "dative": "күлгә",
+        "accusative": "күлде",
+        "locative": "күлдә",
+        "ablative": "күлдән"
+      }
+    }
+  },
+  {
+    "id": "word_016",
+    "bashkir": "эш",
+    "ipa": "[ɛʃ]",
+    "pos": "noun",
+    "english": "work/job",
+    "russian": "работа",
+    "frequency_rank": 78,
+    "memory_palace": {
+      "locus": "Beloretsk",
+      "bird": "Ringdove",
+      "station": 4,
+      "mnemonic": "🕊️ 'ESH!' The forge echoes with work! The Ringdove coos over the anvil — ЭШ is sacred here, every hammer strike builds the future!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "эшмәкәрлек (activity)"
+        ],
+        "HAS_TYPE": [
+          "завод эше (factory work)",
+          "ауыл эше (farm work)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "оҫта (craftsman)",
+            "relation": "done_by"
+          },
+          {
+            "target": "Белорет",
+            "relation": "industrial_center"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "462",
+        "464"
+      ],
+      "significance": "Beloretsk's industrial heritage; craft traditions",
+      "sources": [
+        "Industrial history of Bashkortostan"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "эш",
+        "genitive": "эштең",
+        "dative": "эшкә",
+        "accusative": "эште",
+        "locative": "эштә",
+        "ablative": "эштән"
+      }
+    }
+  },
+  {
+    "id": "word_017",
+    "bashkir": "болат",
+    "ipa": "[bolɑt]",
+    "pos": "noun",
+    "english": "steel",
+    "russian": "сталь",
+    "frequency_rank": 567,
+    "memory_palace": {
+      "locus": "Beloretsk",
+      "bird": "Ringdove",
+      "station": 4,
+      "mnemonic": "🕊️ 'BOLD at the furnace!' БОЛАТ glows red-hot! The Ringdove watches the transformation — from ore to steel, from potential to strength!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "металл (metal)",
+          "материал (material)"
+        ],
+        "MADE_FROM": [
+          "тимер (iron)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Белорет",
+            "relation": "produced_at"
+          },
+          {
+            "target": "завод",
+            "relation": "made_in"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "325",
+        "464"
+      ],
+      "significance": "Beloretsk Metallurgical Plant - historic industrial site",
+      "sources": [
+        "Industrial heritage records"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "болат",
+        "genitive": "болаттың",
+        "dative": "болатҡа",
+        "accusative": "болатты",
+        "locative": "болатта",
+        "ablative": "болаттан"
+      }
+    }
+  },
+  {
+    "id": "word_018",
+    "bashkir": "оҫта",
+    "ipa": "[ostɑ]",
+    "pos": "noun",
+    "english": "craftsman/master",
+    "russian": "мастер",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Beloretsk",
+      "bird": "Ringdove",
+      "station": 4,
+      "mnemonic": "🕊️ 'OSS-ta — the BOSS of craft!' The ОҪТА shapes metal with ancient skill! The Ringdove nests in his workshop — mastery passed through generations!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "кеше (person)",
+          "профессия (profession)"
+        ],
+        "HAS_TYPE": [
+          "тимерсе (blacksmith)",
+          "балтасы (axe-maker)"
+        ],
+        "DOES": [
+          "эш (work)",
+          "оҫталыҡ (craftsmanship)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "462",
+        "464"
+      ],
+      "significance": "Traditional crafts preserve Bashkir material culture",
+      "sources": [
+        "Ethnographic studies"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "оҫта",
+        "genitive": "оҫтаның",
+        "dative": "оҫтаға",
+        "accusative": "оҫтаны",
+        "locative": "оҫтала",
+        "ablative": "оҫталан"
+      }
+    }
+  },
+  {
+    "id": "word_019",
+    "bashkir": "завод",
+    "ipa": "[zɑvod]",
+    "pos": "noun",
+    "english": "factory/plant",
+    "russian": "завод",
+    "frequency_rank": 289,
+    "memory_palace": {
+      "locus": "Beloretsk",
+      "bird": "Ringdove",
+      "station": 4,
+      "mnemonic": "🕊️ 'Za-VOD!' Water powers the ЗАВОД! The Ringdove perches on the smokestack — industry and nature in tense balance at Beloretsk!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "предприятие (enterprise)",
+          "бина (building)"
+        ],
+        "HAS_TYPE": [
+          "металлургия заводы",
+          "машина заводы"
+        ],
+        "LOCATED_AT": [
+          "Белорет",
+          "Өфө"
+        ],
+        "EMPLOYS": [
+          "эшсе (worker)",
+          "оҫта (craftsman)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "464"
+      ],
+      "significance": "Industrial development shaped modern Bashkortostan",
+      "sources": [
+        "Industrial history"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "завод",
+        "genitive": "заводтың",
+        "dative": "заводҡа",
+        "accusative": "заводты",
+        "locative": "заводта",
+        "ablative": "заводтан"
+      }
+    }
+  },
+  {
+    "id": "word_020",
+    "bashkir": "бал",
+    "ipa": "[bɑl]",
+    "pos": "noun",
+    "english": "honey",
+    "russian": "мёд",
+    "frequency_rank": 156,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'BAL!' Golden sweetness drips from the Ringdove's beak! БАЛ is liquid gold — Burzyan honey, UNESCO treasure, ancestor's gift!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "аҙыҡ (food)",
+          "татлы (sweet thing)"
+        ],
+        "MADE_BY": [
+          "бал ҡорто (bee)",
+          "умартасы (beekeeper)"
+        ],
+        "HAS_TYPE": [
+          "Бурзян балы",
+          "сәскә балы (flower honey)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Бурзян",
+            "relation": "famous_from"
+          },
+          {
+            "target": "умартасылыҡ",
+            "gloss": "beekeeping",
+            "relation": "production"
+          },
+          {
+            "target": "байлыҡ",
+            "gloss": "wealth",
+            "relation": "symbol_of"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*bal",
+        "proto_language": "Proto-Turkic"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "222",
+        "225",
+        "231"
+      ],
+      "significance": "UNESCO-recognized Burzyan wild beekeeping tradition",
+      "sensitivity": {
+        "has_sensitive_context": true,
+        "note": "Beekeeping rights connected to land sovereignty movements"
+      },
+      "sources": [
+        "UNESCO Recognition 2020",
+        "Baklykov documentaries"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "бал",
+        "genitive": "балдың",
+        "dative": "балға",
+        "accusative": "балды",
+        "locative": "балда",
+        "ablative": "балдан"
+      }
+    }
+  },
+  {
+    "id": "word_021",
+    "bashkir": "ата",
+    "ipa": "[ɑtɑ]",
+    "pos": "noun",
+    "english": "father",
+    "russian": "отец",
+    "frequency_rank": 45,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'Ah-TAH!' Father calls you home! АТА stands at the door of the village house, the Ringdove on his shoulder — wisdom in his eyes!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ата-әсә (parent)",
+          "кеше (person)"
+        ],
+        "ANT": [
+          "әсә (mother)"
+        ],
+        "HAS_TYPE": [
+          "ҡарт ата (grandfather)"
+        ],
+        "PART_OF": [
+          "ғаилә (family)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "өй",
+            "relation": "head_of"
+          },
+          {
+            "target": "нәҫел",
+            "gloss": "lineage",
+            "relation": "transmits"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "594",
+        "593"
+      ],
+      "significance": "Patrilineal traditions; father as head of household",
+      "sources": [
+        "Bashkir kinship studies"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ата",
+        "genitive": "атаның",
+        "dative": "атаға",
+        "accusative": "атаны",
+        "locative": "атала",
+        "ablative": "аталан"
+      }
+    }
+  },
+  {
+    "id": "word_022",
+    "bashkir": "әсә",
+    "ipa": "[æsæ]",
+    "pos": "noun",
+    "english": "mother",
+    "russian": "мать",
+    "frequency_rank": 56,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'Uh-SUH!' Mother soothes you! ӘСӘ holds you close — the Ringdove coos a lullaby, warmth fills the village home!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ата-әсә (parent)",
+          "кеше (person)"
+        ],
+        "ANT": [
+          "ата (father)"
+        ],
+        "HAS_TYPE": [
+          "ҡарт әсә (grandmother)"
+        ],
+        "PART_OF": [
+          "ғаилә (family)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "өй",
+            "relation": "heart_of"
+          },
+          {
+            "target": "тәрбиә",
+            "gloss": "upbringing",
+            "relation": "provides"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "594",
+        "593"
+      ],
+      "significance": "Mother as keeper of home and traditions",
+      "sources": [
+        "Latypova, L. - Oral histories"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "әсә",
+        "genitive": "әсәнең",
+        "dative": "әсәгә",
+        "accusative": "әсәне",
+        "locative": "әсәлә",
+        "ablative": "әсәлән"
+      }
+    }
+  },
+  {
+    "id": "word_023",
+    "bashkir": "өй",
+    "ipa": "[øj]",
+    "pos": "noun",
+    "english": "house/home",
+    "russian": "дом",
+    "frequency_rank": 23,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'OY! What a cozy house!' The Ringdove nests under the eaves of the ӨЙ — smoke rises from the chimney, family gathers within!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "бина (building)",
+          "яшәү урыны (dwelling)"
+        ],
+        "HAS_TYPE": [
+          "тирмә (yurt)",
+          "йорт (homestead)"
+        ],
+        "HAS_PART": [
+          "түр (corner of honor)",
+          "ишек (door)",
+          "тәҙрә (window)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ғаилә",
+            "relation": "contains"
+          },
+          {
+            "target": "ҡунаҡлыҡ",
+            "gloss": "hospitality",
+            "relation": "setting_for"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "342",
+        "341"
+      ],
+      "significance": "Home as center of family life and hospitality",
+      "sources": [
+        "Bashkir domestic traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "өй",
+        "genitive": "өйҙөң",
+        "dative": "өйгә",
+        "accusative": "өйҙө",
+        "locative": "өйҙә",
+        "ablative": "өйҙән"
+      }
+    }
+  },
+  {
+    "id": "word_024",
+    "bashkir": "ҡурай",
+    "ipa": "[qurɑj]",
+    "pos": "noun",
+    "english": "kuray (traditional flute)",
+    "russian": "курай",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ The ҠУРАЙ sings! The Ringdove dances to the hollow reed's melody — wind becomes music, breath becomes soul, village becomes one!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "музыка ҡоралы (musical instrument)"
+        ],
+        "MADE_FROM": [
+          "ҡурай үләне (kuray grass)"
+        ],
+        "PLAYED_BY": [
+          "ҡурайсы (kuray player)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ел (wind)",
+            "relation": "channeled_through"
+          },
+          {
+            "target": "сабантуй",
+            "relation": "played_at"
+          },
+          {
+            "target": "рух",
+            "gloss": "spirit",
+            "relation": "expresses"
+          }
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "Урал-батыр",
+            "relation": "associated_with"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "533",
+        "536"
+      ],
+      "significance": "National instrument; symbol on Bashkortostan's coat of arms",
+      "sources": [
+        "Cultural heritage records"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡурай",
+        "genitive": "ҡурайҙың",
+        "dative": "ҡурайға",
+        "accusative": "ҡурайҙы",
+        "locative": "ҡурайҙа",
+        "ablative": "ҡурайҙан"
+      }
+    }
+  },
+  {
+    "id": "word_025",
+    "bashkir": "ат",
+    "ipa": "[ɑt]",
+    "pos": "noun",
+    "english": "horse",
+    "russian": "лошадь",
+    "frequency_rank": 89,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ The АТ gallops through the village! The Ringdove rides on its mane — horse and rider as one, freedom in every hoofbeat!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йәнлек (animal)",
+          "йорт хайуаны (domestic animal)"
+        ],
+        "HAS_TYPE": [
+          "Башҡорт аты (Bashkir horse)",
+          "Аҡбуҙат (mythical horse)"
+        ],
+        "HAS_PART": [
+          "ял (mane)",
+          "тояҡ (hoof)",
+          "ҡойроҡ (tail)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "сабантуй",
+            "relation": "central_to",
+            "note": "Horse racing at festival"
+          },
+          {
+            "target": "байлыҡ",
+            "gloss": "wealth",
+            "relation": "symbol_of"
+          },
+          {
+            "target": "күсмәнселек",
+            "gloss": "nomadism",
+            "relation": "enabled"
+          }
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "Аҡбуҙат",
+            "relation": "mythical_exemplar",
+            "note": "Winged horse of Ural-Batyr"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*at",
+        "proto_language": "Proto-Turkic"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "231",
+        "541"
+      ],
+      "significance": "Horse central to traditional nomadic life and festivals",
+      "sources": [
+        "Rudenko (1955)",
+        "Kuzeev (1974)"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ат",
+        "genitive": "аттың",
+        "dative": "атҡа",
+        "accusative": "атты",
+        "locative": "атта",
+        "ablative": "аттан"
+      }
+    }
+  },
+  {
+    "id": "word_026",
+    "bashkir": "Урал-батыр",
+    "ipa": "[urɑl bɑtɯr]",
+    "pos": "noun",
+    "english": "Ural-Batyr (epic hero)",
+    "russian": "Урал-Батыр",
+    "frequency_rank": 500,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 УРАЛ-БАТЫР rises! The Eagle carries the hero's spirit — he who defeated Death, whose bones became the mountains, whose blood became rivers!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "батыр (hero)",
+          "эпик персонаж (epic character)"
+        ],
+        "RIDES": [
+          "Аҡбуҙат (winged horse)"
+        ],
+        "DEFEATED": [
+          "Үлем (Death)",
+          "Шүлгән (Shulgan)"
+        ],
+        "BECAME": [
+          "Урал тауҙары (Ural Mountains)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "иркенлек",
+            "relation": "embodies"
+          },
+          {
+            "target": "тау",
+            "relation": "transformed_into"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "778"
+      ],
+      "significance": "Central epic of Bashkir people; founding mythology",
+      "sources": [
+        "Epic of Ural-Batyr"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Урал-батыр",
+        "genitive": "Урал-батырҙың",
+        "dative": "Урал-батырға",
+        "accusative": "Урал-батырҙы",
+        "locative": "Урал-батырҙа",
+        "ablative": "Урал-батырҙан"
+      }
+    }
+  },
+  {
+    "id": "word_027",
+    "bashkir": "Ағиҙел",
+    "ipa": "[ɑʁiðɛl]",
+    "pos": "noun",
+    "english": "Agidel (White River)",
+    "russian": "Агидель",
+    "frequency_rank": 400,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'AGHI-del!' The Crow flies along the White River! АҒИҘЕЛ flows from Ural-Batyr's tears — sacred waters that remember everything!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йылға (river)"
+        ],
+        "FLOWS_THROUGH": [
+          "Башҡортостан",
+          "Шүлгәнташ"
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "Урал-батыр",
+            "relation": "created_from",
+            "note": "River from hero's tears"
+          }
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "арыулыҡ",
+            "gloss": "purity",
+            "relation": "symbol_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "133",
+        "784"
+      ],
+      "significance": "Most sacred river; ecological protest site",
+      "sensitivity": {
+        "has_sensitive_context": true,
+        "note": "Subject of environmental activism"
+      },
+      "sources": [
+        "Baklykov (2023). Agidel Expedition"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Ағиҙел",
+        "genitive": "Ағиҙелдең",
+        "dative": "Ағиҙелгә",
+        "accusative": "Ағиҙелде",
+        "locative": "Ағиҙелдә",
+        "ablative": "Ағиҙелдән"
+      }
+    }
+  },
+  {
+    "id": "word_028",
+    "bashkir": "сабантуй",
+    "ipa": "[sɑbɑntuj]",
+    "pos": "noun",
+    "english": "sabantuy (summer festival)",
+    "russian": "сабантуй",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ САБАНТУЙ begins! The Ringdove joins the celebration — horses race, kuray plays, wrestlers compete, the village becomes one joyful heart!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "бәйрәм (holiday)",
+          "йола (tradition)"
+        ],
+        "HAS_PART": [
+          "ат сабышы (horse racing)",
+          "көрәш (wrestling)",
+          "ҡурай уйнау (kuray playing)"
+        ],
+        "CELEBRATED_AT": [
+          "ауыл (village)",
+          "ҡала (city)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ат",
+            "relation": "features"
+          },
+          {
+            "target": "ҡурай",
+            "relation": "features"
+          },
+          {
+            "target": "бал",
+            "relation": "served_at"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "527",
+        "541"
+      ],
+      "significance": "Major national festival; celebrates end of spring fieldwork",
+      "sources": [
+        "Bashkir cultural calendar"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "сабантуй",
+        "genitive": "сабантуйҙың",
+        "dative": "сабантуйға",
+        "accusative": "сабантуйҙы",
+        "locative": "сабантуйҙа",
+        "ablative": "сабантуйҙан"
+      }
+    }
+  },
+  {
+    "id": "word_029",
+    "bashkir": "мин",
+    "ipa": "[min]",
+    "pos": "pronoun",
+    "english": "I",
+    "russian": "я",
+    "frequency_rank": 1,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'MIN!' I am here! The Eagle looks at its reflection — МИН is the self that voyages through the palace, the one who learns!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "алмаш (pronoun)"
+        ],
+        "CONJUGATES_WITH": [
+          "1st person singular verbs"
+        ]
+      }
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "мин",
+        "genitive": "минең",
+        "dative": "миңә",
+        "accusative": "мине",
+        "locative": "миндә",
+        "ablative": "минән"
+      }
+    }
+  },
+  {
+    "id": "word_030",
+    "bashkir": "һин",
+    "ipa": "[hin]",
+    "pos": "pronoun",
+    "english": "you (singular informal)",
+    "russian": "ты",
+    "frequency_rank": 3,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'HIN!' You are welcomed! The Ringdove coos to ҺИН — the familiar, the friend, the one who shares honey at the hearth!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "алмаш (pronoun)"
+        ],
+        "FORMAL_FORM": [
+          "һеҙ (you formal)"
+        ]
+      }
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "һин",
+        "genitive": "һинең",
+        "dative": "һиңә",
+        "accusative": "һине",
+        "locative": "һиндә",
+        "ablative": "һинән"
+      }
+    }
+  },
+  {
+    "id": "word_031",
+    "bashkir": "ул",
+    "ipa": "[ul]",
+    "pos": "pronoun",
+    "english": "he/she/it",
+    "russian": "он/она/оно",
+    "frequency_rank": 2,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'OOL!' The Crow points with its wing — УЛ, that one, the ancient painter whose hand still marks the cave walls!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "алмаш (pronoun)"
+        ]
+      }
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ул",
+        "genitive": "уның",
+        "dative": "уға",
+        "accusative": "уны",
+        "locative": "унда",
+        "ablative": "унан"
+      }
+    }
+  },
+  {
+    "id": "word_032",
+    "bashkir": "яратам",
+    "ipa": "[jɑrɑtɑm]",
+    "pos": "verb",
+    "english": "I love",
+    "russian": "я люблю",
+    "frequency_rank": 156,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'YARA-tam!' My heart opens! The Ringdove sings of love — ЯРАТАМ, I love this land, this language, this journey!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ғәмәл (verb)",
+          "хис (emotion)"
+        ],
+        "ROOT": [
+          "ярат- (to love)"
+        ],
+        "ANT": [
+          "йәмәтләмәй (I hate)"
+        ]
+      }
+    },
+    "grammar": {
+      "conjugation": {
+        "infinitive": "яратырға",
+        "1sg": "яратам",
+        "2sg": "яратаһың",
+        "3sg": "ярата",
+        "1pl": "яратабыҙ",
+        "2pl": "яратаһығыҙ",
+        "3pl": "яраталар"
+      }
+    }
+  },
+  {
+    "id": "word_033",
+    "bashkir": "барам",
+    "ipa": "[bɑrɑm]",
+    "pos": "verb",
+    "english": "I go",
+    "russian": "я иду",
+    "frequency_rank": 67,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'BA-ram!' I go toward the mountain! The Anqa leads the way — БАРАМ, each step a voyage, each path a discovery!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ғәмәл (verb)",
+          "хәрәкәт (movement)"
+        ],
+        "ROOT": [
+          "бар- (to go)"
+        ],
+        "ANT": [
+          "кайтам (I return)"
+        ]
+      }
+    },
+    "grammar": {
+      "conjugation": {
+        "infinitive": "барырға",
+        "1sg": "барам",
+        "2sg": "бараһың",
+        "3sg": "бара",
+        "1pl": "барабыҙ",
+        "2pl": "бараһығыҙ",
+        "3pl": "баралар"
+      }
+    }
+  },
+  {
+    "id": "word_034",
+    "bashkir": "килә",
+    "ipa": "[kilæ]",
+    "pos": "verb",
+    "english": "comes/is coming",
+    "russian": "приходит",
+    "frequency_rank": 78,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'KEE-la!' Someone comes! The Ringdove announces the guest — КИЛӘ, the visitor arrives, hospitality awakens!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ғәмәл (verb)",
+          "хәрәкәт (movement)"
+        ],
+        "ROOT": [
+          "кил- (to come)"
+        ],
+        "ANT": [
+          "китә (leaves)"
+        ]
+      }
+    },
+    "grammar": {
+      "conjugation": {
+        "infinitive": "килергә",
+        "1sg": "киләм",
+        "2sg": "киләһең",
+        "3sg": "килә",
+        "1pl": "киләбеҙ",
+        "2pl": "киләһегеҙ",
+        "3pl": "киләләр"
+      }
+    }
+  },
+  {
+    "id": "word_035",
+    "bashkir": "яҡшы",
+    "ipa": "[jɑqʃɯ]",
+    "pos": "adjective",
+    "english": "good",
+    "russian": "хороший",
+    "frequency_rank": 34,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'YAK-shy!' Good, excellent! The Ringdove nods approval — ЯҠШЫ, the honey is good, the welcome is good, life is good!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "сифат (adjective)"
+        ],
+        "ANT": [
+          "яман (bad)"
+        ],
+        "COMPARATIVE": [
+          "яҡшыраҡ (better)"
+        ],
+        "SUPERLATIVE": [
+          "иң яҡшы (best)"
+        ]
+      }
+    },
+    "grammar": {
+      "forms": {
+        "positive": "яҡшы",
+        "comparative": "яҡшыраҡ",
+        "superlative": "иң яҡшы"
+      }
+    }
+  },
+  {
+    "id": "word_036",
+    "bashkir": "яман",
+    "ipa": "[jɑmɑn]",
+    "pos": "adjective",
+    "english": "bad",
+    "russian": "плохой",
+    "frequency_rank": 123,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'YA-man!' Bad, dangerous! The Anqa warns — Ямантау means 'Bad Mountain' — ЯМАН, but from danger comes transformation!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "сифат (adjective)"
+        ],
+        "ANT": [
+          "яҡшы (good)"
+        ],
+        "PART_OF_NAME": [
+          "Ямантау"
+        ]
+      }
+    },
+    "grammar": {
+      "forms": {
+        "positive": "яман",
+        "comparative": "яманыраҡ",
+        "superlative": "иң яман"
+      }
+    }
+  },
+  {
+    "id": "word_037",
+    "bashkir": "ҙур",
+    "ipa": "[ður]",
+    "pos": "adjective",
+    "english": "big/large",
+    "russian": "большой",
+    "frequency_rank": 89,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'ZOOR!' Big, enormous! The Anqa spreads its massive wings — ҘУР, the mountain is big, the dream is bigger, the future biggest!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "сифат (adjective)"
+        ],
+        "ANT": [
+          "бәләкәй (small)"
+        ],
+        "COMPARATIVE": [
+          "ҙурыраҡ (bigger)"
+        ]
+      }
+    },
+    "grammar": {
+      "forms": {
+        "positive": "ҙур",
+        "comparative": "ҙурыраҡ",
+        "superlative": "иң ҙур"
+      }
+    }
+  },
+  {
+    "id": "word_038",
+    "bashkir": "бәләкәй",
+    "ipa": "[bælækæj]",
+    "pos": "adjective",
+    "english": "small/little",
+    "russian": "маленький",
+    "frequency_rank": 145,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'Ba-la-KAY!' Small and precious! The Ringdove's chick — БӘЛӘКӘЙ, the little one, the young one, full of potential!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "сифат (adjective)"
+        ],
+        "ANT": [
+          "ҙур (big)"
+        ],
+        "COMPARATIVE": [
+          "бәләкәйерәк (smaller)"
+        ]
+      }
+    },
+    "grammar": {
+      "forms": {
+        "positive": "бәләкәй",
+        "comparative": "бәләкәйерәк",
+        "superlative": "иң бәләкәй"
+      }
+    }
+  },
+  {
+    "id": "word_039",
+    "bashkir": "матур",
+    "ipa": "[mɑtur]",
+    "pos": "adjective",
+    "english": "beautiful",
+    "russian": "красивый",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Ma-TOOR!' Beautiful beyond words! The Crow admires the cave paintings — МАТУР, ancient art that still moves the soul!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "сифат (adjective)"
+        ],
+        "SYN": [
+          "гүзәл (gorgeous)"
+        ],
+        "ANT": [
+          "ирһеү (ugly)"
+        ]
+      }
+    },
+    "grammar": {
+      "forms": {
+        "positive": "матур",
+        "comparative": "матурыраҡ",
+        "superlative": "иң матур"
+      }
+    }
+  },
+  {
+    "id": "word_040",
+    "bashkir": "иҫке",
+    "ipa": "[iskɛ]",
+    "pos": "adjective",
+    "english": "old/ancient",
+    "russian": "старый/древний",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'IS-ke!' Old as the stones! The Crow remembers everything — ИҪКЕ, the ancient ones, the old ways, 14,000 years of memory!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "сифат (adjective)"
+        ],
+        "ANT": [
+          "яңы (new)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Шүлгәнташ",
+            "relation": "describes"
+          }
+        ]
+      }
+    },
+    "grammar": {
+      "forms": {
+        "positive": "иҫке",
+        "comparative": "иҫкерәк",
+        "superlative": "иң иҫке"
+      }
+    }
+  },
+  {
+    "id": "word_041",
+    "bashkir": "ҡымыҙ",
+    "ipa": "[qɯmɯð]",
+    "pos": "noun",
+    "english": "kumys (fermented mare's milk)",
+    "russian": "кумыс",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ \"Koo-MUZZ!\" The Ringdove lands on the leather bag! Feel the fizz of ҠЫМЫҘ on your tongue — sour, alive, ancient! Your grandmother offers you the sacred drink at Сабантуй!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "эсемлек (drink)",
+          "ашамлыҡ (food)"
+        ],
+        "MADE_FROM": [
+          "бейә һөтө (mare's milk)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "сабантуй",
+            "relation": "served_at"
+          },
+          {
+            "target": "ҡунаҡлыҡ",
+            "gloss": "hospitality",
+            "relation": "symbol_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "222",
+        "273"
+      ],
+      "significance": "Sacred drink of the nomads; offered to honored guests",
+      "sources": [
+        "Rudenko (1955)"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡымыҙ",
+        "genitive": "ҡымыҙҙың",
+        "dative": "ҡымыҙға",
+        "accusative": "ҡымыҙҙы",
+        "locative": "ҡымыҙҙа",
+        "ablative": "ҡымыҙҙан"
+      }
+    }
+  },
+  {
+    "id": "word_042",
+    "bashkir": "күк",
+    "ipa": "[kyk]",
+    "pos": "noun",
+    "english": "sky/blue",
+    "russian": "небо/синий",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ \"KOOK!\" The Crow caws at the КҮК above! Blue sky stretches eternal over the cave mouth — the same sky the ancient painters saw 14,000 years ago!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төҫ (color)",
+          "табиғәт (nature)"
+        ],
+        "ANT": [
+          "ер (earth)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Тәңре",
+            "gloss": "Tengri",
+            "relation": "dwelling_of",
+            "note": "Sky god of Turkic peoples"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "821",
+        "773"
+      ],
+      "significance": "Blue is the color of Tengri (sky god); appears on Bashkortostan flag",
+      "sources": [
+        "Turkic mythology"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "күк",
+        "genitive": "күктөң",
+        "dative": "күккә",
+        "accusative": "күктө",
+        "locative": "күктә",
+        "ablative": "күктән"
+      }
+    }
+  },
+  {
+    "id": "word_043",
+    "bashkir": "йәшел",
+    "ipa": "[jæʃɛl]",
+    "pos": "adjective",
+    "english": "green",
+    "russian": "зелёный",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ \"Ya-SHELL!\" The Anqa spreads wings over ЙӘШЕЛ forest! Green covers the mountain slopes — life bursting from every branch, every leaf a prayer!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төҫ (color)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "урман",
+            "relation": "color_of"
+          },
+          {
+            "target": "яҙ",
+            "gloss": "spring",
+            "relation": "associated_with"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "137",
+        "784"
+      ],
+      "significance": "Green is the color of Islam and appears on Bashkortostan flag",
+      "sources": [
+        "Flag symbolism"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йәшел",
+        "genitive": "йәшелдең",
+        "dative": "йәшелгә",
+        "accusative": "йәшелде",
+        "locative": "йәшелдә",
+        "ablative": "йәшелдән"
+      }
+    }
+  },
+  {
+    "id": "word_044",
+    "bashkir": "йондоҙ",
+    "ipa": "[jondoð]",
+    "pos": "noun",
+    "english": "star",
+    "russian": "звезда",
+    "frequency_rank": 278,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ \"Yon-DOZ!\" The Crow points its wing at the ЙОНДОҘ! Stars pierce the night above the cave — the same constellations that guided nomads across the steppe!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "күк йәшмеге (celestial body)"
+        ],
+        "PART_OF": [
+          "күк (sky)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Өмөт",
+            "gloss": "hope",
+            "relation": "symbol_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "821"
+      ],
+      "significance": "Stars used for navigation and appear in Bashkir folk astronomy",
+      "sources": [
+        "Folk traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йондоҙ",
+        "genitive": "йондоҙҙоң",
+        "dative": "йондоҙға",
+        "accusative": "йондоҙҙо",
+        "locative": "йондоҙҙа",
+        "ablative": "йондоҙҙан"
+      }
+    }
+  },
+  {
+    "id": "word_045",
+    "bashkir": "дуҫ",
+    "ipa": "[dus]",
+    "pos": "noun",
+    "english": "friend",
+    "russian": "друг",
+    "frequency_rank": 123,
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ \"DOOSE!\" The Ringdove brings a ДУҪ to the hearth! Your friend arrives with honey and stories — together you share warmth against the winter cold!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "кеше (person)"
+        ],
+        "ANT": [
+          "дошман (enemy)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡунаҡлыҡ",
+            "relation": "object_of"
+          },
+          {
+            "target": "ярҙам",
+            "gloss": "help",
+            "relation": "provides"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "571"
+      ],
+      "significance": "Friendship highly valued in Bashkir culture; guests treated as friends",
+      "sources": [
+        "Social customs"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "дуҫ",
+        "genitive": "дуҫтың",
+        "dative": "дуҫҡа",
+        "accusative": "дуҫты",
+        "locative": "дуҫта",
+        "ablative": "дуҫтан"
+      }
+    }
+  },
+  {
+    "id": "word_046",
+    "bashkir": "ер",
+    "ipa": "[jɛr]",
+    "pos": "noun",
+    "english": "earth/land/ground",
+    "russian": "земля",
+    "frequency_rank": 45,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YAIR!' The Crow lands on the ЕР! Earth beneath your feet — the same ground the ancient painters walked 14,000 years ago. Feel it pulse with memory!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "планета (planet)",
+          "табиғәт (nature)"
+        ],
+        "ANT": [
+          "күк (sky)"
+        ],
+        "HAS_PART": [
+          "таш (stone)",
+          "туфраҡ (soil)",
+          "һыу (water)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Ана-ер",
+            "gloss": "Mother Earth",
+            "relation": "sacred_concept"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*jer",
+        "proto_language": "Proto-Turkic"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "131",
+        "773"
+      ],
+      "significance": "Earth as sacred mother; land rights central to Bashkir identity",
+      "sources": [
+        "Turkic cosmology"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ер",
+        "genitive": "ерҙең",
+        "dative": "ергә",
+        "accusative": "ерҙе",
+        "locative": "ерҙә",
+        "ablative": "ерҙән"
+      }
+    }
+  },
+  {
+    "id": "word_047",
+    "bashkir": "көн",
+    "ipa": "[køn]",
+    "pos": "noun",
+    "english": "day/daytime",
+    "russian": "день",
+    "frequency_rank": 28,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KUHN!' The Crow greets the КӨН! Day breaks over the cave mouth — light floods in, the paintings emerge from shadow. Each day is a gift!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ваҡыт (time)"
+        ],
+        "ANT": [
+          "төн (night)"
+        ],
+        "HAS_PART": [
+          "иртә (morning)",
+          "көндөҙ (midday)",
+          "кис (evening)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡояш",
+            "relation": "source_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805"
+      ],
+      "significance": "Day as basic unit of time; solar rhythms in traditional life",
+      "sources": [
+        "Folk calendar traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "көн",
+        "genitive": "көндөң",
+        "dative": "көнгә",
+        "accusative": "көндө",
+        "locative": "көндә",
+        "ablative": "көндән"
+      }
+    }
+  },
+  {
+    "id": "word_048",
+    "bashkir": "төн",
+    "ipa": "[tøn]",
+    "pos": "noun",
+    "english": "night",
+    "russian": "ночь",
+    "frequency_rank": 112,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'TUHN!' The Crow's black feathers blend into the ТӨН! Night wraps the cave in darkness — but inside, torches reveal secrets that daylight hides!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ваҡыт (time)"
+        ],
+        "ANT": [
+          "көн (day)"
+        ],
+        "HAS_PART": [
+          "кис (evening)",
+          "төн уртаһы (midnight)",
+          "таң (dawn)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ай",
+            "relation": "illuminated_by"
+          },
+          {
+            "target": "йондоҙ",
+            "relation": "reveals"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805",
+        "821"
+      ],
+      "significance": "Night as time of spirits and stories; star navigation",
+      "sources": [
+        "Folk traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "төн",
+        "genitive": "төндөң",
+        "dative": "төнгә",
+        "accusative": "төндө",
+        "locative": "төндә",
+        "ablative": "төндән"
+      }
+    }
+  },
+  {
+    "id": "word_049",
+    "bashkir": "яҙ",
+    "ipa": "[jɑð]",
+    "pos": "noun",
+    "english": "spring (season)",
+    "russian": "весна",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YAZ!' The Crow sings as ЯҘ arrives! Spring melts the snow around the cave — water rushes, flowers burst from earth, the world awakens!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "ҡыш (winter)"
+        ],
+        "PRECEDES": [
+          "йәй (summer)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡарға буткаһы",
+            "gloss": "Crow's Porridge festival",
+            "relation": "celebrated_in"
+          },
+          {
+            "target": "яңырыу",
+            "gloss": "renewal",
+            "relation": "symbol_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221",
+        "527"
+      ],
+      "significance": "Spring festivals mark agricultural calendar; rebirth symbolism",
+      "sources": [
+        "Bashkir seasonal traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "яҙ",
+        "genitive": "яҙҙың",
+        "dative": "яҙға",
+        "accusative": "яҙҙы",
+        "locative": "яҙҙа",
+        "ablative": "яҙҙан"
+      }
+    }
+  },
+  {
+    "id": "word_050",
+    "bashkir": "йәй",
+    "ipa": "[jæj]",
+    "pos": "noun",
+    "english": "summer",
+    "russian": "лето",
+    "frequency_rank": 178,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YAY!' The Crow celebrates ЙӘЙ! Summer fills the land with warmth — the cave stays cool while outside, bees gather honey and horses run free!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "яҙ (spring)"
+        ],
+        "PRECEDES": [
+          "көҙ (autumn)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "сабантуй",
+            "relation": "celebrated_in"
+          },
+          {
+            "target": "йәйләү",
+            "gloss": "summer pasture",
+            "relation": "activity_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221",
+        "527"
+      ],
+      "significance": "Summer is festival time; traditional nomadic movement to summer pastures",
+      "sources": [
+        "Seasonal traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йәй",
+        "genitive": "йәйҙең",
+        "dative": "йәйгә",
+        "accusative": "йәйҙе",
+        "locative": "йәйҙә",
+        "ablative": "йәйҙән"
+      }
+    }
+  },
+  {
+    "id": "word_051",
+    "bashkir": "көҙ",
+    "ipa": "[køð]",
+    "pos": "noun",
+    "english": "autumn/fall",
+    "russian": "осень",
+    "frequency_rank": 198,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KUHZ!' The Crow watches КӨҘ arrive! Autumn paints the forest gold and red — leaves fall like memories, the land prepares for sleep!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "йәй (summer)"
+        ],
+        "PRECEDES": [
+          "ҡыш (winter)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "уңыш",
+            "gloss": "harvest",
+            "relation": "time_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221"
+      ],
+      "significance": "Harvest season; preparation for winter",
+      "sources": [
+        "Agricultural calendar"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "көҙ",
+        "genitive": "көҙҙөң",
+        "dative": "көҙгә",
+        "accusative": "көҙҙө",
+        "locative": "көҙҙә",
+        "ablative": "көҙҙән"
+      }
+    }
+  },
+  {
+    "id": "word_052",
+    "bashkir": "ҡыш",
+    "ipa": "[qɯʃ]",
+    "pos": "noun",
+    "english": "winter",
+    "russian": "зима",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KYSH!' The Crow shivers as ҠЫШ grips the land! Winter blankets everything in white — but inside the cave, ancient warmth endures!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "миҙгел (season)"
+        ],
+        "FOLLOWS": [
+          "көҙ (autumn)"
+        ],
+        "PRECEDES": [
+          "яҙ (spring)"
+        ],
+        "HAS_PART": [
+          "ҡар (snow)",
+          "боҙ (ice)",
+          "һыуыҡ (cold)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ҡышлау",
+            "gloss": "wintering",
+            "relation": "activity_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "221"
+      ],
+      "significance": "Winter survival traditions; storytelling season",
+      "sources": [
+        "Seasonal traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡыш",
+        "genitive": "ҡыштың",
+        "dative": "ҡышҡа",
+        "accusative": "ҡышты",
+        "locative": "ҡышта",
+        "ablative": "ҡыштан"
+      }
+    }
+  },
+  {
+    "id": "word_053",
+    "bashkir": "ваҡыт",
+    "ipa": "[wɑqɯt]",
+    "pos": "noun",
+    "english": "time",
+    "russian": "время",
+    "frequency_rank": 56,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Va-KYT!' The Crow knows all ВАҠЫТ! Time flows through the cave like the underground river — 14,000 years pass like a single breath!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "абстракт төшөнсә (abstract concept)"
+        ],
+        "HAS_TYPE": [
+          "миҙгел (season)",
+          "көн (day)",
+          "йыл (year)"
+        ],
+        "MEASURED_BY": [
+          "ай (moon/month)",
+          "ҡояш (sun)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Шүлгәнташ",
+            "relation": "collapses_at",
+            "note": "Time seems to stop in the ancient cave"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805"
+      ],
+      "significance": "Cyclical time in traditional worldview vs. linear modern time",
+      "sources": [
+        "Philosophical traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ваҡыт",
+        "genitive": "ваҡыттың",
+        "dative": "ваҡытҡа",
+        "accusative": "ваҡытты",
+        "locative": "ваҡытта",
+        "ablative": "ваҡыттан"
+      }
+    }
+  },
+  {
+    "id": "word_054",
+    "bashkir": "йыл",
+    "ipa": "[jɯl]",
+    "pos": "noun",
+    "english": "year",
+    "russian": "год",
+    "frequency_rank": 67,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'YIL!' The Crow has seen 14,000 ЙЫЛ pass! Each year a ring in the tree, a layer in the stone — the cave remembers every single one!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ваҡыт (time)"
+        ],
+        "HAS_PART": [
+          "яҙ (spring)",
+          "йәй (summer)",
+          "көҙ (autumn)",
+          "ҡыш (winter)"
+        ],
+        "MEASURED_BY": [
+          "ай (month)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "805"
+      ],
+      "significance": "12-year animal cycle in traditional Bashkir calendar",
+      "sources": [
+        "Calendar traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йыл",
+        "genitive": "йылдың",
+        "dative": "йылға",
+        "accusative": "йылды",
+        "locative": "йылда",
+        "ablative": "йылдан"
+      }
+    }
+  },
+  {
+    "id": "word_055",
+    "bashkir": "ҡар",
+    "ipa": "[qɑr]",
+    "pos": "noun",
+    "english": "snow",
+    "russian": "снег",
+    "frequency_rank": 145,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'KAR!' The Crow's black wings against white ҠАР! Snow covers the cave entrance — a white curtain hiding ancient secrets, each flake a frozen memory!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "яуын-һыу (precipitation)"
+        ],
+        "PART_OF": [
+          "ҡыш (winter)"
+        ],
+        "MADE_FROM": [
+          "һыу (water)"
+        ],
+        "ANT": [
+          "ямғыр (rain)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "арыулыҡ",
+            "gloss": "purity",
+            "relation": "symbol_of"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*kar",
+        "proto_language": "Proto-Turkic"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "132"
+      ],
+      "significance": "Snow essential for winter survival; meltwater feeds rivers",
+      "sources": [
+        "Climate traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡар",
+        "genitive": "ҡарҙың",
+        "dative": "ҡарға",
+        "accusative": "ҡарҙы",
+        "locative": "ҡарҙа",
+        "ablative": "ҡарҙан"
+      }
+    }
+  },
+  {
+    "id": "word_056",
+    "bashkir": "ямғыр",
+    "ipa": "[jɑmʁɯr]",
+    "pos": "noun",
+    "english": "rain",
+    "russian": "дождь",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Yam-GHYR!' The Crow dances in ЯМҒЫР! Rain drums on the cave mouth — each drop a blessing from sky to earth, filling rivers, growing forests!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "яуын-һыу (precipitation)"
+        ],
+        "COMES_FROM": [
+          "болот (cloud)",
+          "күк (sky)"
+        ],
+        "BECOMES": [
+          "һыу (water)",
+          "йылға (river)"
+        ],
+        "ANT": [
+          "ҡар (snow)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "ямғыр теләне",
+            "gloss": "rain ritual",
+            "relation": "invoked_by"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "132"
+      ],
+      "significance": "Rain rituals in traditional agriculture; blessing from Tengri",
+      "sources": [
+        "Agricultural traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ямғыр",
+        "genitive": "ямғырҙың",
+        "dative": "ямғырға",
+        "accusative": "ямғырҙы",
+        "locative": "ямғырҙа",
+        "ablative": "ямғырҙан"
+      }
+    }
+  },
+  {
+    "id": "word_057",
+    "bashkir": "болот",
+    "ipa": "[bolot]",
+    "pos": "noun",
+    "english": "cloud",
+    "russian": "облако",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Bo-LOT!' The Crow flies through БОЛОТ! Clouds drift over the sacred cave — shadows and light play across the ancient paintings like living spirits!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "һауа күренеше (weather phenomenon)"
+        ],
+        "PART_OF": [
+          "күк (sky)"
+        ],
+        "MADE_FROM": [
+          "һыу (water)"
+        ],
+        "PRODUCES": [
+          "ямғыр (rain)",
+          "ҡар (snow)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "132"
+      ],
+      "significance": "Clouds as messengers between earth and sky",
+      "sources": [
+        "Weather traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "болот",
+        "genitive": "болоттоң",
+        "dative": "болотҡа",
+        "accusative": "болотто",
+        "locative": "болотта",
+        "ablative": "болоттан"
+      }
+    }
+  },
+  {
+    "id": "word_058",
+    "bashkir": "нур",
+    "ipa": "[nur]",
+    "pos": "noun",
+    "english": "light/ray",
+    "russian": "свет/луч",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'NOOR!' НУР pierces the cave darkness! A single ray of light illuminates the ancient paintings — knowledge emerging from shadow into understanding!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "физик күренеш (physical phenomenon)"
+        ],
+        "COMES_FROM": [
+          "ҡояш (sun)",
+          "ай (moon)",
+          "йондоҙ (star)"
+        ],
+        "ANT": [
+          "ҡараңғылыҡ (darkness)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "белем",
+            "gloss": "knowledge",
+            "relation": "metaphor_for"
+          },
+          {
+            "target": "Тәңре",
+            "gloss": "Tengri",
+            "relation": "attribute_of"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "nūr",
+        "proto_language": "Arabic",
+        "note": "Borrowed from Arabic, also used in Ibn Arabi's mysticism"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "778"
+      ],
+      "significance": "Light as divine attribute in both Tengriism and Islamic mysticism",
+      "sources": [
+        "Religious symbolism"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "нур",
+        "genitive": "нурҙың",
+        "dative": "нурға",
+        "accusative": "нурҙы",
+        "locative": "нурҙа",
+        "ablative": "нурҙан"
+      }
+    }
+  },
+  {
+    "id": "word_059",
+    "bashkir": "ҡараңғылыҡ",
+    "ipa": "[qɑrɑŋʁɯlɯq]",
+    "pos": "noun",
+    "english": "darkness",
+    "russian": "темнота",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Karan-GHY-lyk!' The Crow thrives in ҠАРАҢҒЫЛЫҠ! Deep in the cave, darkness holds secrets — not emptiness, but pregnant potential, where visions emerge!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "хәл (state)"
+        ],
+        "ANT": [
+          "нур (light)",
+          "яҡтылыҡ (brightness)"
+        ],
+        "FOUND_IN": [
+          "төн (night)",
+          "мәғарә (cave)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Шүлгәнташ",
+            "relation": "characteristic_of"
+          },
+          {
+            "target": "серле",
+            "gloss": "mysterious",
+            "relation": "associated_with"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773"
+      ],
+      "significance": "Darkness in caves as liminal space for spiritual transformation",
+      "sources": [
+        "Cave symbolism"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ҡараңғылыҡ",
+        "genitive": "ҡараңғылыҡтың",
+        "dative": "ҡараңғылыҡҡа",
+        "accusative": "ҡараңғылыҡты",
+        "locative": "ҡараңғылыҡта",
+        "ablative": "ҡараңғылыҡтан"
+      }
+    }
+  },
+  {
+    "id": "word_060",
+    "bashkir": "Шүлгән",
+    "ipa": "[ʃylɡæn]",
+    "pos": "noun",
+    "english": "Shulgan (mythological figure)",
+    "russian": "Шульган",
+    "frequency_rank": 567,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'SHUL-gan!' The Crow tells of ШҮЛГӘН! Brother of Ural-Batyr who chose the underworld — his stone cave still bears his name, guardian of dark waters!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "эпик персонаж (epic character)",
+          "мифологик затлыҡ (mythological being)"
+        ],
+        "SIBLING_OF": [
+          "Урал-батыр"
+        ],
+        "RULES_OVER": [
+          "ер аҫты (underworld)",
+          "Шүлгәнташ"
+        ],
+        "ANT": [
+          "Урал-батыр"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Үлем",
+            "gloss": "Death",
+            "relation": "sided_with"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "778"
+      ],
+      "significance": "Antagonist in Ural-Batyr epic; represents choice of selfishness over service",
+      "sources": [
+        "Epic of Ural-Batyr"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Шүлгән",
+        "genitive": "Шүлгәндең",
+        "dative": "Шүлгәнгә",
+        "accusative": "Шүлгәнде",
+        "locative": "Шүлгәндә",
+        "ablative": "Шүлгәндән"
+      }
+    }
+  },
+  {
+    "id": "word_061",
+    "bashkir": "Хомай",
+    "ipa": "[xomɑj]",
+    "pos": "noun",
+    "english": "Humai (goddess of happiness)",
+    "russian": "Хумай",
+    "frequency_rank": 567,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Ho-MY!' The Crow speaks of ХОМАЙ! Swan-goddess of happiness, daughter of the sun — her feathers bring blessing, her shadow brings fortune!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "алиһә (goddess)",
+          "мифологик затлыҡ (mythological being)"
+        ],
+        "APPEARS_AS": [
+          "аҡҡош (swan)",
+          "матур ҡыҙ (beautiful girl)"
+        ],
+        "BRINGS": [
+          "бәхет (happiness)",
+          "уңыш (success)"
+        ],
+        "DAUGHTER_OF": [
+          "Ҡояш (Sun)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Урал-батыр",
+            "relation": "assists"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "778"
+      ],
+      "significance": "Benevolent goddess in Bashkir mythology; associated with fate and fortune",
+      "sources": [
+        "Epic of Ural-Batyr",
+        "Bashkir mythology"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Хомай",
+        "genitive": "Хомайҙың",
+        "dative": "Хомайға",
+        "accusative": "Хомайҙы",
+        "locative": "Хомайҙа",
+        "ablative": "Хомайҙан"
+      }
+    }
+  },
+  {
+    "id": "word_062",
+    "bashkir": "баба",
+    "ipa": "[bɑbɑ]",
+    "pos": "noun",
+    "english": "ancestor/forefather",
+    "russian": "предок/дед",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'BA-ba!' The Crow honors the БАБА! Ancestors painted these walls — their spirits linger here, watching over their children's children!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ата-баба (ancestors)",
+          "кеше (person)"
+        ],
+        "ANT": [
+          "оноҡ (grandchild)"
+        ],
+        "PART_OF": [
+          "нәҫел (lineage)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "рух",
+            "gloss": "spirit",
+            "relation": "becomes"
+          },
+          {
+            "target": "ҡәбер",
+            "gloss": "grave",
+            "relation": "honored_at"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "769",
+        "593"
+      ],
+      "significance": "Ancestor veneration central to Bashkir spiritual life",
+      "sources": [
+        "Kinship traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "баба",
+        "genitive": "бабаның",
+        "dative": "бабаға",
+        "accusative": "бабаны",
+        "locative": "бабала",
+        "ablative": "бабалан"
+      }
+    }
+  },
+  {
+    "id": "word_063",
+    "bashkir": "нәҫел",
+    "ipa": "[næsæl]",
+    "pos": "noun",
+    "english": "lineage/ancestry/generation",
+    "russian": "род/поколение",
+    "frequency_rank": 289,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Na-SAL!' The Crow guards НӘҪЕЛ! Lineage stretches back through time — each generation a link in an unbroken chain from ancient painters to you!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йәмғиәт берлеге (social unit)"
+        ],
+        "HAS_PART": [
+          "баба (ancestor)",
+          "ата (father)",
+          "бала (child)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "шәжәрә",
+            "gloss": "genealogy",
+            "relation": "recorded_in"
+          },
+          {
+            "target": "ырыу",
+            "gloss": "clan",
+            "relation": "component_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "593",
+        "612"
+      ],
+      "significance": "Seven-generation genealogies traditionally memorized; clan identity",
+      "sources": [
+        "Kinship studies"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "нәҫел",
+        "genitive": "нәҫелдең",
+        "dative": "нәҫелгә",
+        "accusative": "нәҫелде",
+        "locative": "нәҫелдә",
+        "ablative": "нәҫелдән"
+      }
+    }
+  },
+  {
+    "id": "word_064",
+    "bashkir": "рух",
+    "ipa": "[rux]",
+    "pos": "noun",
+    "english": "spirit/soul",
+    "russian": "дух/душа",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'ROOKH!' The Crow carries the РУХ of ancestors! Spirits dwell in the cave — you feel their presence in the painted eyes that watch from stone walls!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "абстракт төшөнсә (abstract concept)",
+          "мифологик төшөнсә (mythological concept)"
+        ],
+        "INHABITS": [
+          "кеше (person)",
+          "табиғәт (nature)"
+        ],
+        "SURVIVES": [
+          "үлем (death)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "баба",
+            "relation": "of_ancestors"
+          },
+          {
+            "target": "ҡурай",
+            "relation": "expressed_through"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "rūḥ",
+        "proto_language": "Arabic",
+        "note": "Borrowed from Arabic; also used in Sufi mysticism"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "774"
+      ],
+      "significance": "Animistic beliefs; spirits in nature and ancestors",
+      "sources": [
+        "Religious traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "рух",
+        "genitive": "рухтың",
+        "dative": "рухҡа",
+        "accusative": "рухты",
+        "locative": "рухта",
+        "ablative": "рухтан"
+      }
+    }
+  },
+  {
+    "id": "word_065",
+    "bashkir": "тереклек",
+    "ipa": "[tɛrɛklɛk]",
+    "pos": "noun",
+    "english": "life",
+    "russian": "жизнь",
+    "frequency_rank": 123,
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'Te-REK-lek!' The Crow celebrates ТЕРЕКЛЕК! Life pulses through the cave — in the river's flow, in the paintings' vitality, in your beating heart!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "абстракт төшөнсә (abstract concept)"
+        ],
+        "ANT": [
+          "үлем (death)"
+        ],
+        "HAS_PART": [
+          "тыуыу (birth)",
+          "үҫеү (growth)",
+          "үлеү (dying)"
+        ],
+        "REQUIRES": [
+          "һыу (water)",
+          "ҡояш (sun)",
+          "һауа (air)"
+        ],
+        "MYTH_LINK": [
+          {
+            "target": "тереклек һыуы",
+            "gloss": "water of life",
+            "relation": "sought_by_heroes"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "761"
+      ],
+      "significance": "Life-giving water (тереклек һыуы) central to Ural-Batyr epic",
+      "sources": [
+        "Epic of Ural-Batyr"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "тереклек",
+        "genitive": "тереклектең",
+        "dative": "тереклеккә",
+        "accusative": "тереклекте",
+        "locative": "тереклектә",
+        "ablative": "тереклектән"
+      }
+    }
+  },
+  {
+    "id": "word_066",
+    "bashkir": "ил",
+    "ipa": "[il]",
+    "pos": "noun",
+    "english": "country/land/homeland",
+    "russian": "страна/край",
+    "frequency_rank": 34,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'EEL!' The Eagle soars over the ИЛ! Country stretches beneath its wings — from mountain to steppe, this land belongs to its people!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "территория (territory)"
+        ],
+        "HAS_TYPE": [
+          "Башҡортостан",
+          "Рәсәй (Russia)"
+        ],
+        "SYN": [
+          "ватан (homeland)",
+          "йорт (home territory)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "халыҡ",
+            "relation": "inhabited_by"
+          },
+          {
+            "target": "дәүләт",
+            "relation": "governed_as"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "*el",
+        "proto_language": "Proto-Turkic",
+        "note": "Ancient Turkic concept of tribal territory"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "631"
+      ],
+      "significance": "Ancient Turkic concept of homeland; basis of territorial identity",
+      "sources": [
+        "Turkic political traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ил",
+        "genitive": "илдең",
+        "dative": "илгә",
+        "accusative": "илде",
+        "locative": "илдә",
+        "ablative": "илдән"
+      }
+    }
+  },
+  {
+    "id": "word_067",
+    "bashkir": "дәүләт",
+    "ipa": "[dæwlæt]",
+    "pos": "noun",
+    "english": "state/government",
+    "russian": "государство",
+    "frequency_rank": 123,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Daw-LAT!' The Eagle perches on the ДӘҮЛӘТ building! The state rises in marble and law — power organized to serve the people!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "оешма (organization)",
+          "институт (institution)"
+        ],
+        "HAS_PART": [
+          "хөкүмәт (government)",
+          "парламент (parliament)",
+          "суд (court)"
+        ],
+        "GOVERNS": [
+          "ил (country)",
+          "халыҡ (people)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "конституция",
+            "relation": "founded_on"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "dawla",
+        "proto_language": "Arabic",
+        "note": "Borrowed via Persian; means 'dynasty, state'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "642"
+      ],
+      "significance": "Modern state concept; Bashkortostan as subject of Russian Federation",
+      "sources": [
+        "Constitutional law"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "дәүләт",
+        "genitive": "дәүләттең",
+        "dative": "дәүләткә",
+        "accusative": "дәүләтте",
+        "locative": "дәүләттә",
+        "ablative": "дәүләттән"
+      }
+    }
+  },
+  {
+    "id": "word_068",
+    "bashkir": "хоҡуҡ",
+    "ipa": "[xoquq]",
+    "pos": "noun",
+    "english": "right/law",
+    "russian": "право",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ho-KOOK!' The Eagle guards ХОҠУҠ! Rights carved in stone — the people's freedoms protected by law, sacred and unbreakable!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "норма (norm)",
+          "принцип (principle)"
+        ],
+        "HAS_TYPE": [
+          "кеше хоҡуҡтары (human rights)",
+          "тел хоҡуҡы (language rights)",
+          "сайлау хоҡуҡы (voting rights)"
+        ],
+        "GUARANTEED_BY": [
+          "конституция",
+          "закон"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "иркенлек",
+            "relation": "enables"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "ḥaqq",
+        "proto_language": "Arabic",
+        "note": "Means 'truth, right, justice'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "669",
+        "648"
+      ],
+      "significance": "Language rights central to Bashkir sovereignty movement",
+      "sensitivity": {
+        "has_sensitive_context": true,
+        "note": "Language rights activism ongoing"
+      },
+      "sources": [
+        "Constitutional rights discourse"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "хоҡуҡ",
+        "genitive": "хоҡуҡтың",
+        "dative": "хоҡуҡҡа",
+        "accusative": "хоҡуҡты",
+        "locative": "хоҡуҡта",
+        "ablative": "хоҡуҡтан"
+      }
+    }
+  },
+  {
+    "id": "word_069",
+    "bashkir": "закон",
+    "ipa": "[zɑkon]",
+    "pos": "noun",
+    "english": "law",
+    "russian": "закон",
+    "frequency_rank": 145,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Za-KON!' The Eagle enforces ЗАКОН! Law binds society together — rules written so all may know what is just!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "норма (norm)",
+          "ҡағиҙә (rule)"
+        ],
+        "HAS_TYPE": [
+          "конституция",
+          "кодекс (code)"
+        ],
+        "CREATED_BY": [
+          "парламент",
+          "дәүләт"
+        ],
+        "ENFORCED_BY": [
+          "суд (court)",
+          "полиция (police)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "671",
+        "648"
+      ],
+      "significance": "Rule of law; legal framework for rights protection",
+      "sources": [
+        "Legal system"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "закон",
+        "genitive": "закондың",
+        "dative": "законға",
+        "accusative": "законды",
+        "locative": "законда",
+        "ablative": "закондан"
+      }
+    }
+  },
+  {
+    "id": "word_070",
+    "bashkir": "хөкүмәт",
+    "ipa": "[høkymæt]",
+    "pos": "noun",
+    "english": "government/cabinet",
+    "russian": "правительство",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Hö-kü-MÄT!' The Eagle watches over ХӨКҮМӘТ! Government ministers gather — decisions made that shape the nation's future!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "оешма (organization)"
+        ],
+        "PART_OF": [
+          "дәүләт (state)"
+        ],
+        "HAS_PART": [
+          "министр (minister)",
+          "премьер-министр"
+        ],
+        "LOCATED_AT": [
+          "Өфө (Ufa)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "ḥukūma",
+        "proto_language": "Arabic",
+        "note": "From root ḥ-k-m 'to judge, govern'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "642",
+        "643"
+      ],
+      "significance": "Executive branch of Bashkortostan government",
+      "sources": [
+        "Government structure"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "хөкүмәт",
+        "genitive": "хөкүмәттең",
+        "dative": "хөкүмәткә",
+        "accusative": "хөкүмәтте",
+        "locative": "хөкүмәттә",
+        "ablative": "хөкүмәттән"
+      }
+    }
+  },
+  {
+    "id": "word_071",
+    "bashkir": "парламент",
+    "ipa": "[pɑrlɑmɛnt]",
+    "pos": "noun",
+    "english": "parliament",
+    "russian": "парламент",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Par-la-MENT!' The Eagle circles above ПАРЛАМЕНТ! Representatives gather to speak for the people — democracy in action!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "оешма (organization)",
+          "вәкиллек органы (representative body)"
+        ],
+        "PART_OF": [
+          "дәүләт (state)"
+        ],
+        "HAS_PART": [
+          "депутат (deputy)"
+        ],
+        "CREATES": [
+          "закон (law)"
+        ],
+        "ALSO_KNOWN_AS": [
+          "Ҡорылтай (Kurultai)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "642"
+      ],
+      "significance": "State Assembly (Курултай) - legislative body of Bashkortostan",
+      "sources": [
+        "Constitutional structure"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "парламент",
+        "genitive": "парламенттың",
+        "dative": "парламенткә",
+        "accusative": "парламентты",
+        "locative": "парламентта",
+        "ablative": "парламенттан"
+      }
+    }
+  },
+  {
+    "id": "word_072",
+    "bashkir": "президент",
+    "ipa": "[prɛzidɛnt]",
+    "pos": "noun",
+    "english": "president/head",
+    "russian": "президент/глава",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Pre-zi-DENT!' The Eagle accompanies the ПРЕЗИДЕНТ! The leader stands for the nation — one voice speaking for millions!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "етәксе (leader)",
+          "вазифа (position)"
+        ],
+        "HEADS": [
+          "дәүләт (state)",
+          "республика (republic)"
+        ],
+        "ELECTED_BY": [
+          "халыҡ (people)"
+        ],
+        "ALSO_KNOWN_AS": [
+          "Башлыҡ (Head)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "643"
+      ],
+      "significance": "Head of the Republic of Bashkortostan",
+      "sources": [
+        "Constitutional structure"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "президент",
+        "genitive": "президенттың",
+        "dative": "президенткә",
+        "accusative": "президентты",
+        "locative": "президентта",
+        "ablative": "президенттан"
+      }
+    }
+  },
+  {
+    "id": "word_073",
+    "bashkir": "сайлау",
+    "ipa": "[sɑjlɑw]",
+    "pos": "noun",
+    "english": "election/choice",
+    "russian": "выборы/выбор",
+    "frequency_rank": 289,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Sai-LAU!' The Eagle witnesses САЙЛАУ! Election day — the people's voice rises, each vote a wing beat of democracy!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "процесс (process)",
+          "демократия элементы (element of democracy)"
+        ],
+        "CHOOSES": [
+          "президент",
+          "депутат (deputy)"
+        ],
+        "DONE_BY": [
+          "халыҡ (people)",
+          "граждан (citizen)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "хоҡуҡ",
+            "relation": "exercises"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "646"
+      ],
+      "significance": "Democratic participation; electoral rights",
+      "sources": [
+        "Electoral system"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "сайлау",
+        "genitive": "сайлауҙың",
+        "dative": "сайлауға",
+        "accusative": "сайлауҙы",
+        "locative": "сайлауҙа",
+        "ablative": "сайлауҙан"
+      }
+    }
+  },
+  {
+    "id": "word_074",
+    "bashkir": "граждан",
+    "ipa": "[ɡrɑʒdɑn]",
+    "pos": "noun",
+    "english": "citizen",
+    "russian": "гражданин",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Grazh-DAN!' The Eagle recognizes every ГРАЖДАН! Citizens walk the streets of Ufa — each one a sovereign piece of the nation!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "кеше (person)",
+          "хоҡуҡи статус (legal status)"
+        ],
+        "MEMBER_OF": [
+          "дәүләт (state)",
+          "йәмғиәт (society)"
+        ],
+        "HAS": [
+          "хоҡуҡ (rights)",
+          "бурыс (duties)"
+        ],
+        "PARTICIPATES_IN": [
+          "сайлау (election)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "641"
+      ],
+      "significance": "Citizenship and civic participation",
+      "sources": [
+        "Citizenship law"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "граждан",
+        "genitive": "граждандың",
+        "dative": "гражданға",
+        "accusative": "гражданды",
+        "locative": "гражданда",
+        "ablative": "граждандан"
+      }
+    }
+  },
+  {
+    "id": "word_075",
+    "bashkir": "ватан",
+    "ipa": "[wɑtɑn]",
+    "pos": "noun",
+    "english": "homeland/fatherland",
+    "russian": "родина/отечество",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Va-TAN!' The Eagle's heart belongs to ВАТАН! Homeland calls — the land of ancestors, the soil that made you who you are!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төшөнсә (concept)"
+        ],
+        "SYN": [
+          "ил (country)",
+          "туған ил (native land)"
+        ],
+        "EVOKES": [
+          "мөхәббәт (love)",
+          "тоҡҡанлыҡ (longing)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Башҡортостан",
+            "relation": "exemplified_by"
+          },
+          {
+            "target": "патриотизм",
+            "relation": "inspires"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "waṭan",
+        "proto_language": "Arabic",
+        "note": "Means 'homeland, place of residence'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "186"
+      ],
+      "significance": "Emotional attachment to homeland; patriotic concept",
+      "sources": [
+        "National identity discourse"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "ватан",
+        "genitive": "ватандың",
+        "dative": "ватанға",
+        "accusative": "ватанды",
+        "locative": "ватанда",
+        "ablative": "ватандан"
+      }
+    }
+  },
+  {
+    "id": "word_076",
+    "bashkir": "милләт",
+    "ipa": "[millæt]",
+    "pos": "noun",
+    "english": "nation/nationality",
+    "russian": "нация/национальность",
+    "frequency_rank": 178,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Mil-LÄT!' The Eagle unites the МИЛЛӘТ! Nation rises as one — language, culture, history woven into shared identity!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "йәмғиәт (society)",
+          "төшөнсә (concept)"
+        ],
+        "SYN": [
+          "халыҡ (people)"
+        ],
+        "HAS_ATTRIBUTE": [
+          "тел (language)",
+          "мәҙәниәт (culture)",
+          "тарих (history)"
+        ],
+        "HAS_TYPE": [
+          "башҡорт милләте (Bashkir nation)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "milla",
+        "proto_language": "Arabic",
+        "note": "Originally 'religious community', now 'nation'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "563"
+      ],
+      "significance": "National identity; ethnic consciousness",
+      "sources": [
+        "National identity studies"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "милләт",
+        "genitive": "милләттең",
+        "dative": "милләткә",
+        "accusative": "милләтте",
+        "locative": "милләттә",
+        "ablative": "милләттән"
+      }
+    }
+  },
+  {
+    "id": "word_077",
+    "bashkir": "тарих",
+    "ipa": "[tɑrix]",
+    "pos": "noun",
+    "english": "history",
+    "russian": "история",
+    "frequency_rank": 189,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ta-RIKH!' The Eagle remembers all ТАРИХ! History stretches back — from ancient nomads to modern republic, every story preserved!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "фән (science)",
+          "белем (knowledge)"
+        ],
+        "RECORDS": [
+          "халыҡ (people)",
+          "милләт (nation)",
+          "дәүләт (state)"
+        ],
+        "HAS_PART": [
+          "ваҡиға (event)",
+          "дәүер (era)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "баба (ancestor)",
+            "relation": "preserves_memory_of"
+          }
+        ]
+      },
+      "etymology": {
+        "proto_form": "tārīkh",
+        "proto_language": "Arabic",
+        "note": "Means 'date, chronicle, history'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "174"
+      ],
+      "significance": "Historical consciousness; preserving national memory",
+      "sources": [
+        "Historical scholarship"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "тарих",
+        "genitive": "тарихтың",
+        "dative": "тарихҡа",
+        "accusative": "тарихты",
+        "locative": "тарихта",
+        "ablative": "тарихтан"
+      }
+    }
+  },
+  {
+    "id": "word_078",
+    "bashkir": "герб",
+    "ipa": "[ɡɛrb]",
+    "pos": "noun",
+    "english": "coat of arms/emblem",
+    "russian": "герб",
+    "frequency_rank": 456,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'GERB!' The Eagle adorns the ГЕРБ! Coat of arms shows Salawat Yulaev riding — symbol of courage on the nation's shield!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "символ (symbol)",
+          "дәүләт билдәһе (state symbol)"
+        ],
+        "DEPICTS": [
+          "Салауат Юлаев",
+          "ҡурай (kuray)"
+        ],
+        "REPRESENTS": [
+          "Башҡортостан",
+          "дәүләт (state)"
+        ],
+        "RELATED_TO": [
+          "флаг (flag)",
+          "гимн (anthem)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "184"
+      ],
+      "significance": "National symbol featuring Salawat Yulaev on horseback with kuray flower",
+      "sources": [
+        "State symbols"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "герб",
+        "genitive": "гербтың",
+        "dative": "гербкә",
+        "accusative": "гербты",
+        "locative": "гербта",
+        "ablative": "гербтан"
+      }
+    }
+  },
+  {
+    "id": "word_079",
+    "bashkir": "флаг",
+    "ipa": "[flɑɡ]",
+    "pos": "noun",
+    "english": "flag",
+    "russian": "флаг",
+    "frequency_rank": 456,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'FLAG!' The Eagle flies beside the ФЛАГ! Blue, white, green stripes with kuray flower — colors of sky, purity, and land waving proud!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "символ (symbol)",
+          "дәүләт билдәһе (state symbol)"
+        ],
+        "HAS_COLORS": [
+          "күк (blue)",
+          "аҡ (white)",
+          "йәшел (green)"
+        ],
+        "DEPICTS": [
+          "ҡурай сәскәһе (kuray flower)"
+        ],
+        "REPRESENTS": [
+          "Башҡортостан"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "184"
+      ],
+      "significance": "Blue (sky/Tengri), white (purity), green (Islam/nature) with golden kuray flower",
+      "sources": [
+        "State symbols"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "флаг",
+        "genitive": "флагтың",
+        "dative": "флагҡа",
+        "accusative": "флагты",
+        "locative": "флагта",
+        "ablative": "флагтан"
+      }
+    }
+  },
+  {
+    "id": "word_080",
+    "bashkir": "гимн",
+    "ipa": "[ɡimn]",
+    "pos": "noun",
+    "english": "anthem",
+    "russian": "гимн",
+    "frequency_rank": 567,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'GIMN!' The Eagle sings the ГИМН! Anthem rises from a thousand throats — music that makes hearts swell with belonging!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "символ (symbol)",
+          "дәүләт билдәһе (state symbol)",
+          "йыр (song)"
+        ],
+        "CELEBRATES": [
+          "Башҡортостан",
+          "халыҡ (people)"
+        ],
+        "PERFORMED_AT": [
+          "рәсми саралар (official events)"
+        ],
+        "RELATED_TO": [
+          "флаг (flag)",
+          "герб (coat of arms)"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "533"
+      ],
+      "significance": "State anthem of Bashkortostan",
+      "sources": [
+        "State symbols"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "гимн",
+        "genitive": "гимндың",
+        "dative": "гимнгә",
+        "accusative": "гимнды",
+        "locative": "гимнда",
+        "ablative": "гимндан"
+      }
+    }
+  },
+  {
+    "id": "word_081",
+    "bashkir": "Салауат Юлаев",
+    "ipa": "[sɑlɑwɑt julɑjɛf]",
+    "pos": "noun",
+    "english": "Salawat Yulaev (national hero)",
+    "russian": "Салават Юлаев",
+    "frequency_rank": 400,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Sa-la-WAT Yu-LA-yev!' The Eagle soars with САЛАУАТ ЮЛАЕВ! Warrior-poet on horseback — he fought for freedom, sang of homeland, became eternal!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "батыр (hero)",
+          "тарихи шәхес (historical figure)",
+          "шағир (poet)"
+        ],
+        "FOUGHT_FOR": [
+          "иркенлек (freedom)",
+          "халыҡ (people)"
+        ],
+        "PARTICIPATED_IN": [
+          "Пугачев восстаниеһы (Pugachev Rebellion)"
+        ],
+        "DEPICTED_ON": [
+          "герб (coat of arms)"
+        ],
+        "WROTE": [
+          "шиғыр (poetry)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Башҡортостан",
+            "relation": "symbol_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "659"
+      ],
+      "significance": "18th century warrior-poet; led Bashkir forces in Pugachev Rebellion; national symbol",
+      "sources": [
+        "Historical records",
+        "Poetry collections"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Салауат Юлаев",
+        "genitive": "Салауат Юлаевтың",
+        "dative": "Салауат Юлаевҡа",
+        "accusative": "Салауат Юлаевты",
+        "locative": "Салауат Юлаевта",
+        "ablative": "Салауат Юлаевтан"
+      }
+    }
+  },
+  {
+    "id": "word_082",
+    "bashkir": "батыр",
+    "ipa": "[bɑtɯr]",
+    "pos": "noun",
+    "english": "hero/warrior",
+    "russian": "герой/богатырь",
+    "frequency_rank": 234,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ba-TYR!' The Eagle honors every БАТЫР! Heroes rise in every generation — those who fight for what is right, who sacrifice for others!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "кеше (person)"
+        ],
+        "HAS_TYPE": [
+          "Урал-батыр",
+          "Салауат Юлаев"
+        ],
+        "CHARACTERIZED_BY": [
+          "ҡыйыулыҡ (bravery)",
+          "көс (strength)",
+          "намыҫ (honor)"
+        ],
+        "ANT": [
+          "ҡурҡаҡ (coward)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "*bagatur",
+        "proto_language": "Proto-Mongolic/Turkic",
+        "note": "Ancient title for warriors; source of Russian 'bogatyr'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773",
+        "578"
+      ],
+      "significance": "Heroic ideal; central to epic traditions and national identity",
+      "sources": [
+        "Epic traditions"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "батыр",
+        "genitive": "батырҙың",
+        "dative": "батырға",
+        "accusative": "батырҙы",
+        "locative": "батырҙа",
+        "ablative": "батырҙан"
+      }
+    }
+  },
+  {
+    "id": "word_083",
+    "bashkir": "бәйсезлек",
+    "ipa": "[bæjsɛzlɛk]",
+    "pos": "noun",
+    "english": "independence/sovereignty",
+    "russian": "независимость/суверенитет",
+    "frequency_rank": 345,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Bäy-sez-LEK!' The Eagle embodies БӘЙСЕЗЛЕК! Independence means standing on your own wings — self-determination, dignity, autonomy!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төшөнсә (concept)",
+          "хәл (state)"
+        ],
+        "SYN": [
+          "иркенлек (freedom)",
+          "эрекле булыу (self-governance)"
+        ],
+        "ANT": [
+          "бәйләнеш (dependence)",
+          "буйһоноу (submission)"
+        ],
+        "CULT_ASSOC": [
+          {
+            "target": "Башҡортостан",
+            "relation": "aspiration_of"
+          }
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "619",
+        "669"
+      ],
+      "significance": "Self-determination; autonomy within federation",
+      "sensitivity": {
+        "has_sensitive_context": true,
+        "note": "Connected to sovereignty discussions"
+      },
+      "sources": [
+        "Political discourse"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "бәйсезлек",
+        "genitive": "бәйсезлектең",
+        "dative": "бәйсезлеккә",
+        "accusative": "бәйсезлекте",
+        "locative": "бәйсезлектә",
+        "ablative": "бәйсезлектән"
+      }
+    }
+  },
+  {
+    "id": "word_084",
+    "bashkir": "йәмғиәт",
+    "ipa": "[jæmʁiæt]",
+    "pos": "noun",
+    "english": "society/community",
+    "russian": "общество",
+    "frequency_rank": 167,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Yäm-ghi-ÄT!' The Eagle sees all ЙӘМҒИӘТ from above! Society weaves together — families, clans, villages, cities forming one living fabric!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "төшөнсә (concept)"
+        ],
+        "HAS_PART": [
+          "халыҡ (people)",
+          "ғаилә (family)",
+          "ырыу (clan)"
+        ],
+        "GOVERNED_BY": [
+          "дәүләт (state)",
+          "закон (law)"
+        ],
+        "CHARACTERIZED_BY": [
+          "мәҙәниәт (culture)",
+          "йола (tradition)"
+        ]
+      },
+      "etymology": {
+        "proto_form": "jamāʿa",
+        "proto_language": "Arabic",
+        "note": "Means 'group, community, assembly'"
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "571"
+      ],
+      "significance": "Social organization; collective life",
+      "sources": [
+        "Sociology"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "йәмғиәт",
+        "genitive": "йәмғиәттең",
+        "dative": "йәмғиәткә",
+        "accusative": "йәмғиәтте",
+        "locative": "йәмғиәттә",
+        "ablative": "йәмғиәттән"
+      }
+    }
+  },
+  {
+    "id": "word_085",
+    "bashkir": "Өфө",
+    "ipa": "[øfø]",
+    "pos": "noun",
+    "english": "Ufa (capital city)",
+    "russian": "Уфа",
+    "frequency_rank": 89,
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'Ö-FÖ!' The Eagle descends on ӨФӨ! Capital city where three rivers meet — heart of Bashkortostan, where decisions shape the nation!"
+    },
+    "bashkortnet": {
+      "relations": {
+        "ISA": [
+          "ҡала (city)",
+          "башҡала (capital)"
+        ],
+        "CAPITAL_OF": [
+          "Башҡортостан"
+        ],
+        "LOCATED_AT": [
+          "Ағиҙел йылғаһы (Agidel River)",
+          "Ҡариҙел (Karidel)",
+          "Өфө йылғаһы (Ufa River)"
+        ],
+        "CONTAINS": [
+          "хөкүмәт (government)",
+          "парламент"
+        ]
+      }
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "631"
+      ],
+      "significance": "Capital city; political, cultural, economic center since 1574",
+      "sources": [
+        "Geography"
+      ]
+    },
+    "grammar": {
+      "case_forms": {
+        "nominative": "Өфө",
+        "genitive": "Өфөнөң",
+        "dative": "Өфөгә",
+        "accusative": "Өфөнө",
+        "locative": "Өфөлә",
+        "ablative": "Өфөлән"
+      }
+    }
+  }
+]
