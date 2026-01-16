@@ -6,18 +6,27 @@ memory palace techniques, and anthropological pedagogy.
 
 The Four Birds guide your journey:
 🦅 Eagle (First Intellect) - Civic knowledge at Ufa
-🐦⬛ Crow (Universal Body) - Ancestral memory at Shulgan-Tash  
+🐦⬛ Crow (Universal Body) - Ancestral memory at Shulgan-Tash
 🔥🕊️ Anqa (Prime Matter) - Transformation at Yamantau
 🕊️ Ringdove (Universal Soul) - Daily life at Beloretsk & Bizhbulyak
+
+Enhanced with retry logic and network resilience from Bilingual Audio Dictionary.
 """
 
 import streamlit as st
 import json
 import os
+import sys
+import time
 from pathlib import Path
 from datetime import datetime
 
-# --- Audio Setup ---
+# Add parent directory to path to import shared utilities
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from utils.retry import RetryConfig
+
+# --- Audio Setup with Retry Logic ---
 try:
     from gtts import gTTS
     import hashlib
@@ -25,34 +34,151 @@ try:
 except ImportError:
     AUDIO_AVAILABLE = False
 
+# --- Translation Setup ---
+try:
+    from deep_translator import GoogleTranslator
+    TRANSLATION_AVAILABLE = True
+except ImportError:
+    TRANSLATION_AVAILABLE = False
+
+# --- Speech Recognition Setup (Whisper) ---
+try:
+    import whisper
+    WHISPER_AVAILABLE = True
+except ImportError:
+    WHISPER_AVAILABLE = False
+
 # Create audio cache directory
 AUDIO_CACHE_DIR = Path(__file__).parent / "audio_cache"
 AUDIO_CACHE_DIR.mkdir(exist_ok=True)
 
+
+def generate_audio_with_retry(text: str, slow: bool = True) -> bytes:
+    """
+    Generate audio for Bashkir text with retry logic and caching.
+
+    Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
+    Returns audio bytes or None if generation fails.
+    """
+    if not AUDIO_AVAILABLE:
+        return None
+
+    config = RetryConfig(
+        max_retries=4,
+        base_delay=2.0,
+        exponential_base=2.0,
+    )
+
+    # Create a cached filename based on text hash
+    text_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
+    cache_file = AUDIO_CACHE_DIR / f"{text_hash}.mp3"
+
+    # Return cached version if available
+    if cache_file.exists():
+        with open(cache_file, 'rb') as f:
+            return f.read()
+
+    # Generate with retry logic
+    for attempt in range(config.max_retries + 1):
+        try:
+            tts = gTTS(text=text, lang='ru', slow=slow)
+            tts.save(str(cache_file))
+
+            with open(cache_file, 'rb') as f:
+                return f.read()
+
+        except Exception as e:
+            if attempt >= config.max_retries:
+                return None
+
+            delay = config.base_delay * (config.exponential_base ** attempt)
+            time.sleep(delay)
+
+    return None
+
+
 def play_audio(text: str, slow: bool = True):
-    """Generate and play audio for Bashkir text with caching."""
+    """Generate and play audio for Bashkir text with caching and retry logic."""
     if not AUDIO_AVAILABLE:
         st.warning("🔇 Audio unavailable. Install with: `pip install gTTS`")
         return
-    
-    try:
-        # Create a cached filename based on text hash
-        text_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
-        cache_file = AUDIO_CACHE_DIR / f"{text_hash}.mp3"
-        
-        # Generate audio only if not cached
-        if not cache_file.exists():
-            tts = gTTS(text=text, lang='ru', slow=slow)
-            tts.save(str(cache_file))
-        
-        # Read and play the cached file
-        with open(cache_file, 'rb') as audio_file:
-            audio_bytes = audio_file.read()
-        
+
+    audio_bytes = generate_audio_with_retry(text, slow)
+
+    if audio_bytes:
         st.audio(audio_bytes, format='audio/mp3')
-        
+    else:
+        st.error("🔇 Audio generation failed after multiple attempts.")
+
+
+def translate_text(text: str, source: str = 'en', target: str = 'ru') -> str:
+    """
+    Translate text with retry logic.
+
+    Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
+    """
+    if not TRANSLATION_AVAILABLE:
+        return text
+
+    config = RetryConfig(
+        max_retries=4,
+        base_delay=2.0,
+        exponential_base=2.0,
+    )
+
+    for attempt in range(config.max_retries + 1):
+        try:
+            translator = GoogleTranslator(source=source, target=target)
+            return translator.translate(text)
+        except Exception as e:
+            if attempt >= config.max_retries:
+                return text  # Return original on failure
+
+            delay = config.base_delay * (config.exponential_base ** attempt)
+            time.sleep(delay)
+
+    return text
+
+
+@st.cache_resource
+def load_whisper_model():
+    """Load Whisper model with caching for speech recognition."""
+    if not WHISPER_AVAILABLE:
+        return None
+
+    config = RetryConfig(
+        max_retries=4,
+        base_delay=4.0,
+        exponential_base=2.0,
+    )
+
+    for attempt in range(config.max_retries + 1):
+        try:
+            return whisper.load_model("base")
+        except Exception as e:
+            if attempt >= config.max_retries:
+                return None
+
+            delay = config.base_delay * (config.exponential_base ** attempt)
+            time.sleep(delay)
+
+    return None
+
+
+def transcribe_audio(audio_path: str) -> str:
+    """Transcribe audio file using Whisper."""
+    if not WHISPER_AVAILABLE:
+        return ""
+
+    model = load_whisper_model()
+    if model is None:
+        return ""
+
+    try:
+        result = model.transcribe(audio_path)
+        return result.get('text', '')
     except Exception as e:
-        st.error(f"🔇 Audio error: {e}")
+        return ""
 
 # Page configuration
 st.set_page_config(
