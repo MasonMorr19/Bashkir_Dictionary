@@ -230,6 +230,16 @@ def load_ural_batyr_epic():
     except FileNotFoundError:
         return {}
 
+@st.cache_data
+def load_golden_light_data():
+    """Load the comprehensive Golden Light data - independence, geography, alphabet, proverbs."""
+    data_path = Path(__file__).parent / "data" / "golden_light_data.json"
+    try:
+        with open(data_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
 # --- Initialize Session State ---
 def init_session_state():
     """Initialize session state variables."""
@@ -551,6 +561,35 @@ st.markdown("""
         color: #0066B3 !important;
     }
 
+    /* ===== INPUT FIELDS - Lighter background, better contrast ===== */
+    .stTextInput input {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        font-size: 1.2em !important;
+        padding: 12px 15px !important;
+        border: 2px solid #0066B3 !important;
+        border-radius: 8px !important;
+    }
+    .stTextInput input::placeholder {
+        color: #666666 !important;
+        font-size: 1.1em !important;
+    }
+    .stTextInput input:focus {
+        border-color: #00AF66 !important;
+        box-shadow: 0 0 5px rgba(0, 175, 102, 0.3) !important;
+    }
+    .stTextInput > label {
+        color: #004d00 !important;
+        font-size: 1.1em !important;
+        font-weight: 600 !important;
+    }
+    /* SelectBox styling */
+    .stSelectbox > div > div {
+        background-color: #ffffff !important;
+        color: #1a1a1a !important;
+        font-size: 1.1em !important;
+    }
+
     /* ===== MOBILE RESPONSIVENESS ===== */
     @media (max-width: 768px) {
         h1 { font-size: 1.8rem !important; }
@@ -570,11 +609,15 @@ st.sidebar.caption("📱 *Tap ✕ to collapse sidebar*")
 st.sidebar.markdown("---")
 
 # Navigation - Radio buttons for individual tabs
-# Navigation - Radio buttons for individual tabs (Audio Dictionary under Sentence Builder)
+# Tab order: Palace, Golden Light, Independence, Four Birds, Ural-Batyr Epic, Geography, Alphabet...
 pages = [
     "🗺️ Palace",
+    "✨ Golden Light",
+    "⚖️ Independence",
     "📚 Four Birds",
     "⚔️ Ural-Batyr Epic",
+    "🗺️ Geography",
+    "🔤 Alphabet",
     "✍️ Sentence Builder",
     "🔊 Audio Dictionary",
     "🔄 Review",
@@ -751,6 +794,233 @@ if "Palace" in selected_page:
                     {closing_med}
                     </div>
                     """, unsafe_allow_html=True)
+
+# === PAGE: GOLDEN LIGHT (Алтын Яҡты) ===
+elif "Golden Light" in selected_page:
+    # Load data
+    golden_data = load_golden_light_data()
+    gl_info = golden_data.get('golden_light', {})
+    gl_title = gl_info.get('title', {})
+    legacy_proverb = gl_info.get('legacy_proverb', {})
+    stations = gl_info.get('memory_palace_stations', [])
+
+    st.title("✨ Алтын Яҡты — Golden Light")
+    st.markdown(f"*{gl_title.get('subtitle_bashkir', '')}*")
+    st.markdown(f"*{gl_title.get('subtitle_english', '')}*")
+
+    # Central bilingual motto - THE KEY QUOTE
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #d4af37 0%, #f4e4bc 50%, #d4af37 100%);
+                padding: 30px; border-radius: 15px; text-align: center; margin: 20px 0;
+                border: 3px solid #8B7355; box-shadow: 0 8px 32px rgba(212,175,55,0.3);">
+        <h2 style="color: #2d1f10; margin-bottom: 15px; font-size: 1.8em;">🌟 The Legacy Proverb 🌟</h2>
+        <p style="font-size: 1.5em; color: #2d1f10; font-weight: bold; margin: 15px 0;">
+            "{legacy_proverb.get('bashkir', '')}"
+        </p>
+        <p style="font-size: 1.2em; color: #4a3728; font-style: italic; margin: 15px 0;">
+            "{legacy_proverb.get('english', '')}"
+        </p>
+        <p style="font-size: 0.95em; color: #5a4738;">
+            🇷🇺 {legacy_proverb.get('russian', '')}
+        </p>
+        <p style="font-size: 0.9em; color: #6a5748; margin-top: 10px;">
+            [{legacy_proverb.get('phonetic', '')}]
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    *This proverb anchors the Ural-Batyr mythology. When the hero Ural poured the waters of life
+    for all rather than drinking them himself, he demonstrated this truth: we live on through what we give.
+    The Sesen storytellers have passed this wisdom through generations.*
+    """)
+
+    st.markdown("---")
+
+    # Memory Palace Stations - Golden Light Version
+    st.markdown("### 🏰 The Memory Palace of the Ural-Batyr Epic")
+    st.markdown("*Walk through the 10 stations of the hero's journey. Each station holds vocabulary and wisdom.*")
+
+    # Station navigation buttons
+    if 'gl_station' not in st.session_state:
+        st.session_state.gl_station = 0
+
+    # Display station buttons in a row
+    cols = st.columns(10)
+    for idx, station in enumerate(stations):
+        with cols[idx]:
+            btn_style = "primary" if idx == st.session_state.gl_station else "secondary"
+            if st.button(station.get('icon', '📍'), key=f"gl_station_{idx}", help=station.get('title', '')):
+                st.session_state.gl_station = idx
+
+    # Current station display
+    if stations:
+        current_station = stations[st.session_state.gl_station]
+
+        # Station color mapping
+        color_map = {
+            'emerald': '#00AF66', 'sky': '#0066B3', 'blue': '#0044AA',
+            'amber': '#d4af37', 'red': '#cc3333', 'purple': '#8B5CF6',
+            'orange': '#F97316', 'cyan': '#06B6D4', 'slate': '#64748B'
+        }
+        station_color = color_map.get(current_station.get('color', 'emerald'), '#00AF66')
+
+        st.markdown(f"""
+        <div class="word-card" style="border-left: 5px solid {station_color}; background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 2em;">{current_station.get('icon', '📍')}</span>
+                <span style="background: {station_color}; color: white; padding: 5px 15px; border-radius: 20px;">
+                    Station {current_station.get('id', '?')}
+                </span>
+            </div>
+            <h2 style="color: {station_color}; margin: 10px 0;">{current_station.get('title', '')}</h2>
+            <p style="font-size: 1.2em; font-style: italic; color: #00AF66;">
+                {current_station.get('bashkir', '')}
+            </p>
+            <p style="color: #333; margin: 10px 0;">{current_station.get('summary', '')}</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Memory techniques
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown(f"""
+            <div class="stat-box" style="text-align: left;">
+                <h4>🔑 Memory Peg</h4>
+                <p style="font-size: 1.1em; font-family: monospace; color: #0066B3;">
+                    {current_station.get('memory_peg', '')}
+                </p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        with col2:
+            st.markdown(f"""
+            <div class="mnemonic-text">
+                <h4>🎨 Visualization</h4>
+                <p>{current_station.get('memory_image', '')}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        # Vocabulary at this station
+        st.markdown("### 📚 Station Vocabulary")
+        vocab = current_station.get('vocab', [])
+
+        if vocab:
+            vocab_cols = st.columns(len(vocab))
+            for idx, word in enumerate(vocab):
+                with vocab_cols[idx]:
+                    st.markdown(f"""
+                    <div class="word-card" style="text-align: center;">
+                        <span class="bashkir-text">{word.get('bashkir', '')}</span>
+                        <span class="ipa-text">[{word.get('phonetic', '')}]</span>
+                        <div class="english-text">{word.get('english', '')}</div>
+                    </div>
+                    """, unsafe_allow_html=True)
+                    if st.button(f"🔊", key=f"gl_audio_{current_station['id']}_{idx}"):
+                        play_audio(word.get('bashkir', ''), slow=True)
+
+    # Navigation buttons
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col1:
+        if st.session_state.gl_station > 0:
+            if st.button("← Previous Station"):
+                st.session_state.gl_station -= 1
+                st.rerun()
+    with col3:
+        if st.session_state.gl_station < len(stations) - 1:
+            if st.button("Next Station →"):
+                st.session_state.gl_station += 1
+                st.rerun()
+
+# === PAGE: INDEPENDENCE (12 Reasons) ===
+elif "Independence" in selected_page:
+    golden_data = load_golden_light_data()
+    independence = golden_data.get('independence', {})
+    title_info = independence.get('title', {})
+    reasons = independence.get('reasons', [])
+
+    st.title("⚖️ Бәйһеҙлек — Independence")
+    st.markdown(f"### {title_info.get('subtitle', '')}")
+    st.markdown(f"*By {independence.get('author', '')} — {independence.get('organization', '')}*")
+
+    # Introduction with scroll/legal theme
+    st.markdown(f"""
+    <div style="background: linear-gradient(135deg, #f5f5dc 0%, #ede6cc 100%);
+                padding: 25px; border-radius: 15px; margin: 20px 0;
+                border: 2px solid #8B7355; box-shadow: 0 4px 15px rgba(139,115,85,0.2);">
+        <div style="text-align: center;">
+            <span style="font-size: 3em;">📜⚖️📜</span>
+            <h3 style="color: #4a3728; margin: 15px 0;">A Declaration of Rights</h3>
+            <p style="color: #5a4738; font-style: italic;">
+                "International law supports self-determination for peoples under colonial rule."
+            </p>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # Display the 12 Reasons in a grid layout
+    st.markdown("### The Twelve Reasons")
+
+    # Display reasons in a 2-column grid
+    for i in range(0, len(reasons), 2):
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if i < len(reasons):
+                reason = reasons[i]
+                st.markdown(f"""
+                <div class="word-card" style="border-left: 5px solid #8B7355; min-height: 180px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                        <span style="font-size: 2em;">{reason.get('icon', '📜')}</span>
+                        <div>
+                            <span style="background: #8B7355; color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8em;">
+                                Reason {reason.get('id', '')}
+                            </span>
+                            <h4 style="color: #00AF66; margin: 5px 0;">{reason.get('title', '')}</h4>
+                        </div>
+                    </div>
+                    <p style="color: #333; font-size: 0.95em;">{reason.get('description', '')}</p>
+                    <p style="color: #0066B3; font-style: italic; margin-top: 10px;">
+                        🏷️ {reason.get('bashkir_term', '')}
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
+
+        with col2:
+            if i + 1 < len(reasons):
+                reason = reasons[i + 1]
+                st.markdown(f"""
+                <div class="word-card" style="border-left: 5px solid #8B7355; min-height: 180px;">
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px;">
+                        <span style="font-size: 2em;">{reason.get('icon', '📜')}</span>
+                        <div>
+                            <span style="background: #8B7355; color: white; padding: 2px 10px; border-radius: 10px; font-size: 0.8em;">
+                                Reason {reason.get('id', '')}
+                            </span>
+                            <h4 style="color: #00AF66; margin: 5px 0;">{reason.get('title', '')}</h4>
+                        </div>
+                    </div>
+                    <p style="color: #333; font-size: 0.95em;">{reason.get('description', '')}</p>
+                    <p style="color: #0066B3; font-style: italic; margin-top: 10px;">
+                        🏷️ {reason.get('bashkir_term', '')}
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
+
+    # Closing statement
+    st.markdown("---")
+    st.markdown(f"""
+    <div class="meditation-box" style="text-align: center; border: 2px solid #8B7355;">
+        <p style="font-size: 1.2em;">📜 ⚖️ 📜</p>
+        <p style="font-size: 1.1em; color: #004d00;">
+            <strong>"Халыҡ көсө — таш тишә"</strong><br>
+            <em>The people's strength pierces stone.</em>
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # === PAGE: FOUR BIRDS ===
 elif "Four Birds" in selected_page:
@@ -983,7 +1253,280 @@ elif "Ural-Batyr" in selected_page:
                 st.session_state.epic_chapter += 1
                 st.rerun()
 
-# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
+# === PAGE: GEOGRAPHY ===
+elif "Geography" in selected_page:
+    golden_data = load_golden_light_data()
+    geography = golden_data.get('geography', {})
+    geo_title = geography.get('title', {})
+    overview = geography.get('overview', {})
+    cities = geography.get('cities', [])
+    landmarks = geography.get('landmarks', [])
+    facts = geography.get('facts', [])
+    map_bounds = geography.get('map_bounds', {})
+
+    st.title("🗺️ Географиә — Geography of Bashkortostan")
+    st.markdown(f"*{geo_title.get('bashkir', '')}*")
+
+    # Overview stats
+    st.markdown("### 📊 Republic Overview")
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>🏛️</h3>
+            <p style="font-size: 1.1em; font-weight: bold;">{overview.get('capital', '')}</p>
+            <small>Capital</small>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>📐</h3>
+            <p style="font-size: 1.1em; font-weight: bold;">{overview.get('area_km2', ''):,} km²</p>
+            <small>Area</small>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col3:
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>👥</h3>
+            <p style="font-size: 1.1em; font-weight: bold;">{overview.get('population', ''):,}</p>
+            <small>Population</small>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col4:
+        st.markdown(f"""
+        <div class="stat-box">
+            <h3>🏷️</h3>
+            <p style="font-size: 0.9em; font-weight: bold;">{overview.get('bashkir_name', '')}</p>
+            <small>Official Name</small>
+        </div>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # Create tabs for different geography sections
+    tab1, tab2, tab3, tab4 = st.tabs(["🏙️ Cities", "⛰️ Landmarks", "📚 Facts", "🗺️ Map"])
+
+    with tab1:
+        st.markdown("### 🏙️ Major Cities")
+        st.markdown("*Click on a city to hear its Bashkir name*")
+
+        # Display cities in a grid
+        for i in range(0, len(cities), 3):
+            cols = st.columns(3)
+            for j in range(3):
+                if i + j < len(cities):
+                    city = cities[i + j]
+                    with cols[j]:
+                        city_type_colors = {'capital': '#d4af37', 'major': '#0066B3', 'city': '#00AF66'}
+                        color = city_type_colors.get(city.get('type', 'city'), '#00AF66')
+
+                        st.markdown(f"""
+                        <div class="word-card" style="text-align: center; border-left: 4px solid {color};">
+                            <span style="background: {color}; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7em;">
+                                {city.get('type', 'city').upper()}
+                            </span>
+                            <h4 style="color: #00AF66; margin: 10px 0;">{city.get('name', '')}</h4>
+                            <p class="bashkir-text" style="font-size: 1.3em;">{city.get('bashkir', '')}</p>
+                            <small>Pop: {city.get('population', '')}</small>
+                        </div>
+                        """, unsafe_allow_html=True)
+
+                        if st.button(f"🔊 Hear", key=f"city_{city.get('name', '')}"):
+                            play_audio(city.get('bashkir', ''), slow=True)
+
+    with tab2:
+        st.markdown("### ⛰️ Notable Landmarks")
+        st.markdown("*Sacred mountains, rivers, and caves of Bashkortostan*")
+
+        for landmark in landmarks:
+            st.markdown(f"""
+            <div class="word-card" style="border-left: 5px solid #d4af37;">
+                <div style="display: flex; align-items: flex-start; gap: 15px;">
+                    <span style="font-size: 2.5em;">{landmark.get('icon', '🏔️')}</span>
+                    <div style="flex: 1;">
+                        <h4 style="color: #00AF66; margin: 0;">{landmark.get('name', '')}</h4>
+                        <p class="bashkir-text" style="font-size: 1.2em; margin: 5px 0;">{landmark.get('bashkir', '')}</p>
+                        <p style="color: #333;">{landmark.get('description', '')}</p>
+                        <p style="color: #0066B3; font-style: italic; margin-top: 8px;">
+                            🌟 <em>{landmark.get('significance', '')}</em>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with tab3:
+        st.markdown("### 📚 Geographic & Natural Facts")
+
+        # Filter by category
+        fact_categories = list(set([f.get('category', 'general') for f in facts]))
+        selected_cat = st.selectbox("Filter by category:", ['All'] + fact_categories)
+
+        filtered_facts = facts if selected_cat == 'All' else [f for f in facts if f.get('category') == selected_cat]
+
+        for fact in filtered_facts:
+            cat_colors = {'geography': '#0066B3', 'nature': '#00AF66', 'resources': '#d4af37'}
+            color = cat_colors.get(fact.get('category', ''), '#666')
+
+            st.markdown(f"""
+            <div class="word-card">
+                <span style="background: {color}; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">
+                    {fact.get('category', 'general').upper()}
+                </span>
+                <h4 style="color: #00AF66; margin: 10px 0;">{fact.get('title', '')}</h4>
+                <p style="color: #333;">{fact.get('content', '')}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with tab4:
+        st.markdown("### 🗺️ Map of Bashkortostan")
+        st.markdown("*Interactive map showing cities and landmarks*")
+
+        # Create map data for Streamlit
+        try:
+            import pandas as pd
+
+            # Combine cities and landmarks for mapping
+            map_data = []
+
+            for city in cities:
+                map_data.append({
+                    'lat': city.get('lat', 54.0),
+                    'lon': city.get('lon', 56.0),
+                    'name': f"🏙️ {city.get('name', '')} ({city.get('bashkir', '')})",
+                    'type': 'city'
+                })
+
+            for landmark in landmarks:
+                map_data.append({
+                    'lat': landmark.get('lat', 54.0),
+                    'lon': landmark.get('lon', 56.0),
+                    'name': f"{landmark.get('icon', '⛰️')} {landmark.get('name', '')} ({landmark.get('bashkir', '')})",
+                    'type': 'landmark'
+                })
+
+            df = pd.DataFrame(map_data)
+
+            # Display the map
+            st.map(df, latitude='lat', longitude='lon', zoom=6)
+
+            # Legend
+            st.markdown("""
+            **Map Legend:**
+            - 🏙️ Cities
+            - ⛰️ Mountains
+            - 🎨 Cave (Shulgan-Tash)
+            - 🌊 River
+
+            *Map data: OpenStreetMap contributors*
+            """)
+
+        except ImportError:
+            st.warning("Install pandas for map functionality: `pip install pandas`")
+            st.info(f"Map would show area from {map_bounds.get('south')}° to {map_bounds.get('north')}° N, "
+                    f"{map_bounds.get('west')}° to {map_bounds.get('east')}° E")
+
+# === PAGE: ALPHABET ===
+elif "Alphabet" in selected_page:
+    golden_data = load_golden_light_data()
+    alphabet_data = golden_data.get('alphabet', {})
+    alphabet_title = alphabet_data.get('title', {})
+    full_alphabet = alphabet_data.get('full_alphabet', [])
+    special_letters = alphabet_data.get('special_letters', [])
+
+    st.title("🔤 Башҡорт әлифбаһы — The Bashkir Alphabet")
+    st.markdown(f"*{alphabet_data.get('description', '')}*")
+
+    # Full alphabet display
+    st.markdown("### 📝 The Complete Alphabet (42 Letters)")
+
+    # Display alphabet in rows
+    cols_per_row = 14
+    for i in range(0, len(full_alphabet), cols_per_row):
+        row_letters = full_alphabet[i:i + cols_per_row]
+        cols = st.columns(cols_per_row)
+        for j, letter in enumerate(row_letters):
+            with cols[j]:
+                # Highlight special Bashkir letters
+                is_special = letter in ['Ә', 'Ө', 'Ү', 'Ғ', 'Ҡ', 'Ң', 'Ҙ', 'Ҫ', 'Һ']
+                bg_color = '#00AF66' if is_special else '#e6f2ff'
+                text_color = 'white' if is_special else '#004d00'
+
+                st.markdown(f"""
+                <div style="background: {bg_color}; color: {text_color}; padding: 10px;
+                            text-align: center; border-radius: 8px; font-size: 1.5em;
+                            font-weight: bold; margin: 2px; border: 2px solid #0066B3;">
+                    {letter}
+                </div>
+                """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <p style="text-align: center; color: #666; margin-top: 10px;">
+        <span style="background: #00AF66; color: white; padding: 2px 8px; border-radius: 4px;">Green</span>
+        = Special Bashkir letters not found in Russian
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
+    # Special letters detailed
+    st.markdown("### 🌟 The 9 Special Bashkir Letters")
+    st.markdown("*These unique letters represent sounds not found in Russian*")
+
+    for letter_info in special_letters:
+        st.markdown(f"""
+        <div class="word-card" style="display: flex; align-items: center; gap: 20px;">
+            <div style="background: linear-gradient(135deg, #00AF66 0%, #008f55 100%);
+                        color: white; padding: 20px 30px; border-radius: 12px;
+                        font-size: 2.5em; font-weight: bold; min-width: 80px; text-align: center;">
+                {letter_info.get('letter', '')}
+            </div>
+            <div style="flex: 1;">
+                <h4 style="color: #00AF66; margin: 0 0 5px 0;">{letter_info.get('name', '')}</h4>
+                <p style="color: #0066B3; margin: 5px 0;">
+                    🔊 Sound: <strong>{letter_info.get('sound', '')}</strong>
+                </p>
+                <p style="color: #333; margin: 5px 0;">
+                    📝 Example: <span class="bashkir-text" style="font-size: 1.1em;">{letter_info.get('example', '')}</span>
+                </p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Audio button for example
+        example_word = letter_info.get('example', '').split(' ')[0]  # Get just the Bashkir word
+        col1, col2 = st.columns([1, 4])
+        with col1:
+            if st.button(f"🔊 Hear example", key=f"alpha_{letter_info.get('letter', '')}"):
+                play_audio(example_word, slow=True)
+        with col2:
+            st.write("")
+
+    # Practice section
+    st.markdown("---")
+    st.markdown("### 🎯 Quick Reference")
+
+    st.markdown("""
+    | Letter | IPA | Similar To | Example |
+    |:------:|:---:|:-----------|:--------|
+    | **Ә** | /æ/ | 'a' in "cat" | әсә (mother) |
+    | **Ө** | /ø/ | German 'ö' | өй (house) |
+    | **Ү** | /y/ | German 'ü' | үҙ (self) |
+    | **Ғ** | /ʁ/ | Arabic 'غ' (gh) | ғаилә (family) |
+    | **Ҡ** | /q/ | Deep throat 'k' | ҡыҙ (girl) |
+    | **Ң** | /ŋ/ | 'ng' in "sing" | таң (dawn) |
+    | **Ҙ** | /ð/ | 'th' in "this" | ҙур (big) |
+    | **Ҫ** | /θ/ | 'th' in "think" | ҫәс (hair) |
+    | **Һ** | /h/ | 'h' in "house" | һыу (water) |
+    """)
+
+# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export and Working Word Bank) ===
 elif "Sentence Builder" in selected_page:
     st.title("✍️ Sentence Builder")
     st.markdown("*Create your own Bashkir sentences, hear them spoken, and export audio for poems or stories!*")
@@ -1010,107 +1553,77 @@ elif "Sentence Builder" in selected_page:
 
     st.markdown("---")
 
-    # Word bank
+    # Word bank - enhanced with words from dictionary
     st.markdown("### 🏦 Word Bank")
-    st.markdown("Click words to add them to your sentence:")
+    st.markdown("*Click words to add them to your sentence. Words are organized by type.*")
 
+    # Get word categories from patterns or create from words_data
     word_categories = patterns.get('word_bank_categories', {})
 
-    if word_categories:
-        tabs = st.tabs(list(word_categories.keys()))
-
-        for tab, (category, word_list) in zip(tabs, word_categories.items()):
-            with tab:
-                cols = st.columns(6)
-                for idx, word in enumerate(word_list):
-                    with cols[idx % 6]:
-                        word_data = next((w for w in words_data if w['bashkir'] == word), None)
-                        english = word_data.get('english', '?') if word_data else '?'
-
-                        if st.button(f"{word}\n({english})", key=f"word_{category}_{word}"):
-                            st.session_state.builder_sentence.append({
-                                'word': word,
-                                'english': english
-                            })
-                            st.rerun()
-
-
-    quiz_questions = [
-        {
-            "question": "Which bird represents civic knowledge and legal rights?",
-            "options": ["Crow", "Eagle", "Anqa", "Ringdove"],
-            "correct": "Eagle"
-        },
-        {
-            "question": "At which location would you find the Crow?",
-            "options": ["Ufa", "Shulgan-Tash", "Yamantau", "Beloretsk"],
-            "correct": "Shulgan-Tash"
-        },
-        {
-            "question": "Which bird represents transformation and potential?",
-            "options": ["Eagle", "Crow", "Anqa", "Ringdove"],
-            "correct": "Anqa"
+    # If no categories in patterns, create from words_data by part of speech
+    if not word_categories or len(word_categories) == 0:
+        # Organize words by part of speech
+        word_categories = {
+            "📛 Nouns": [],
+            "🎬 Verbs": [],
+            "📝 Adjectives": [],
+            "🔢 Numbers": [],
+            "👥 Pronouns": [],
+            "📍 Other": []
         }
-    ]
 
-    for i, q in enumerate(quiz_questions):
-        answer = st.radio(q["question"], q["options"], key=f"quiz_{i}")
-        if st.button("Check", key=f"check_{i}"):
-            if answer == q["correct"]:
-                st.success("✅ Correct!")
+        for word in words_data:
+            pos = word.get('pos', 'noun').lower()
+            bashkir = word['bashkir']
+
+            if pos == 'noun':
+                word_categories["📛 Nouns"].append(bashkir)
+            elif pos == 'verb':
+                word_categories["🎬 Verbs"].append(bashkir)
+            elif pos in ['adjective', 'adj']:
+                word_categories["📝 Adjectives"].append(bashkir)
+            elif pos in ['number', 'numeral']:
+                word_categories["🔢 Numbers"].append(bashkir)
+            elif pos == 'pronoun':
+                word_categories["👥 Pronouns"].append(bashkir)
             else:
-                st.error(f"❌ The correct answer is: {q['correct']}")
+                word_categories["📍 Other"].append(bashkir)
 
-# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
-elif "Sentence Builder" in selected_page:
-    st.title("✍️ Sentence Builder")
-    st.markdown("*Create your own Bashkir sentences, hear them spoken, and export audio for poems or stories!*")
-
-    patterns = load_patterns()
-
-    # Pattern templates
-    st.markdown("### 📝 Sentence Patterns")
-
-    pattern_list = patterns.get('patterns', [])[:5]
-
-    if pattern_list:
-        cols = st.columns(len(pattern_list))
-        for idx, pattern in enumerate(pattern_list):
-            with cols[idx]:
-                st.markdown(f"""
-                **{pattern['name']}**
-                `{pattern['template']}`
-                *{pattern['english_pattern']}*
-                """)
-                example = pattern.get('examples', [{}])[0]
-                if example:
-                    st.caption(f"Ex: {example.get('bashkir', '')}")
-
-    st.markdown("---")
-
-    # Word bank
-    st.markdown("### 🏦 Word Bank")
-    st.markdown("Click words to add them to your sentence:")
-
-    word_categories = patterns.get('word_bank_categories', {})
+        # Remove empty categories
+        word_categories = {k: v for k, v in word_categories.items() if v}
 
     if word_categories:
         tabs = st.tabs(list(word_categories.keys()))
 
         for tab, (category, word_list) in zip(tabs, word_categories.items()):
             with tab:
-                cols = st.columns(6)
-                for idx, word in enumerate(word_list):
-                    with cols[idx % 6]:
-                        word_data = next((w for w in words_data if w['bashkir'] == word), None)
-                        english = word_data.get('english', '?') if word_data else '?'
+                st.markdown(f"**{len(word_list)} words available:**")
 
-                        if st.button(f"{word}\n({english})", key=f"word_{category}_{word}"):
-                            st.session_state.builder_sentence.append({
-                                'word': word,
-                                'english': english
-                            })
-                            st.rerun()
+                # Display words in a grid - 5 columns
+                cols_per_row = 5
+                for row_start in range(0, min(len(word_list), 25), cols_per_row):  # Limit to 25 words per category for performance
+                    cols = st.columns(cols_per_row)
+                    for idx, col in enumerate(cols):
+                        word_idx = row_start + idx
+                        if word_idx < len(word_list):
+                            word = word_list[word_idx]
+                            word_data = next((w for w in words_data if w['bashkir'] == word), None)
+                            english = word_data.get('english', '?') if word_data else '?'
+
+                            with col:
+                                # Create a unique key for each word button
+                                btn_key = f"wb_{category[:3]}_{word_idx}_{word[:5]}"
+                                if st.button(f"**{word}**\n_{english}_", key=btn_key, use_container_width=True):
+                                    st.session_state.builder_sentence.append({
+                                        'word': word,
+                                        'english': english
+                                    })
+                                    st.rerun()
+
+                if len(word_list) > 25:
+                    st.caption(f"*Showing 25 of {len(word_list)} words. Use search in Audio Dictionary for more.*")
+    else:
+        st.warning("No words available. Check if words.json is properly loaded.")
 
     st.markdown("---")
 
@@ -1216,53 +1729,147 @@ elif "Sentence Builder" in selected_page:
                         st.session_state.saved_sentences.pop(idx)
                         st.rerun()
 
-# === PAGE: AUDIO DICTIONARY ===
+# === PAGE: AUDIO DICTIONARY (Enhanced with OCM Categories) ===
 elif "Audio Dictionary" in selected_page:
     st.title("🔊 Audio Dictionary")
-    st.markdown("*Listen to Bashkir words with pronunciation guides.*")
+    st.markdown("*Listen to all Bashkir words organized by cultural categories (OCM eHRAF 2021)*")
 
-    # Search
-    search_term = st.text_input("Search words (Bashkir or English):", key="audio_search")
+    # Load OCM mapping
+    ocm_data = load_ocm_mapping()
+    thematic_groups = ocm_data.get('thematic_groups', {})
+    ocm_labels = ocm_data.get('ocm_labels', {})
 
-    # Filter words
+    # Search bar with improved styling
+    st.markdown("### 🔍 Search")
+    search_term = st.text_input("Search words (Bashkir, English, or Russian):",
+                                 key="audio_search",
+                                 placeholder="Type to search all words...")
+
+    # Filter words based on search
     if search_term:
-        filtered_words = [w for w in words_data if search_term.lower() in w['bashkir'].lower() or search_term.lower() in w['english'].lower()]
+        filtered_words = [w for w in words_data if
+                         search_term.lower() in w['bashkir'].lower() or
+                         search_term.lower() in w.get('english', '').lower() or
+                         search_term.lower() in w.get('russian', '').lower()]
+        st.markdown(f"**Found {len(filtered_words)} matching words**")
+
+        # Show search results
+        for word in filtered_words:
+            with st.expander(f"🔊 {word['bashkir']} — {word.get('english', '')}"):
+                col1, col2 = st.columns([2, 1])
+
+                with col1:
+                    ocm_codes = word.get('cultural_context', {}).get('ocm_codes', [])
+                    ocm_names = [ocm_labels.get(code, code) for code in ocm_codes[:3]]
+
+                    st.markdown(f"""
+                    <div class="word-card">
+                        <span class="bashkir-text" style="font-size: 2em;">{word['bashkir']}</span>
+                        <span class="ipa-text" style="font-size: 1.2em;">{word.get('ipa', '')}</span>
+                        <div class="english-text" style="font-size: 1.3em; margin: 10px 0;">{word.get('english', '')}</div>
+                        <span class="russian-text" style="font-size: 1.1em;">🇷🇺 {word.get('russian', '')}</span>
+                        <br><br>
+                        <span style="color: #0066B3; font-size: 0.9em;">📚 OCM: {', '.join(ocm_names) if ocm_names else 'General'}</span>
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                with col2:
+                    st.markdown("**🔊 Audio:**")
+                    if st.button("▶️ Normal", key=f"audio_normal_{word['id']}"):
+                        play_audio(word['bashkir'], slow=False)
+                    if st.button("🐢 Slow", key=f"audio_slow_{word['id']}"):
+                        play_audio(word['bashkir'], slow=True)
+
+                    audio_bytes = generate_audio_with_retry(word['bashkir'], slow=True)
+                    if audio_bytes:
+                        st.download_button(
+                            label="⬇️ Download",
+                            data=audio_bytes,
+                            file_name=f"{word['bashkir']}.mp3",
+                            mime="audio/mp3",
+                            key=f"download_{word['id']}"
+                        )
     else:
-        filtered_words = words_data[:20]  # Show first 20 by default
+        # Show all words organized by OCM thematic groups
+        st.markdown("---")
+        st.markdown("### 📚 Browse by Cultural Category (OCM eHRAF 2021)")
+        st.markdown("*Words organized into 2-5 word groups by anthropological classification*")
 
-    st.write(f"Showing {len(filtered_words)} words")
+        # Create tabs for thematic groups
+        group_names = list(thematic_groups.keys())
+        display_names = [thematic_groups[g].get('display_name', g) for g in group_names]
 
-    for word in filtered_words:
-        with st.expander(f"🔊 {word['bashkir']} ({word['english']})"):
-            col1, col2 = st.columns([2, 1])
+        if display_names:
+            tabs = st.tabs(display_names)
 
-            with col1:
-                st.markdown(f"""
-                <div class="word-card">
-                    <span class="bashkir-text">{word['bashkir']}</span>
-                    <span class="ipa-text">{word.get('ipa', '')}</span>
-                    <div class="english-text">{word['english']}</div>
-                    <span class="russian-text">🇷🇺 {word.get('russian', '')}</span>
-                </div>
-                """, unsafe_allow_html=True)
+            for tab, group_key in zip(tabs, group_names):
+                with tab:
+                    group_info = thematic_groups[group_key]
+                    group_words_list = group_info.get('words', [])
+                    ocm_codes = group_info.get('ocm_codes', [])
 
-            with col2:
-                st.markdown("**Audio Controls:**")
-                if st.button("▶️ Normal", key=f"audio_normal_{word['bashkir']}"):
-                    play_audio(word['bashkir'], slow=False)
-                if st.button("🐢 Slow", key=f"audio_slow_{word['bashkir']}"):
-                    play_audio(word['bashkir'], slow=True)
+                    # Get OCM labels for this group
+                    ocm_names = [f"{code}: {ocm_labels.get(code, 'Unknown')}" for code in ocm_codes[:5]]
 
-                # Download option
-                audio_bytes = generate_audio_with_retry(word['bashkir'], slow=True)
-                if audio_bytes:
-                    st.download_button(
-                        label="⬇️ Download",
-                        data=audio_bytes,
-                        file_name=f"{word['bashkir']}.mp3",
-                        mime="audio/mp3",
-                        key=f"download_{word['bashkir']}"
-                    )
+                    st.markdown(f"**OCM Categories:** {', '.join(ocm_names[:3])}...")
+
+                    # Find matching words from words_data
+                    matching_words = []
+                    for word in words_data:
+                        word_ocm = word.get('cultural_context', {}).get('ocm_codes', [])
+                        if any(code in word_ocm for code in ocm_codes):
+                            matching_words.append(word)
+                        elif word['bashkir'] in group_words_list:
+                            matching_words.append(word)
+
+                    # Remove duplicates
+                    seen = set()
+                    unique_words = []
+                    for w in matching_words:
+                        if w['bashkir'] not in seen:
+                            seen.add(w['bashkir'])
+                            unique_words.append(w)
+
+                    if unique_words:
+                        st.markdown(f"**{len(unique_words)} words in this category:**")
+
+                        # Display in groups of 3-4 per row
+                        for i in range(0, len(unique_words), 3):
+                            cols = st.columns(3)
+                            for j, col in enumerate(cols):
+                                if i + j < len(unique_words):
+                                    word = unique_words[i + j]
+                                    with col:
+                                        st.markdown(f"""
+                                        <div class="word-card" style="text-align: center; min-height: 120px;">
+                                            <span class="bashkir-text" style="font-size: 1.6em;">{word['bashkir']}</span>
+                                            <span class="ipa-text">{word.get('ipa', '')}</span>
+                                            <div style="color: #004d00; font-size: 1.1em; margin: 8px 0;">{word.get('english', '')}</div>
+                                            <small style="color: #666;">🇷🇺 {word.get('russian', '')}</small>
+                                        </div>
+                                        """, unsafe_allow_html=True)
+
+                                        bcol1, bcol2 = st.columns(2)
+                                        with bcol1:
+                                            if st.button("🔊", key=f"cat_audio_{group_key}_{word['id']}",
+                                                        help=f"Play {word['bashkir']}"):
+                                                play_audio(word['bashkir'], slow=True)
+                                        with bcol2:
+                                            audio_data = generate_audio_with_retry(word['bashkir'], slow=True)
+                                            if audio_data:
+                                                st.download_button(
+                                                    "⬇️",
+                                                    data=audio_data,
+                                                    file_name=f"{word['bashkir']}.mp3",
+                                                    mime="audio/mp3",
+                                                    key=f"cat_dl_{group_key}_{word['id']}"
+                                                )
+                    else:
+                        st.info("No words found in this category yet.")
+
+        # Show total word count
+        st.markdown("---")
+        st.markdown(f"**📊 Total: {len(words_data)} words in dictionary**")
 
 # === PAGE: REVIEW (Fixed ZeroDivisionError) ===
 elif "Review" in selected_page:
@@ -1462,48 +2069,51 @@ elif "BashkortNet" in selected_page:
                 if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
                     play_audio(word_data['bashkir'], slow=True)
 
-            with col2:
-                # Create tabs for different aspects
-                tab1, tab2, tab3 = st.tabs(["🕸️ Semantic Network", "📚 OCM Codes", "🔗 Etymology"])
+    # Neo4j integration info
+    st.markdown("---")
+    st.markdown("### 🗄️ Neo4j Graph Database Integration")
+    st.info("""
+    **Future Development:** BashkortNet is designed to integrate with Neo4j graph database for advanced semantic queries.
 
-                with tab1:
-                    st.markdown("### Semantic Relations")
+    **Planned Features:**
+    - Cypher query support for complex relationship traversal
+    - Visual graph exploration of word connections
+    - Export semantic network to Neo4j format
+    - Real-time knowledge graph updates
 
-                    bashkortnet = word_data.get('bashkortnet', {})
-                    relations = bashkortnet.get('relations', {})
+    **Current Data Format:** The BashkortNet relationships in this app use JSON-LD compatible structures
+    that can be directly imported into Neo4j using APOC procedures.
+    """)
 
-                    if relations:
-                        for rel_type, targets in relations.items():
-                            if targets:
-                                rel_labels = {
-                                    'SYN': '🔄 Synonyms',
-                                    'ANT': '↔️ Antonyms',
-                                    'ISA': '⬆️ Is a type of',
-                                    'HAS_TYPE': '⬇️ Types',
-                                    'PART_OF': '🧩 Part of',
-                                    'HAS_PART': '🔧 Has parts',
-                                    'CULT_ASSOC': '🏛️ Cultural',
-                                    'MYTH_LINK': '📜 Mythological'
-                                }
+    # Export to Neo4j format button
+    if st.button("📤 Export to Neo4j Format (Cypher)"):
+        # Generate Cypher statements
+        cypher_statements = []
+        cypher_statements.append("// Neo4j Cypher statements for BashkortNet")
+        cypher_statements.append("// Run these in Neo4j Browser or neo4j-admin")
+        cypher_statements.append("")
 
-                                st.markdown(f"**{rel_labels.get(rel_type, rel_type)}:**")
+        for word in words_data[:20]:  # Limit for display
+            bashkir = word['bashkir'].replace("'", "\\'")
+            english = word.get('english', '').replace("'", "\\'")
+            cypher_statements.append(f"CREATE (w:Word {{bashkir: '{bashkir}', english: '{english}', pos: '{word.get('pos', 'noun')}'}})")
 
-                                for target in targets:
-                                    if isinstance(target, dict):
-                                        target_word = target.get('target', target.get('gloss', str(target)))
-                                        gloss = target.get('gloss', '')
-                                        note = target.get('note', '')
-                                        display = f"- {target_word}"
-                                        if gloss:
-                                            display += f" ({gloss})"
-                                        if note:
-                                            display += f" *({note})*"
-                                        st.markdown(display)
-                                    else:
-                                        st.markdown(f"- {target}")
+            # Add relations
+            bashkortnet_data = word.get('bashkortnet', {})
+            relations = bashkortnet_data.get('relations', {})
+            for rel_type, targets in relations.items():
+                for target in targets:
+                    if isinstance(target, dict):
+                        target_word = target.get('target', '').replace("'", "\\'")
                     else:
-                        st.info("No relations defined for this word yet.")
+                        target_word = str(target).replace("'", "\\'")
+                    if target_word:
+                        cypher_statements.append(f"// {bashkir} -{rel_type}-> {target_word}")
 
+        st.code("\n".join(cypher_statements[:30]), language="cypher")
+        st.caption("*Showing first 30 statements. Full export available for download.*")
+
+    st.markdown("---")
 
     # Word search with Bashkir and English
     search_word = st.selectbox(
@@ -1771,12 +2381,18 @@ elif "Truth Unveiled" in selected_page:
     st.title("🌟 Truth Unveiled — Алтын Яҡты")
     st.markdown("*The Golden Light: Proverbs, Timeline, and the Deeper Knowledge*")
 
-    # Load epic data for proverbs and timeline
+    # Load data from both sources for comprehensive coverage
     epic_data = load_ural_batyr_epic()
-    proverbs = epic_data.get('proverbs', [])
-    timeline = epic_data.get('timeline', [])
+    golden_data = load_golden_light_data()
+
+    # Use golden_light_data.json for proverbs and timeline (more comprehensive)
+    proverbs = golden_data.get('proverbs', epic_data.get('proverbs', []))
+    timeline = golden_data.get('timeline', epic_data.get('timeline', []))
     cultural_facts = epic_data.get('cultural_facts', [])
-    legacy_proverb = epic_data.get('legacy_proverb', {})
+
+    # Legacy proverb from golden_light_data
+    gl_info = golden_data.get('golden_light', {})
+    legacy_proverb = gl_info.get('legacy_proverb', epic_data.get('legacy_proverb', {}))
 
     # The Golden Light Introduction
     st.markdown(f"""
