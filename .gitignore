@@ -8,20 +8,8 @@ __pycache__/
 env/
 venv/
 .venv/
-.eggs/
-.egg-info/
-dist/
-build/
-*.egg-info/
-*.so
-.libs/
-.pytest_cache/
-.mypy_cache/
-.coverage
-htmlcov/
-
-# Dependencies
-node_modules/
+pip-log.txt
+pip-delete-this-directory.txt
 
 # Logs
 *.log
@@ -34,14 +22,8 @@ node_modules/
 # IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*.tmp
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Coverage
-coverage/
+# Audio files with special characters need to be handled carefully
+# The audio file with octal escape sequences should be preserved as source
+# bilingual_audio_dictionary/audio/\322\273\321\213\321\203_ru.mp3
 ```
