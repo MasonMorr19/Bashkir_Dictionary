@@ -7,27 +7,9 @@ English-Bashkir Dictionary with Text-to-Speech and Translation Features
 import os
 import json
 import logging
-import time
-from datetime import datetime, timedelta
-from typing import Dict, List, Optional, Tuple, Callable, Any
+from typing import Dict, List, Optional, Tuple
 import asyncio
 from pathlib import Path
-import sys
-
-# Add parent directory to path to import shared utilities
-sys.path.insert(0, str(Path(__file__).parent.parent))
-
-try:
-    from utils.retry import RetryConfig
-    RETRY_AVAILABLE = True
-except ImportError:
-    RETRY_AVAILABLE = False
-    # Fallback RetryConfig
-    class RetryConfig:
-        def __init__(self, max_retries=4, base_delay=2.0, exponential_base=2.0):
-            self.max_retries = max_retries
-            self.base_delay = base_delay
-            self.exponential_base = exponential_base
 
 # Import required libraries for audio processing (with graceful fallback)
 libraries_loaded = {}
@@ -302,87 +284,59 @@ class BilingualAudioDictionary:
     
     def generate_audio(self, text: str, language: str = 'en', filename: Optional[str] = None) -> str:
         """
-        Generate audio file from text using gTTS with retry logic.
-
-        Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
-
+        Generate audio file from text using gTTS.
+        
         Args:
             text: Text to convert to speech
             language: Language code ('en', 'ba', 'ru')
             filename: Optional filename for the output audio file
-
+            
         Returns:
             Path to the generated audio file
         """
-        # Check if gTTS is available
-        if not libraries_loaded.get('gtts', False):
-            self.logger.warning("gTTS library not available, returning empty string")
+        try:
+            # Check if gTTS is available
+            if not libraries_loaded.get('gtts', False):
+                self.logger.warning("gTTS library not available, returning empty string")
+                return ""
+            
+            # Validate language
+            lang_code = language.lower()
+            if lang_code not in self.supported_languages:
+                lang_code = 'en'  # Default to English
+            
+            # Create audio directory if it doesn't exist
+            audio_dir = Path("audio")
+            audio_dir.mkdir(exist_ok=True)
+            
+            # Generate filename if not provided
+            if not filename:
+                # Create safe filename from text
+                safe_text = "".join(c for c in text if c.isalnum() or c in (' ', '-', '_')).rstrip()
+                filename = f"{safe_text[:30]}_{lang_code}.mp3".replace(' ', '_')
+                filename = str(audio_dir / filename)
+            elif not filename.endswith('.mp3'):
+                filename += '.mp3'
+            
+            # Check cache first
+            cache_key = f"{text}_{lang_code}"
+            if cache_key in self.audio_cache:
+                self.logger.info(f"Using cached audio for: {text}")
+                return self.audio_cache[cache_key]
+            
+            # Generate audio using gTTS
+            tts = gTTS(text=text, lang=lang_code, slow=False)
+            tts.save(filename)
+            
+            # Add to cache
+            self.audio_cache[cache_key] = filename
+            
+            self.logger.info(f"Generated audio file: {filename}")
+            return filename
+            
+        except Exception as e:
+            self.logger.error(f"Error generating audio for '{text}': {e}")
             return ""
-
-        # Validate language
-        lang_code = language.lower()
-        if lang_code not in self.supported_languages:
-            lang_code = 'en'  # Default to English
-
-        # Create audio directory if it doesn't exist
-        audio_dir = Path("audio")
-        audio_dir.mkdir(exist_ok=True)
-
-        # Generate filename if not provided
-        if not filename:
-            # Create safe filename from text
-            safe_text = "".join(c for c in text if c.isalnum() or c in (' ', '-', '_')).rstrip()
-            filename = f"{safe_text[:30]}_{lang_code}.mp3".replace(' ', '_')
-            filename = str(audio_dir / filename)
-        elif not filename.endswith('.mp3'):
-            filename += '.mp3'
-
-        # Check cache first
-        cache_key = f"{text}_{lang_code}"
-        if cache_key in self.audio_cache:
-            self.logger.info(f"Using cached audio for: {text}")
-            return self.audio_cache[cache_key]
-
-        # Use retry logic for network call
-        result = self._generate_audio_with_retry(text, lang_code, filename)
-        if result:
-            self.audio_cache[cache_key] = result
-        return result
-
-    def _generate_audio_with_retry(self, text: str, lang_code: str, filename: str) -> str:
-        """
-        Internal method to generate audio with retry logic.
-
-        Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
-        """
-        config = RetryConfig(
-            max_retries=4,
-            base_delay=2.0,
-            exponential_base=2.0,
-        )
-
-        for attempt in range(config.max_retries + 1):
-            try:
-                tts = gTTS(text=text, lang=lang_code, slow=False)
-                tts.save(filename)
-                self.logger.info(f"Generated audio file: {filename}")
-                return filename
-
-            except Exception as e:
-                if attempt >= config.max_retries:
-                    self.logger.error(
-                        f"Failed to generate audio after {config.max_retries + 1} attempts: {e}"
-                    )
-                    return ""
-
-                delay = config.base_delay * (config.exponential_base ** attempt)
-                self.logger.warning(
-                    f"Audio generation attempt {attempt + 1}/{config.max_retries + 1} failed for "
-                    f"'{text[:20]}...': {e}. Retrying in {delay:.1f}s..."
-                )
-                time.sleep(delay)
-
-        return ""
     
     def generate_bashkir_audio(self, text: str, filename: Optional[str] = None) -> str:
         """
@@ -401,66 +355,40 @@ class BilingualAudioDictionary:
     
     def translate_text(self, text: str, source_lang: str = 'en', target_lang: str = 'ba') -> str:
         """
-        Translate text between languages using Google Translator with retry logic.
-
-        Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
-
+        Translate text between languages using Google Translator.
+        
         Args:
             text: Text to translate
             source_lang: Source language code
             target_lang: Target language code
-
+            
         Returns:
             Translated text
         """
-        # Check if deep_translator is available
-        if not libraries_loaded.get('deep_translator', False):
-            self.logger.warning("deep_translator library not available, returning original text")
-            return text
-
-        if source_lang == target_lang:
-            return text
-
-        # Determine effective target language
-        # For Bashkir, we'll use Russian as intermediate since Google Translate
-        # might not directly support English-Bashkir translation
-        effective_target = 'ru' if target_lang == 'ba' else target_lang
-
-        return self._translate_with_retry(text, source_lang, effective_target)
-
-    def _translate_with_retry(self, text: str, source_lang: str, target_lang: str) -> str:
-        """
-        Internal method to translate with retry logic.
-
-        Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
-        """
-        config = RetryConfig(
-            max_retries=4,
-            base_delay=2.0,
-            exponential_base=2.0,
-        )
-
-        for attempt in range(config.max_retries + 1):
-            try:
+        try:
+            # Check if deep_translator is available
+            if not libraries_loaded.get('deep_translator', False):
+                self.logger.warning("deep_translator library not available, returning original text")
+                return text
+            
+            if source_lang == target_lang:
+                return text
+            
+            # For Bashkir, we'll use Russian as intermediate since Google Translate
+            # might not directly support English-Bashkir translation
+            if target_lang == 'ba':
+                # First translate to Russian, then potentially to Bashkir
+                # For now, we'll just use Russian translation as proxy
+                translator = GoogleTranslator(source=source_lang, target='ru')
+                translated = translator.translate(text)
+            else:
                 translator = GoogleTranslator(source=source_lang, target=target_lang)
                 translated = translator.translate(text)
-                return translated
-
-            except Exception as e:
-                if attempt >= config.max_retries:
-                    self.logger.error(
-                        f"Translation failed after {config.max_retries + 1} attempts: {e}"
-                    )
-                    return text  # Return original text if translation fails
-
-                delay = config.base_delay * (config.exponential_base ** attempt)
-                self.logger.warning(
-                    f"Translation attempt {attempt + 1}/{config.max_retries + 1} failed: {e}. "
-                    f"Retrying in {delay:.1f}s..."
-                )
-                time.sleep(delay)
-
-        return text
+            
+            return translated
+        except Exception as e:
+            self.logger.error(f"Translation error: {e}")
+            return text  # Return original text if translation fails
     
     def tokenize_text(self, text: str) -> List[str]:
         """
@@ -650,306 +578,8 @@ class BilingualAudioDictionary:
             "languages_supported": list(self.supported_languages.keys()),
             "audio_cache_size": len(self.audio_cache)
         }
-
+        
         return stats
-
-    # ===== SM-2 SPACED REPETITION ALGORITHM =====
-    # Ported from Bashkir Memory Palace
-
-    def init_srs_data(self) -> None:
-        """Initialize spaced repetition data structure."""
-        if not hasattr(self, 'srs_data'):
-            self.srs_data = {}
-
-    def get_srs_status(self, word: str) -> Dict:
-        """
-        Get the spaced repetition status for a word.
-
-        Returns:
-            Dict with ease, interval, reps, and next_review
-        """
-        self.init_srs_data()
-        return self.srs_data.get(word, {
-            'ease': 2.5,
-            'interval': 0,
-            'reps': 0,
-            'next_review': None
-        })
-
-    def update_srs(self, word: str, quality: int) -> Dict:
-        """
-        Update spaced repetition data for a word using SM-2 algorithm.
-
-        Args:
-            word: The word being reviewed
-            quality: Rating from 0-5 (0=complete blackout, 5=perfect response)
-
-        Returns:
-            Updated SRS data for the word
-        """
-        self.init_srs_data()
-
-        if word not in self.srs_data:
-            self.srs_data[word] = {
-                'ease': 2.5,
-                'interval': 0,
-                'reps': 0,
-                'next_review': None
-            }
-
-        srs = self.srs_data[word]
-
-        # SM-2 algorithm
-        if quality >= 3:
-            # Correct response
-            if srs['reps'] == 0:
-                srs['interval'] = 1
-            elif srs['reps'] == 1:
-                srs['interval'] = 6
-            else:
-                srs['interval'] = int(srs['interval'] * srs['ease'])
-            srs['reps'] += 1
-        else:
-            # Incorrect response - reset
-            srs['interval'] = 1
-            srs['reps'] = 0
-
-        # Update ease factor
-        srs['ease'] = max(1.3, srs['ease'] + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02)))
-
-        # Calculate next review date
-        from datetime import timedelta
-        srs['next_review'] = (datetime.now() + timedelta(days=srs['interval'])).isoformat()
-
-        self.logger.info(f"Updated SRS for '{word}': interval={srs['interval']}, ease={srs['ease']:.2f}")
-        return srs
-
-    def get_words_due_for_review(self) -> List[str]:
-        """
-        Get list of words due for review today.
-
-        Returns:
-            List of word strings due for review
-        """
-        self.init_srs_data()
-        now = datetime.now()
-        due_words = []
-
-        for word, data in self.srs_data.items():
-            next_review = data.get('next_review')
-            if next_review:
-                review_date = datetime.fromisoformat(next_review)
-                if review_date <= now:
-                    due_words.append(word)
-            else:
-                # Never reviewed - due immediately
-                due_words.append(word)
-
-        return due_words
-
-    def get_learning_stats(self) -> Dict:
-        """
-        Get learning statistics from SRS data.
-
-        Returns:
-            Dict with learning statistics
-        """
-        self.init_srs_data()
-
-        total_learned = len(self.srs_data)
-        mastered = len([w for w, d in self.srs_data.items() if d.get('interval', 0) >= 21])
-        due_today = len(self.get_words_due_for_review())
-
-        return {
-            'total_learned': total_learned,
-            'mastered': mastered,
-            'due_today': due_today,
-            'in_progress': total_learned - mastered
-        }
-
-    # ===== BASHKORTNET SEMANTIC NETWORK =====
-    # Ported from Bashkir Memory Palace
-
-    def add_semantic_relation(self, word: str, relation_type: str, target: str, note: str = "") -> bool:
-        """
-        Add a semantic relation to a word.
-
-        Args:
-            word: The source word
-            relation_type: Type of relation (SYN, ANT, ISA, HAS_TYPE, PART_OF, etc.)
-            target: The target word or concept
-            note: Optional note about the relation
-
-        Returns:
-            True if successful
-        """
-        word_lower = word.lower()
-        if word_lower not in self.dictionary_data:
-            self.logger.warning(f"Word not found: {word}")
-            return False
-
-        if 'bashkortnet' not in self.dictionary_data[word_lower]:
-            self.dictionary_data[word_lower]['bashkortnet'] = {'relations': {}, 'etymology': {}}
-
-        relations = self.dictionary_data[word_lower]['bashkortnet']['relations']
-        if relation_type not in relations:
-            relations[relation_type] = []
-
-        relation_entry = {'target': target}
-        if note:
-            relation_entry['note'] = note
-
-        relations[relation_type].append(relation_entry)
-        self.logger.info(f"Added {relation_type} relation: {word} -> {target}")
-        return True
-
-    def get_semantic_relations(self, word: str) -> Dict[str, List]:
-        """
-        Get all semantic relations for a word.
-
-        Args:
-            word: The word to look up
-
-        Returns:
-            Dict mapping relation types to lists of targets
-        """
-        word_lower = word.lower()
-        word_data = self.dictionary_data.get(word_lower)
-        if not word_data:
-            return {}
-
-        bashkortnet = word_data.get('bashkortnet', {})
-        return bashkortnet.get('relations', {})
-
-    def find_related_words(self, word: str, relation_types: Optional[List[str]] = None) -> List[str]:
-        """
-        Find all words related to a given word.
-
-        Args:
-            word: The source word
-            relation_types: Optional list of relation types to filter by
-
-        Returns:
-            List of related words
-        """
-        relations = self.get_semantic_relations(word)
-        related = []
-
-        for rel_type, targets in relations.items():
-            if relation_types and rel_type not in relation_types:
-                continue
-
-            for target in targets:
-                if isinstance(target, dict):
-                    related.append(target.get('target', ''))
-                else:
-                    related.append(target)
-
-        return [r for r in related if r]
-
-    def get_synonyms(self, word: str) -> List[str]:
-        """Get synonyms for a word."""
-        return self.find_related_words(word, ['SYN'])
-
-    def get_antonyms(self, word: str) -> List[str]:
-        """Get antonyms for a word."""
-        return self.find_related_words(word, ['ANT'])
-
-    # ===== SENTENCE BUILDER =====
-    # Ported from Bashkir Memory Palace
-
-    def build_sentence(self, words: List[str], pattern: str = "SOV") -> Dict:
-        """
-        Build a sentence from a list of words following Bashkir grammar.
-
-        Args:
-            words: List of words (Bashkir or English)
-            pattern: Sentence pattern (SOV = Subject-Object-Verb, default for Bashkir)
-
-        Returns:
-            Dict with bashkir sentence, gloss, and grammar notes
-        """
-        sentence_parts = []
-        gloss_parts = []
-
-        for word in words:
-            word_data = self.get_word_info(word)
-            if word_data:
-                sentence_parts.append(word_data.get('bashkir', word))
-                gloss_parts.append(word_data.get('definitions', [{}])[0].get('en', word))
-            else:
-                # Word not found - use as-is
-                sentence_parts.append(word)
-                gloss_parts.append(word)
-
-        return {
-            'bashkir': ' '.join(sentence_parts),
-            'gloss': ' | '.join(gloss_parts),
-            'pattern': pattern,
-            'word_count': len(words),
-            'grammar_note': self._get_grammar_note(pattern)
-        }
-
-    def _get_grammar_note(self, pattern: str) -> str:
-        """Get grammar note for a sentence pattern."""
-        notes = {
-            'SOV': "Bashkir follows Subject-Object-Verb order. The verb comes at the end.",
-            'SV': "Simple Subject-Verb pattern. No object.",
-            'OV': "Object-Verb pattern (subject implied).",
-            'question': "Questions typically add interrogative particles or use rising intonation."
-        }
-        return notes.get(pattern, "")
-
-    def get_word_with_case(self, word: str, case: str) -> str:
-        """
-        Apply a grammatical case suffix to a Bashkir word.
-
-        Args:
-            word: The Bashkir word
-            case: Case name (nominative, dative, accusative, ablative, locative, genitive)
-
-        Returns:
-            Word with case suffix applied
-        """
-        # Bashkir case suffixes (simplified - actual suffixes depend on vowel harmony)
-        case_suffixes = {
-            'nominative': '',
-            'dative': 'ға',      # -ga/-ge (to/for)
-            'accusative': 'ны',  # -ny/-ne (direct object)
-            'ablative': 'дан',   # -dan/-den (from)
-            'locative': 'да',    # -da/-de (at/in)
-            'genitive': 'ның',   # -nyng/-neng (of/possessive)
-        }
-
-        suffix = case_suffixes.get(case.lower(), '')
-        return word + suffix
-
-    def generate_example_sentences(self, word: str, count: int = 3) -> List[Dict]:
-        """
-        Generate example sentences using a word.
-
-        Args:
-            word: The word to use in sentences
-            count: Number of sentences to generate
-
-        Returns:
-            List of sentence dicts with bashkir, gloss, and english
-        """
-        word_data = self.get_word_info(word)
-        if not word_data:
-            return []
-
-        examples = word_data.get('examples', [])[:count]
-        result = []
-
-        for ex in examples:
-            result.append({
-                'bashkir': ex.get('ba', ''),
-                'english': ex.get('en', ''),
-                'word_highlighted': word
-            })
-
-        return result
 
 
 def main():
