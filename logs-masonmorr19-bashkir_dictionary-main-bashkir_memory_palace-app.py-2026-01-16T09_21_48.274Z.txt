@@ -1,0 +1,221 @@
+
+[     UTC     ] Logs for bashkirdictionary-3npvm2vnckabzi4kcrx6np.streamlit.app/
+────────────────────────────────────────────────────────────────────────────────────────
+[09:17:13] 🚀 Starting up repository: 'bashkir_dictionary', branch: 'main', main module: 'bashkir_memory_palace/app.py'
+[09:17:13] 🐙 Cloning repository...
+[09:17:15] 🐙 Cloning into '/mount/src/bashkir_dictionary'...
+
+[09:17:15] 🐙 Cloned repository!
+[09:17:15] 🐙 Pulling code changes from Github...
+[09:17:16] 📦 Processing dependencies...
+
+──────────────────────────────────────── uv ───────────────────────────────────────────
+
+Using uv pip install.
+Using Python 3.13.11 environment at /home/adminuser/venv
+Resolved 42 packages in 448ms
+Prepared 42 packages in 1.72s
+Installed 42 packages in 197ms
+ + altair==6.0.0
+ + attrs==25.4.0
+ + blinker==1.9.0
+ + cachetools==6.2.4
+ + certifi==2026.1.4
+ + charset-normalizer==3.4.4
+ + click==8.1.8
+ + gitdb==4.0.12
+ + gitpython==3.1.46
+ + gtts==2.5.4
+ + idna==3.11
+ + iniconfig==2.3.0
+ + jinja2==3.1.6
+ + [2026-01-16 09:17:18.710387] jsonschema==4.26.0
+ + jsonschema-specifications==2025.9.1
+ + markupsafe==3.0.3
+ + narwhals==2.15.0
+ + numpy==2.4.1[2026-01-16 09:17:18.710893] 
+ + packaging==25.0
+ + pandas==2.3.3
+ + pillow==12.1.0
+ + pluggy[2026-01-16 09:17:18.711220] ==1.6.0
+ + protobuf==6.33.4
+ + pyarrow==22.0.0
+ + pydeck==0.9.1
+ + pygments==2.19.2
+ + pytest==9.0.2
+ + python-dateutil==2.9.0.post0
+ + pytz==2025.2
+ + referencing==0.37.0
+ + [2026-01-16 09:17:18.711601] requests==2.32.5
+ + rpds-py==0.30.0
+ + six==1.17.0
+ + smmap==5.0.2
+ + streamlit==1.53.0
+ + tenacity==9.1.2
+ + toml==0.10.2
+ + tornado==6.5.4
+ + typing-extensions[2026-01-16 09:17:18.711745] ==4.15.0
+ + tzdata==2025.3
+ + urllib3==2.6.3
+ + watchdog==6.0.0
+Checking if Streamlit is installed
+Found Streamlit version 1.53.0 in the environment
+Installing rich for an improved exception logging
+Using uv pip install.
+Using Python 3.13.11 environment at /home/adminuser/venv
+Resolved 4 packages in 146ms
+Prepared 3 packages in 50ms
+Installed 3 packages in 7ms
+ + markdown-it-py==4.0.0
+ + mdurl==0.1.2
+ + rich==14.2.0
+
+────────────────────────────────────────────────────────────────────────────────────────
+
+[09:17:20] 🐍 Python dependencies were installed from /mount/src/bashkir_dictionary/bashkir_memory_palace/requirements.txt using uv.
+Check if streamlit is installed
+Streamlit is already installed
+[09:17:22] 📦 Processed dependencies!
+
+
+
+────────────────────── Traceback (most recent call last) ───────────────────────
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/script_runner.py:672 in code_to_exec                                     
+                                                                                
+  /mount/src/bashkir_dictionary/bashkir_memory_palace/app.py:676 in <module>    
+                                                                                
+     673 │   │   │   │   │   │                                                  
+     674 │   │   │   │   │   │   # Learn button                                 
+     675 │   │   │   │   │   │   if not is_learned:                             
+  ❱  676 │   │   │   │   │   │   │   if st.button(f"Learn '{word['bashkir']}'"  
+     677 │   │   │   │   │   │   │   │   st.session_state.learned_words.add(wo  
+     678 │   │   │   │   │   │   │   │   st.session_state.review_queue.append(  
+     679 │   │   │   │   │   │   │   │   st.rerun()                             
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/metrics_  
+  util.py:532 in wrapped_func                                                   
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:367 in button                                                      
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:1435 in _button                                                    
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:265 in compute_and_register_element_id                                  
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:145 in _register_element_id                                             
+────────────────────────────────────────────────────────────────────────────────
+StreamlitDuplicateElementKey: There are multiple elements with the same 
+`key='learn_таш'`. To fix this, please make sure that the `key` argument is 
+unique for each element you create.
+────────────────────── Traceback (most recent call last) ───────────────────────
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/script_runner.py:672 in code_to_exec                                     
+                                                                                
+  /mount/src/bashkir_dictionary/bashkir_memory_palace/app.py:676 in <module>    
+                                                                                
+     673 │   │   │   │   │   │                                                  
+     674 │   │   │   │   │   │   # Learn button                                 
+     675 │   │   │   │   │   │   if not is_learned:                             
+  ❱  676 │   │   │   │   │   │   │   if st.button(f"Learn '{word['bashkir']}'"  
+     677 │   │   │   │   │   │   │   │   st.session_state.learned_words.add(wo  
+     678 │   │   │   │   │   │   │   │   st.session_state.review_queue.append(  
+     679 │   │   │   │   │   │   │   │   st.rerun()                             
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/metrics_  
+  util.py:532 in wrapped_func                                                   
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:367 in button                                                      
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:1435 in _button                                                    
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:265 in compute_and_register_element_id                                  
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:145 in _register_element_id                                             
+────────────────────────────────────────────────────────────────────────────────
+StreamlitDuplicateElementKey: There are multiple elements with the same 
+`key='learn_таш'`. To fix this, please make sure that the `key` argument is 
+unique for each element you create.
+────────────────────── Traceback (most recent call last) ───────────────────────
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/script_runner.py:672 in code_to_exec                                     
+                                                                                
+  /mount/src/bashkir_dictionary/bashkir_memory_palace/app.py:676 in <module>    
+                                                                                
+     673 │   │   │   │   │   │                                                  
+     674 │   │   │   │   │   │   # Learn button                                 
+     675 │   │   │   │   │   │   if not is_learned:                             
+  ❱  676 │   │   │   │   │   │   │   if st.button(f"Learn '{word['bashkir']}'"  
+     677 │   │   │   │   │   │   │   │   st.session_state.learned_words.add(wo  
+     678 │   │   │   │   │   │   │   │   st.session_state.review_queue.append(  
+     679 │   │   │   │   │   │   │   │   st.rerun()                             
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/metrics_  
+  util.py:532 in wrapped_func                                                   
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:367 in button                                                      
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:1435 in _button                                                    
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:265 in compute_and_register_element_id                                  
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:145 in _register_element_id                                             
+────────────────────────────────────────────────────────────────────────────────
+StreamlitDuplicateElementKey: There are multiple elements with the same 
+`key='learn_оҫта'`. To fix this, please make sure that the `key` argument is 
+unique for each element you create.
+────────────────────── Traceback (most recent call last) ───────────────────────
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/exec_code.py:129 in exec_func_with_error_handling                        
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/scriptru  
+  nner/script_runner.py:672 in code_to_exec                                     
+                                                                                
+  /mount/src/bashkir_dictionary/bashkir_memory_palace/app.py:676 in <module>    
+                                                                                
+     673 │   │   │   │   │   │                                                  
+     674 │   │   │   │   │   │   # Learn button                                 
+     675 │   │   │   │   │   │   if not is_learned:                             
+  ❱  676 │   │   │   │   │   │   │   if st.button(f"Learn '{word['bashkir']}'"  
+     677 │   │   │   │   │   │   │   │   st.session_state.learned_words.add(wo  
+     678 │   │   │   │   │   │   │   │   st.session_state.review_queue.append(  
+     679 │   │   │   │   │   │   │   │   st.rerun()                             
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/runtime/metrics_  
+  util.py:532 in wrapped_func                                                   
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:367 in button                                                      
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/widgets  
+  /button.py:1435 in _button                                                    
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:265 in compute_and_register_element_id                                  
+                                                                                
+  /home/adminuser/venv/lib/python3.13/site-packages/streamlit/elements/lib/uti  
+  ls.py:145 in _register_element_id                                             
+────────────────────────────────────────────────────────────────────────────────
+StreamlitDuplicateElementKey: There are multiple elements with the same 
+`key='learn_ҡурай'`. To fix this, please make sure that the `key` argument is 
+unique for each element you create.
