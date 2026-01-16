@@ -2,14 +2,22 @@
 """
 Bilingual Audio Dictionary Application
 English-Bashkir Dictionary with Text-to-Speech and Translation Features
+Includes retry logic with exponential backoff for network resilience.
 """
 
 import os
+import sys
 import json
 import logging
-from typing import Dict, List, Optional, Tuple
+import time
+from typing import Dict, List, Optional, Tuple, Callable, Any
 import asyncio
 from pathlib import Path
+
+# Add parent directory to path to import shared utilities
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+from utils.retry import retry_with_backoff, RetryConfig, retry_gtts, retry_translation, retry_model_download
 
 # Import required libraries for audio processing (with graceful fallback)
 libraries_loaded = {}
@@ -284,59 +292,85 @@ class BilingualAudioDictionary:
     
     def generate_audio(self, text: str, language: str = 'en', filename: Optional[str] = None) -> str:
         """
-        Generate audio file from text using gTTS.
-        
+        Generate audio file from text using gTTS with retry logic.
+
         Args:
             text: Text to convert to speech
             language: Language code ('en', 'ba', 'ru')
             filename: Optional filename for the output audio file
-            
+
         Returns:
             Path to the generated audio file
         """
-        try:
-            # Check if gTTS is available
-            if not libraries_loaded.get('gtts', False):
-                self.logger.warning("gTTS library not available, returning empty string")
-                return ""
-            
-            # Validate language
-            lang_code = language.lower()
-            if lang_code not in self.supported_languages:
-                lang_code = 'en'  # Default to English
-            
-            # Create audio directory if it doesn't exist
-            audio_dir = Path("audio")
-            audio_dir.mkdir(exist_ok=True)
-            
-            # Generate filename if not provided
-            if not filename:
-                # Create safe filename from text
-                safe_text = "".join(c for c in text if c.isalnum() or c in (' ', '-', '_')).rstrip()
-                filename = f"{safe_text[:30]}_{lang_code}.mp3".replace(' ', '_')
-                filename = str(audio_dir / filename)
-            elif not filename.endswith('.mp3'):
-                filename += '.mp3'
-            
-            # Check cache first
-            cache_key = f"{text}_{lang_code}"
-            if cache_key in self.audio_cache:
-                self.logger.info(f"Using cached audio for: {text}")
-                return self.audio_cache[cache_key]
-            
-            # Generate audio using gTTS
-            tts = gTTS(text=text, lang=lang_code, slow=False)
-            tts.save(filename)
-            
-            # Add to cache
-            self.audio_cache[cache_key] = filename
-            
-            self.logger.info(f"Generated audio file: {filename}")
-            return filename
-            
-        except Exception as e:
-            self.logger.error(f"Error generating audio for '{text}': {e}")
+        # Check if gTTS is available
+        if not libraries_loaded.get('gtts', False):
+            self.logger.warning("gTTS library not available, returning empty string")
             return ""
+
+        # Validate language
+        lang_code = language.lower()
+        if lang_code not in self.supported_languages:
+            lang_code = 'en'  # Default to English
+
+        # Create audio directory if it doesn't exist
+        audio_dir = Path("audio")
+        audio_dir.mkdir(exist_ok=True)
+
+        # Generate filename if not provided
+        if not filename:
+            # Create safe filename from text
+            safe_text = "".join(c for c in text if c.isalnum() or c in (' ', '-', '_')).rstrip()
+            filename = f"{safe_text[:30]}_{lang_code}.mp3".replace(' ', '_')
+            filename = str(audio_dir / filename)
+        elif not filename.endswith('.mp3'):
+            filename += '.mp3'
+
+        # Check cache first
+        cache_key = f"{text}_{lang_code}"
+        if cache_key in self.audio_cache:
+            self.logger.info(f"Using cached audio for: {text}")
+            return self.audio_cache[cache_key]
+
+        # Use retry logic for network call
+        result = self._generate_audio_with_retry(text, lang_code, filename)
+        if result:
+            self.audio_cache[cache_key] = result
+        return result
+
+    def _generate_audio_with_retry(self, text: str, lang_code: str, filename: str) -> str:
+        """
+        Internal method to generate audio with retry logic.
+
+        Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
+        """
+        config = RetryConfig(
+            max_retries=4,
+            base_delay=2.0,
+            exponential_base=2.0,
+        )
+
+        for attempt in range(config.max_retries + 1):
+            try:
+                tts = gTTS(text=text, lang=lang_code, slow=False)
+                tts.save(filename)
+                self.logger.info(f"Generated audio file: {filename}")
+                return filename
+
+            except Exception as e:
+                if attempt >= config.max_retries:
+                    self.logger.error(
+                        f"Failed to generate audio after {config.max_retries + 1} attempts: {e}"
+                    )
+                    return ""
+
+                delay = config.base_delay * (config.exponential_base ** attempt)
+                self.logger.warning(
+                    f"Audio generation attempt {attempt + 1}/{config.max_retries + 1} failed for "
+                    f"'{text[:20]}...': {e}. Retrying in {delay:.1f}s..."
+                )
+                time.sleep(delay)
+
+        return ""
     
     def generate_bashkir_audio(self, text: str, filename: Optional[str] = None) -> str:
         """
@@ -355,68 +389,128 @@ class BilingualAudioDictionary:
     
     def translate_text(self, text: str, source_lang: str = 'en', target_lang: str = 'ba') -> str:
         """
-        Translate text between languages using Google Translator.
-        
+        Translate text between languages using Google Translator with retry logic.
+
         Args:
             text: Text to translate
             source_lang: Source language code
             target_lang: Target language code
-            
+
         Returns:
             Translated text
         """
-        try:
-            # Check if deep_translator is available
-            if not libraries_loaded.get('deep_translator', False):
-                self.logger.warning("deep_translator library not available, returning original text")
-                return text
-            
-            if source_lang == target_lang:
-                return text
-            
-            # For Bashkir, we'll use Russian as intermediate since Google Translate
-            # might not directly support English-Bashkir translation
-            if target_lang == 'ba':
-                # First translate to Russian, then potentially to Bashkir
-                # For now, we'll just use Russian translation as proxy
-                translator = GoogleTranslator(source=source_lang, target='ru')
-                translated = translator.translate(text)
-            else:
+        # Check if deep_translator is available
+        if not libraries_loaded.get('deep_translator', False):
+            self.logger.warning("deep_translator library not available, returning original text")
+            return text
+
+        if source_lang == target_lang:
+            return text
+
+        # Determine effective target language
+        # For Bashkir, we'll use Russian as intermediate since Google Translate
+        # might not directly support English-Bashkir translation
+        effective_target = 'ru' if target_lang == 'ba' else target_lang
+
+        return self._translate_with_retry(text, source_lang, effective_target)
+
+    def _translate_with_retry(self, text: str, source_lang: str, target_lang: str) -> str:
+        """
+        Internal method to translate with retry logic.
+
+        Uses exponential backoff: 2s, 4s, 8s, 16s delays between retries.
+        """
+        config = RetryConfig(
+            max_retries=4,
+            base_delay=2.0,
+            exponential_base=2.0,
+        )
+
+        for attempt in range(config.max_retries + 1):
+            try:
                 translator = GoogleTranslator(source=source_lang, target=target_lang)
                 translated = translator.translate(text)
-            
-            return translated
-        except Exception as e:
-            self.logger.error(f"Translation error: {e}")
-            return text  # Return original text if translation fails
+                return translated
+
+            except Exception as e:
+                if attempt >= config.max_retries:
+                    self.logger.error(
+                        f"Translation failed after {config.max_retries + 1} attempts: {e}"
+                    )
+                    return text  # Return original text if translation fails
+
+                delay = config.base_delay * (config.exponential_base ** attempt)
+                self.logger.warning(
+                    f"Translation attempt {attempt + 1}/{config.max_retries + 1} failed: {e}. "
+                    f"Retrying in {delay:.1f}s..."
+                )
+                time.sleep(delay)
+
+        return text
     
     def tokenize_text(self, text: str) -> List[str]:
         """
-        Tokenize text using transformer tokenizer.
-        
+        Tokenize text using transformer tokenizer with retry logic for model loading.
+
         Args:
             text: Text to tokenize
-            
+
         Returns:
             List of tokens
         """
+        # Check if transformers is available
+        if not libraries_loaded.get('transformers', False):
+            self.logger.warning("Transformers library not available, using simple split")
+            return text.split()
+
+        # Load tokenizer with retry logic if not already loaded
+        if not hasattr(self, 'tokenizer') or self.tokenizer is None:
+            self.tokenizer = self._load_tokenizer_with_retry()
+
+        if self.tokenizer is None:
+            return text.split()
+
         try:
-            # Check if transformers is available
-            if not libraries_loaded.get('transformers', False):
-                self.logger.warning("Transformers library not available, using simple split")
-                # Simple fallback tokenization
-                return text.split()
-            
-            # Use a general-purpose tokenizer
-            if not hasattr(self, 'tokenizer'):
-                self.tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
-            
             tokens = self.tokenizer.tokenize(text)
             return tokens
         except Exception as e:
             self.logger.error(f"Tokenization error: {e}")
-            # Simple fallback tokenization
             return text.split()
+
+    def _load_tokenizer_with_retry(self):
+        """
+        Load tokenizer with retry logic.
+
+        Uses exponential backoff: 4s, 8s, 16s, 32s delays between retries.
+        """
+        config = RetryConfig(
+            max_retries=4,
+            base_delay=4.0,  # Longer delay for model downloads
+            exponential_base=2.0,
+        )
+
+        for attempt in range(config.max_retries + 1):
+            try:
+                self.logger.info("Loading BERT tokenizer...")
+                tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
+                self.logger.info("BERT tokenizer loaded successfully")
+                return tokenizer
+
+            except Exception as e:
+                if attempt >= config.max_retries:
+                    self.logger.error(
+                        f"Failed to load tokenizer after {config.max_retries + 1} attempts: {e}"
+                    )
+                    return None
+
+                delay = config.base_delay * (config.exponential_base ** attempt)
+                self.logger.warning(
+                    f"Tokenizer load attempt {attempt + 1}/{config.max_retries + 1} failed: {e}. "
+                    f"Retrying in {delay:.1f}s..."
+                )
+                time.sleep(delay)
+
+        return None
     
     def analyze_audio(self, audio_path: str) -> Dict:
         """
@@ -459,31 +553,133 @@ class BilingualAudioDictionary:
     
     def transcribe_speech(self, audio_path: str) -> str:
         """
-        Transcribe speech from audio file using Whisper.
-        
+        Transcribe speech from audio file using Whisper with retry logic.
+
         Args:
             audio_path: Path to audio file
-            
+
         Returns:
             Transcribed text
         """
+        # Check if whisper is available
+        if not libraries_loaded.get('whisper', False):
+            self.logger.warning("Whisper library not available, returning empty string")
+            return ""
+
+        # Initialize Whisper model with retry logic if not already loaded
+        if self.whisper_model is None:
+            self.whisper_model = self._load_whisper_with_retry()
+
+        if self.whisper_model is None:
+            return ""
+
         try:
-            # Check if whisper is available
-            if not libraries_loaded.get('whisper', False):
-                self.logger.warning("Whisper library not available, returning empty string")
-                return ""
-            
-            # Initialize Whisper model if not already loaded
-            if self.whisper_model is None:
-                self.logger.info("Loading Whisper model...")
-                self.whisper_model = whisper.load_model("base")
-            
-            # Transcribe audio
             result = self.whisper_model.transcribe(audio_path)
             return result['text']
         except Exception as e:
             self.logger.error(f"Speech transcription error: {e}")
             return ""
+
+    def _load_whisper_with_retry(self):
+        """
+        Load Whisper model with retry logic.
+
+        Uses exponential backoff: 4s, 8s, 16s, 32s delays between retries.
+        """
+        config = RetryConfig(
+            max_retries=4,
+            base_delay=4.0,  # Longer delay for model downloads
+            exponential_base=2.0,
+        )
+
+        for attempt in range(config.max_retries + 1):
+            try:
+                self.logger.info("Loading Whisper model...")
+                model = whisper.load_model("base")
+                self.logger.info("Whisper model loaded successfully")
+                return model
+
+            except Exception as e:
+                if attempt >= config.max_retries:
+                    self.logger.error(
+                        f"Failed to load Whisper model after {config.max_retries + 1} attempts: {e}"
+                    )
+                    return None
+
+                delay = config.base_delay * (config.exponential_base ** attempt)
+                self.logger.warning(
+                    f"Whisper load attempt {attempt + 1}/{config.max_retries + 1} failed: {e}. "
+                    f"Retrying in {delay:.1f}s..."
+                )
+                time.sleep(delay)
+
+        return None
+
+    def precache_models(self) -> Dict[str, bool]:
+        """
+        Precache all ML models used by the application.
+
+        Returns:
+            Dictionary mapping model names to success status
+        """
+        results = {}
+
+        # Precache tokenizer
+        if libraries_loaded.get('transformers', False):
+            if not hasattr(self, 'tokenizer') or self.tokenizer is None:
+                self.tokenizer = self._load_tokenizer_with_retry()
+                results['bert-tokenizer'] = self.tokenizer is not None
+            else:
+                results['bert-tokenizer'] = True
+
+        # Precache Whisper model
+        if libraries_loaded.get('whisper', False):
+            if self.whisper_model is None:
+                self.whisper_model = self._load_whisper_with_retry()
+                results['whisper'] = self.whisper_model is not None
+            else:
+                results['whisper'] = True
+
+        return results
+
+    def precache_audio_vocabulary(
+        self,
+        words: List[str],
+        language: str = 'en',
+        progress_callback: Optional[Callable[[int, int], None]] = None,
+    ) -> Dict[str, str]:
+        """
+        Precache audio for a list of words.
+
+        Args:
+            words: List of words to generate audio for
+            language: Language code for TTS
+            progress_callback: Optional callback(completed, total) for progress
+
+        Returns:
+            Dictionary mapping words to audio file paths
+        """
+        results = {}
+        total = len(words)
+
+        self.logger.info(f"Starting audio precache for {total} words...")
+
+        for i, word in enumerate(words):
+            cache_key = f"{word}_{language}"
+            if cache_key in self.audio_cache:
+                results[word] = self.audio_cache[cache_key]
+            else:
+                audio_path = self.generate_audio(word, language)
+                if audio_path:
+                    results[word] = audio_path
+
+            if progress_callback:
+                progress_callback(i + 1, total)
+
+        cached_count = len([r for r in results.values() if r])
+        self.logger.info(f"Precached {cached_count}/{total} audio files")
+
+        return results
     
     def get_all_words(self) -> List[str]:
         """
