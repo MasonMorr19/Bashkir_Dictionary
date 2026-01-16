@@ -454,6 +454,10 @@
             "note": "Shulgan-TASH means Shulgan's Stone"
           }
         ]
+      },
+      "etymology": {
+        "proto_form": "*taš",
+        "proto_language": "Proto-Turkic"
       }
     },
     "cultural_context": {
@@ -929,6 +933,10 @@
             "relation": "industrial_center"
           }
         ]
+      },
+      "etymology": {
+        "proto_form": "*iš",
+        "proto_language": "Proto-Turkic"
       }
     },
     "cultural_context": {
@@ -985,6 +993,10 @@
             "relation": "made_in"
           }
         ]
+      },
+      "etymology": {
+        "proto_form": "*bolat / *pulat",
+        "proto_language": "Proto-Turkic (possibly from Sanskrit)"
       }
     },
     "cultural_context": {
@@ -1036,6 +1048,10 @@
           "эш (work)",
           "оҫталыҡ (craftsmanship)"
         ]
+      },
+      "etymology": {
+        "proto_form": "*usta",
+        "proto_language": "Proto-Turkic (possibly from Persian)"
       }
     },
     "cultural_context": {
@@ -1091,6 +1107,10 @@
           "эшсе (worker)",
           "оҫта (craftsman)"
         ]
+      },
+      "etymology": {
+        "proto_form": "From Russian 'завод'",
+        "proto_language": "Russian borrowing"
       }
     },
     "cultural_context": {
@@ -1230,6 +1250,10 @@
             "relation": "transmits"
           }
         ]
+      },
+      "etymology": {
+        "proto_form": "*ata",
+        "proto_language": "Proto-Turkic"
       }
     },
     "cultural_context": {
@@ -1293,6 +1317,10 @@
             "relation": "provides"
           }
         ]
+      },
+      "etymology": {
+        "proto_form": "*ana / *eče",
+        "proto_language": "Proto-Turkic"
       }
     },
     "cultural_context": {
@@ -1425,6 +1453,10 @@
             "relation": "associated_with"
           }
         ]
+      },
+      "etymology": {
+        "proto_form": "From plant name 'qurai'",
+        "proto_language": "Bashkir native"
       }
     },
     "cultural_context": {
@@ -1435,7 +1467,10 @@
       "significance": "National instrument; symbol on Bashkortostan's coat of arms",
       "sources": [
         "Cultural heritage records"
-      ]
+      ],
+      "sensitivity": {
+        "has_sensitive_context": false
+      }
     },
     "grammar": {
       "case_forms": {
@@ -2194,6 +2229,10 @@
             "relation": "symbol_of"
           }
         ]
+      },
+      "etymology": {
+        "proto_form": "*qïmïz",
+        "proto_language": "Proto-Turkic"
       }
     },
     "cultural_context": {
@@ -2204,7 +2243,10 @@
       "significance": "Sacred drink of the nomads; offered to honored guests",
       "sources": [
         "Rudenko (1955)"
-      ]
+      ],
+      "sensitivity": {
+        "has_sensitive_context": false
+      }
     },
     "grammar": {
       "case_forms": {
@@ -6037,17 +6079,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["металл (metal)", "элемент (element)"],
-        "MADE_FROM": ["руда (ore)"],
-        "USED_FOR": ["ҡорал (tools)", "ҡурылыш (construction)"],
-        "LOCATED_AT": ["Белорет (Beloretsk)", "завод (factory)"]
+        "ISA": [
+          "металл (metal)",
+          "элемент (element)"
+        ],
+        "MADE_FROM": [
+          "руда (ore)"
+        ],
+        "USED_FOR": [
+          "ҡорал (tools)",
+          "ҡурылыш (construction)"
+        ],
+        "LOCATED_AT": [
+          "Белорет (Beloretsk)",
+          "завод (factory)"
+        ]
       },
-      "etymology": {"proto_form": "*temür", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*temür",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["325", "411"],
+      "ocm_codes": [
+        "325",
+        "411"
+      ],
       "significance": "Beloretsk region famous for iron ore and metallurgy since 18th century",
-      "sources": ["Industry history", "Memory Palace design"]
+      "sources": [
+        "Industry history",
+        "Memory Palace design"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6076,17 +6138,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["металл (metal)", "ҡиммәт (precious)"],
-        "ANT": ["көмөш (silver)"],
-        "USED_FOR": ["бизәк (jewelry)", "акса (money)"],
-        "SYMBOLIC_OF": ["байлыҡ (wealth)", "матурлыҡ (beauty)"]
+        "ISA": [
+          "металл (metal)",
+          "ҡиммәт (precious)"
+        ],
+        "ANT": [
+          "көмөш (silver)"
+        ],
+        "USED_FOR": [
+          "бизәк (jewelry)",
+          "акса (money)"
+        ],
+        "SYMBOLIC_OF": [
+          "байлыҡ (wealth)",
+          "матурлыҡ (beauty)"
+        ]
       },
-      "etymology": {"proto_form": "*altun", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*altun",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["325", "436"],
+      "ocm_codes": [
+        "325",
+        "436"
+      ],
       "significance": "Urals historically rich in gold deposits; symbol of value and purity",
-      "sources": ["Mining history", "Cultural symbolism"]
+      "sources": [
+        "Mining history",
+        "Cultural symbolism"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6115,17 +6197,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["металл (metal)", "ҡиммәт (precious)"],
-        "ANT": ["алтын (gold)"],
-        "USED_FOR": ["бизәк (jewelry)", "һауыт (vessels)"],
-        "SYMBOLIC_OF": ["айлыҡ (lunar)", "сафлыҡ (purity)"]
+        "ISA": [
+          "металл (metal)",
+          "ҡиммәт (precious)"
+        ],
+        "ANT": [
+          "алтын (gold)"
+        ],
+        "USED_FOR": [
+          "бизәк (jewelry)",
+          "һауыт (vessels)"
+        ],
+        "SYMBOLIC_OF": [
+          "айлыҡ (lunar)",
+          "сафлыҡ (purity)"
+        ]
       },
-      "etymology": {"proto_form": "*kümüš", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*kümüš",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["325", "291"],
+      "ocm_codes": [
+        "325",
+        "291"
+      ],
       "significance": "Traditional Bashkir jewelry uses silver extensively; connected to lunar symbolism",
-      "sources": ["Craft traditions", "Cultural symbolism"]
+      "sources": [
+        "Craft traditions",
+        "Cultural symbolism"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6154,17 +6256,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["ҡорал (tool)", "ҡырҡыу ҡоралы (cutting tool)"],
-        "MADE_FROM": ["тимер (iron)", "ағас (wood)"],
-        "USED_FOR": ["ағас кисеү (woodcutting)", "төҙөлөш (construction)"],
-        "USED_BY": ["урмансы (forester)", "төҙөүсе (builder)"]
+        "ISA": [
+          "ҡорал (tool)",
+          "ҡырҡыу ҡоралы (cutting tool)"
+        ],
+        "MADE_FROM": [
+          "тимер (iron)",
+          "ағас (wood)"
+        ],
+        "USED_FOR": [
+          "ағас кисеү (woodcutting)",
+          "төҙөлөш (construction)"
+        ],
+        "USED_BY": [
+          "урмансы (forester)",
+          "төҙөүсе (builder)"
+        ]
       },
-      "etymology": {"proto_form": "*balta", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*balta",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["411", "312"],
+      "ocm_codes": [
+        "411",
+        "312"
+      ],
       "significance": "Essential tool for forest work and construction; symbol of productive labor",
-      "sources": ["Tool traditions", "Labor culture"]
+      "sources": [
+        "Tool traditions",
+        "Labor culture"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6193,17 +6316,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["ҡорал (tool)", "ҡырҡыу ҡоралы (cutting tool)"],
-        "MADE_FROM": ["тимер (iron)", "болат (steel)"],
-        "USED_FOR": ["кисеү (cutting)", "ашлыҡ (food preparation)"],
-        "HAS_PART": ["һап (handle)", "йөҙ (blade)"]
+        "ISA": [
+          "ҡорал (tool)",
+          "ҡырҡыу ҡоралы (cutting tool)"
+        ],
+        "MADE_FROM": [
+          "тимер (iron)",
+          "болат (steel)"
+        ],
+        "USED_FOR": [
+          "кисеү (cutting)",
+          "ашлыҡ (food preparation)"
+        ],
+        "HAS_PART": [
+          "һап (handle)",
+          "йөҙ (blade)"
+        ]
       },
-      "etymology": {"proto_form": "*bïčaq", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*bïčaq",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["411", "252"],
+      "ocm_codes": [
+        "411",
+        "252"
+      ],
       "significance": "Traditional Bashkir knives are prized craftsmanship; gift-giving traditions",
-      "sources": ["Craft traditions", "Material culture"]
+      "sources": [
+        "Craft traditions",
+        "Material culture"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6232,17 +6376,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["оҫта (craftsman)", "эшсе (worker)"],
-        "WORKS_WITH": ["тимер (iron)", "ут (fire)", "күер (coal)"],
-        "MAKES": ["ат таҡаһы (horseshoe)", "ҡорал (tools)"],
-        "DERIVES_FROM": ["тимер (iron) + -се (agent suffix)"]
+        "ISA": [
+          "оҫта (craftsman)",
+          "эшсе (worker)"
+        ],
+        "WORKS_WITH": [
+          "тимер (iron)",
+          "ут (fire)",
+          "күер (coal)"
+        ],
+        "MAKES": [
+          "ат таҡаһы (horseshoe)",
+          "ҡорал (tools)"
+        ],
+        "DERIVES_FROM": [
+          "тимер (iron) + -се (agent suffix)"
+        ]
       },
-      "etymology": {"proto_form": "*temürči", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*temürči",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["325", "461"],
+      "ocm_codes": [
+        "325",
+        "461"
+      ],
       "significance": "Blacksmiths held respected position in traditional society; connected to epic heroes",
-      "sources": ["Craft traditions", "Social structure"]
+      "sources": [
+        "Craft traditions",
+        "Social structure"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6271,17 +6436,36 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["кеше (person)", "хеҙмәтсе (laborer)"],
-        "WORKS_AT": ["завод (factory)", "төҙөлөш (construction)"],
-        "DERIVES_FROM": ["эш (work) + -се (agent suffix)"],
-        "ANT": ["эшһеҙ (unemployed)"]
+        "ISA": [
+          "кеше (person)",
+          "хеҙмәтсе (laborer)"
+        ],
+        "WORKS_AT": [
+          "завод (factory)",
+          "төҙөлөш (construction)"
+        ],
+        "DERIVES_FROM": [
+          "эш (work) + -се (agent suffix)"
+        ],
+        "ANT": [
+          "эшһеҙ (unemployed)"
+        ]
       },
-      "etymology": {"proto_form": "*iš + -či", "proto_language": "Proto-Turkic + suffix"}
+      "etymology": {
+        "proto_form": "*iš + -či",
+        "proto_language": "Proto-Turkic + suffix"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["461", "464"],
+      "ocm_codes": [
+        "461",
+        "464"
+      ],
       "significance": "Industrial workers central to Beloretsk's identity as metallurgical center",
-      "sources": ["Labor history", "Social structure"]
+      "sources": [
+        "Labor history",
+        "Social structure"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6291,45 +6475,6 @@
         "accusative": "эшсене",
         "locative": "эшседә",
         "ablative": "эшседән"
-      }
-    }
-  },
-  {
-    "id": "word_113",
-    "bashkir": "оҫта",
-    "ipa": "[oˈstɑ]",
-    "pos": "noun",
-    "english": "master craftsman",
-    "russian": "мастер",
-    "frequency_rank": 423,
-    "memory_palace": {
-      "locus": "Beloretsk",
-      "bird": "Ringdove",
-      "station": 4,
-      "mnemonic": "🕊️🎖️ 'Oh-STA!' The ОҪТА creates perfection! Master craftsman — years of skill made visible in every piece!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["кеше (person)", "һөнәрсе (artisan)"],
-        "HAS_QUALITY": ["осталыҡ (mastery)", "тәжрибә (experience)"],
-        "TEACHES": ["шәкерт (apprentice)"],
-        "SYN": ["мастер (master)"]
-      },
-      "etymology": {"proto_form": "*usta", "proto_language": "Proto-Turkic (possibly from Persian)"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["411", "871"],
-      "significance": "Masters pass down traditional crafts; respected role in community",
-      "sources": ["Craft traditions", "Apprenticeship systems"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "оҫта",
-        "genitive": "оҫтаның",
-        "dative": "оҫтаға",
-        "accusative": "оҫтаны",
-        "locative": "оҫтала",
-        "ablative": "оҫталан"
       }
     }
   },
@@ -6349,17 +6494,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["эш төрө (type of work)", "белем (knowledge)"],
-        "HAS_INSTANCE": ["тимерселек (blacksmithing)", "ағас эшләү (woodworking)"],
-        "REQUIRES": ["осталыҡ (skill)", "тәжрибә (experience)"],
-        "SYN": ["кәсеп (occupation)"]
+        "ISA": [
+          "эш төрө (type of work)",
+          "белем (knowledge)"
+        ],
+        "HAS_INSTANCE": [
+          "тимерселек (blacksmithing)",
+          "ағас эшләү (woodworking)"
+        ],
+        "REQUIRES": [
+          "осталыҡ (skill)",
+          "тәжрибә (experience)"
+        ],
+        "SYN": [
+          "кәсеп (occupation)"
+        ]
       },
-      "etymology": {"proto_form": "From Arabic 'hunar' via Persian", "proto_language": "Arabic borrowing"}
+      "etymology": {
+        "proto_form": "From Arabic 'hunar' via Persian",
+        "proto_language": "Arabic borrowing"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["411", "461"],
+      "ocm_codes": [
+        "411",
+        "461"
+      ],
       "significance": "Traditional crafts highly valued; passed through family lines",
-      "sources": ["Craft traditions", "Economic history"]
+      "sources": [
+        "Craft traditions",
+        "Economic history"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6369,124 +6534,6 @@
         "accusative": "һөнәрҙе",
         "locative": "һөнәрҙә",
         "ablative": "һөнәрҙән"
-      }
-    }
-  },
-  {
-    "id": "word_115",
-    "bashkir": "эш",
-    "ipa": "[eʃ]",
-    "pos": "noun",
-    "english": "work, labor",
-    "russian": "работа, труд",
-    "frequency_rank": 45,
-    "memory_palace": {
-      "locus": "Beloretsk",
-      "bird": "Ringdove",
-      "station": 4,
-      "mnemonic": "🕊️💪 'ESH!' Simple and strong — ЭШ! Work — the foundation of dignity and prosperity!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["эшмәкәрлек (activity)"],
-        "HAS_INSTANCE": ["физик эш (physical work)", "аҡыл эше (mental work)"],
-        "OPPOSITE": ["ял (rest)", "буш торош (idleness)"],
-        "DERIVES": ["эшсе (worker)", "эшләү (to work)"]
-      },
-      "etymology": {"proto_form": "*iš", "proto_language": "Proto-Turkic"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["461", "464"],
-      "significance": "Work highly valued in Bashkir culture; proverbs emphasize dignity of labor",
-      "sources": ["Proverbs", "Cultural values"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "эш",
-        "genitive": "эштең",
-        "dative": "эшкә",
-        "accusative": "эште",
-        "locative": "эштә",
-        "ablative": "эштән"
-      }
-    }
-  },
-  {
-    "id": "word_116",
-    "bashkir": "завод",
-    "ipa": "[zɑˈvod]",
-    "pos": "noun",
-    "english": "factory, plant",
-    "russian": "завод",
-    "frequency_rank": 289,
-    "memory_palace": {
-      "locus": "Beloretsk",
-      "bird": "Ringdove",
-      "station": 4,
-      "mnemonic": "🕊️🏭 'Za-VOD!' The ЗАВОД roars! Factory of Beloretsk — where iron becomes steel and workers build the republic!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["ҡорама (enterprise)", "промышленность урыны (industrial site)"],
-        "HAS_PART": ["сех (workshop)", "учаҡ (furnace)"],
-        "EMPLOYS": ["эшсе (workers)", "инженер (engineers)"],
-        "PRODUCES": ["продукция (products)", "металл (metal)"]
-      },
-      "etymology": {"proto_form": "From Russian 'завод'", "proto_language": "Russian borrowing"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["411", "365"],
-      "significance": "Beloretsk Iron Works founded 1762; central to regional identity",
-      "sources": ["Industrial history", "Regional development"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "завод",
-        "genitive": "заводтың",
-        "dative": "заводҡа",
-        "accusative": "заводты",
-        "locative": "заводта",
-        "ablative": "заводтан"
-      }
-    }
-  },
-  {
-    "id": "word_117",
-    "bashkir": "ҡурай",
-    "ipa": "[qurɑj]",
-    "pos": "noun",
-    "english": "kurai (traditional flute)",
-    "russian": "курай",
-    "frequency_rank": 234,
-    "memory_palace": {
-      "locus": "Beloretsk",
-      "bird": "Ringdove",
-      "station": 4,
-      "mnemonic": "🕊️🎵 'Ku-RAI!' The ҠУРАЙ sings! Sacred flute — crafted from hollow stem, voice of the Bashkir soul!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["музыка ҡоралы (musical instrument)", "халыҡ ҡоралы (folk instrument)"],
-        "MADE_FROM": ["ҡурай үләне (kurai plant stem)"],
-        "PLAYED_BY": ["ҡурайсы (kurai player)"],
-        "SYMBOLIC_OF": ["Башҡорт мәҙәниәте (Bashkir culture)", "иркенлек (freedom)"]
-      },
-      "etymology": {"proto_form": "From plant name 'qurai'", "proto_language": "Bashkir native"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["533", "536"],
-      "significance": "National symbol of Bashkortostan; featured on coat of arms; UNESCO intangible heritage",
-      "sensitivity": {"has_sensitive_context": false},
-      "sources": ["Music traditions", "National symbols"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "ҡурай",
-        "genitive": "ҡурайҙың",
-        "dative": "ҡурайға",
-        "accusative": "ҡурайҙы",
-        "locative": "ҡурайҙа",
-        "ablative": "ҡурайҙан"
       }
     }
   },
@@ -6506,17 +6553,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["экономика тармағы (economic sector)"],
-        "HAS_INSTANCE": ["металлургия (metallurgy)", "машина төҙөү (machine building)"],
-        "REQUIRES": ["эшсе (workers)", "технология (technology)"],
-        "PRODUCES": ["товар (goods)", "продукция (products)"]
+        "ISA": [
+          "экономика тармағы (economic sector)"
+        ],
+        "HAS_INSTANCE": [
+          "металлургия (metallurgy)",
+          "машина төҙөү (machine building)"
+        ],
+        "REQUIRES": [
+          "эшсе (workers)",
+          "технология (technology)"
+        ],
+        "PRODUCES": [
+          "товар (goods)",
+          "продукция (products)"
+        ]
       },
-      "etymology": {"proto_form": "From Arabic 'ṣināʿa'", "proto_language": "Arabic borrowing"}
+      "etymology": {
+        "proto_form": "From Arabic 'ṣināʿa'",
+        "proto_language": "Arabic borrowing"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["411", "365"],
+      "ocm_codes": [
+        "411",
+        "365"
+      ],
       "significance": "Bashkortostan major industrial region; oil, metals, chemicals",
-      "sources": ["Economic history", "Regional development"]
+      "sources": [
+        "Economic history",
+        "Regional development"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6526,45 +6593,6 @@
         "accusative": "һәнәғәтте",
         "locative": "һәнәғәттә",
         "ablative": "һәнәғәттән"
-      }
-    }
-  },
-  {
-    "id": "word_119",
-    "bashkir": "таш",
-    "ipa": "[tɑʃ]",
-    "pos": "noun",
-    "english": "stone",
-    "russian": "камень",
-    "frequency_rank": 198,
-    "memory_palace": {
-      "locus": "Beloretsk",
-      "bird": "Ringdove",
-      "station": 4,
-      "mnemonic": "🕊️🪨 'TASH!' Solid as ТАШ! Stone — foundation of mountains, material of monuments!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["материал (material)", "табиғәт объекты (natural object)"],
-        "HAS_INSTANCE": ["мрамор (marble)", "гранит (granite)"],
-        "USED_FOR": ["төҙөлөш (construction)", "һәйкәл (sculpture)"],
-        "FOUND_IN": ["тау (mountain)", "йылға (river)"]
-      },
-      "etymology": {"proto_form": "*taš", "proto_language": "Proto-Turkic"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["131", "325"],
-      "significance": "Ural mountains rich in various stones; used in construction and monuments",
-      "sources": ["Geography", "Material culture"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "таш",
-        "genitive": "таштың",
-        "dative": "ташҡа",
-        "accusative": "ташты",
-        "locative": "ташта",
-        "ablative": "таштан"
       }
     }
   },
@@ -6584,17 +6612,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["эшмәкәрлек (activity)", "һәнәғәт (industry)"],
-        "REQUIRES": ["материал (materials)", "эшсе (workers)"],
-        "CREATES": ["йорт (house)", "бина (building)"],
-        "USES": ["балта (axe)", "ҡорал (tools)"]
+        "ISA": [
+          "эшмәкәрлек (activity)",
+          "һәнәғәт (industry)"
+        ],
+        "REQUIRES": [
+          "материал (materials)",
+          "эшсе (workers)"
+        ],
+        "CREATES": [
+          "йорт (house)",
+          "бина (building)"
+        ],
+        "USES": [
+          "балта (axe)",
+          "ҡорал (tools)"
+        ]
       },
-      "etymology": {"proto_form": "From 'төҙөү' (to build) + nominalizer", "proto_language": "Bashkir derivation"}
+      "etymology": {
+        "proto_form": "From 'төҙөү' (to build) + nominalizer",
+        "proto_language": "Bashkir derivation"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["331", "341"],
+      "ocm_codes": [
+        "331",
+        "341"
+      ],
       "significance": "Traditional building methods include wooden and felt structures",
-      "sources": ["Architecture", "Construction traditions"]
+      "sources": [
+        "Architecture",
+        "Construction traditions"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6604,45 +6653,6 @@
         "accusative": "төҙөлөштө",
         "locative": "төҙөлөштә",
         "ablative": "төҙөлөштән"
-      }
-    }
-  },
-  {
-    "id": "word_121",
-    "bashkir": "болат",
-    "ipa": "[bolɑt]",
-    "pos": "noun",
-    "english": "steel",
-    "russian": "сталь",
-    "frequency_rank": 445,
-    "memory_palace": {
-      "locus": "Beloretsk",
-      "bird": "Ringdove",
-      "station": 4,
-      "mnemonic": "🕊️⚔️ 'Bo-LAHT!' БОЛАТ is forged! Steel — iron transformed by fire and skill into strength!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["металл (metal)", "ҡатнашма (alloy)"],
-        "MADE_FROM": ["тимер (iron)", "углерод (carbon)"],
-        "USED_FOR": ["ҡылыс (sword)", "ҡорал (tools)"],
-        "STRONGER_THAN": ["тимер (iron)"]
-      },
-      "etymology": {"proto_form": "*bolat / *pulat", "proto_language": "Proto-Turkic (possibly from Sanskrit)"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["325", "411"],
-      "significance": "Beloretsk famous for steel production; traditional swords prized",
-      "sources": ["Metallurgy", "Weapon traditions"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "болат",
-        "genitive": "болаттың",
-        "dative": "болатҡа",
-        "accusative": "болатты",
-        "locative": "болатта",
-        "ablative": "болаттан"
       }
     }
   },
@@ -6662,17 +6672,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["яғыулыҡ (fuel)", "минерал (mineral)"],
-        "USED_FOR": ["ут яғыу (making fire)", "тимер эретеү (smelting iron)"],
-        "FOUND_IN": ["ер аҫты (underground)", "урман (forest charcoal)"],
-        "BURNS_TO": ["көл (ash)"]
+        "ISA": [
+          "яғыулыҡ (fuel)",
+          "минерал (mineral)"
+        ],
+        "USED_FOR": [
+          "ут яғыу (making fire)",
+          "тимер эретеү (smelting iron)"
+        ],
+        "FOUND_IN": [
+          "ер аҫты (underground)",
+          "урман (forest charcoal)"
+        ],
+        "BURNS_TO": [
+          "көл (ash)"
+        ]
       },
-      "etymology": {"proto_form": "*kömür", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*kömür",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["325", "371"],
+      "ocm_codes": [
+        "325",
+        "371"
+      ],
       "significance": "Essential for traditional metallurgy; charcoal burning was important craft",
-      "sources": ["Metallurgy", "Forest industries"]
+      "sources": [
+        "Metallurgy",
+        "Forest industries"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6701,17 +6731,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["ут урыны (fire place)", "ҡорама (equipment)"],
-        "USED_FOR": ["аш бешереү (cooking)", "металл эретеү (metal smelting)"],
-        "CONTAINS": ["ут (fire)", "күер (coal)"],
-        "SYMBOLIC_OF": ["ғаилә (family)", "йорт (home)"]
+        "ISA": [
+          "ут урыны (fire place)",
+          "ҡорама (equipment)"
+        ],
+        "USED_FOR": [
+          "аш бешереү (cooking)",
+          "металл эретеү (metal smelting)"
+        ],
+        "CONTAINS": [
+          "ут (fire)",
+          "күер (coal)"
+        ],
+        "SYMBOLIC_OF": [
+          "ғаилә (family)",
+          "йорт (home)"
+        ]
       },
-      "etymology": {"proto_form": "*očaq", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*očaq",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["341", "371"],
+      "ocm_codes": [
+        "341",
+        "371"
+      ],
       "significance": "Hearth sacred center of home; forge central to smithing tradition",
-      "sources": ["Domestic culture", "Craft traditions"]
+      "sources": [
+        "Domestic culture",
+        "Craft traditions"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6740,17 +6791,39 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["әйбер (thing)", "ярҙамсы (helper)"],
-        "HAS_INSTANCE": ["балта (axe)", "бысаҡ (knife)", "ҡылыс (sword)"],
-        "MADE_FROM": ["тимер (iron)", "болат (steel)"],
-        "USED_BY": ["эшсе (worker)", "һунарсы (hunter)"]
+        "ISA": [
+          "әйбер (thing)",
+          "ярҙамсы (helper)"
+        ],
+        "HAS_INSTANCE": [
+          "балта (axe)",
+          "бысаҡ (knife)",
+          "ҡылыс (sword)"
+        ],
+        "MADE_FROM": [
+          "тимер (iron)",
+          "болат (steel)"
+        ],
+        "USED_BY": [
+          "эшсе (worker)",
+          "һунарсы (hunter)"
+        ]
       },
-      "etymology": {"proto_form": "*qural", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*qural",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["411", "714"],
+      "ocm_codes": [
+        "411",
+        "714"
+      ],
       "significance": "Tools and weapons central to nomadic and settled Bashkir life",
-      "sources": ["Material culture", "Technology"]
+      "sources": [
+        "Material culture",
+        "Technology"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6779,17 +6852,36 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["ҡала (city)"],
-        "LOCATED_IN": ["Башҡортостан"],
-        "NAME_MEANS": ["аҡ (white) + йылға (river)"],
-        "KNOWN_FOR": ["металлургия (metallurgy)", "тимер заводы (iron works)"],
-        "NEAR": ["Ямантау", "Урал тауҙары (Ural Mountains)"]
+        "ISA": [
+          "ҡала (city)"
+        ],
+        "LOCATED_IN": [
+          "Башҡортостан"
+        ],
+        "NAME_MEANS": [
+          "аҡ (white) + йылға (river)"
+        ],
+        "KNOWN_FOR": [
+          "металлургия (metallurgy)",
+          "тимер заводы (iron works)"
+        ],
+        "NEAR": [
+          "Ямантау",
+          "Урал тауҙары (Ural Mountains)"
+        ]
       }
     },
     "cultural_context": {
-      "ocm_codes": ["361", "411"],
+      "ocm_codes": [
+        "361",
+        "411"
+      ],
       "significance": "Industrial city founded 1762 with iron works; gateway to Southern Urals",
-      "sources": ["Geography", "Industrial history", "Memory Palace design"]
+      "sources": [
+        "Geography",
+        "Industrial history",
+        "Memory Palace design"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6818,17 +6910,39 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["социаль берәмек (social unit)", "йәмғиәт нигеҙе (foundation of society)"],
-        "HAS_MEMBER": ["ата (father)", "әсә (mother)", "бала (child)"],
-        "LIVES_IN": ["йорт (house)", "тирмә (yurt)"],
-        "SYMBOLIC_OF": ["мөхәббәт (love)", "ярҙам (support)"]
+        "ISA": [
+          "социаль берәмек (social unit)",
+          "йәмғиәт нигеҙе (foundation of society)"
+        ],
+        "HAS_MEMBER": [
+          "ата (father)",
+          "әсә (mother)",
+          "бала (child)"
+        ],
+        "LIVES_IN": [
+          "йорт (house)",
+          "тирмә (yurt)"
+        ],
+        "SYMBOLIC_OF": [
+          "мөхәббәт (love)",
+          "ярҙам (support)"
+        ]
       },
-      "etymology": {"proto_form": "From Arabic 'ʿāʾila'", "proto_language": "Arabic borrowing"}
+      "etymology": {
+        "proto_form": "From Arabic 'ʿāʾila'",
+        "proto_language": "Arabic borrowing"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["591", "594"],
+      "ocm_codes": [
+        "591",
+        "594"
+      ],
       "significance": "Extended family (туған-тумаса) central to Bashkir social organization",
-      "sources": ["Family structure", "Social organization"]
+      "sources": [
+        "Family structure",
+        "Social organization"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6838,84 +6952,6 @@
         "accusative": "ғаиләне",
         "locative": "ғаиләлә",
         "ablative": "ғаиләлән"
-      }
-    }
-  },
-  {
-    "id": "word_127",
-    "bashkir": "ата",
-    "ipa": "[ɑtɑ]",
-    "pos": "noun",
-    "english": "father",
-    "russian": "отец",
-    "frequency_rank": 67,
-    "memory_palace": {
-      "locus": "Bizhbulyak",
-      "bird": "Ringdove",
-      "station": 5,
-      "mnemonic": "🕊️👨 'AH-ta!' АТА provides! Father — pillar of the household, keeper of traditions!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["ата-әсә (parent)", "ир-ат (male relative)"],
-        "SPOUSE_OF": ["әсә (mother)"],
-        "PARENT_OF": ["бала (child)", "ул (son)", "ҡыҙ (daughter)"],
-        "ROLE": ["башлыҡ (head)", "ҡурсаусы (protector)"]
-      },
-      "etymology": {"proto_form": "*ata", "proto_language": "Proto-Turkic"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["591", "593"],
-      "significance": "Father as head of household; respect for elders fundamental to Bashkir culture",
-      "sources": ["Family structure", "Gender roles"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "ата",
-        "genitive": "атаның",
-        "dative": "атаға",
-        "accusative": "атаны",
-        "locative": "атала",
-        "ablative": "аталан"
-      }
-    }
-  },
-  {
-    "id": "word_128",
-    "bashkir": "әсә",
-    "ipa": "[æˈsæ]",
-    "pos": "noun",
-    "english": "mother",
-    "russian": "мать",
-    "frequency_rank": 56,
-    "memory_palace": {
-      "locus": "Bizhbulyak",
-      "bird": "Ringdove",
-      "station": 5,
-      "mnemonic": "🕊️👩 'Ä-SÄ!' ӘСӘ nurtures! Mother — heart of the home, source of unconditional love!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["ата-әсә (parent)", "ҡатын-ҡыҙ (female relative)"],
-        "SPOUSE_OF": ["ата (father)"],
-        "PARENT_OF": ["бала (child)"],
-        "ROLE": ["тәрбиәсе (nurturer)", "өй эйәһе (homemaker)"]
-      },
-      "etymology": {"proto_form": "*ana / *eče", "proto_language": "Proto-Turkic"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["591", "593"],
-      "significance": "Mother revered in Bashkir culture; many proverbs honor mothers",
-      "sources": ["Family structure", "Cultural values"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "әсә",
-        "genitive": "әсәнең",
-        "dative": "әсәгә",
-        "accusative": "әсәне",
-        "locative": "әсәлә",
-        "ablative": "әсәләттән"
       }
     }
   },
@@ -6935,17 +6971,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["кеше (person)", "йәш кеше (young person)"],
-        "CHILD_OF": ["ата (father)", "әсә (mother)"],
-        "GROWS_INTO": ["ҡатын (woman)", "ир (man)"],
-        "SLEEPS_IN": ["бишек (cradle)"]
+        "ISA": [
+          "кеше (person)",
+          "йәш кеше (young person)"
+        ],
+        "CHILD_OF": [
+          "ата (father)",
+          "әсә (mother)"
+        ],
+        "GROWS_INTO": [
+          "ҡатын (woman)",
+          "ир (man)"
+        ],
+        "SLEEPS_IN": [
+          "бишек (cradle)"
+        ]
       },
-      "etymology": {"proto_form": "*bala", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*bala",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["852", "854"],
+      "ocm_codes": [
+        "852",
+        "854"
+      ],
       "significance": "Children highly valued; large families traditional; many birth rituals",
-      "sources": ["Childhood", "Family values"]
+      "sources": [
+        "Childhood",
+        "Family values"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -6974,17 +7030,36 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["кеше (person)", "килеүсе (visitor)"],
-        "RECEIVES": ["һый (hospitality)", "аш (food)"],
-        "SITS_IN": ["түр (place of honor)"],
-        "ANT": ["эйә (host)"]
+        "ISA": [
+          "кеше (person)",
+          "килеүсе (visitor)"
+        ],
+        "RECEIVES": [
+          "һый (hospitality)",
+          "аш (food)"
+        ],
+        "SITS_IN": [
+          "түр (place of honor)"
+        ],
+        "ANT": [
+          "эйә (host)"
+        ]
       },
-      "etymology": {"proto_form": "*qonaq", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*qonaq",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["574", "884"],
+      "ocm_codes": [
+        "574",
+        "884"
+      ],
       "significance": "Hospitality (ҡунаҡсыллыҡ) sacred duty; 'Guest is from God' saying",
-      "sources": ["Hospitality traditions", "Cultural values"]
+      "sources": [
+        "Hospitality traditions",
+        "Cultural values"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7013,17 +7088,36 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["бина (building)", "яшау урыны (dwelling)"],
-        "CONTAINS": ["учаҡ (hearth)", "түр (honor place)"],
-        "SHELTERS": ["ғаилә (family)"],
-        "SYN": ["өй (house)"]
+        "ISA": [
+          "бина (building)",
+          "яшау урыны (dwelling)"
+        ],
+        "CONTAINS": [
+          "учаҡ (hearth)",
+          "түр (honor place)"
+        ],
+        "SHELTERS": [
+          "ғаилә (family)"
+        ],
+        "SYN": [
+          "өй (house)"
+        ]
       },
-      "etymology": {"proto_form": "*yurt", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*yurt",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["341", "342"],
+      "ocm_codes": [
+        "341",
+        "342"
+      ],
       "significance": "Home sacred space; entrance rituals; orientation meaningful",
-      "sources": ["Domestic life", "Architecture"]
+      "sources": [
+        "Domestic life",
+        "Architecture"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7052,17 +7146,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["ризыҡ (sustenance)"],
-        "HAS_INSTANCE": ["икмәк (bread)", "ит (meat)", "ҡымыҙ (kumis)"],
-        "SERVED_TO": ["ҡунаҡ (guest)", "ғаилә (family)"],
-        "PREPARED_BY": ["әсә (mother)", "ҡатын (woman)"]
+        "ISA": [
+          "ризыҡ (sustenance)"
+        ],
+        "HAS_INSTANCE": [
+          "икмәк (bread)",
+          "ит (meat)",
+          "ҡымыҙ (kumis)"
+        ],
+        "SERVED_TO": [
+          "ҡунаҡ (guest)",
+          "ғаилә (family)"
+        ],
+        "PREPARED_BY": [
+          "әсә (mother)",
+          "ҡатын (woman)"
+        ]
       },
-      "etymology": {"proto_form": "*aš", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*aš",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["251", "252"],
+      "ocm_codes": [
+        "251",
+        "252"
+      ],
       "significance": "Sharing food central to hospitality; ritual meals for celebrations",
-      "sources": ["Food culture", "Hospitality"]
+      "sources": [
+        "Food culture",
+        "Hospitality"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7091,17 +7206,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["аш (food)", "ҡамыр аштыҡтары (grain foods)"],
-        "MADE_FROM": ["он (flour)", "бойҙай (wheat)"],
-        "SYMBOLIC_OF": ["тормош (life)", "байлыҡ (prosperity)"],
-        "SERVED_WITH": ["тоҙ (salt)"]
+        "ISA": [
+          "аш (food)",
+          "ҡамыр аштыҡтары (grain foods)"
+        ],
+        "MADE_FROM": [
+          "он (flour)",
+          "бойҙай (wheat)"
+        ],
+        "SYMBOLIC_OF": [
+          "тормош (life)",
+          "байлыҡ (prosperity)"
+        ],
+        "SERVED_WITH": [
+          "тоҙ (salt)"
+        ]
       },
-      "etymology": {"proto_form": "*ekmek", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*ekmek",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["252", "262"],
+      "ocm_codes": [
+        "252",
+        "262"
+      ],
       "significance": "Bread and salt offered to guests; never throw away bread",
-      "sources": ["Food traditions", "Hospitality customs"]
+      "sources": [
+        "Food traditions",
+        "Hospitality customs"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7111,45 +7246,6 @@
         "accusative": "икмәкте",
         "locative": "икмәктә",
         "ablative": "икмәктән"
-      }
-    }
-  },
-  {
-    "id": "word_134",
-    "bashkir": "бал",
-    "ipa": "[bɑl]",
-    "pos": "noun",
-    "english": "honey",
-    "russian": "мёд",
-    "frequency_rank": 289,
-    "memory_palace": {
-      "locus": "Bizhbulyak",
-      "bird": "Ringdove",
-      "station": 5,
-      "mnemonic": "🕊️🍯 'BAHL!' БАЛ is sweet! Honey — golden treasure of the Bashkir forests, nature's gift!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["аш (food)", "татлы (sweet)"],
-        "MADE_BY": ["умырта ҡорто (bee)"],
-        "FOUND_IN": ["урман (forest)", "бал ҡорто ояһы (beehive)"],
-        "USED_FOR": ["даруа (medicine)", "аш (food)"]
-      },
-      "etymology": {"proto_form": "*bal", "proto_language": "Proto-Turkic"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["225", "252"],
-      "significance": "Bashkortostan famous for honey; traditional beekeeping (умартасылыҡ)",
-      "sources": ["Beekeeping", "Food traditions"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "бал",
-        "genitive": "балдың",
-        "dative": "балға",
-        "accusative": "балды",
-        "locative": "балда",
-        "ablative": "балдан"
       }
     }
   },
@@ -7169,17 +7265,40 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["эсемлек (drink)", "аш (food)"],
-        "COMES_FROM": ["һыйыр (cow)", "бейә (mare)", "сәскә (goat)"],
-        "MAKES": ["ҡымыҙ (kumis)", "ҡатыҡ (yogurt)", "эремсек (cheese)"],
-        "SYMBOLIC_OF": ["сафлыҡ (purity)", "тәрбиә (nurturing)"]
+        "ISA": [
+          "эсемлек (drink)",
+          "аш (food)"
+        ],
+        "COMES_FROM": [
+          "һыйыр (cow)",
+          "бейә (mare)",
+          "сәскә (goat)"
+        ],
+        "MAKES": [
+          "ҡымыҙ (kumis)",
+          "ҡатыҡ (yogurt)",
+          "эремсек (cheese)"
+        ],
+        "SYMBOLIC_OF": [
+          "сафлыҡ (purity)",
+          "тәрбиә (nurturing)"
+        ]
       },
-      "etymology": {"proto_form": "*süt", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*süt",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["231", "252"],
+      "ocm_codes": [
+        "231",
+        "252"
+      ],
       "significance": "Dairy central to nomadic diet; milk products for hospitality",
-      "sources": ["Pastoral economy", "Food culture"]
+      "sources": [
+        "Pastoral economy",
+        "Food culture"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7208,17 +7327,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["эсемлек (drink)", "ҡайнаҡ эсемлек (hot drink)"],
-        "SERVED_WITH": ["ҡаймаҡ (cream)", "бал (honey)", "икмәк (bread)"],
-        "OFFERED_TO": ["ҡунаҡ (guest)"],
-        "DRUNK_FROM": ["кәсә (bowl)", "стакан (glass)"]
+        "ISA": [
+          "эсемлек (drink)",
+          "ҡайнаҡ эсемлек (hot drink)"
+        ],
+        "SERVED_WITH": [
+          "ҡаймаҡ (cream)",
+          "бал (honey)",
+          "икмәк (bread)"
+        ],
+        "OFFERED_TO": [
+          "ҡунаҡ (guest)"
+        ],
+        "DRUNK_FROM": [
+          "кәсә (bowl)",
+          "стакан (glass)"
+        ]
       },
-      "etymology": {"proto_form": "From Chinese via Russian/Turkic trade routes", "proto_language": "Chinese borrowing"}
+      "etymology": {
+        "proto_form": "From Chinese via Russian/Turkic trade routes",
+        "proto_language": "Chinese borrowing"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["252", "574"],
+      "ocm_codes": [
+        "252",
+        "574"
+      ],
       "significance": "Tea ceremony part of hospitality; refusing tea impolite",
-      "sources": ["Hospitality customs", "Food culture"]
+      "sources": [
+        "Hospitality customs",
+        "Food culture"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7228,46 +7368,6 @@
         "accusative": "сәйҙе",
         "locative": "сәйҙә",
         "ablative": "сәйҙән"
-      }
-    }
-  },
-  {
-    "id": "word_137",
-    "bashkir": "ҡымыҙ",
-    "ipa": "[qɯˈmɯz]",
-    "pos": "noun",
-    "english": "kumis (fermented mare's milk)",
-    "russian": "кумыс",
-    "frequency_rank": 345,
-    "memory_palace": {
-      "locus": "Bizhbulyak",
-      "bird": "Ringdove",
-      "station": 5,
-      "mnemonic": "🕊️🥛✨ 'Ky-MYZ!' ҠЫМЫҘ is sacred! Kumis — drink of the steppe, fermented mare's milk of the ancestors!"
-    },
-    "bashkortnet": {
-      "relations": {
-        "ISA": ["эсемлек (drink)", "ашлаған һөт (fermented milk)"],
-        "MADE_FROM": ["бейә һөтө (mare's milk)"],
-        "SERVED_AT": ["туй (wedding)", "байрам (celebration)"],
-        "HAS_QUALITY": ["шифалы (healing)", "ҡеүәт биреүсе (strengthening)"]
-      },
-      "etymology": {"proto_form": "*qïmïz", "proto_language": "Proto-Turkic"}
-    },
-    "cultural_context": {
-      "ocm_codes": ["231", "252"],
-      "significance": "National drink; medicinal properties valued; offered at celebrations",
-      "sensitivity": {"has_sensitive_context": false},
-      "sources": ["Pastoral traditions", "Food culture"]
-    },
-    "grammar": {
-      "case_forms": {
-        "nominative": "ҡымыҙ",
-        "genitive": "ҡымыҙҙың",
-        "dative": "ҡымыҙға",
-        "accusative": "ҡымыҙҙы",
-        "locative": "ҡымыҙҙа",
-        "ablative": "ҡымыҙҙан"
       }
     }
   },
@@ -7287,17 +7387,38 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["йорт (dwelling)", "күсмә йорт (portable home)"],
-        "MADE_FROM": ["кейеҙ (felt)", "ағас (wood frame)"],
-        "HAS_PART": ["түндөк (smoke hole)", "түр (honor place)", "ишек (door)"],
-        "USED_BY": ["күсәрмән (nomad)"]
+        "ISA": [
+          "йорт (dwelling)",
+          "күсмә йорт (portable home)"
+        ],
+        "MADE_FROM": [
+          "кейеҙ (felt)",
+          "ағас (wood frame)"
+        ],
+        "HAS_PART": [
+          "түндөк (smoke hole)",
+          "түр (honor place)",
+          "ишек (door)"
+        ],
+        "USED_BY": [
+          "күсәрмән (nomad)"
+        ]
       },
-      "etymology": {"proto_form": "*terme", "proto_language": "Bashkir native (from 'collect, gather')"}
+      "etymology": {
+        "proto_form": "*terme",
+        "proto_language": "Bashkir native (from 'collect, gather')"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["341", "342"],
+      "ocm_codes": [
+        "341",
+        "342"
+      ],
       "significance": "Traditional dwelling; still used for celebrations; symbolic of heritage",
-      "sources": ["Nomadic heritage", "Architecture"]
+      "sources": [
+        "Nomadic heritage",
+        "Architecture"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7326,17 +7447,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["урын (place)", "мөһим урын (important place)"],
-        "LOCATED_IN": ["йорт (home)", "тирмә (yurt)"],
-        "RESERVED_FOR": ["ҡунаҡ (guest)", "ҡарт (elder)"],
-        "OPPOSITE_OF": ["ишек (door)"]
+        "ISA": [
+          "урын (place)",
+          "мөһим урын (important place)"
+        ],
+        "LOCATED_IN": [
+          "йорт (home)",
+          "тирмә (yurt)"
+        ],
+        "RESERVED_FOR": [
+          "ҡунаҡ (guest)",
+          "ҡарт (elder)"
+        ],
+        "OPPOSITE_OF": [
+          "ишек (door)"
+        ]
       },
-      "etymology": {"proto_form": "*tör", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*tör",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["574", "884"],
+      "ocm_codes": [
+        "574",
+        "884"
+      ],
       "significance": "Seating arrangement reflects social hierarchy; guests given best place",
-      "sources": ["Hospitality customs", "Spatial organization"]
+      "sources": [
+        "Hospitality customs",
+        "Spatial organization"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7365,17 +7506,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["йоҡлау урыны (sleeping place)", "бала әйбере (child's item)"],
-        "HOLDS": ["бала (child)", "сабый (infant)"],
-        "MADE_FROM": ["ағас (wood)"],
-        "ASSOCIATED_WITH": ["әллүк (lullaby)", "әсә (mother)"]
+        "ISA": [
+          "йоҡлау урыны (sleeping place)",
+          "бала әйбере (child's item)"
+        ],
+        "HOLDS": [
+          "бала (child)",
+          "сабый (infant)"
+        ],
+        "MADE_FROM": [
+          "ағас (wood)"
+        ],
+        "ASSOCIATED_WITH": [
+          "әллүк (lullaby)",
+          "әсә (mother)"
+        ]
       },
-      "etymology": {"proto_form": "*beşik", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*beşik",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["852", "862"],
+      "ocm_codes": [
+        "852",
+        "862"
+      ],
       "significance": "Traditional wooden cradle with special rituals; passing to next generation",
-      "sources": ["Childhood", "Material culture"]
+      "sources": [
+        "Childhood",
+        "Material culture"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7404,17 +7565,39 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["байрам (celebration)", "йола (ritual)"],
-        "HAS_PART": ["килен алыу (bride taking)", "калым (bride price)", "туй аши (wedding feast)"],
-        "FEATURES": ["ҡымыҙ (kumis)", "бейеү (dancing)", "йыр (singing)"],
-        "JOINS": ["ике ғаилә (two families)"]
+        "ISA": [
+          "байрам (celebration)",
+          "йола (ritual)"
+        ],
+        "HAS_PART": [
+          "килен алыу (bride taking)",
+          "калым (bride price)",
+          "туй аши (wedding feast)"
+        ],
+        "FEATURES": [
+          "ҡымыҙ (kumis)",
+          "бейеү (dancing)",
+          "йыр (singing)"
+        ],
+        "JOINS": [
+          "ике ғаилә (two families)"
+        ]
       },
-      "etymology": {"proto_form": "*toy", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*toy",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["585", "584"],
+      "ocm_codes": [
+        "585",
+        "584"
+      ],
       "significance": "Multi-day celebration with specific rituals; most important family event",
-      "sources": ["Marriage customs", "Celebrations"]
+      "sources": [
+        "Marriage customs",
+        "Celebrations"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7443,17 +7626,39 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["сара (event)", "ҡыуаныс көнө (joyous day)"],
-        "HAS_INSTANCE": ["Һабантуй (Sabantuy)", "Ҡарға туй (Crow festival)", "Нәүрүҙ (Nawruz)"],
-        "FEATURES": ["ашау-эсеү (feasting)", "уйындар (games)", "бейеү (dancing)"],
-        "ANT": ["көнкүреш (everyday life)"]
+        "ISA": [
+          "сара (event)",
+          "ҡыуаныс көнө (joyous day)"
+        ],
+        "HAS_INSTANCE": [
+          "Һабантуй (Sabantuy)",
+          "Ҡарға туй (Crow festival)",
+          "Нәүрүҙ (Nawruz)"
+        ],
+        "FEATURES": [
+          "ашау-эсеү (feasting)",
+          "уйындар (games)",
+          "бейеү (dancing)"
+        ],
+        "ANT": [
+          "көнкүреш (everyday life)"
+        ]
       },
-      "etymology": {"proto_form": "From Persian 'bayram'", "proto_language": "Persian borrowing"}
+      "etymology": {
+        "proto_form": "From Persian 'bayram'",
+        "proto_language": "Persian borrowing"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["527", "524"],
+      "ocm_codes": [
+        "527",
+        "524"
+      ],
       "significance": "Seasonal and religious holidays structure the year; Sabantuy most famous",
-      "sources": ["Calendar customs", "Celebrations"]
+      "sources": [
+        "Calendar customs",
+        "Celebrations"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7482,17 +7687,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["йыр (song)", "бала йыры (children's song)"],
-        "SUNG_BY": ["әсә (mother)", "өләсәй (grandmother)"],
-        "SUNG_TO": ["бала (child)", "сабый (infant)"],
-        "ACCOMPANIES": ["бишек (cradle)"]
+        "ISA": [
+          "йыр (song)",
+          "бала йыры (children's song)"
+        ],
+        "SUNG_BY": [
+          "әсә (mother)",
+          "өләсәй (grandmother)"
+        ],
+        "SUNG_TO": [
+          "бала (child)",
+          "сабый (infant)"
+        ],
+        "ACCOMPANIES": [
+          "бишек (cradle)"
+        ]
       },
-      "etymology": {"proto_form": "From 'әлли' (lullaby interjection)", "proto_language": "Bashkir native"}
+      "etymology": {
+        "proto_form": "From 'әлли' (lullaby interjection)",
+        "proto_language": "Bashkir native"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["533", "862"],
+      "ocm_codes": [
+        "533",
+        "862"
+      ],
       "significance": "Traditional lullabies pass cultural values; unique melodic patterns",
-      "sources": ["Folk music", "Childhood customs"]
+      "sources": [
+        "Folk music",
+        "Childhood customs"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7521,17 +7746,37 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["ҡунаҡсыллыҡ (hospitality)", "бүләк (gift)"],
-        "GIVEN_TO": ["ҡунаҡ (guest)"],
-        "INCLUDES": ["аш (food)", "эсемлек (drink)"],
-        "REFLECTS": ["хөрмәт (respect)", "йомшаҡлыҡ (kindness)"]
+        "ISA": [
+          "ҡунаҡсыллыҡ (hospitality)",
+          "бүләк (gift)"
+        ],
+        "GIVEN_TO": [
+          "ҡунаҡ (guest)"
+        ],
+        "INCLUDES": [
+          "аш (food)",
+          "эсемлек (drink)"
+        ],
+        "REFLECTS": [
+          "хөрмәт (respect)",
+          "йомшаҡлыҡ (kindness)"
+        ]
       },
-      "etymology": {"proto_form": "*sïy", "proto_language": "Proto-Turkic"}
+      "etymology": {
+        "proto_form": "*sïy",
+        "proto_language": "Proto-Turkic"
+      }
     },
     "cultural_context": {
-      "ocm_codes": ["574", "431"],
+      "ocm_codes": [
+        "574",
+        "431"
+      ],
       "significance": "Offering food and gifts to guests is sacred obligation",
-      "sources": ["Hospitality customs", "Gift giving"]
+      "sources": [
+        "Hospitality customs",
+        "Gift giving"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7560,16 +7805,32 @@
     },
     "bashkortnet": {
       "relations": {
-        "ISA": ["район (district)"],
-        "LOCATED_IN": ["Башҡортостан"],
-        "KNOWN_FOR": ["ҡунаҡсыллыҡ (hospitality)", "ғаилә традициялары (family traditions)"],
-        "POPULATION": ["башҡорттар (Bashkirs)", "татарлар (Tatars)"]
+        "ISA": [
+          "район (district)"
+        ],
+        "LOCATED_IN": [
+          "Башҡортостан"
+        ],
+        "KNOWN_FOR": [
+          "ҡунаҡсыллыҡ (hospitality)",
+          "ғаилә традициялары (family traditions)"
+        ],
+        "POPULATION": [
+          "башҡорттар (Bashkirs)",
+          "татарлар (Tatars)"
+        ]
       }
     },
     "cultural_context": {
-      "ocm_codes": ["619", "591"],
+      "ocm_codes": [
+        "619",
+        "591"
+      ],
       "significance": "Western Bashkortostan district; represents family/hospitality values in Memory Palace",
-      "sources": ["Geography", "Memory Palace design"]
+      "sources": [
+        "Geography",
+        "Memory Palace design"
+      ]
     },
     "grammar": {
       "case_forms": {
@@ -7580,6 +7841,1117 @@
         "locative": "Бижбулякта",
         "ablative": "Бижбуляктан"
       }
+    }
+  },
+  {
+    "id": "word_136",
+    "bashkir": "Аҡбуҙат",
+    "ipa": "[ɑqbuˈzɑt]",
+    "pos": "noun",
+    "english": "Akbuzat (white-gray horse, mythological winged horse)",
+    "russian": "Акбузат (крылатый конь)",
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'AK-BOO-ZAT!' A ghostly white horse bursts from the cave paintings! Its wings are made of ancient starlight. The Crow whispers: 'This is the horse that carried heroes to the sky. Say its name and feel yourself FLYING!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "773"
+      ],
+      "significance": "The winged horse of Bashkir mythology, mount of Ural-Batyr"
+    }
+  },
+  {
+    "id": "word_137",
+    "bashkir": "Тәңре",
+    "ipa": "[tæŋˈre]",
+    "pos": "noun",
+    "english": "Tengri (sky god)",
+    "russian": "Тенгри (бог неба)",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'TAN-gri!' At the summit, the sky opens! A vast eye appears — TENGRI watches! The Anqa bows: 'Before Islam, before everything, there was the Eternal Blue Sky. TAN yourself in his gaze!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "776"
+      ],
+      "significance": "Pre-Islamic Turkic supreme deity, still echoed in Bashkir cosmology"
+    }
+  },
+  {
+    "id": "word_138",
+    "bashkir": "Шүлгәнташ",
+    "ipa": "[ʃylgænˈtɑʃ]",
+    "pos": "noun",
+    "english": "Shulgan-Tash (Kapova Cave)",
+    "russian": "Шульган-Таш (Капова пещера)",
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'SHOOL-gan-TASH!' The stone itself speaks! SHOOL drips from stalactites, TASHes of rock glow with 14,000-year-old paintings. The Crow guards: 'This is where time sleeps. Every syllable is a fossil!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "133",
+        "778"
+      ],
+      "significance": "Sacred cave with Paleolithic art, gateway to underworld in mythology"
+    }
+  },
+  {
+    "id": "word_139",
+    "bashkir": "дин",
+    "ipa": "[din]",
+    "pos": "noun",
+    "english": "religion/faith",
+    "russian": "религия/вера",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'DEEN!' At the village hearth, grandmother lights a candle. The DIN of the prayer bell echoes. The Ringdove coos: 'Faith lives in simple acts — bread shared, words spoken to the sky.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "771"
+      ],
+      "significance": "Religious practice in Bashkir life"
+    }
+  },
+  {
+    "id": "word_140",
+    "bashkir": "йола",
+    "ipa": "[joˈlɑ]",
+    "pos": "noun",
+    "english": "ritual/tradition/custom",
+    "russian": "обычай/традиция",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'YO-la!' Grandmother traces a circle in the air — the YOLA of blessing! 'YOLO but with tradition!' laughs the Ringdove. 'These rituals connect you to a thousand years of ancestors.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "788"
+      ],
+      "significance": "Traditional Bashkir customs and ceremonies"
+    }
+  },
+  {
+    "id": "word_141",
+    "bashkir": "ей",
+    "ipa": "[ej]",
+    "pos": "noun",
+    "english": "spirit/household spirit",
+    "russian": "дух/домовой",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'EY!' Something rustles in the corner! 'Hey EY!' you call. A shimmer appears — the house spirit! The Ringdove nods: 'Every home has an EY. Leave milk out. It protects the family.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "776"
+      ],
+      "significance": "Household spirits in Bashkir folk belief"
+    }
+  },
+  {
+    "id": "word_142",
+    "bashkir": "тыйыу",
+    "ipa": "[tɤˈjɤw]",
+    "pos": "noun",
+    "english": "taboo/prohibition",
+    "russian": "табу/запрет",
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'TI-yi-OO!' The Crow blocks your path! 'ТАБОО!' it screeches. Some cave paintings must not be touched. TI-yi-OO — the sacred boundary between what may and may not be done."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "784"
+      ],
+      "significance": "Sacred prohibitions in Bashkir culture"
+    }
+  },
+  {
+    "id": "word_143",
+    "bashkir": "ҡубыҙ",
+    "ipa": "[qʊˈbɤz]",
+    "pos": "noun",
+    "english": "kubyz (jaw harp)",
+    "russian": "кубыз (варган)",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'KU-byz!' Bzzzzzz! The tiny jaw harp vibrates against your teeth! CUBE + BUZZ = KUBYZ! The Ringdove dances: 'The smallest instrument makes the cosmos sing!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "534"
+      ],
+      "significance": "Traditional Bashkir jaw harp, creates trance-like sounds"
+    }
+  },
+  {
+    "id": "word_144",
+    "bashkir": "думбыра",
+    "ipa": "[dʊmˈbɤrɑ]",
+    "pos": "noun",
+    "english": "dombra (two-stringed lute)",
+    "russian": "домбра",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'DOOM-bra!' The storyteller strums — DOOM DOOM DOOM! The DUMBRA sounds like thunder! 'Every hero's tale,' coos the Ringdove, 'was sung to this instrument's voice.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "534"
+      ],
+      "significance": "Traditional stringed instrument for epic singing"
+    }
+  },
+  {
+    "id": "word_145",
+    "bashkir": "йыр",
+    "ipa": "[jɤr]",
+    "pos": "noun",
+    "english": "song",
+    "russian": "песня",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'YIR!' The melody rises like the YEAR turning! Each YIR carries the weight of seasons. The Ringdove sings: 'In Bashkir, a song is not heard — it is LIVED.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "533"
+      ],
+      "significance": "Bashkir song tradition"
+    }
+  },
+  {
+    "id": "word_146",
+    "bashkir": "моң",
+    "ipa": "[moŋ]",
+    "pos": "noun",
+    "english": "melody/tune/musical motif",
+    "russian": "мелодия/мотив",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'MONG!' The kuray plays a haunting МОҢ — a melody that MOANS through the hills! The Ringdove closes its eyes: 'This is the soul's signature tune.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "533"
+      ],
+      "significance": "The characteristic Bashkir melodic style"
+    }
+  },
+  {
+    "id": "word_147",
+    "bashkir": "бейеү",
+    "ipa": "[bejˈew]",
+    "pos": "verb",
+    "english": "dance",
+    "russian": "танец",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'BEY-ew!' Bay-YOOO! The dancers spin! BEY like 'beyoncé' but EW adds the Bashkir twist! The Ringdove flutters: 'Dance is prayer without words!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "535"
+      ],
+      "significance": "Traditional Bashkir dance"
+    }
+  },
+  {
+    "id": "word_148",
+    "bashkir": "биҙәк",
+    "ipa": "[biˈzæk]",
+    "pos": "noun",
+    "english": "ornament/decoration",
+    "russian": "орнамент/украшение",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'BI-zak!' The grandmother embroiders — BEADS + ZIG-ZAG = BIZAK! Every pattern tells a story. The Ringdove admires: 'These symbols protect and bless.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "531"
+      ],
+      "significance": "Traditional Bashkir decorative patterns"
+    }
+  },
+  {
+    "id": "word_149",
+    "bashkir": "ойма",
+    "ipa": "[ojˈmɑ]",
+    "pos": "noun",
+    "english": "carving/woodwork pattern",
+    "russian": "резьба",
+    "memory_palace": {
+      "locus": "Beloretsk",
+      "bird": "Ringdove",
+      "station": 4,
+      "mnemonic": "🕊️ 'OY-ma!' The craftsman cuts deep — OY, MA, look at this carving! Each OYMA on the door tells of the family within. The Ringdove traces the patterns."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "531"
+      ],
+      "significance": "Traditional Bashkir wood carving"
+    }
+  },
+  {
+    "id": "word_150",
+    "bashkir": "театр",
+    "ipa": "[teˈɑtr]",
+    "pos": "noun",
+    "english": "theater",
+    "russian": "театр",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'te-A-tr!' The same as Russian! In Ufa's grand theater, the Eagle watches the stage. Drama brings ancient stories to life!"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "536"
+      ],
+      "significance": "Bashkir theater tradition"
+    }
+  },
+  {
+    "id": "word_151",
+    "bashkir": "әкиәт",
+    "ipa": "[ækiˈæt]",
+    "pos": "noun",
+    "english": "fairy tale/folk tale",
+    "russian": "сказка",
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'AK-i-AT!' The Crow tells an ӘКИӘТ by firelight — 'ACT out these tales!' it caws. Every fairy tale is an ancient truth wearing a costume."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "5310"
+      ],
+      "significance": "Bashkir folk tales and oral tradition"
+    }
+  },
+  {
+    "id": "word_152",
+    "bashkir": "риүәйәт",
+    "ipa": "[riwæˈjæt]",
+    "pos": "noun",
+    "english": "legend/tradition/narrative",
+    "russian": "легенда/предание",
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'ri-WAY-at!' This is the WAY of telling! RIVULETS of story flow from the Crow's beak. Every РИҮӘЙӘТ connects past to present."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "5310"
+      ],
+      "significance": "Bashkir oral traditions and legends"
+    }
+  },
+  {
+    "id": "word_153",
+    "bashkir": "көрәш",
+    "ipa": "[køˈræʃ]",
+    "pos": "noun",
+    "english": "wrestling (traditional Bashkir/Turkic)",
+    "russian": "борьба (курэш)",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'kö-RASH!' CRASH! Two wrestlers collide at Sabantuy! They CLASH and CRASH — KORASH! The Ringdove circles: 'The winner proves honor, not just strength!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "526",
+        "541"
+      ],
+      "significance": "Traditional wrestling at Sabantuy festival"
+    }
+  },
+  {
+    "id": "word_154",
+    "bashkir": "ат сабышы",
+    "ipa": "[ɑt sɑbɤˈʃɤ]",
+    "pos": "noun",
+    "english": "horse race",
+    "russian": "скачки/конные состязания",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'AT sa-BI-shi!' АТ (horse) + SABISHI (race)! The hooves THUNDER! At Sabantuy, the fastest AT wins glory. The Ringdove flies alongside!"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "526",
+        "541"
+      ],
+      "significance": "Horse racing at Sabantuy"
+    }
+  },
+  {
+    "id": "word_155",
+    "bashkir": "уйын",
+    "ipa": "[ʊˈjɤn]",
+    "pos": "noun",
+    "english": "game/play",
+    "russian": "игра",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'u-YIN!' Children playing — 'YOU WIN! No, YOU WIN!' УЙЫН is the joy of play! The Ringdove joins the circle game."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "524"
+      ],
+      "significance": "Traditional Bashkir games"
+    }
+  },
+  {
+    "id": "word_156",
+    "bashkir": "бабай",
+    "ipa": "[bɑˈbɑj]",
+    "pos": "noun",
+    "english": "grandfather",
+    "russian": "дедушка",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'ba-BAY!' BABAY sits by the fire, telling stories! 'BYE BYE troubles when BABAY speaks!' The Ringdove perches on his shoulder."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "601"
+      ],
+      "significance": "Grandfather, keeper of family wisdom"
+    }
+  },
+  {
+    "id": "word_157",
+    "bashkir": "өләсәй",
+    "ipa": "[øˈlæsæj]",
+    "pos": "noun",
+    "english": "grandmother",
+    "russian": "бабушка",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'ö-LA-say!' ӨЛӘСӘЙ stirs the pot — 'Oh, LA-LA!' she sings! Grandmother's hands hold all the family secrets. The Ringdove learns recipes from her."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "601"
+      ],
+      "significance": "Grandmother, heart of the family"
+    }
+  },
+  {
+    "id": "word_158",
+    "bashkir": "ырыу",
+    "ipa": "[ɤˈrɤw]",
+    "pos": "noun",
+    "english": "clan/tribe/extended family",
+    "russian": "род/клан",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'i-RIU!' The clan gathers — 'WE are IU-nited!' ЫРЫУ means your blood extends beyond your house. The Ringdove knows every branch of the family tree."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "602",
+        "618"
+      ],
+      "significance": "Bashkir clan system, still important for identity"
+    }
+  },
+  {
+    "id": "word_159",
+    "bashkir": "туғандар",
+    "ipa": "[tʊˈʁɑndɑr]",
+    "pos": "noun",
+    "english": "relatives/kin",
+    "russian": "родственники",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'tu-GHAN-dar!' TOO GRAND a gathering! All the ТУҒАНДАР arrive for the holiday! The Ringdove counts: uncles, aunts, cousins..."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "602"
+      ],
+      "significance": "Extended family relations"
+    }
+  },
+  {
+    "id": "word_160",
+    "bashkir": "бал ҡорто",
+    "ipa": "[bɑl qorˈto]",
+    "pos": "noun",
+    "english": "bee (lit. 'honey worm')",
+    "russian": "пчела",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'BAL KOR-to!' The bee is a BALL of GOLD that COURTS flowers! БАЛ (honey) + ҠОРТО (worm/insect). The Ringdove watches the golden workers."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "136",
+        "222",
+        "825"
+      ],
+      "significance": "Sacred bee, Bashkortostan is famous for beekeeping"
+    }
+  },
+  {
+    "id": "word_161",
+    "bashkir": "һыйыр",
+    "ipa": "[hɤˈjɤr]",
+    "pos": "noun",
+    "english": "cow",
+    "russian": "корова",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'hi-YIR!' HERE comes the cow! 'HI-YIR!' you call, and she moos back. The Ringdove lands on her back — ҺЫЙЫР gives milk for the family."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "136",
+        "231"
+      ],
+      "significance": "Important livestock animal"
+    }
+  },
+  {
+    "id": "word_162",
+    "bashkir": "ҡуй",
+    "ipa": "[qʊj]",
+    "pos": "noun",
+    "english": "sheep",
+    "russian": "овца",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'KUY!' The sheep says 'KOO-ee!' on the mountain slopes! ҚУЙ wool keeps families warm through the Ural winter."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "231"
+      ],
+      "significance": "Traditional pastoral animal"
+    }
+  },
+  {
+    "id": "word_163",
+    "bashkir": "сарыҡ",
+    "ipa": "[sɑˈrɤq]",
+    "pos": "noun",
+    "english": "sheep (fat-tailed breed)",
+    "russian": "овца (курдючная)",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'sa-RIK!' This special sheep has a THICK tail! SARIQ sounds like 'sorry' but there's nothing sorry about this fat-tailed treasure!"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "231"
+      ],
+      "significance": "Traditional Bashkir sheep breed"
+    }
+  },
+  {
+    "id": "word_164",
+    "bashkir": "сәскә",
+    "ipa": "[sæsˈkæ]",
+    "pos": "noun",
+    "english": "flower",
+    "russian": "цветок",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'SAS-ka!' SASSY flowers bloom on the mountain! СӘСКӘ — each petal is a flame of color. The Anqa brings one to its nest."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "137",
+        "824"
+      ],
+      "significance": "Wildflowers of Bashkir meadows"
+    }
+  },
+  {
+    "id": "word_165",
+    "bashkir": "үлән",
+    "ipa": "[yˈlæn]",
+    "pos": "noun",
+    "english": "grass/herb",
+    "russian": "трава",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'ü-LAN!' The grass spreads like a green LAND! ҮЛӘН carpets the meadows. Horses graze, bees hum. The Anqa swoops low over the waving sea."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "824"
+      ],
+      "significance": "Steppe and meadow grasses, important for pastoral life"
+    }
+  },
+  {
+    "id": "word_166",
+    "bashkir": "Иремәл",
+    "ipa": "[irɛˈmæl]",
+    "pos": "noun",
+    "english": "Iremel (sacred mountain)",
+    "russian": "Иремель (священная гора)",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'i-re-MAL!' IREMEL rises like a crown! The Anqa says: 'This mountain heals — pilgrims climb it for spiritual power. Say I-RE-MAL and feel elevated!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "133"
+      ],
+      "significance": "Second highest peak, considered sacred for spiritual journeys"
+    }
+  },
+  {
+    "id": "word_167",
+    "bashkir": "ит",
+    "ipa": "[it]",
+    "pos": "noun",
+    "english": "meat",
+    "russian": "мясо",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'IT!' Short and powerful — IT is what you EAT! Horse meat, lamb — ИТ sustains the Bashkir table. The Ringdove appreciates the feast."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "252",
+        "262"
+      ],
+      "significance": "Meat in Bashkir cuisine, especially horse meat"
+    }
+  },
+  {
+    "id": "word_168",
+    "bashkir": "ашау",
+    "ipa": "[ɑˈʃɑw]",
+    "pos": "verb",
+    "english": "to eat",
+    "russian": "есть/кушать",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'a-SHAW!' Grandma says 'Come, АШАУ!' — Come EAT! A-SHAW sounds like 'I shall' — I shall eat! The Ringdove pecks at crumbs."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "264"
+      ],
+      "significance": "The act of eating, central to hospitality"
+    }
+  },
+  {
+    "id": "word_169",
+    "bashkir": "буҙа",
+    "ipa": "[buˈzɑ]",
+    "pos": "noun",
+    "english": "boza (fermented millet drink)",
+    "russian": "боза/буза",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'BU-za!' BOOZE-a! This ancient drink BUZZES in your head! БУҘА — fermented millet, the ancestor of beer. The Ringdove sips carefully."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "273"
+      ],
+      "significance": "Traditional fermented grain drink"
+    }
+  },
+  {
+    "id": "word_170",
+    "bashkir": "һүҙ",
+    "ipa": "[hyz]",
+    "pos": "noun",
+    "english": "word",
+    "russian": "слово",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'HÜZ!' Every HÜZ (word) is a seed! The Eagle speaks: 'Master words, master worlds. Each ҺҮҘ you learn grows into understanding.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "191"
+      ],
+      "significance": "The building block of language"
+    }
+  },
+  {
+    "id": "word_171",
+    "bashkir": "һүҙлек",
+    "ipa": "[hyzˈlek]",
+    "pos": "noun",
+    "english": "dictionary",
+    "russian": "словарь",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'HÜZ-lek!' A collection of HÜZ! ҺҮҘЛЕК — the dictionary is a HOUSE of words! The Eagle guards this treasure of knowledge."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "192"
+      ],
+      "significance": "Repository of language"
+    }
+  },
+  {
+    "id": "word_172",
+    "bashkir": "грамматика",
+    "ipa": "[grɑmˈmɑtikɑ]",
+    "pos": "noun",
+    "english": "grammar",
+    "russian": "грамматика",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'gram-MA-ti-ka!' Same as Russian and English! The Eagle teaches: 'Grammar is the skeleton. Words are the flesh. Together, language lives!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "193"
+      ],
+      "significance": "Structure of Bashkir language"
+    }
+  },
+  {
+    "id": "word_173",
+    "bashkir": "башҡорт теле",
+    "ipa": "[bɑʃqort teˈle]",
+    "pos": "noun",
+    "english": "Bashkir language",
+    "russian": "башкирский язык",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'bash-KORT te-LE!' The language of the Bashkirs! БАШҠОРТ ТЕЛЕ — every sound carries ancestry. The Eagle protects this living heritage."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "195",
+        "197"
+      ],
+      "significance": "The Bashkir language itself, central to identity"
+    }
+  },
+  {
+    "id": "word_174",
+    "bashkir": "башҡорт",
+    "ipa": "[bɑʃˈqort]",
+    "pos": "noun",
+    "english": "Bashkir (person/ethnicity)",
+    "russian": "башкир",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'bash-KORT!' BASH + KURT (wolf)? The wolf people! The Eagle proclaims: 'БАШҠОРТ — to be Bashkir is to carry the steppe in your blood!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "197",
+        "619"
+      ],
+      "significance": "Ethnic identity"
+    }
+  },
+  {
+    "id": "word_175",
+    "bashkir": "умартасы",
+    "ipa": "[ʊmɑrtɑˈsɤ]",
+    "pos": "noun",
+    "english": "beekeeper",
+    "russian": "пчеловод",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'u-MAR-ta-sı!' The УМАРТАСЫ tends wild hives in forest trees! 'YOU MUST SEE' these ancient beekeepers! The Ringdove admires their skill."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "463"
+      ],
+      "significance": "Traditional wild beekeeping, UNESCO heritage"
+    }
+  },
+  {
+    "id": "word_177",
+    "bashkir": "аусы",
+    "ipa": "[ɑwˈsɤ]",
+    "pos": "noun",
+    "english": "hunter",
+    "russian": "охотник",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'AW-sı!' 'AWESOME hunter!' The АУСЫ tracks through the forest. The Anqa respects: 'The hunter takes only what is needed.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "224"
+      ],
+      "significance": "Traditional hunting"
+    }
+  },
+  {
+    "id": "word_178",
+    "bashkir": "балыҡ",
+    "ipa": "[bɑˈlɤq]",
+    "pos": "noun",
+    "english": "fish",
+    "russian": "рыба",
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'ba-LIK!' БАЛЫҠ swims in the underground river! The Crow knows: 'Where there is water, there is БАЛЫҠ — life!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "226"
+      ],
+      "significance": "Fish from Bashkir rivers"
+    }
+  },
+  {
+    "id": "word_179",
+    "bashkir": "көтөү",
+    "ipa": "[køˈtøw]",
+    "pos": "noun",
+    "english": "herding/tending livestock",
+    "russian": "выпас скота",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'kö-TÖW!' The shepherd's КӨТӨҮ — leading flocks to pasture. 'GO TO' the meadows! The Anqa watches from above."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "233"
+      ],
+      "significance": "Pastoral lifestyle"
+    }
+  },
+  {
+    "id": "word_180",
+    "bashkir": "ял",
+    "ipa": "[jɑl]",
+    "pos": "noun",
+    "english": "rest/leisure",
+    "russian": "отдых",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'YAL!' After work, ЯЛ! Y'ALL need rest! The Ringdove settles into its nest. Rest is sacred."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "461"
+      ],
+      "significance": "Balance of work and rest"
+    }
+  },
+  {
+    "id": "word_181",
+    "bashkir": "Рәсәй",
+    "ipa": "[ræˈsæj]",
+    "pos": "noun",
+    "english": "Russia",
+    "russian": "Россия",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'RA-say!' РӘСӘЙ — the vast land that holds Bashkortostan. The Eagle sees both nations from above. 'Two homelands, one sky.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "648"
+      ],
+      "significance": "Russia, the federal state"
+    }
+  },
+  {
+    "id": "word_182",
+    "bashkir": "ватандаш",
+    "ipa": "[vɑtɑnˈdɑʃ]",
+    "pos": "noun",
+    "english": "citizen/compatriot",
+    "russian": "гражданин/соотечественник",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'va-TAN-dash!' ВАТАН (homeland) + ДАШ (companion)! Fellow citizen! The Eagle calls: 'All ВАТАНДАШ share this land!'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "641"
+      ],
+      "significance": "Citizenship and belonging"
+    }
+  },
+  {
+    "id": "word_183",
+    "bashkir": "туфраҡ",
+    "ipa": "[tʊfˈrɑq]",
+    "pos": "noun",
+    "english": "soil/earth",
+    "russian": "почва/земля",
+    "memory_palace": {
+      "locus": "Yamantau",
+      "bird": "Anqa",
+      "station": 3,
+      "mnemonic": "🔥🕊️ 'tuf-RAK!' TOO FRAGILE! The ТУФРАҠ must be respected! Soil feeds all life. The Anqa knows: from earth we come, to earth we return."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "134"
+      ],
+      "significance": "The sacred soil of the homeland"
+    }
+  },
+  {
+    "id": "word_184",
+    "bashkir": "мәктәп",
+    "ipa": "[mækˈtæp]",
+    "pos": "noun",
+    "english": "school",
+    "russian": "школа",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'mak-TAP!' МӘКТӘП — where knowledge TAPS into young minds! The Eagle teaches: 'School is where the future is forged.'"
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "871"
+      ],
+      "significance": "Education institutions"
+    }
+  },
+  {
+    "id": "word_185",
+    "bashkir": "уҡытыусы",
+    "ipa": "[ʊqɤtɤwˈsɤ]",
+    "pos": "noun",
+    "english": "teacher",
+    "russian": "учитель",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'u-kı-tı-u-SĪ!' The УҠЫТЫУСЫ carries wisdom! 'You KEEP TO US!' — stay and learn! The Eagle honors all teachers."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "875"
+      ],
+      "significance": "Teachers as respected figures"
+    }
+  },
+  {
+    "id": "word_186",
+    "bashkir": "тәрбиә",
+    "ipa": "[tærbiˈæ]",
+    "pos": "noun",
+    "english": "upbringing/education/moral training",
+    "russian": "воспитание",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'tar-bi-A!' ТӘРБИӘ — parents TARRY BY A child, teaching values. The Ringdove knows: good upbringing shapes good people."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "867"
+      ],
+      "significance": "Family moral education"
+    }
+  },
+  {
+    "id": "word_187",
+    "bashkir": "өйрәтеү",
+    "ipa": "[øjræˈtew]",
+    "pos": "verb",
+    "english": "to teach/instruct",
+    "russian": "обучать/учить",
+    "memory_palace": {
+      "locus": "Bizhbulyak",
+      "bird": "Ringdove",
+      "station": 5,
+      "mnemonic": "🕊️ 'öy-ra-TEW!' ӨЙРӘТЕҮ — teaching at home! ӨЙ (home) + teaching! The Ringdove passes wisdom to the next generation."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "868"
+      ],
+      "significance": "Transmission of skills and knowledge"
+    }
+  },
+  {
+    "id": "word_188",
+    "bashkir": "ышаныу",
+    "ipa": "[ɤʃɑˈnɤw]",
+    "pos": "verb",
+    "english": "to believe/trust",
+    "russian": "верить/доверять",
+    "memory_palace": {
+      "locus": "Shulgan-Tash",
+      "bird": "Crow",
+      "station": 2,
+      "mnemonic": "🐦⬛ 'ı-sha-NIU!' The ancestors KNEW — ЫШАНЫУ! To believe is to connect with truth. The Crow guards ancient beliefs."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "869"
+      ],
+      "significance": "Belief and faith transmission"
+    }
+  },
+  {
+    "id": "word_189",
+    "bashkir": "ҡанун",
+    "ipa": "[qɑˈnun]",
+    "pos": "noun",
+    "english": "law/canon",
+    "russian": "закон",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'ka-NUN!' ҠАНУН sounds like CANON! The law is the CANNON that protects the people! The Eagle upholds ҠАНУН."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "671"
+      ],
+      "significance": "Legal system"
+    }
+  },
+  {
+    "id": "word_190",
+    "bashkir": "хәрәкәт",
+    "ipa": "[xærækˈæt]",
+    "pos": "noun",
+    "english": "movement (political/social)",
+    "russian": "движение",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'ha-ra-KAT!' The ХӘРӘКӘТ moves like a HURRICANE! Political movements shake the air. The Eagle watches the people march."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "668"
+      ],
+      "significance": "Political and social movements"
+    }
+  },
+  {
+    "id": "word_191",
+    "bashkir": "инҡилаб",
+    "ipa": "[inqiˈlɑb]",
+    "pos": "noun",
+    "english": "revolution",
+    "russian": "революция",
+    "memory_palace": {
+      "locus": "Ufa",
+      "bird": "Eagle",
+      "station": 1,
+      "mnemonic": "🦅 'in-ki-LAB!' The ИНҠИЛАБ transforms everything — IN the LAB of history, revolution is born! The Eagle witnessed 1917, and the Bashkir autonomy that followed."
+    },
+    "cultural_context": {
+      "ocm_codes": [
+        "669"
+      ],
+      "significance": "Revolutionary history"
     }
   }
 ]
