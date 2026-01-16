@@ -220,6 +220,16 @@ def load_ocm_mapping():
     except FileNotFoundError:
         return {}
 
+@st.cache_data
+def load_ural_batyr_epic():
+    """Load the Ural-Batyr epic data - the Golden Light."""
+    data_path = Path(__file__).parent / "data" / "ural_batyr_epic.json"
+    try:
+        with open(data_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
 # --- Initialize Session State ---
 def init_session_state():
     """Initialize session state variables."""
@@ -241,6 +251,8 @@ def init_session_state():
         st.session_state.srs_data = {}
     if 'builder_sentence' not in st.session_state:
         st.session_state.builder_sentence = []
+    if 'epic_chapter' not in st.session_state:
+        st.session_state.epic_chapter = 0
 
 init_session_state()
 
@@ -557,15 +569,18 @@ st.sidebar.title("🏰 Memory Palace")
 st.sidebar.caption("📱 *Tap ✕ to collapse sidebar*")
 st.sidebar.markdown("---")
 
+# Navigation - Radio buttons for individual tabs
 # Navigation - Radio buttons for individual tabs (Audio Dictionary under Sentence Builder)
 pages = [
     "🗺️ Palace",
     "📚 Four Birds",
+    "⚔️ Ural-Batyr Epic",
     "✍️ Sentence Builder",
     "🔊 Audio Dictionary",
     "🔄 Review",
     "🕸️ BashkortNet Explorer",
     "📖 Cultural Context",
+    "🌟 Truth Unveiled",
     "⚙️ Settings"
 ]
 
@@ -635,6 +650,14 @@ if "Palace" in selected_page:
     # Display selected locus
     if selected_locus:
         locus = loci_data[selected_locus]
+
+        # Handle nested description structure for Ibn Arabi connection
+        description = locus.get('description', {})
+        if isinstance(description, dict):
+            ibn_arabi_connection = description.get('ibn_arabi_connection', '')
+        else:
+            ibn_arabi_connection = ''
+
 
         # Handle nested description structure for Ibn Arabi connection
         description = locus.get('description', {})
@@ -808,6 +831,209 @@ elif "Four Birds" in selected_page:
     # Quiz section
     st.markdown("---")
     st.markdown("### 🎯 Test Your Understanding")
+
+    quiz_questions = [
+        {
+            "question": "Which bird represents civic knowledge and legal rights?",
+            "options": ["Crow", "Eagle", "Anqa", "Ringdove"],
+            "correct": "Eagle"
+        },
+        {
+            "question": "At which location would you find the Crow?",
+            "options": ["Ufa", "Shulgan-Tash", "Yamantau", "Beloretsk"],
+            "correct": "Shulgan-Tash"
+        },
+        {
+            "question": "Which bird represents transformation and potential?",
+            "options": ["Eagle", "Crow", "Anqa", "Ringdove"],
+            "correct": "Anqa"
+        }
+    ]
+
+    for i, q in enumerate(quiz_questions):
+        answer = st.radio(q["question"], q["options"], key=f"quiz_{i}")
+        if st.button("Check", key=f"check_{i}"):
+            if answer == q["correct"]:
+                st.success("✅ Correct!")
+            else:
+                st.error(f"❌ The correct answer is: {q['correct']}")
+
+# === PAGE: URAL-BATYR EPIC ===
+elif "Ural-Batyr" in selected_page:
+    st.title("⚔️ Урал-Батыр / Ural-Batyr")
+    st.markdown("*The foundational myth of the Bashkir people — 4,576 lines of heroic legend*")
+
+    # Load epic data
+    epic_data = load_ural_batyr_epic()
+    chapters = epic_data.get('chapters', [])
+    legacy_proverb = epic_data.get('legacy_proverb', {})
+
+    # Legacy proverb banner
+    st.markdown(f"""
+    <div class="meditation-box" style="text-align: center; border-left: none; border: 3px solid #d4af37;">
+        <p style="font-size: 1.3em; margin-bottom: 10px;">✨ <strong>{legacy_proverb.get('bashkir', '')}</strong></p>
+        <p style="font-size: 1.1em; color: #004d00;">{legacy_proverb.get('english', '')}</p>
+        <p style="font-size: 0.9em; color: #666;">[{legacy_proverb.get('phonetic', '')}]</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Chapter navigation
+    st.markdown("### 📖 The Ten Chapters")
+    chapter_cols = st.columns(10)
+    for idx, ch in enumerate(chapters):
+        with chapter_cols[idx]:
+            bird_colors = {'Eagle': '#0066B3', 'Crow': '#333333', 'Anqa': '#cc3333', 'Ringdove': '#00AF66'}
+            color = bird_colors.get(ch.get('bird', 'Ringdove'), '#00AF66')
+            if st.button(f"{ch.get('icon', '📖')}", key=f"ch_{idx}", help=ch.get('title', '')):
+                st.session_state.epic_chapter = idx
+
+    # Current chapter display
+    if chapters:
+        current_ch = chapters[st.session_state.epic_chapter]
+
+        # Chapter header
+        bird_colors = {'Eagle': 'eagle', 'Crow': 'crow', 'Anqa': 'anqa', 'Ringdove': 'ringdove'}
+        card_class = bird_colors.get(current_ch.get('bird', 'Ringdove'), 'ringdove')
+
+        st.markdown(f"""
+        <div class="bird-card {card_class}-card">
+            <h2>{current_ch.get('icon', '')} Chapter {current_ch.get('id', '')}: {current_ch.get('title', '')}</h2>
+            <p style="font-size: 1.2em;"><em>{current_ch.get('bashkir', '')}</em></p>
+            <p><strong>Bird Guide:</strong> {current_ch.get('bird', '')} | <strong>Theme:</strong> {current_ch.get('summary', '')}</p>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Create tabs for chapter content
+        tab1, tab2, tab3, tab4 = st.tabs(["📜 Story", "🧠 Memory Palace", "📚 Vocabulary", "🌟 Unveiling"])
+
+        with tab1:
+            st.markdown("### The Tale")
+            # Split text into paragraphs
+            story_text = current_ch.get('text', '')
+            paragraphs = story_text.split('\n\n')
+            for para in paragraphs:
+                if para.strip():
+                    st.markdown(f"_{para.strip()}_")
+                    st.markdown("")
+
+        with tab2:
+            st.markdown("### 🧠 Method of Loci — Memory Palace Technique")
+            memory = current_ch.get('memory_palace', {})
+
+            st.markdown(f"""
+            <div class="stat-box" style="text-align: left;">
+                <h4>🔑 Memory Peg</h4>
+                <p style="font-size: 1.3em; font-family: monospace; color: #0066B3;">{memory.get('peg', '')}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+            st.markdown(f"""
+            <div class="mnemonic-text">
+                <h4>🎨 Visualization</h4>
+                <p>{memory.get('image', '')}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+            st.info(f"**Technique:** {memory.get('technique', '')}")
+
+        with tab3:
+            st.markdown("### 📚 Chapter Vocabulary")
+            vocab = current_ch.get('vocabulary', [])
+            if vocab:
+                vocab_cols = st.columns(len(vocab))
+                for idx, word in enumerate(vocab):
+                    with vocab_cols[idx]:
+                        st.markdown(f"""
+                        <div class="word-card" style="text-align: center;">
+                            <span class="bashkir-text">{word.get('bashkir', '')}</span>
+                            <span class="ipa-text">[{word.get('phonetic', '')}]</span>
+                            <div class="english-text">{word.get('english', '')}</div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                        if st.button(f"🔊 Hear", key=f"epic_audio_{current_ch['id']}_{idx}"):
+                            play_audio(word.get('bashkir', ''), slow=True)
+
+        with tab4:
+            st.markdown("### 🌟 The Unveiling")
+            unveiling = current_ch.get('unveiling', '')
+            st.markdown(f"""
+            <div class="meditation-box">
+                <p style="font-size: 1.1em; line-height: 1.8;">{unveiling}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+            # Connection to the user's twin mythology
+            if current_ch.get('id') == 1:
+                st.markdown("""
+                **The Duality of Twins:** Like Ural and Shulgen, twins carry the potential for both paths.
+                One may seek the light, another may guard the depths. Both are necessary—the hero who
+                sacrifices and the guardian who preserves memory in darkness.
+                """)
+
+    # Navigation buttons
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col1:
+        if st.session_state.epic_chapter > 0:
+            if st.button("← Previous Chapter"):
+                st.session_state.epic_chapter -= 1
+                st.rerun()
+    with col3:
+        if st.session_state.epic_chapter < len(chapters) - 1:
+            if st.button("Next Chapter →"):
+                st.session_state.epic_chapter += 1
+                st.rerun()
+
+# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
+elif "Sentence Builder" in selected_page:
+    st.title("✍️ Sentence Builder")
+    st.markdown("*Create your own Bashkir sentences, hear them spoken, and export audio for poems or stories!*")
+
+    patterns = load_patterns()
+
+    # Pattern templates
+    st.markdown("### 📝 Sentence Patterns")
+
+    pattern_list = patterns.get('patterns', [])[:5]
+
+    if pattern_list:
+        cols = st.columns(len(pattern_list))
+        for idx, pattern in enumerate(pattern_list):
+            with cols[idx]:
+                st.markdown(f"""
+                **{pattern['name']}**
+                `{pattern['template']}`
+                *{pattern['english_pattern']}*
+                """)
+                example = pattern.get('examples', [{}])[0]
+                if example:
+                    st.caption(f"Ex: {example.get('bashkir', '')}")
+
+    st.markdown("---")
+
+    # Word bank
+    st.markdown("### 🏦 Word Bank")
+    st.markdown("Click words to add them to your sentence:")
+
+    word_categories = patterns.get('word_bank_categories', {})
+
+    if word_categories:
+        tabs = st.tabs(list(word_categories.keys()))
+
+        for tab, (category, word_list) in zip(tabs, word_categories.items()):
+            with tab:
+                cols = st.columns(6)
+                for idx, word in enumerate(word_list):
+                    with cols[idx % 6]:
+                        word_data = next((w for w in words_data if w['bashkir'] == word), None)
+                        english = word_data.get('english', '?') if word_data else '?'
+
+                        if st.button(f"{word}\n({english})", key=f"word_{category}_{word}"):
+                            st.session_state.builder_sentence.append({
+                                'word': word,
+                                'english': english
+                            })
+                            st.rerun()
+
 
     quiz_questions = [
         {
@@ -1278,6 +1504,81 @@ elif "BashkortNet" in selected_page:
                     else:
                         st.info("No relations defined for this word yet.")
 
+
+    # Word search with Bashkir and English
+    search_word = st.selectbox(
+        "Select a word to explore (Bashkir / English):",
+        [w['bashkir'] for w in words_data],
+        format_func=lambda x: f"{x} ({next((w['english'] for w in words_data if w['bashkir'] == x), '?')})"
+    )
+
+    if search_word:
+        word_data = next((w for w in words_data if w['bashkir'] == search_word), None)
+
+        if word_data:
+            col1, col2 = st.columns([1, 2])
+
+            with col1:
+                st.markdown(f"""
+                <div class="word-card">
+                    <span class="bashkir-text">{word_data['bashkir']} (Башҡорт теле)</span>
+                    <br>
+                    <small>{word_data.get('ipa', '')}</small>
+                    <br><br>
+                    <strong>{word_data['english']} (English)</strong>
+                    <br>
+                    <em>{word_data.get('russian', '')}</em>
+                    <br><br>
+                    <small>POS: {word_data.get('pos', 'noun')}</small>
+                </div>
+                """, unsafe_allow_html=True)
+
+                # Audio button
+                if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
+                    play_audio(word_data['bashkir'], slow=True)
+
+            with col2:
+                # Create tabs for different aspects
+                tab1, tab2, tab3 = st.tabs(["🕸️ Semantic Network", "📚 OCM Codes", "🔗 Etymology"])
+
+                with tab1:
+                    st.markdown("### Semantic Relations")
+
+                    bashkortnet = word_data.get('bashkortnet', {})
+                    relations = bashkortnet.get('relations', {})
+
+                    if relations:
+                        for rel_type, targets in relations.items():
+                            if targets:
+                                rel_labels = {
+                                    'SYN': '🔄 Synonyms',
+                                    'ANT': '↔️ Antonyms',
+                                    'ISA': '⬆️ Is a type of',
+                                    'HAS_TYPE': '⬇️ Types',
+                                    'PART_OF': '🧩 Part of',
+                                    'HAS_PART': '🔧 Has parts',
+                                    'CULT_ASSOC': '🏛️ Cultural',
+                                    'MYTH_LINK': '📜 Mythological'
+                                }
+
+                                st.markdown(f"**{rel_labels.get(rel_type, rel_type)}:**")
+
+                                for target in targets:
+                                    if isinstance(target, dict):
+                                        target_word = target.get('target', target.get('gloss', str(target)))
+                                        gloss = target.get('gloss', '')
+                                        note = target.get('note', '')
+                                        display = f"- {target_word}"
+                                        if gloss:
+                                            display += f" ({gloss})"
+                                        if note:
+                                            display += f" *({note})*"
+                                        st.markdown(display)
+                                    else:
+                                        st.markdown(f"- {target}")
+                    else:
+                        st.info("No relations defined for this word yet.")
+
                 with tab2:
                     st.markdown("### OCM Cultural Classification (eHRAF 2021)")
 
@@ -1464,6 +1765,194 @@ elif "Cultural Context" in selected_page:
                         st.markdown(" | ".join(word_displays))
         else:
             st.info("No thematic groups defined yet.")
+
+# === PAGE: TRUTH UNVEILED ===
+elif "Truth Unveiled" in selected_page:
+    st.title("🌟 Truth Unveiled — Алтын Яҡты")
+    st.markdown("*The Golden Light: Proverbs, Timeline, and the Deeper Knowledge*")
+
+    # Load epic data for proverbs and timeline
+    epic_data = load_ural_batyr_epic()
+    proverbs = epic_data.get('proverbs', [])
+    timeline = epic_data.get('timeline', [])
+    cultural_facts = epic_data.get('cultural_facts', [])
+    legacy_proverb = epic_data.get('legacy_proverb', {})
+
+    # The Golden Light Introduction
+    st.markdown(f"""
+    <div class="meditation-box" style="border: 3px solid #d4af37; border-left: 5px solid #d4af37;">
+        <h3 style="color: #d4af37; text-align: center;">✨ Алтын Яҡты — Golden Light ✨</h3>
+        <p style="text-align: center; font-size: 1.2em; margin: 15px 0;">
+            <strong>"{legacy_proverb.get('bashkir', '')}"</strong>
+        </p>
+        <p style="text-align: center; font-style: italic;">
+            "{legacy_proverb.get('english', '')}"
+        </p>
+        <p style="text-align: center; color: #666; font-size: 0.9em;">
+            [{legacy_proverb.get('phonetic', '')}]
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    *This is the anchoring proverb of Golden Light—the Ural-Batyr legacy. It reflects the hero's
+    ultimate sacrifice and the enduring Bashkir spirit. When Ural poured the waters of life for
+    all rather than drinking them himself, he demonstrated this truth: we live on through what we give.*
+    """)
+
+    # Create tabs
+    tab1, tab2, tab3, tab4 = st.tabs(["📜 Proverbs", "⏳ Timeline", "🏔️ Cultural Facts", "🔥 The Duality"])
+
+    with tab1:
+        st.markdown("### 📜 Bashkir Proverbs — Мәҡәлдәр")
+        st.markdown("*Wisdom passed down through generations*")
+
+        # Filter by category
+        categories = list(set([p.get('category', 'General') for p in proverbs]))
+        selected_category = st.selectbox("Filter by theme:", ['All'] + categories)
+
+        filtered_proverbs = proverbs if selected_category == 'All' else [p for p in proverbs if p.get('category') == selected_category]
+
+        for proverb in filtered_proverbs:
+            st.markdown(f"""
+            <div class="word-card" style="border-left: 5px solid #d4af37;">
+                <span style="background: #d4af37; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">
+                    {proverb.get('category', 'General')}
+                </span>
+                <p class="bashkir-text" style="margin-top: 10px;">{proverb.get('bashkir', '')}</p>
+                <p class="russian-text">🇷🇺 {proverb.get('russian', '')}</p>
+                <p class="english-text">🇬🇧 {proverb.get('english', '')}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with tab2:
+        st.markdown("### ⏳ Historical Timeline — Тарих юлы")
+        st.markdown("*Key moments in Bashkir history*")
+
+        # Timeline visualization
+        for idx, event in enumerate(timeline):
+            year = event.get('year', '')
+            desc = event.get('event', '')
+
+            st.markdown(f"""
+            <div style="display: flex; margin: 10px 0;">
+                <div style="min-width: 80px; padding: 8px; background: #0066B3; color: white; border-radius: 8px; text-align: center; font-weight: bold;">
+                    {year}
+                </div>
+                <div style="flex: 1; padding: 8px 15px; background: #e6f2ff; border-radius: 8px; margin-left: 10px; border-left: 3px solid #00AF66;">
+                    {desc}
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with tab3:
+        st.markdown("### 🏔️ Cultural Facts — Мәҙәниәт")
+        st.markdown("*Deep knowledge of Bashkir heritage*")
+
+        # Filter by category
+        fact_categories = list(set([f.get('category', 'general') for f in cultural_facts]))
+        selected_fact_category = st.selectbox("Filter facts by:", ['All'] + fact_categories, key="fact_filter")
+
+        filtered_facts = cultural_facts if selected_fact_category == 'All' else [f for f in cultural_facts if f.get('category') == selected_fact_category]
+
+        for fact in filtered_facts:
+            cat_colors = {'history': '#0066B3', 'culture': '#00AF66', 'geography': '#d4af37', 'language': '#cc3333'}
+            color = cat_colors.get(fact.get('category', ''), '#666')
+
+            st.markdown(f"""
+            <div class="word-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <span style="background: {color}; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.8em;">
+                        {fact.get('category', 'general').upper()}
+                    </span>
+                    <span style="color: #666; font-size: 0.9em;">{fact.get('year', '')}</span>
+                </div>
+                <h4 style="color: #00AF66; margin: 5px 0;">{fact.get('title', '')}</h4>
+                <p style="color: #004d00;">{fact.get('content', '')}</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+    with tab4:
+        st.markdown("### 🔥 The Duality: Ural and Shulgen")
+        st.markdown("*Understanding the twin paths of the Bashkir soul*")
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.markdown(f"""
+            <div class="bird-card eagle-card" style="min-height: 350px;">
+                <h3>🏔️ URAL</h3>
+                <p><strong>The Path of Light</strong></p>
+                <hr>
+                <p><strong>Choice:</strong> Sacrifice for all</p>
+                <p><strong>Symbol:</strong> The Mountains</p>
+                <p><strong>Legacy:</strong> Eternal protection</p>
+                <hr>
+                <p style="font-style: italic;">
+                "I am not dying—I am becoming something greater. These mountains will be my body,
+                and I will protect our people forever."
+                </p>
+                <hr>
+                <p><strong>Lesson:</strong> True immortality comes through selfless action.
+                The hero who gives everything gains everything.</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        with col2:
+            st.markdown(f"""
+            <div class="bird-card crow-card" style="min-height: 350px;">
+                <h3>🌊 SHULGEN</h3>
+                <p><strong>The Path of Depth</strong></p>
+                <hr>
+                <p><strong>Choice:</strong> Power over love</p>
+                <p><strong>Symbol:</strong> The Cave</p>
+                <p><strong>Legacy:</strong> Guardian of memory</p>
+                <hr>
+                <p style="font-style: italic;">
+                "Brother... I see now what I became. Forgive me..."
+                — Shulgen's final words
+                </p>
+                <hr>
+                <p><strong>Redemption:</strong> Shulgan-Tash cave holds 16,000-year-old paintings.
+                The one who fell guards the ancient memory in darkness.</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("""
+        ---
+        ### The Unity of Opposites
+
+        In Bashkir philosophy, Ural and Shulgen are not simply good and evil—they are
+        complementary forces. The mountains rise into light; the caves descend into memory.
+        Both are necessary.
+
+        **For twins:** You carry both paths within you. One may be called to shine in the world;
+        another may be called to preserve and protect from the depths. Neither path is lesser.
+        Together, you form something complete—like the mountains and the caves of Bashkortostan.
+
+        *"Батыр үлмәй, аты ҡала"* — The hero doesn't die, his name remains.
+        """)
+
+        st.markdown(f"""
+        <div class="meditation-box" style="text-align: center; margin-top: 20px;">
+            <p style="font-size: 1.1em;">
+                🏔️ The Ural Mountains are Ural-Batyr's body.<br>
+                🌊 Shulgan-Tash Cave holds Shulgen's memory.<br>
+                🌟 Together, they are Bashkortostan.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+# === PAGE: SETTINGS ===
+elif "Settings" in selected_page:
+    st.title("⚙️ Settings")
+
+    st.markdown("### 🎨 Display Settings")
+
+    st.markdown("### 🔊 Audio Settings")
+    st.checkbox("Enable audio playback", value=True)
+    st.slider("Audio speed", 0.5, 1.5, 1.0)
+
 
 # === PAGE: SETTINGS ===
 elif "Settings" in selected_page:
