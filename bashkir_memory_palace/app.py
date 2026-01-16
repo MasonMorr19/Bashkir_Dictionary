@@ -657,7 +657,7 @@ if "Palace" in selected_page:
                         # Audio and Mnemonic buttons in a row
                         btn_col1, btn_col2 = st.columns(2)
                         with btn_col1:
-                            if st.button("🔊 Hear", key=f"audio_{word['bashkir']}_{idx}"):
+                            if st.button("🔊 Hear", key=f"audio_{station_name}_{word['bashkir']}_{idx}"):
                                 play_audio(word['bashkir'])
                         
                         with btn_col2:
@@ -673,7 +673,7 @@ if "Palace" in selected_page:
                         
                         # Learn button
                         if not is_learned:
-                            if st.button(f"Learn '{word['bashkir']}'", key=f"learn_{word['bashkir']}"):
+                            if st.button(f"Learn '{word['bashkir']}'", key=f"learn_{station_name}_{word['bashkir']}_{idx}"):
                                 st.session_state.learned_words.add(word['bashkir'])
                                 st.session_state.review_queue.append(word['bashkir'])
                                 st.rerun()
