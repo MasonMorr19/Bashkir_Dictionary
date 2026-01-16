@@ -570,6 +570,7 @@ st.sidebar.caption("📱 *Tap ✕ to collapse sidebar*")
 st.sidebar.markdown("---")
 
 # Navigation - Radio buttons for individual tabs
+# Navigation - Radio buttons for individual tabs (Audio Dictionary under Sentence Builder)
 pages = [
     "🗺️ Palace",
     "📚 Four Birds",
@@ -649,6 +650,14 @@ if "Palace" in selected_page:
     # Display selected locus
     if selected_locus:
         locus = loci_data[selected_locus]
+
+        # Handle nested description structure for Ibn Arabi connection
+        description = locus.get('description', {})
+        if isinstance(description, dict):
+            ibn_arabi_connection = description.get('ibn_arabi_connection', '')
+        else:
+            ibn_arabi_connection = ''
+
 
         # Handle nested description structure for Ibn Arabi connection
         description = locus.get('description', {})
@@ -973,6 +982,84 @@ elif "Ural-Batyr" in selected_page:
             if st.button("Next Chapter →"):
                 st.session_state.epic_chapter += 1
                 st.rerun()
+
+# === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
+elif "Sentence Builder" in selected_page:
+    st.title("✍️ Sentence Builder")
+    st.markdown("*Create your own Bashkir sentences, hear them spoken, and export audio for poems or stories!*")
+
+    patterns = load_patterns()
+
+    # Pattern templates
+    st.markdown("### 📝 Sentence Patterns")
+
+    pattern_list = patterns.get('patterns', [])[:5]
+
+    if pattern_list:
+        cols = st.columns(len(pattern_list))
+        for idx, pattern in enumerate(pattern_list):
+            with cols[idx]:
+                st.markdown(f"""
+                **{pattern['name']}**
+                `{pattern['template']}`
+                *{pattern['english_pattern']}*
+                """)
+                example = pattern.get('examples', [{}])[0]
+                if example:
+                    st.caption(f"Ex: {example.get('bashkir', '')}")
+
+    st.markdown("---")
+
+    # Word bank
+    st.markdown("### 🏦 Word Bank")
+    st.markdown("Click words to add them to your sentence:")
+
+    word_categories = patterns.get('word_bank_categories', {})
+
+    if word_categories:
+        tabs = st.tabs(list(word_categories.keys()))
+
+        for tab, (category, word_list) in zip(tabs, word_categories.items()):
+            with tab:
+                cols = st.columns(6)
+                for idx, word in enumerate(word_list):
+                    with cols[idx % 6]:
+                        word_data = next((w for w in words_data if w['bashkir'] == word), None)
+                        english = word_data.get('english', '?') if word_data else '?'
+
+                        if st.button(f"{word}\n({english})", key=f"word_{category}_{word}"):
+                            st.session_state.builder_sentence.append({
+                                'word': word,
+                                'english': english
+                            })
+                            st.rerun()
+
+
+    quiz_questions = [
+        {
+            "question": "Which bird represents civic knowledge and legal rights?",
+            "options": ["Crow", "Eagle", "Anqa", "Ringdove"],
+            "correct": "Eagle"
+        },
+        {
+            "question": "At which location would you find the Crow?",
+            "options": ["Ufa", "Shulgan-Tash", "Yamantau", "Beloretsk"],
+            "correct": "Shulgan-Tash"
+        },
+        {
+            "question": "Which bird represents transformation and potential?",
+            "options": ["Eagle", "Crow", "Anqa", "Ringdove"],
+            "correct": "Anqa"
+        }
+    ]
+
+    for i, q in enumerate(quiz_questions):
+        answer = st.radio(q["question"], q["options"], key=f"quiz_{i}")
+        if st.button("Check", key=f"check_{i}"):
+            if answer == q["correct"]:
+                st.success("✅ Correct!")
+            else:
+                st.error(f"❌ The correct answer is: {q['correct']}")
 
 # === PAGE: SENTENCE BUILDER (Enhanced with Audio Export) ===
 elif "Sentence Builder" in selected_page:
@@ -1417,6 +1504,81 @@ elif "BashkortNet" in selected_page:
                     else:
                         st.info("No relations defined for this word yet.")
 
+
+    # Word search with Bashkir and English
+    search_word = st.selectbox(
+        "Select a word to explore (Bashkir / English):",
+        [w['bashkir'] for w in words_data],
+        format_func=lambda x: f"{x} ({next((w['english'] for w in words_data if w['bashkir'] == x), '?')})"
+    )
+
+    if search_word:
+        word_data = next((w for w in words_data if w['bashkir'] == search_word), None)
+
+        if word_data:
+            col1, col2 = st.columns([1, 2])
+
+            with col1:
+                st.markdown(f"""
+                <div class="word-card">
+                    <span class="bashkir-text">{word_data['bashkir']} (Башҡорт теле)</span>
+                    <br>
+                    <small>{word_data.get('ipa', '')}</small>
+                    <br><br>
+                    <strong>{word_data['english']} (English)</strong>
+                    <br>
+                    <em>{word_data.get('russian', '')}</em>
+                    <br><br>
+                    <small>POS: {word_data.get('pos', 'noun')}</small>
+                </div>
+                """, unsafe_allow_html=True)
+
+                # Audio button
+                if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
+                    play_audio(word_data['bashkir'], slow=True)
+
+            with col2:
+                # Create tabs for different aspects
+                tab1, tab2, tab3 = st.tabs(["🕸️ Semantic Network", "📚 OCM Codes", "🔗 Etymology"])
+
+                with tab1:
+                    st.markdown("### Semantic Relations")
+
+                    bashkortnet = word_data.get('bashkortnet', {})
+                    relations = bashkortnet.get('relations', {})
+
+                    if relations:
+                        for rel_type, targets in relations.items():
+                            if targets:
+                                rel_labels = {
+                                    'SYN': '🔄 Synonyms',
+                                    'ANT': '↔️ Antonyms',
+                                    'ISA': '⬆️ Is a type of',
+                                    'HAS_TYPE': '⬇️ Types',
+                                    'PART_OF': '🧩 Part of',
+                                    'HAS_PART': '🔧 Has parts',
+                                    'CULT_ASSOC': '🏛️ Cultural',
+                                    'MYTH_LINK': '📜 Mythological'
+                                }
+
+                                st.markdown(f"**{rel_labels.get(rel_type, rel_type)}:**")
+
+                                for target in targets:
+                                    if isinstance(target, dict):
+                                        target_word = target.get('target', target.get('gloss', str(target)))
+                                        gloss = target.get('gloss', '')
+                                        note = target.get('note', '')
+                                        display = f"- {target_word}"
+                                        if gloss:
+                                            display += f" ({gloss})"
+                                        if note:
+                                            display += f" *({note})*"
+                                        st.markdown(display)
+                                    else:
+                                        st.markdown(f"- {target}")
+                    else:
+                        st.info("No relations defined for this word yet.")
+
                 with tab2:
                     st.markdown("### OCM Cultural Classification (eHRAF 2021)")
 
@@ -1780,6 +1942,17 @@ elif "Truth Unveiled" in selected_page:
             </p>
         </div>
         """, unsafe_allow_html=True)
+
+# === PAGE: SETTINGS ===
+elif "Settings" in selected_page:
+    st.title("⚙️ Settings")
+
+    st.markdown("### 🎨 Display Settings")
+
+    st.markdown("### 🔊 Audio Settings")
+    st.checkbox("Enable audio playback", value=True)
+    st.slider("Audio speed", 0.5, 1.5, 1.0)
+
 
 # === PAGE: SETTINGS ===
 elif "Settings" in selected_page:
