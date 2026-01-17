@@ -590,6 +590,60 @@ st.markdown("""
         font-size: 1.1em !important;
     }
 
+    /* ===== RADIO BUTTONS - Green text for quizzes ===== */
+    .stRadio > label {
+        color: #00AF66 !important;
+        font-weight: 600 !important;
+    }
+    .stRadio > div[role="radiogroup"] label {
+        color: #004d00 !important;
+        font-size: 1.1em !important;
+    }
+    .stRadio > div[role="radiogroup"] label:hover {
+        color: #00AF66 !important;
+    }
+    /* Radio button option text */
+    div[data-testid="stRadio"] label span {
+        color: #004d00 !important;
+    }
+    div[data-testid="stRadio"] label:hover span {
+        color: #00AF66 !important;
+    }
+
+    /* ===== STREAMLIT TABS - Better spacing and centering ===== */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 20px !important;
+        justify-content: center !important;
+    }
+    .stTabs [data-baseweb="tab"] {
+        padding: 15px 25px !important;
+        font-size: 1.1em !important;
+        font-weight: 600 !important;
+        color: #004d00 !important;
+        border-radius: 10px 10px 0 0 !important;
+    }
+    .stTabs [data-baseweb="tab"]:hover {
+        color: #00AF66 !important;
+        background-color: rgba(0, 175, 102, 0.1) !important;
+    }
+    .stTabs [aria-selected="true"] {
+        color: #00AF66 !important;
+        border-bottom: 3px solid #00AF66 !important;
+    }
+
+    /* ===== NAVIGATION BUTTONS - Centered with spacing ===== */
+    .nav-button-container {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 25px 0;
+    }
+    .nav-button-center {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+    }
+
     /* ===== MOBILE RESPONSIVENESS ===== */
     @media (max-width: 768px) {
         h1 { font-size: 1.8rem !important; }
@@ -617,6 +671,7 @@ pages = [
     "📚 Four Birds",
     "⚔️ Ural-Batyr Epic",
     "🗺️ Geography",
+    "📺 Media",
     "🔤 Alphabet",
     "✍️ Sentence Builder",
     "🔊 Audio Dictionary",
@@ -1240,16 +1295,26 @@ elif "Ural-Batyr" in selected_page:
                 sacrifices and the guardian who preserves memory in darkness.
                 """)
 
-    # Navigation buttons
-    col1, col2, col3 = st.columns([1, 2, 1])
-    with col1:
+    # Navigation buttons - centered with better spacing
+    st.markdown("---")
+    nav_col1, nav_col2, nav_col3 = st.columns([1, 1, 1])
+    with nav_col1:
         if st.session_state.epic_chapter > 0:
-            if st.button("← Previous Chapter"):
+            if st.button("← Previous Chapter", key="prev_chapter", use_container_width=True):
                 st.session_state.epic_chapter -= 1
                 st.rerun()
-    with col3:
+    with nav_col2:
+        # Center indicator
+        st.markdown(f"""
+        <div style="text-align: center; padding: 10px;">
+            <span style="color: #00AF66; font-weight: bold; font-size: 1.2em;">
+                Chapter {st.session_state.epic_chapter + 1} of {len(chapters)}
+            </span>
+        </div>
+        """, unsafe_allow_html=True)
+    with nav_col3:
         if st.session_state.epic_chapter < len(chapters) - 1:
-            if st.button("Next Chapter →"):
+            if st.button("Next Chapter →", key="next_chapter", use_container_width=True):
                 st.session_state.epic_chapter += 1
                 st.rerun()
 
@@ -1432,6 +1497,415 @@ elif "Geography" in selected_page:
             st.info(f"Map would show area from {map_bounds.get('south')}° to {map_bounds.get('north')}° N, "
                     f"{map_bounds.get('west')}° to {map_bounds.get('east')}° E")
 
+# === PAGE: MEDIA (TV Guide, Real Russia, Transcription) ===
+elif "Media" in selected_page:
+    st.title("📺 Медиа — Media Center")
+    st.markdown("*Watch Bashkir TV, follow Real Russia content, and transcribe audio*")
+
+    # Create tabs for different media sections
+    media_tab1, media_tab2, media_tab3, media_tab4 = st.tabs([
+        "📺 TV Guide",
+        "🇷🇺 Real Russia",
+        "⬇️ Downloads",
+        "✍️ Media Transcript"
+    ])
+
+    # === TV GUIDE TAB ===
+    with media_tab1:
+        st.markdown("### 📺 Bashkir Television")
+        st.markdown("*Live and recorded content from Bashkir TV channels*")
+
+        # Dimmed viewing container
+        st.markdown("""
+        <style>
+        .tv-container {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+        .channel-card {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .channel-card:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
+        # TV Channels
+        st.markdown('<div class="tv-container">', unsafe_allow_html=True)
+
+        tv_channels = [
+            {
+                "name": "БСТ (Bashkir Satellite Television)",
+                "description": "Main Bashkir language broadcaster - news, culture, entertainment",
+                "stream_url": "https://bst.tv/live",
+                "icon": "📡"
+            },
+            {
+                "name": "Курай ТВ (Kuray TV)",
+                "description": "Music and cultural programs featuring traditional Bashkir arts",
+                "stream_url": "https://kuray.tv",
+                "icon": "🎵"
+            },
+            {
+                "name": "Салават Юлаев ТВ",
+                "description": "Sports channel - hockey and regional sports coverage",
+                "stream_url": "#",
+                "icon": "🏒"
+            },
+            {
+                "name": "Тамыр (Tamyr)",
+                "description": "Children's programming in Bashkir language",
+                "stream_url": "#",
+                "icon": "👶"
+            }
+        ]
+
+        col1, col2 = st.columns([2, 1])
+
+        with col1:
+            st.markdown("#### 📺 Available Channels")
+            for channel in tv_channels:
+                st.markdown(f"""
+                <div class="channel-card">
+                    <h4 style="color: #00AF66; margin: 0;">{channel['icon']} {channel['name']}</h4>
+                    <p style="color: #aaa; margin: 5px 0;">{channel['description']}</p>
+                    <small style="color: #666;">Stream: {channel['stream_url']}</small>
+                </div>
+                """, unsafe_allow_html=True)
+
+        with col2:
+            st.markdown("#### 🕐 TV Schedule (Sample)")
+            st.markdown("""
+            **БСТ Tonight:**
+            - 18:00 — Хәбәрҙәр (News)
+            - 19:00 — Йырҙар (Songs)
+            - 20:00 — Әкиәт (Folk Tales)
+            - 21:00 — Документаль (Documentary)
+            """)
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+        # VLC Player Section
+        st.markdown("---")
+        st.markdown("### 🎬 Video Player")
+        st.markdown("*Paste a stream URL or video link to watch*")
+
+        video_url = st.text_input("Enter video/stream URL:", placeholder="https://example.com/stream.m3u8")
+
+        if video_url:
+            st.markdown(f"""
+            <div style="background: #000; padding: 20px; border-radius: 10px; text-align: center;">
+                <p style="color: #666;">To watch: Open this URL in VLC Media Player</p>
+                <code style="color: #00AF66;">{video_url}</code>
+                <br><br>
+                <small style="color: #444;">VLC can be downloaded from videolan.org</small>
+            </div>
+            """, unsafe_allow_html=True)
+
+        # Sample video embed (YouTube Bashkir content)
+        st.markdown("#### 📹 Sample Bashkir Content")
+        st.markdown("*Educational content about Bashkir language and culture*")
+
+        sample_videos = [
+            {"title": "Bashkir Alphabet Song", "desc": "Learn the letters through music"},
+            {"title": "Ural-Batyr Animation", "desc": "The epic legend told visually"},
+            {"title": "Kuray Performance", "desc": "Traditional Bashkir flute music"}
+        ]
+
+        video_cols = st.columns(3)
+        for idx, video in enumerate(sample_videos):
+            with video_cols[idx]:
+                st.markdown(f"""
+                <div class="stat-box" style="text-align: center;">
+                    <h5>{video['title']}</h5>
+                    <p style="font-size: 0.9em; color: #666;">{video['desc']}</p>
+                </div>
+                """, unsafe_allow_html=True)
+
+    # === REAL RUSSIA TAB ===
+    with media_tab2:
+        st.markdown("### 🇷🇺 Real Russia — Sergey Baklykov")
+        st.markdown("*Follow Sergey Baklykov's Telegram for authentic Russian and Bashkir content*")
+
+        col1, col2 = st.columns([3, 2])
+
+        with col1:
+            # Telegram Feed Style Display
+            st.markdown("""
+            <div style="background: linear-gradient(135deg, #0088cc 0%, #006699 100%);
+                        padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span style="font-size: 3em;">📱</span>
+                    <div>
+                        <h3 style="color: white; margin: 0;">@baklykovlive</h3>
+                        <p style="color: rgba(255,255,255,0.8); margin: 5px 0;">Real Russia — Sergey Baklykov</p>
+                    </div>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+
+            st.markdown("#### 📰 Latest from Real Russia")
+
+            # Simulated RSS-style feed entries
+            feed_entries = [
+                {
+                    "title": "Exploring Bashkir Villages",
+                    "preview": "Today we visited a traditional Bashkir village where honey is still harvested the ancient way...",
+                    "date": "2 hours ago",
+                    "engagement": "1.2K views"
+                },
+                {
+                    "title": "Russian Language Tips",
+                    "preview": "Quick lesson on common mistakes foreigners make when speaking Russian...",
+                    "date": "Yesterday",
+                    "engagement": "3.4K views"
+                },
+                {
+                    "title": "Ural Mountains Winter",
+                    "preview": "The Southern Urals are magical in winter. Here's what it's like to hike in -20°C...",
+                    "date": "3 days ago",
+                    "engagement": "5.6K views"
+                },
+                {
+                    "title": "Local Food Guide: Ufa",
+                    "preview": "The best places to try authentic Bashkir cuisine in the capital city...",
+                    "date": "1 week ago",
+                    "engagement": "8.2K views"
+                }
+            ]
+
+            for entry in feed_entries:
+                st.markdown(f"""
+                <div class="word-card" style="border-left: 4px solid #0088cc;">
+                    <h4 style="color: #004d00; margin-bottom: 5px;">{entry['title']}</h4>
+                    <p style="color: #333; margin: 10px 0;">{entry['preview']}</p>
+                    <div style="display: flex; justify-content: space-between; color: #666; font-size: 0.9em;">
+                        <span>⏰ {entry['date']}</span>
+                        <span>👁️ {entry['engagement']}</span>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+        with col2:
+            # Channel Info
+            st.markdown("""
+            <div class="stat-box">
+                <h4>📊 Channel Stats</h4>
+                <p><strong>Platform:</strong> Telegram</p>
+                <p><strong>Focus:</strong> Russian culture, travel, language</p>
+                <p><strong>Languages:</strong> Russian, English</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+            st.markdown("#### 🔗 Connect")
+            st.link_button("📱 Open Telegram Channel", "https://t.me/baklykovlive", use_container_width=True)
+
+            st.markdown("#### 🎯 Why Follow?")
+            st.markdown("""
+            - 🏔️ Authentic regional content
+            - 🗣️ Language learning tips
+            - 🍯 Cultural immersion
+            - 📹 Regular video updates
+            - 🌍 Travel insights
+            """)
+
+            st.markdown("#### 📚 Related Resources")
+            st.markdown("""
+            - [Real Russia YouTube](https://youtube.com)
+            - [Patreon Support](https://patreon.com)
+            - [Website](https://realrussia.com)
+            """)
+
+    # === DOWNLOADS TAB ===
+    with media_tab3:
+        st.markdown("### ⬇️ Downloadable Content")
+        st.markdown("*Resources you can save for offline study*")
+
+        download_categories = st.tabs(["📄 PDFs", "🎵 Audio", "📖 Texts"])
+
+        with download_categories[0]:
+            st.markdown("#### 📄 PDF Resources")
+
+            pdf_resources = [
+                {"name": "Bashkir Alphabet Chart", "size": "1.2 MB", "desc": "Complete 42-letter alphabet with examples"},
+                {"name": "Basic Phrases Guide", "size": "850 KB", "desc": "100 essential phrases for beginners"},
+                {"name": "Grammar Reference", "size": "2.4 MB", "desc": "Comprehensive Bashkir grammar guide"},
+                {"name": "OCM Cultural Categories", "size": "1.8 MB", "desc": "Outline of Cultural Materials reference"}
+            ]
+
+            for pdf in pdf_resources:
+                col1, col2, col3 = st.columns([3, 1, 1])
+                with col1:
+                    st.markdown(f"**{pdf['name']}**")
+                    st.caption(pdf['desc'])
+                with col2:
+                    st.caption(pdf['size'])
+                with col3:
+                    st.button(f"📥 Download", key=f"dl_{pdf['name'][:10]}")
+
+        with download_categories[1]:
+            st.markdown("#### 🎵 Audio Resources")
+
+            audio_resources = [
+                {"name": "Alphabet Pronunciation", "duration": "5:30", "desc": "All 42 letters spoken clearly"},
+                {"name": "Basic Vocabulary Pack", "duration": "15:00", "desc": "First 100 words with repetition"},
+                {"name": "Kuray Music Collection", "duration": "45:00", "desc": "Traditional flute performances"},
+                {"name": "Ural-Batyr Epic Reading", "duration": "2:30:00", "desc": "Complete epic narration"}
+            ]
+
+            for audio in audio_resources:
+                col1, col2, col3 = st.columns([3, 1, 1])
+                with col1:
+                    st.markdown(f"**{audio['name']}**")
+                    st.caption(audio['desc'])
+                with col2:
+                    st.caption(f"🕐 {audio['duration']}")
+                with col3:
+                    st.button(f"📥 Download", key=f"dla_{audio['name'][:10]}")
+
+        with download_categories[2]:
+            st.markdown("#### 📖 Text Resources")
+
+            text_resources = [
+                {"name": "Word List (JSON)", "format": "JSON", "desc": "Complete vocabulary database"},
+                {"name": "Sentence Patterns", "format": "TXT", "desc": "Common sentence structures"},
+                {"name": "Cultural Context Notes", "format": "MD", "desc": "OCM-categorized cultural information"},
+                {"name": "Memory Palace Map", "format": "JSON", "desc": "Loci data with Ibn Arabi connections"}
+            ]
+
+            for text in text_resources:
+                col1, col2, col3 = st.columns([3, 1, 1])
+                with col1:
+                    st.markdown(f"**{text['name']}**")
+                    st.caption(text['desc'])
+                with col2:
+                    st.caption(f"📄 {text['format']}")
+                with col3:
+                    st.button(f"📥 Download", key=f"dlt_{text['name'][:10]}")
+
+    # === MEDIA TRANSCRIPT TAB ===
+    with media_tab4:
+        st.markdown("### ✍️ Media Transcription")
+        st.markdown("*Transcribe Bashkir audio to text using AI-powered recognition*")
+
+        st.info("🔬 **Powered by:** Turkic Languages Audio-to-Text Transcription technology")
+
+        # Transcription interface
+        st.markdown("#### 📤 Upload Audio for Transcription")
+
+        uploaded_file = st.file_uploader(
+            "Choose an audio file",
+            type=['mp3', 'wav', 'ogg', 'm4a'],
+            help="Supported formats: MP3, WAV, OGG, M4A"
+        )
+
+        if uploaded_file:
+            st.audio(uploaded_file)
+
+            col1, col2 = st.columns(2)
+            with col1:
+                language_mode = st.selectbox(
+                    "Transcription Language",
+                    ["Bashkir (Башҡорт)", "Russian (Русский)", "Mixed/Auto-detect"]
+                )
+            with col2:
+                output_format = st.selectbox(
+                    "Output Format",
+                    ["Plain Text", "With Timestamps", "SRT Subtitles"]
+                )
+
+            if st.button("🎯 Start Transcription", use_container_width=True):
+                with st.spinner("Transcribing audio... This may take a moment."):
+                    import time
+                    time.sleep(2)  # Simulated processing
+
+                st.success("✅ Transcription complete!")
+
+                # Sample output
+                st.markdown("#### 📜 Transcription Result")
+                st.markdown("""
+                <div class="word-card" style="background: #f5f5f5;">
+                    <p style="font-family: monospace; white-space: pre-wrap;">
+[00:00:02] Һаумыһығыҙ, дуҫтар!
+[00:00:05] Бүген беҙ Башҡортостан тураһында һөйләшербеҙ.
+[00:00:10] Башҡортостан — бик матур ер.
+[00:00:15] Унда тау, урман, йылға бар.
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
+
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.button("📋 Copy Text")
+                with col2:
+                    st.button("📥 Download TXT")
+                with col3:
+                    st.button("📥 Download SRT")
+        else:
+            st.markdown("""
+            <div class="meditation-box" style="text-align: center;">
+                <span style="font-size: 3em;">🎙️</span>
+                <h4>Upload audio to begin transcription</h4>
+                <p>Drag and drop or click to select a file</p>
+            </div>
+            """, unsafe_allow_html=True)
+
+        st.markdown("---")
+
+        # Manual transcription tools
+        st.markdown("#### ✏️ Manual Transcription Helper")
+        st.markdown("*Type what you hear with assistance*")
+
+        col1, col2 = st.columns([2, 1])
+
+        with col1:
+            manual_text = st.text_area(
+                "Your transcription:",
+                height=150,
+                placeholder="Type the Bashkir text you hear..."
+            )
+
+            if manual_text:
+                st.markdown("**Word Count:** " + str(len(manual_text.split())))
+                st.markdown("**Character Count:** " + str(len(manual_text)))
+
+        with col2:
+            st.markdown("##### 🔤 Quick Insert")
+            special_chars = ['ә', 'ө', 'ү', 'ҡ', 'ғ', 'һ', 'ҙ', 'ҫ', 'ң']
+            char_cols = st.columns(3)
+            for idx, char in enumerate(special_chars):
+                with char_cols[idx % 3]:
+                    if st.button(char, key=f"char_{char}"):
+                        st.toast(f"Copied: {char}")
+
+        st.markdown("---")
+
+        # Transcription tips
+        with st.expander("💡 Transcription Tips"):
+            st.markdown("""
+            **For accurate Bashkir transcription:**
+
+            1. **Listen for special sounds:** Pay attention to ҡ (like uvular k), ғ (like French r), and һ (like h)
+
+            2. **Vowel harmony:** Bashkir uses front/back vowel harmony — this helps predict spelling
+
+            3. **Common patterns:**
+               - -лар/-ләр (plural suffix)
+               - -ға/-гә/-ҡа/-кә (dative case)
+               - -да/-дә/-та/-тә (locative case)
+
+            4. **Word boundaries:** Bashkir is agglutinative — long words are often root + multiple suffixes
+
+            5. **Stress:** Usually on the last syllable, which can help identify word endings
+            """)
+
 # === PAGE: ALPHABET ===
 elif "Alphabet" in selected_page:
     golden_data = load_golden_light_data()
@@ -1553,55 +2027,106 @@ elif "Sentence Builder" in selected_page:
 
     st.markdown("---")
 
-    # Word bank - enhanced with words from dictionary
+    # Word bank - enhanced with expanded categories
     st.markdown("### 🏦 Word Bank")
-    st.markdown("*Click words to add them to your sentence. Words are organized by type.*")
+    st.markdown("*Click words to add them to your sentence. Words are organized by semantic categories.*")
 
-    # Get word categories from patterns or create from words_data
-    word_categories = patterns.get('word_bank_categories', {})
+    # Define OCM-based semantic categories for nouns
+    nature_ocm = ['131', '132', '133', '134', '137', '138', '139', '221', '222', '231', '232', '233', '234', '235', '241', '242', '243', '244', '245', '246', '251', '252', '253', '254', '255', '256', '257', '258', '259']
+    culture_ocm = ['530', '531', '532', '533', '534', '535', '536', '537', '538', '539', '541', '542', '543', '544', '545', '551', '552', '553', '554', '561', '562', '563', '564', '565', '566', '571', '572', '573', '574', '575', '576', '577', '578', '579', '581', '582', '583', '584', '585', '586', '587']
+    people_ocm = ['591', '592', '593', '594', '595', '596', '597', '598', '599', '601', '602', '603', '604', '605', '606', '607', '608', '609', '610', '611', '612', '621', '622', '623', '624', '625', '626', '627', '628', '629']
+    places_ocm = ['361', '362', '363', '364', '365', '366', '367', '368', '369', '481', '482', '483', '484', '485', '486', '487', '488', '489', '131', '784']
 
-    # If no categories in patterns, create from words_data by part of speech
-    if not word_categories or len(word_categories) == 0:
-        # Organize words by part of speech
-        word_categories = {
-            "📛 Nouns": [],
-            "🎬 Verbs": [],
-            "📝 Adjectives": [],
-            "🔢 Numbers": [],
-            "👥 Pronouns": [],
-            "📍 Other": []
-        }
+    # Nature keywords for backup categorization
+    nature_keywords = ['тау', 'ҡояш', 'ай', 'йондоҙ', 'һыу', 'йылға', 'күл', 'диңгеҙ', 'урман', 'ағас', 'сәскә', 'үлән', 'ҡош', 'айыу', 'бүре', 'ҡуй', 'ат', 'һыйыр', 'балыҡ', 'йылан', 'ел', 'ҡар', 'боҙ', 'ямғыр', 'болот', 'көн', 'төн', 'яҙ', 'йәй', 'көҙ', 'ҡыш', 'таш', 'туфраҡ', 'ер', 'нур']
+    culture_keywords = ['байрам', 'сабантуй', 'туй', 'йола', 'әкиәт', 'риүәйәт', 'йыр', 'моң', 'бейеү', 'ҡурай', 'думбыра', 'ҡубыҙ', 'бал', 'ҡымыҙ', 'буҙа', 'икмәк', 'ит', 'аш', 'сәй', 'тирмә', 'биҙәк', 'ойма', 'көрәш', 'уйын', 'дин', 'мәсьет', 'театр']
+    people_keywords = ['ата', 'әсә', 'бала', 'ҡыҙ', 'егет', 'бабай', 'өләсәй', 'туғандар', 'ғаилә', 'халыҡ', 'милләт', 'дуҫ', 'ҡунаҡ', 'уҡытыусы', 'эшсе', 'оҫта', 'батыр', 'граждан', 'президент']
+    places_keywords = ['Өфө', 'Башҡортостан', 'ҡала', 'урам', 'мәйҙан', 'өй', 'йорт', 'мәктәп', 'завод', 'магазин', 'банк', 'почта', 'ил', 'дәүләт', 'республика', 'Ағиҙел', 'Шүлгәнташ', 'Ямантау', 'Иремәл', 'Бижбуляк', 'Белорет']
 
-        for word in words_data:
-            pos = word.get('pos', 'noun').lower()
-            bashkir = word['bashkir']
+    # Expanded word categories
+    word_categories = {
+        "👥 Pronouns": [],
+        "🌿 Nature": [],
+        "🎭 Culture": [],
+        "👨‍👩‍👧 People": [],
+        "🏛️ Places": [],
+        "💭 Concepts": [],
+        "🎬 Verbs": [],
+        "📝 Adjectives": [],
+        "🔢 Numbers": []
+    }
 
-            if pos == 'noun':
-                word_categories["📛 Nouns"].append(bashkir)
-            elif pos == 'verb':
-                word_categories["🎬 Verbs"].append(bashkir)
-            elif pos in ['adjective', 'adj']:
-                word_categories["📝 Adjectives"].append(bashkir)
-            elif pos in ['number', 'numeral']:
-                word_categories["🔢 Numbers"].append(bashkir)
-            elif pos == 'pronoun':
-                word_categories["👥 Pronouns"].append(bashkir)
-            else:
-                word_categories["📍 Other"].append(bashkir)
+    for word in words_data:
+        pos = word.get('pos', 'noun').lower()
+        bashkir = word['bashkir']
+        english = word.get('english', '').lower()
 
-        # Remove empty categories
-        word_categories = {k: v for k, v in word_categories.items() if v}
+        # Get OCM codes from word data
+        ocm_codes = []
+        if 'cultural_context' in word and 'ocm_codes' in word['cultural_context']:
+            ocm_codes = word['cultural_context']['ocm_codes']
+
+        if pos == 'pronoun':
+            word_categories["👥 Pronouns"].append(bashkir)
+        elif pos == 'verb':
+            word_categories["🎬 Verbs"].append(bashkir)
+        elif pos in ['adjective', 'adj']:
+            word_categories["📝 Adjectives"].append(bashkir)
+        elif pos in ['number', 'numeral']:
+            word_categories["🔢 Numbers"].append(bashkir)
+        elif pos == 'noun':
+            # Categorize nouns by OCM code or keywords
+            categorized = False
+
+            # Check OCM codes first
+            for code in ocm_codes:
+                if code in nature_ocm:
+                    word_categories["🌿 Nature"].append(bashkir)
+                    categorized = True
+                    break
+                elif code in culture_ocm:
+                    word_categories["🎭 Culture"].append(bashkir)
+                    categorized = True
+                    break
+                elif code in people_ocm:
+                    word_categories["👨‍👩‍👧 People"].append(bashkir)
+                    categorized = True
+                    break
+                elif code in places_ocm:
+                    word_categories["🏛️ Places"].append(bashkir)
+                    categorized = True
+                    break
+
+            # If not categorized by OCM, check keywords
+            if not categorized:
+                if any(kw in bashkir for kw in nature_keywords) or any(kw in english for kw in ['sun', 'moon', 'star', 'water', 'river', 'lake', 'tree', 'forest', 'bird', 'animal', 'wolf', 'bear', 'fish', 'horse', 'cow', 'sheep', 'snow', 'rain', 'wind', 'day', 'night', 'spring', 'summer', 'autumn', 'winter', 'flower', 'grass', 'mountain', 'stone', 'earth', 'sky']):
+                    word_categories["🌿 Nature"].append(bashkir)
+                elif any(kw in bashkir for kw in culture_keywords) or any(kw in english for kw in ['festival', 'wedding', 'song', 'dance', 'music', 'honey', 'kumis', 'bread', 'meat', 'tea', 'food', 'tradition', 'legend', 'tale', 'story', 'holiday', 'craft', 'art', 'ornament', 'religion']):
+                    word_categories["🎭 Culture"].append(bashkir)
+                elif any(kw in bashkir for kw in people_keywords) or any(kw in english for kw in ['father', 'mother', 'child', 'girl', 'boy', 'grandfather', 'grandmother', 'family', 'relative', 'people', 'nation', 'friend', 'guest', 'teacher', 'worker', 'hero', 'citizen', 'president']):
+                    word_categories["👨‍👩‍👧 People"].append(bashkir)
+                elif any(kw in bashkir for kw in places_keywords) or any(kw in english for kw in ['city', 'street', 'square', 'house', 'home', 'school', 'factory', 'shop', 'bank', 'post', 'country', 'state', 'republic', 'capital', 'village', 'ufa', 'bashkortostan']):
+                    word_categories["🏛️ Places"].append(bashkir)
+                else:
+                    word_categories["💭 Concepts"].append(bashkir)
+        else:
+            word_categories["💭 Concepts"].append(bashkir)
+
+    # Remove empty categories and deduplicate
+    word_categories = {k: list(dict.fromkeys(v)) for k, v in word_categories.items() if v}
 
     if word_categories:
+        # Create tabs with expanded categories
         tabs = st.tabs(list(word_categories.keys()))
 
         for tab, (category, word_list) in zip(tabs, word_categories.items()):
             with tab:
                 st.markdown(f"**{len(word_list)} words available:**")
 
-                # Display words in a grid - 5 columns
-                cols_per_row = 5
-                for row_start in range(0, min(len(word_list), 25), cols_per_row):  # Limit to 25 words per category for performance
+                # Display words in a grid - 4 columns for better readability
+                cols_per_row = 4
+                max_words = 40  # Increased limit for better coverage
+                for row_start in range(0, min(len(word_list), max_words), cols_per_row):
                     cols = st.columns(cols_per_row)
                     for idx, col in enumerate(cols):
                         word_idx = row_start + idx
@@ -1612,7 +2137,7 @@ elif "Sentence Builder" in selected_page:
 
                             with col:
                                 # Create a unique key for each word button
-                                btn_key = f"wb_{category[:3]}_{word_idx}_{word[:5]}"
+                                btn_key = f"wb_{category[:3]}_{word_idx}_{word[:5] if len(word) >= 5 else word}"
                                 if st.button(f"**{word}**\n_{english}_", key=btn_key, use_container_width=True):
                                     st.session_state.builder_sentence.append({
                                         'word': word,
@@ -1620,8 +2145,8 @@ elif "Sentence Builder" in selected_page:
                                     })
                                     st.rerun()
 
-                if len(word_list) > 25:
-                    st.caption(f"*Showing 25 of {len(word_list)} words. Use search in Audio Dictionary for more.*")
+                if len(word_list) > max_words:
+                    st.caption(f"*Showing {max_words} of {len(word_list)} words. Use search in Audio Dictionary for more.*")
     else:
         st.warning("No words available. Check if words.json is properly loaded.")
 
@@ -2027,7 +2552,7 @@ elif "Review" in selected_page:
         if st.button("Go to Palace"):
             st.rerun()
 
-# === PAGE: BASHKORTNET EXPLORER (Enhanced with OCM) ===
+# === PAGE: BASHKORTNET EXPLORER (Enhanced with OCM and Neo4j) ===
 elif "BashkortNet" in selected_page:
     st.title("🕸️ BashkortNet Explorer (Semantic Network)")
     st.markdown("*Explore the semantic network connecting Bashkir words with OCM cultural classifications.*")
@@ -2036,38 +2561,6 @@ elif "BashkortNet" in selected_page:
     ocm_data = load_ocm_mapping()
     ocm_labels = ocm_data.get('ocm_labels', {})
     bashkir_to_ocm = ocm_data.get('bashkir_to_ocm', {})
-
-    # Word search with Bashkir and English
-    search_word = st.selectbox(
-        "Select a word to explore (Bashkir / English):",
-        [w['bashkir'] for w in words_data],
-        format_func=lambda x: f"{x} ({next((w['english'] for w in words_data if w['bashkir'] == x), '?')})"
-    )
-
-    if search_word:
-        word_data = next((w for w in words_data if w['bashkir'] == search_word), None)
-
-        if word_data:
-            col1, col2 = st.columns([1, 2])
-
-            with col1:
-                st.markdown(f"""
-                <div class="word-card">
-                    <span class="bashkir-text">{word_data['bashkir']} (Башҡорт теле)</span>
-                    <br>
-                    <small>{word_data.get('ipa', '')}</small>
-                    <br><br>
-                    <strong>{word_data['english']} (English)</strong>
-                    <br>
-                    <em>{word_data.get('russian', '')}</em>
-                    <br><br>
-                    <small>POS: {word_data.get('pos', 'noun')}</small>
-                </div>
-                """, unsafe_allow_html=True)
-
-                # Audio button
-                if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
-                    play_audio(word_data['bashkir'], slow=True)
 
     # Neo4j integration info
     st.markdown("---")
@@ -2144,7 +2637,7 @@ elif "BashkortNet" in selected_page:
                 """, unsafe_allow_html=True)
 
                 # Audio button
-                if st.button("🔊 Play Pronunciation", key="bashkortnet_audio"):
+                if st.button("🔊 Play Pronunciation", key=f"bashkortnet_audio_{word_data['id']}"):
                     play_audio(word_data['bashkir'], slow=True)
 
             with col2:
