@@ -1,0 +1,239 @@
+#EXTM3U
+#============================================================================
+#  БАШҠОРТ АҠЫЛЫ / BASHKIR MIND IPTV PLAYLIST
+#  "Where the Bashkir Mind Wanders" - Curated for Cultural & Language Learning
+#  Created: January 2026
+#============================================================================
+
+#============================================================================
+#  🏔️ БАШҠОРТОСТАН / BASHKORTOSTAN - Home of the Urals
+#  The heart of Bashkir culture along the Belaya River
+#============================================================================
+
+#EXTINF:-1 tvg-id="bashkortostan24" tvg-name="Башкортостан 24 HD" tvg-logo="https://iptvx.one/picons/bashkortostan24.png" group-title="🏔️ Башҡортостан",Башкортостан 24 HD (Уфа - News/Culture)
+http://vgtrkregion-reg.cdnvideo.ru/vgtrk/ufa/bashkortostan24-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="bst" tvg-name="БСТ HD" tvg-logo="https://iptvx.one/picons/bst.png" group-title="🏔️ Башҡортостан",БСТ HD (Башкирское Спутниковое ТВ)
+http://bsttv.bonus-tv.ru/cdn/bst/playlist_sdhigh.m3u8
+
+#EXTINF:-1 tvg-id="kuray" tvg-name="Курай ТВ" tvg-logo="https://i.imgur.com/kuray.png" group-title="🏔️ Башҡортостан",Курай ТВ (Башкирская музыка)
+http://bsttv.bonus-tv.ru/cdn/kuray/playlist_sdhigh.m3u8
+
+#EXTINF:-1 tvg-id="salam" tvg-name="Салям" tvg-logo="https://i.imgur.com/salam.png" group-title="🏔️ Башҡортостан",Салям (Уфа региональное)
+http://serv25.vintera.tv:8081/salam/salam/playlist.m3u8
+
+#EXTINF:-1 tvg-id="vsaufa" tvg-name="Вся Уфа" tvg-logo="https://i.imgur.com/vsaufa.png" group-title="🏔️ Башҡортостан",Вся Уфа (City Life)
+https://serv24.vintera.tv:8081/vsaufa/vsaufa_hd/playlist.m3u8
+
+#EXTINF:-1 tvg-id="matur" tvg-name="Матур ТВ" tvg-logo="https://i.imgur.com/matur.png" group-title="🏔️ Башҡортостан",Матур ТВ (Bashkir Music/Entertainment)
+http://matur.bonus-tv.ru/cdn/matur/playlist_sdhigh.m3u8
+
+#EXTINF:-1 tvg-id="aris24" tvg-name="Арис 24" tvg-logo="https://iptvx.one/picons/aris24.png" group-title="🏔️ Башҡортостан",Арис 24 (Regional Bashkortostan)
+http://serv25.vintera.tv:8081/test/aris/playlist.m3u8
+
+#============================================================================
+#  🕌 ТАТАРСТАН / TATARSTAN - Turkic Cousins in Kazan
+#  Sister Turkic culture - linguistic bridge to Bashkir
+#============================================================================
+
+#EXTINF:-1 tvg-id="tnv-tatarstan" tvg-name="ТНВ-Татарстан" tvg-logo="https://www.cableman.ru/sites/default/files/tnv.png" group-title="🕌 Татарстан",ТНВ-Татарстан (Tatar/Russian bilingual)
+http://a775797930-rt-vlg-kzn-htlive.cdn.ngenix.net/hls/CH_R01_TNVT/playlist.m3u8
+
+#EXTINF:-1 tvg-id="tatarstan24" tvg-name="Татарстан 24" tvg-logo="http://www.zelenodolsk.ru/share/images/base/7/170_157352.jpg" group-title="🕌 Татарстан",Татарстан 24 (Эфир-24 Kazan News)
+http://a775797930-rt-vlg-kzn-htlive.cdn.ngenix.net:80/hls/CH_R02_EFIR24/playlist.m3u8
+
+#EXTINF:-1 tvg-id="tmtv" tvg-name="TMTV" tvg-logo="http://tmtv-online.ru/2017/wp-content/uploads/2017/07/logotmtv.png" group-title="🕌 Татарстан",ТMTV (Tatar Music Television)
+http://rt-vlg-kzn-htlive.cdn.ngenix.net:80/hls/CH_R03_OTT_VLG_KZN_TMTV/variant.m3u8
+
+#EXTINF:-1 tvg-id="tnv-planeta" tvg-name="ТНВ-Планета" tvg-logo="https://i.imgur.com/tnvplaneta.png" group-title="🕌 Татарстан",ТНВ-Планета (Tatar World/Documentary)
+http://tnv-planeta.bonus-tv.ru/cdn/tnvp/playlist_sdhigh.m3u8
+
+#EXTINF:-1 tvg-id="shayan" tvg-name="Шаян ТВ" tvg-logo="https://i.imgur.com/shayan.png" group-title="🕌 Татарстан",Шаян ТВ (Kids - Tatar Language Learning!)
+http://shayan.bonus-tv.ru/cdn/shayan/playlist_sdhigh.m3u8
+
+#============================================================================
+#  🦅 ҚАЗАҚСТАН / KAZAKHSTAN - The Great Steppe
+#  Kipchak Turkic world - understanding Central Asian culture
+#============================================================================
+
+#EXTINF:-1 tvg-id="qazaqstan" tvg-name="Qazaqstan" tvg-logo="https://i.imgur.com/qazaqstan.png" group-title="🦅 Қазақстан",Qazaqstan TV (Main Kazakh Channel)
+https://stream.qazaqstan.tv/qrt/index.m3u8
+
+#EXTINF:-1 tvg-id="qazaqstan-int" tvg-name="Qazaqstan International" tvg-logo="https://i.imgur.com/qazint.png" group-title="🦅 Қазақстан",Qazaqstan International (Global/English)
+https://stream.qazaqstan.tv/qrti/index.m3u8
+
+#EXTINF:-1 tvg-id="khabar" tvg-name="Хабар" tvg-logo="https://i.imgur.com/khabar.png" group-title="🦅 Қазақстан",Хабар (Khabar - News/Analysis)
+https://stream.khabar.kz/khabar24/index.m3u8
+
+#EXTINF:-1 tvg-id="khabar24" tvg-name="Хабар 24" tvg-logo="https://i.imgur.com/khabar24.png" group-title="🦅 Қазақстан",Хабар 24 (24hr Kazakh News)
+https://stream.khabar.kz/khabar24/index.m3u8
+
+#EXTINF:-1 tvg-id="balapan" tvg-name="Balapan" tvg-logo="https://i.imgur.com/balapan.png" group-title="🦅 Қазақстан",Balapan TV (Children's - Kazakh Learning!)
+https://stream.balapan.tv/balapan/index.m3u8
+
+#EXTINF:-1 tvg-id="elarna" tvg-name="Ел Арна" tvg-logo="https://i.imgur.com/elarna.png" group-title="🦅 Қазақстан",Ел Арна (Kazakh Culture/Entertainment)
+https://stream.elarna.kz/elarna/index.m3u8
+
+#EXTINF:-1 tvg-id="qazsport" tvg-name="QazSport" tvg-logo="https://i.imgur.com/qazsport.png" group-title="🦅 Қазақстан",QazSport (Central Asian Sports)
+https://stream.qazsport.kz/qazsport/index.m3u8
+
+#============================================================================
+#  🇷🇺 РОССИЯ / RUSSIA - Federal Channels
+#  Russian language immersion - the lingua franca
+#============================================================================
+
+#EXTINF:-1 tvg-id="pervykanal" tvg-name="Первый канал" tvg-logo="https://i.imgur.com/perviy.png" group-title="🇷🇺 Россия",Первый канал (Channel One Russia)
+https://edge1.1internet.tv/dash-live/streams/1tv/1tv.mpd
+
+#EXTINF:-1 tvg-id="russia1" tvg-name="Россия 1" tvg-logo="https://i.imgur.com/russia1.png" group-title="🇷🇺 Россия",Россия 1 (Russia 1)
+https://vgtrk.cdnvideo.ru/vgtrk/russia1-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="russia24" tvg-name="Россия 24" tvg-logo="https://i.imgur.com/russia24.png" group-title="🇷🇺 Россия",Россия 24 (24hr News)
+https://vgtrk.cdnvideo.ru/vgtrk/russia24-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="russiak" tvg-name="Россия Культура" tvg-logo="https://i.imgur.com/kulturа.png" group-title="🇷🇺 Россия",Россия Культура (Arts/History/Education)
+https://vgtrk.cdnvideo.ru/vgtrk/kultura-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="ntv" tvg-name="НТВ" tvg-logo="https://i.imgur.com/ntv.png" group-title="🇷🇺 Россия",НТВ (News/Documentary)
+https://edge1.1internet.tv/dash-live/streams/ntv/ntv.mpd
+
+#EXTINF:-1 tvg-id="mir" tvg-name="МИР" tvg-logo="https://i.imgur.com/mir.png" group-title="🇷🇺 Россия",МИР (CIS Countries)
+http://mirtv.bonus-tv.ru/cdn/mirtv/index.m3u8
+
+#EXTINF:-1 tvg-id="mir24" tvg-name="МИР 24" tvg-logo="https://i.imgur.com/mir24.png" group-title="🇷🇺 Россия",МИР 24 (CIS News 24hr)
+https://streaming.mirtv.ru/mir24/mir24_hd_variant.m3u8
+
+#EXTINF:-1 tvg-id="zvezda" tvg-name="Звезда" tvg-logo="https://i.imgur.com/zvezda.png" group-title="🇷🇺 Россия",Звезда (History/Military/Geography)
+https://tvzvezda.bonus-tv.ru/cdn/zvezda/variant.m3u8
+
+#EXTINF:-1 tvg-id="spas" tvg-name="СПАС" tvg-logo="https://i.imgur.com/spas.png" group-title="🇷🇺 Россия",СПАС (Orthodox/Spiritual)
+https://spas-tv.bonus-tv.ru/cdn/spas/playlist_sdhigh.m3u8
+
+#EXTINF:-1 tvg-id="otr" tvg-name="ОТР" tvg-logo="https://i.imgur.com/otr.png" group-title="🇷🇺 Россия",ОТР (Public Television - Regional Features)
+https://otr.cdnvideo.ru/otr/otr-hd/index.m3u8
+
+#============================================================================
+#  📚 ОБРАЗОВАНИЕ / EDUCATION - Learning Channels
+#  Geography, Science, Nature for the curious mind
+#============================================================================
+
+#EXTINF:-1 tvg-id="nauka" tvg-name="Наука" tvg-logo="https://i.imgur.com/nauka.png" group-title="📚 Образование",Наука (Science/Technology)
+https://nauka.cdnvideo.ru/nauka/nauka-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="istoriya" tvg-name="История" tvg-logo="https://i.imgur.com/istoriya.png" group-title="📚 Образование",История (History Channel Russia)
+https://istoriya.cdnvideo.ru/istoriya/istoriya-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="morvekom" tvg-name="Моя планета" tvg-logo="https://i.imgur.com/mplaneta.png" group-title="📚 Образование",Моя планета (Nature/Geography/Travel)
+https://mplaneta.cdnvideo.ru/mplaneta/mplaneta-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="zhivotnye" tvg-name="Живая планета" tvg-logo="https://i.imgur.com/zhivplan.png" group-title="📚 Образование",Живая планета (Wildlife/Nature)
+https://zhivotnye.cdnvideo.ru/zhivotnye/zhivotnye-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="pobeda" tvg-name="Победа" tvg-logo="https://i.imgur.com/pobeda.png" group-title="📚 Образование",Победа (WWII History/Documentary)
+https://pobeda.cdnvideo.ru/pobeda/pobeda-hd/index.m3u8
+
+#============================================================================
+#  🌍 DÜNYA HABERLERİ / WORLD NEWS - Global Perspective
+#  Al Jazeera for international view on Turkic/Muslim world
+#============================================================================
+
+#EXTINF:-1 tvg-id="AlJazeera.English.net" tvg-name="Al Jazeera English" tvg-logo="http://www.aljazeera.com/mritems/assets/images/aj-logo-lg.png" group-title="🌍 Dünya",Al Jazeera English (Global News)
+https://live-hls-web-aje.getaj.net/AJE/index.m3u8
+
+#EXTINF:-1 tvg-id="AlJazeera.Arabic.net" tvg-name="Al Jazeera Arabic" tvg-logo="http://www.aljazeera.com/mritems/assets/images/aj-logo-lg.png" group-title="🌍 Dünya",Al Jazeera Arabic (الجزيرة)
+https://live-hls-web-aja.getaj.net/AJA/index.m3u8
+
+#EXTINF:-1 tvg-id="trt-world" tvg-name="TRT World" tvg-logo="https://i.imgur.com/trtworld.png" group-title="🌍 Dünya",TRT World (Turkish Perspective in English)
+https://tv-trtworld.medya.trt.com.tr/master.m3u8
+
+#EXTINF:-1 tvg-id="france24-en" tvg-name="France 24 EN" tvg-logo="https://i.imgur.com/f24en.png" group-title="🌍 Dünya",France 24 English (European View)
+https://ott.france24.net/hls/live/2037308/F24_EN_HI_HLS/index.m3u8
+
+#EXTINF:-1 tvg-id="dw-en" tvg-name="DW English" tvg-logo="https://i.imgur.com/dw.png" group-title="🌍 Dünya",DW News (German Perspective)
+https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/index.m3u8
+
+#EXTINF:-1 tvg-id="cgtn" tvg-name="CGTN" tvg-logo="https://i.imgur.com/cgtn.png" group-title="🌍 Dünya",CGTN (Chinese Perspective - Silk Road)
+https://news.cgtn.com/resource/live/english/cgtn-news.m3u8
+
+#============================================================================
+#  🇹🇷 TÜRKİYE / TURKEY - Ottoman Turkic Heritage
+#  Connection to broader Turkic world & language family
+#============================================================================
+
+#EXTINF:-1 tvg-id="trt1" tvg-name="TRT 1" tvg-logo="https://i.imgur.com/trt1.png" group-title="🇹🇷 Türkiye",TRT 1 (Turkish National)
+https://tv-trt1.medya.trt.com.tr/master.m3u8
+
+#EXTINF:-1 tvg-id="trt-haber" tvg-name="TRT Haber" tvg-logo="https://i.imgur.com/trthaber.png" group-title="🇹🇷 Türkiye",TRT Haber (Turkish News)
+https://tv-trthaber.medya.trt.com.tr/master.m3u8
+
+#EXTINF:-1 tvg-id="trt-belgesel" tvg-name="TRT Belgesel" tvg-logo="https://i.imgur.com/trtbelgesel.png" group-title="🇹🇷 Türkiye",TRT Belgesel (Documentary/History)
+https://tv-trtbelgesel.medya.trt.com.tr/master.m3u8
+
+#EXTINF:-1 tvg-id="trt-muzik" tvg-name="TRT Müzik" tvg-logo="https://i.imgur.com/trtmuzik.png" group-title="🇹🇷 Türkiye",TRT Müzik (Turkish/Anatolian Music)
+https://tv-trtmuzik.medya.trt.com.tr/master.m3u8
+
+#EXTINF:-1 tvg-id="trt-cocuk" tvg-name="TRT Çocuk" tvg-logo="https://i.imgur.com/trtcocuk.png" group-title="🇹🇷 Türkiye",TRT Çocuk (Kids - Turkish Learning!)
+https://tv-trtcocuk.medya.trt.com.tr/master.m3u8
+
+#EXTINF:-1 tvg-id="trt-avaz" tvg-name="TRT Avaz" tvg-logo="https://i.imgur.com/trtavaz.png" group-title="🇹🇷 Türkiye",TRT Avaz (Turkic World Broadcasting!)
+https://tv-trtavaz.medya.trt.com.tr/master.m3u8
+
+#============================================================================
+#  🎵 МУЗЫКА / MUSIC - For the Soul
+#  Russian and Turkic music channels
+#============================================================================
+
+#EXTINF:-1 tvg-id="viva-russia" tvg-name="VIVA Россия" tvg-logo="https://i.imgur.com/viva.png" group-title="🎵 Музыка",VIVA Россия (Russian Pop/Hits)
+https://viva.cdnvideo.ru/viva/viva-sd/index.m3u8
+
+#EXTINF:-1 tvg-id="muz-tv" tvg-name="МУЗ-ТВ" tvg-logo="https://i.imgur.com/muztv.png" group-title="🎵 Музыка",МУЗ-ТВ (Russian Music Television)
+https://muztv.cdnvideo.ru/muztv/muztv-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="ru-tv" tvg-name="RU.TV" tvg-logo="https://i.imgur.com/rutv.png" group-title="🎵 Музыка",RU.TV (Russian Hits)
+https://rutv.cdnvideo.ru/rutv/rutv-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="shanson" tvg-name="Шансон ТВ" tvg-logo="https://i.imgur.com/shanson.png" group-title="🎵 Музыка",Шансон ТВ (Russian Chanson/Folk)
+https://shanson.cdnvideo.ru/shanson/shanson-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="deluxe-lounge" tvg-name="Deluxe Lounge" tvg-logo="https://deluxemusic.de/wp-content/uploads/sites/4/2023/01/DLXM_LOUNGE_LOGO.png" group-title="🎵 Музыка",Deluxe Lounge (Ambient/Chill - For Meditation)
+https://sdn-global-live-streaming-packager.3qsdn.com/7634/7634_live.m3u8
+
+#============================================================================
+#  📺 OTHER REGIONS - Other Turkic & Related Peoples
+#============================================================================
+
+#EXTINF:-1 tvg-id="chuvashia" tvg-name="Чувашия НТРК" tvg-logo="https://i.imgur.com/chuvashia.png" group-title="📺 Регионы",Чувашия НТРК (Chuvash Turkic)
+http://chuvashia.bonus-tv.ru/cdn/chuvashia/playlist_sdhigh.m3u8
+
+#EXTINF:-1 tvg-id="sakha24" tvg-name="Саха 24" tvg-logo="https://i.imgur.com/sakha.png" group-title="📺 Регионы",Саха 24 (Yakutia - Turkic Siberia)
+https://sakha24.cdnvideo.ru/sakha24/sakha24-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="altai" tvg-name="Россия Алтай" tvg-logo="https://i.imgur.com/altai.png" group-title="📺 Регионы",Россия Алтай (Altai Turkic Region)
+https://vgtrkregion-reg.cdnvideo.ru/vgtrk/altai/russia1-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="tuva" tvg-name="Тува 24" tvg-logo="https://i.imgur.com/tuva.png" group-title="📺 Регионы",Тува 24 (Tuvan - Turkic Siberia)
+https://tuva24.cdnvideo.ru/tuva24/tuva24-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="khakassia" tvg-name="Хакасия" tvg-logo="https://i.imgur.com/khakassia.png" group-title="📺 Регионы",Хакасия (Khakas Turkic Region)
+https://vgtrkregion-reg.cdnvideo.ru/vgtrk/khakassia/russia1-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="buryatia" tvg-name="Бурятия" tvg-logo="https://i.imgur.com/buryatia.png" group-title="📺 Регионы",Ариг Ус (Buryatia - Mongolic neighbor)
+https://buryatia.cdnvideo.ru/buryatia/buryatia-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="crimea" tvg-name="Миллет" tvg-logo="https://i.imgur.com/millet.png" group-title="📺 Регионы",Миллет (Crimean Tatar Channel)
+https://millet.cdnvideo.ru/millet/millet-hd/index.m3u8
+
+#============================================================================
+#  🏃 СПОРТ / SPORTS - For Entertainment
+#============================================================================
+
+#EXTINF:-1 tvg-id="matchtvhd" tvg-name="Матч ТВ HD" tvg-logo="https://i.imgur.com/matchtv.png" group-title="🏃 Спорт",Матч ТВ HD (Russian Sports)
+https://matchtv.cdnvideo.ru/matchtv/matchtv-hd/index.m3u8
+
+#EXTINF:-1 tvg-id="matchpremier" tvg-name="Матч Премьер" tvg-logo="https://i.imgur.com/matchpremier.png" group-title="🏃 Спорт",Матч Премьер (Football)
+https://matchpremier.cdnvideo.ru/matchpremier/matchpremier-hd/index.m3u8
+
+#============================================================================
+#  END OF PLAYLIST
+#  Рәхмәт! / Рахмат! / Рахмет! / Спасибо! / Thank you!
+#============================================================================
